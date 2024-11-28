@@ -12,7 +12,7 @@ const NavBar = ({ setSelectedSection }) => {
   const navItems = ['Home', 'About', 'Projects', 'Certificates', 'Contact'];
 
   return (
-    <nav className="bg-dark-secondary">
+    <nav className="bg-dark-navbar">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <span className="text-dark-text font-bold text-xl">Portfolio</span>
