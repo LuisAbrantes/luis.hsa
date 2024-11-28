@@ -197,17 +197,17 @@ const Certificates = () => {
 
     const CertificateModal = ({ certificate, onClose }) => {
         return (
-            <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-                <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+                <div className="bg-dark-secondary rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
                     {/* Modal Header */}
-                    <div className="p-6 border-b">
+                    <div className="p-6 border-b border-dark-hover">
                         <div className="flex justify-between items-start">
-                            <h2 className="text-2xl font-bold text-gray-900">
+                            <h2 className="text-2xl font-bold text-dark-text">
                                 {certificate.title}
                             </h2>
                             <button
                                 onClick={onClose}
-                                className="text-gray-500 hover:text-gray-700"
+                                className="text-dark-muted hover:text-dark-text"
                             >
                                 <svg
                                     className="w-6 h-6"
@@ -227,7 +227,7 @@ const Certificates = () => {
                     </div>
 
                     {/* Modal Content */}
-                    <div className="p-6">
+                    <div className="p-6 text-dark-text">
                         <div className="space-y-4">
                             <div className="flex items-center space-x-2">
                                 <span className="font-semibold">
@@ -305,10 +305,10 @@ const Certificates = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 py-20 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-dark-primary py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
                 {/* Add GitHub Repository Notice */}
-                <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8 rounded-md">
+                <div className="bg-dark-secondary border-l-4 border-dark-accent p-4 mb-8 rounded-md">
                     <div className="flex items-center">
                         <svg
                             className="h-6 w-6 text-blue-500 mr-3"
@@ -334,10 +334,10 @@ const Certificates = () => {
                     </div>
                 </div>
 
-                <h1 className="text-4xl font-bold text-gray-900 text-center mb-4">
+                <h1 className="text-4xl font-bold text-dark-text text-center mb-4">
                     Academic Achievements
                 </h1>
-                <p className="text-xl text-gray-600 text-center mb-12">
+                <p className="text-xl text-dark-muted text-center mb-12">
                     My professional qualifications and certifications
                 </p>
 
@@ -348,8 +348,8 @@ const Certificates = () => {
                         className={`px-6 py-2 rounded-full transition-all duration-300 
                             ${
                                 filter === 'all'
-                                    ? 'bg-indigo-600 text-white'
-                                    : 'bg-white text-gray-600 hover:bg-indigo-50'
+                                    ? 'bg-dark-accent text-dark-text'
+                                    : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
                             }`}
                     >
                         All
@@ -359,8 +359,8 @@ const Certificates = () => {
                         className={`px-6 py-2 rounded-full transition-all duration-300 
                             ${
                                 filter === 'courses'
-                                    ? 'bg-indigo-600 text-white'
-                                    : 'bg-white text-gray-600 hover:bg-indigo-50'
+                                    ? 'bg-dark-accent text-dark-text'
+                                    : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
                             }`}
                     >
                         Courses
@@ -370,8 +370,8 @@ const Certificates = () => {
                         className={`px-6 py-2 rounded-full transition-all duration-300 
                             ${
                                 filter === 'extracurricular'
-                                    ? 'bg-indigo-600 text-white'
-                                    : 'bg-white text-gray-600 hover:bg-indigo-50'
+                                    ? 'bg-dark-accent text-dark-text'
+                                    : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
                             }`}
                     >
                         Extracurricular
@@ -381,8 +381,8 @@ const Certificates = () => {
                         className={`px-6 py-2 rounded-full transition-all duration-300 
                             ${
                                 filter === 'honors'
-                                    ? 'bg-indigo-600 text-white'
-                                    : 'bg-white text-gray-600 hover:bg-indigo-50'
+                                    ? 'bg-dark-accent text-dark-text'
+                                    : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
                             }`}
                     >
                         Honors
@@ -392,8 +392,8 @@ const Certificates = () => {
                         className={`px-6 py-2 rounded-full transition-all duration-300 
                             ${
                                 filter === 'events'
-                                    ? 'bg-indigo-600 text-white'
-                                    : 'bg-white text-gray-600 hover:bg-indigo-50'
+                                    ? 'bg-dark-accent text-dark-text'
+                                    : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
                             }`}
                     >
                         Events
@@ -403,8 +403,8 @@ const Certificates = () => {
                         className={`px-6 py-2 rounded-full transition-all duration-300 
                             ${
                                 filter === 'hackathons'
-                                    ? 'bg-indigo-600 text-white'
-                                    : 'bg-white text-gray-600 hover:bg-indigo-50'
+                                    ? 'bg-dark-accent text-dark-text'
+                                    : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
                             }`}
                     >
                         Hackathons
@@ -420,11 +420,11 @@ const Certificates = () => {
                         .map(certificate => (
                             <div
                                 key={certificate.id}
-                                className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                                className="bg-dark-secondary rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
                             >
                                 <div className="p-6">
                                     <div className="flex justify-between items-start mb-4">
-                                        <h3 className="text-xl font-semibold text-gray-900">
+                                        <h3 className="text-xl font-semibold text-dark-text">
                                             {certificate.title}
                                         </h3>
                                         <img
@@ -434,19 +434,19 @@ const Certificates = () => {
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <p className="text-gray-600">
+                                        <p className="text-dark-muted">
                                             <span className="font-medium">
                                                 Institution:
                                             </span>{' '}
                                             {certificate.institution}
                                         </p>
-                                        <p className="text-gray-600">
+                                        <p className="text-dark-muted">
                                             <span className="font-medium">
                                                 Completion:
                                             </span>{' '}
                                             {certificate.date}
                                         </p>
-                                        <p className="text-gray-600">
+                                        <p className="text-dark-muted">
                                             <span className="font-medium">
                                                 Duration:
                                             </span>{' '}

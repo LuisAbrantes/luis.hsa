@@ -1,6 +1,6 @@
 const Home = () => {
   return (
-    <div className="home-section">
+    <div className="home-section bg-dark-primary text-dark-text">
       <h1 className="name">Your Name</h1>
       <h2 className="title">Your Professional Title</h2>
       <p className="introduction">

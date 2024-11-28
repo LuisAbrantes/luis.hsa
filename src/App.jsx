@@ -28,7 +28,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-dark-primary text-dark-text">
       <NavBar setSelectedSection={setSelectedSection} />
       {renderSection()}
     </div>

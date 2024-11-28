@@ -1,3 +1,9 @@
+/* Remove all background-color properties and update text colors to use CSS variables */
+:root {
+  --dark-text: #e5e7eb;
+  --dark-muted: #9ca3af;
+}
+
 /* NavBar styles */
 nav {
   background-color: #333;
@@ -38,39 +44,16 @@ nav ul li button:hover {
   min-height: 100vh;
 }
 
-.home-section {
-  background-color: #f0f0f0;
-}
-
-.about-section {
-  background-color: #e0e0e0;
-}
-
-.projects-section {
-  background-color: #d0d0d0;
-}
-
-.certificates-section {
-  background-color: #c0c0c0;
-}
-
-.contact-section {
-  background-color: #b0b0b0;
-}
-
 .name {
-  font-size: 2.5rem;
-  font-weight: bold;
+  @apply text-5xl font-bold;
 }
 
 .title {
-  font-size: 2rem;
-  margin-top: 0.5rem;
+  @apply text-3xl mt-2;
 }
 
 .introduction {
-  font-size: 1.25rem;
-  margin-top: 1rem;
+  @apply text-xl mt-4;
 }
 
 .about-section h1,
@@ -112,3 +95,18 @@ nav ul li button:hover {
 .project-item p {
   font-size: 1rem;
 }
+
+.contact-form label {
+  @apply block mb-2;
+}
+
+.contact-form input,
+.contact-form textarea {
+  @apply w-full mb-4 p-2 rounded bg-dark-secondary text-dark-text border border-dark-hover;
+}
+
+.contact-form button {
+  @apply bg-dark-accent text-dark-text px-4 py-2 rounded hover:bg-purple-700;
+}
+
+/* Remove other color-related styles */
