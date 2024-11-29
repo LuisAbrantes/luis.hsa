@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import agrolearn from '../assets/projects/agrolearn.webp';
 import quickreadme from '../assets/projects/quickreadme.png';
+import elementaryschoolwebsite from '../assets/projects/elementaryschoolwebsite.png';
 import tutortime from '../assets/projects/tutortime.png';  // Add this import
 
 const techIcons = {
@@ -45,7 +46,7 @@ const projectsData = [
         id: 2,
         title: 'QuickReadme',
         shortDescription:
-            'Python Package to generate README.md files for your projects quickly.',
+            'Open Source Python Package to generate README.md files for your projects quickly.',
         fullDescription:
             'Uma descrição mais detalhada do projeto que aparece no modal, explicando seus objetivos, desafios e soluções implementadas.',
         image: quickreadme,
@@ -69,12 +70,37 @@ const projectsData = [
             'Uma descrição mais detalhada do projeto que aparece no modal, explicando seus objetivos, desafios e soluções implementadas.',
         image: tutortime,
         thumbnail: tutortime,
-        technologies: ['Python'],
+        technologies: [
+            'HandleBars',
+            'Node.js',
+            'Express.js',
+            'MySQL',
+            'Sequelize'
+        ],
         category: 'Web App',
         github: 'https://github.com/LuisAbrantes/TutorTimeModel',
         demo: '',
         highlights: [
             'My current most stared project on GitHub',
+            'Desafio técnico superado',
+            'Resultado alcançado'
+        ]
+    },
+    {
+        id: 4,
+        title: 'Elementary School website',
+        shortDescription:
+            'Python Package to generate README.md files for your projects quickly.',
+        fullDescription:
+            'Uma descrição mais detalhada do projeto que aparece no modal, explicando seus objetivos, desafios e soluções implementadas.',
+        image: elementaryschoolwebsite,
+        thumbnail: elementaryschoolwebsite,
+        technologies: ['HTML', 'CSS'],
+        category: 'Web App',
+        github: 'https://github.com/LuisAbrantes/MyElementarySchoolWebsite',
+        demo: 'https://luisabrantes.github.io/MyElementarySchoolWebsite/',
+        highlights: [
+            'My first Website ever',
             'Desafio técnico superado',
             'Resultado alcançado'
         ]
