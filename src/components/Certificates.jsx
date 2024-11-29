@@ -1,10 +1,39 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { 
+    BookOpen, // for courses
+    Users, // for extracurricular
+    Award, // for honors
+    Calendar, // for events
+    Code2 // for hackathons
+} from 'lucide-react';
 
 const Certificates = () => {
     const [filter, setFilter] = useState('all');
     const [selectedCertificate, setSelectedCertificate] = useState(null);
     const [showModal, setShowModal] = useState(false);
+
+    const getTypeIcon = (type) => {
+        const iconProps = {
+            size: 24,
+            className: "text-dark-accent"
+        };
+
+        switch (type) {
+            case 'courses':
+                return <BookOpen {...iconProps} />;
+            case 'extracurricular':
+                return <Users {...iconProps} />;
+            case 'honors':
+                return <Award {...iconProps} />;
+            case 'events':
+                return <Calendar {...iconProps} />;
+            case 'hackathons':
+                return <Code2 {...iconProps} />;
+            default:
+                return null;
+        }
+    };
 
     const certificates = [
         {
@@ -14,8 +43,7 @@ const Certificates = () => {
                 'Federal Institute of Science and Technology of São Paulo - IFSP',
             date: '2024',
             type: 'courses',
-            badge: 'https://img.shields.io/badge/-Courses-orange',
-            hours: 40
+            hours: 80,
         },
         {
             id: 2,
@@ -24,17 +52,15 @@ const Certificates = () => {
                 'Federal Institute of Science and Technology of São Paulo - IFSP',
             date: '2023',
             type: 'courses',
-            badge: 'https://img.shields.io/badge/-Courses-orange',
-            hours: 30
+            hours: 36,
         },
         {
             id: 3,
             title: 'Physics on Vacation - FIFE',
             institution: 'University of Campinas - UNICAMP',
             date: '2024',
-            type: 'extracurricular',
-            badge: 'https://img.shields.io/badge/-Extracurricular-blue',
-            hours: 47
+            type: 'courses', // changed from 'extracurricular' to 'courses'
+            hours: 47,
         },
         {
             id: 4,
@@ -43,8 +69,7 @@ const Certificates = () => {
                 'Federal Institute of Science and Technology of São Paulo - IFSP',
             date: '2022',
             type: 'courses',
-            badge: 'https://img.shields.io/badge/-Courses-orange',
-            hours: 25
+            hours: 60,
         },
         {
             id: 5,
@@ -52,8 +77,7 @@ const Certificates = () => {
             institution: 'National Service for Industrial Learning - SENAI',
             date: '2023',
             type: 'hackathons',
-            badge: 'https://img.shields.io/badge/-Hackathons-purple',
-            hours: 30
+            hours: 40,
         },
         {
             id: 6,
@@ -61,8 +85,7 @@ const Certificates = () => {
             institution: 'University of Pennsylvania - Penn Engineering',
             date: '2022',
             type: 'hackathons',
-            badge: 'https://img.shields.io/badge/-Hackathons-purple',
-            hours: 40
+            hours: 40,
         },
         {
             id: 7,
@@ -70,8 +93,7 @@ const Certificates = () => {
             institution: 'Seleta Educação',
             date: '2024.1',
             type: 'honors',
-            badge: 'https://img.shields.io/badge/-Honors-gold',
-            hours: 40
+            hours: 2,
         },
         {
             id: 8,
@@ -79,17 +101,15 @@ const Certificates = () => {
             institution: 'Seleta Educação',
             date: '2024.2',
             type: 'honors',
-            badge: 'https://img.shields.io/badge/-Honors-gold',
-            hours: 40
+            hours: 2,
         },
         {
             id: 9,
-            title: 'National English Language Olympiad - OBLI - Bronze Medal 2',
-            institution: 'Seleta Educação',
-            date: '2024.2',
-            type: 'honors',
-            badge: 'https://img.shields.io/badge/-Honors-gold',
-            hours: 40
+            title: 'Introduction to Network Architecture and Protocols',
+            institution: 'Federal Institute of Science and Technology of São Paulo - IFSP',
+            date: '2022',
+            type: 'courses',
+            hours: 100,
         },
         {
             id: 10,
@@ -98,8 +118,7 @@ const Certificates = () => {
                 'Institute of Federal Education, Science and Technology of São Paulo',
             date: '2024',
             type: 'extracurricular',
-            badge: 'https://img.shields.io/badge/-Extracurricular-blue',
-            hours: 15
+            hours: 15,
         },
         {
             id: 11,
@@ -107,8 +126,7 @@ const Certificates = () => {
             institution: 'The Dream School',
             date: '2024',
             type: 'extracurricular',
-            badge: 'https://img.shields.io/badge/-Extracurricular-blue',
-            hours: 15
+            hours: 15,
         },
         {
             id: 12,
@@ -116,8 +134,7 @@ const Certificates = () => {
             institution: 'ARINTER IFSP',
             date: '2024 2025',
             type: 'extracurricular',
-            badge: 'https://img.shields.io/badge/-Extracurricular-blue',
-            hours: 15
+            hours: 15,
         },
         {
             id: 13,
@@ -125,8 +142,7 @@ const Certificates = () => {
             institution: 'IFSP',
             date: '2024 2025',
             type: 'extracurricular',
-            badge: 'https://img.shields.io/badge/-Extracurricular-blue',
-            hours: 15
+            hours: 10,
         },
         {
             id: 14,
@@ -134,8 +150,7 @@ const Certificates = () => {
             institution: 'IFSP',
             date: '2022',
             type: 'events',
-            badge: 'https://img.shields.io/badge/-Events-green',
-            hours: 1.5
+            hours: 1.5,
         },
         {
             id: 15,
@@ -143,8 +158,7 @@ const Certificates = () => {
             institution: 'IFSP',
             date: '2022',
             type: 'events',
-            badge: 'https://img.shields.io/badge/-Events-green',
-            hours: 2
+            hours: 2,
         },
         {
             id: 16,
@@ -152,8 +166,7 @@ const Certificates = () => {
             institution: 'University of Campinas - UNICAMP',
             date: '2023',
             type: 'honors',
-            badge: 'https://img.shields.io/badge/-Honors-gold',
-            hours: 24
+            hours: 24,
         },
         {
             id: 17,
@@ -161,8 +174,7 @@ const Certificates = () => {
             institution: 'IFSP',
             date: '2022',
             type: 'events',
-            badge: 'https://img.shields.io/badge/-Events-green',
-            hours: 2
+            hours: 2,
         },
         {
             id: 18,
@@ -170,8 +182,7 @@ const Certificates = () => {
             institution: 'IFSP',
             date: '2022',
             type: 'events',
-            badge: 'https://img.shields.io/badge/-Events-green',
-            hours: 1.5
+            hours: 1.5,
         },
         {
             id: 19,
@@ -179,8 +190,7 @@ const Certificates = () => {
             institution: "Saint John's College",
             date: '2024',
             type: 'courses',
-            badge: 'https://img.shields.io/badge/-Courses-orange',
-            hours: 8
+            hours: 8,
         }
     ];
 
@@ -243,12 +253,8 @@ const Certificates = () => {
                             </div>
                             <div className="flex items-center space-x-2">
                                 <span className="font-semibold">Type:</span>
-                                <span>{certificate.type}</span>
-                                <img
-                                    src={certificate.badge}
-                                    alt="badge"
-                                    className="h-6"
-                                />
+                                <span className="capitalize">{certificate.type}</span>
+                                {getTypeIcon(certificate.type)}
                             </div>
                             <div className="flex items-center space-x-2">
                                 <span className="font-semibold">
@@ -296,8 +302,7 @@ const Certificates = () => {
             title: PropTypes.string.isRequired,
             institution: PropTypes.string.isRequired,
             date: PropTypes.string.isRequired,
-            type: PropTypes.string.isRequired,
-            badge: PropTypes.string.isRequired,
+            type: PropTypes.oneOf(['courses', 'extracurricular', 'honors', 'events', 'hackathons']).isRequired,
             pdfPath: PropTypes.string,
             hours: PropTypes.number.isRequired
         }).isRequired,
@@ -427,11 +432,7 @@ const Certificates = () => {
                                         <h3 className="text-xl font-semibold text-dark-text">
                                             {certificate.title}
                                         </h3>
-                                        <img
-                                            src={certificate.badge}
-                                            alt="badge"
-                                            className="h-6"
-                                        />
+                                        {getTypeIcon(certificate.type)}
                                     </div>
                                     <div className="space-y-2">
                                         <p className="text-dark-muted">
