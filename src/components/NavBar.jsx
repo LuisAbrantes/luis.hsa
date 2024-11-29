@@ -9,7 +9,7 @@ const NavBar = ({ setSelectedSection }) => {
     setSelectedSection(section);
   };
 
-  const navItems = ['Home', 'About', 'Projects', 'Certificates', 'Contact'];
+  const navItems = ['Home', 'About', 'Projects', 'Academic Achievements', 'Contact'];
 
   return (
     <nav className="bg-dark-navbar">

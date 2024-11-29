@@ -19,6 +19,7 @@ function App() {
       case 'Projects':
         return <Projects />;
       case 'Certificates':
+      case 'Academic Achievements':
         return <Certificates />;
       case 'Contact':
         return <Contact />;
