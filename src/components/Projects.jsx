@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import agrolearn from '../assets/projects/agrolearn.webp';
 import quickreadme from '../assets/projects/quickreadme.png';
+import tutortime from '../assets/projects/tutortime.png';  // Add this import
 
 const techIcons = {
   'React': <Code2 size={14} className="inline-block" />,
@@ -50,11 +51,30 @@ const projectsData = [
         image: quickreadme,
         thumbnail: quickreadme,
         technologies: ['Python'],
-        category: 'Web App',
+        category: 'Python Package',
         github: 'https://github.com/LuisAbrantes/QuickReadme',
-        demo: 'https://agrolearn.vercel.app/',
+        demo: '',
         highlights: [
-            'Feature principal implementada',
+            'My current most stared project on GitHub',
+            'Desafio técnico superado',
+            'Resultado alcançado'
+        ]
+    },
+    {
+        id: 3,
+        title: 'TutorTime',
+        shortDescription:
+            'Python Package to generate README.md files for your projects quickly.',
+        fullDescription:
+            'Uma descrição mais detalhada do projeto que aparece no modal, explicando seus objetivos, desafios e soluções implementadas.',
+        image: tutortime,
+        thumbnail: tutortime,
+        technologies: ['Python'],
+        category: 'Web App',
+        github: 'https://github.com/LuisAbrantes/TutorTimeModel',
+        demo: '',
+        highlights: [
+            'My current most stared project on GitHub',
             'Desafio técnico superado',
             'Resultado alcançado'
         ]
