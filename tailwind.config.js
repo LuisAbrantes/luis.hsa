@@ -16,6 +16,23 @@ export default {
                     githubText: '#EDEDED', // Text color for GitHub quote
                     githubLink: '#539BF5'  // Link color for GitHub quote
                 }
+            },
+            keyframes: {
+                fadeIn: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' }
+                },
+                scaleIn: {
+                    '0%': { transform: 'scale(0.95)' },
+                    '100%': { transform: 'scale(1)' }
+                }
+            },
+            animation: {
+                fadeIn: 'fadeIn 0.2s ease-in-out',
+                scaleIn: 'scaleIn 0.2s ease-out'
+            },
+            transformOrigin: {
+                'center-center': 'center center'
             }
         }
     },
