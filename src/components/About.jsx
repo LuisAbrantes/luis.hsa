@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FaGraduationCap, FaTrophy } from 'react-icons/fa';
+import { Cpu, Star } from 'lucide-react';
 import pullShark from '../assets/about/pullsharkbronze.png';
 import arcticVault from '../assets/about/articcodevault.png';
 import yolo from '../assets/about/yolo.png';
@@ -32,6 +33,22 @@ const About = () => {
       name: 'Starstruck',
       image: starTruck,
       description: 'Created a repository that earned stars'
+    },
+    {
+      id: 5,
+      name: 'Developer Program Member',
+      icon: <Cpu className="w-6 h-6 text-gray-400" />,
+      description: 'Member of the GitHub Developer Program'
+    },
+    {
+      id: 6,
+      name: 'PRO',
+      icon: (
+        <div className="relative w-6 h-6 flex items-center justify-center">
+          <Star className="w-6 h-6 text-purple-500" />
+        </div>
+      ),
+      description: 'GitHub PRO Member'
     }
   ];
 
@@ -50,13 +67,29 @@ const About = () => {
             <div className="achievements-grid flex gap-4 mt-4 flex-wrap justify-start">
               {achievements.map((achievement) => (
                 <div key={achievement.id} className="relative">
-                  <img
-                    src={achievement.image}
-                    alt={achievement.name}
-                    className="w-12 h-12 cursor-pointer transform-gpu transition-all duration-300 
-                             hover:rotate-[360deg] hover:scale-110 active:scale-95"
-                    onClick={() => setSelectedAchievement(achievement)}
-                  />
+                  {achievement.image ? (
+                    <img
+                      src={achievement.image}
+                      alt={achievement.name}
+                      className="w-12 h-12 cursor-pointer transform-gpu transition-all duration-300 
+                               hover:rotate-[360deg] hover:scale-110 active:scale-95"
+                      onClick={() => setSelectedAchievement(achievement)}
+                    />
+                  ) : (
+                    <div
+                      className="flex items-center gap-3 bg-transparent px-4 py-2.5 rounded-lg cursor-pointer 
+                               transform-gpu transition-all duration-300 hover:scale-105 active:scale-95"
+                      onClick={() => setSelectedAchievement(achievement)}
+                    >
+                      {achievement.icon}
+                      <span className={`font-medium text-base ${
+                        achievement.name === 'Developer Program Member' ? 'text-gray-400' : 
+                        achievement.name === 'PRO' ? 'text-purple-500 border-2 border-purple-500 rounded-full px-2' : ''
+                      }`}>
+                        {achievement.name}
+                      </span>
+                    </div>
+                  )}
                   
                   {selectedAchievement?.id === achievement.id && (
                     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 
