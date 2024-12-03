@@ -38,6 +38,14 @@ const Certificates = () => {
     const certificates = [
         {
             id: 1,
+            title: 'PennApps XXV - Hackathon',
+            institution: 'University of Pennsylvania - Penn Engineering',
+            date: '2022',
+            type: 'hackathons',
+            hours: 40,
+        },
+        {
+            id: 2,
             title: 'Introduction to Artificial Intelligence',
             institution:
                 'Federal Institute of Science and Technology of São Paulo - IFSP',
@@ -46,20 +54,11 @@ const Certificates = () => {
             hours: 80,
         },
         {
-            id: 2,
-            title: 'Introduction to Databases and SQL',
-            institution:
-                'Federal Institute of Science and Technology of São Paulo - IFSP',
-            date: '2023',
-            type: 'courses',
-            hours: 36,
-        },
-        {
             id: 3,
             title: 'Physics on Vacation - FIFE',
             institution: 'University of Campinas - UNICAMP',
             date: '2024',
-            type: 'courses', // changed from 'extracurricular' to 'courses'
+            type: 'courses',
             hours: 47,
         },
         {
@@ -81,11 +80,12 @@ const Certificates = () => {
         },
         {
             id: 6,
-            title: 'PennApps XXV - Hackathon',
-            institution: 'University of Pennsylvania - Penn Engineering',
-            date: '2022',
-            type: 'hackathons',
-            hours: 40,
+            title: 'Introduction to Databases and SQL',
+            institution:
+                'Federal Institute of Science and Technology of São Paulo - IFSP',
+            date: '2023',
+            type: 'courses',
+            hours: 36,
         },
         {
             id: 7,
@@ -463,7 +463,7 @@ const Certificates = () => {
                                             }
                                             className="w-full bg-indigo-50 text-indigo-600 py-2 px-4 rounded-lg hover:bg-indigo-100 transition-colors duration-300"
                                         >
-                                            View Certificate
+                                            View Details
                                         </button>
                                     </div>
                                 </div>
