@@ -25,11 +25,17 @@ export default {
                 scaleIn: {
                     '0%': { transform: 'scale(0.95)' },
                     '100%': { transform: 'scale(1)' }
+                },
+                'border-rotate': {
+                    '0%': { backgroundPosition: '0% 50%' },
+                    '50%': { backgroundPosition: '100% 50%' },
+                    '100%': { backgroundPosition: '0% 50%' }
                 }
             },
             animation: {
                 fadeIn: 'fadeIn 0.2s ease-in-out',
-                scaleIn: 'scaleIn 0.2s ease-out'
+                scaleIn: 'scaleIn 0.2s ease-out',
+                'border-rotate': 'border-rotate 3s ease infinite'
             },
             transformOrigin: {
                 'center-center': 'center center'
