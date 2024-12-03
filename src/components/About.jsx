@@ -65,43 +65,15 @@ const About = () => {
             />
             
             <div className="achievements-grid flex gap-4 mt-4 flex-wrap justify-start">
-              {achievements.map((achievement) => (
+              {achievements.slice(0, 4).map((achievement) => (
                 <div key={achievement.id} className="relative">
-                  {achievement.image ? (
-                    <img
-                      src={achievement.image}
-                      alt={achievement.name}
-                      className="w-12 h-12 cursor-pointer transform-gpu transition-all duration-300 
-                               hover:rotate-[360deg] hover:scale-110 active:scale-95"
-                      onClick={() => setSelectedAchievement(achievement)}
-                    />
-                  ) : (
-                    <div
-                      className="flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer 
-                               relative after:absolute after:inset-0 after:rounded-lg
-                               after:bg-gradient-to-r after:from-blue-500 
-                               after:via-purple-500 after:to-pink-500 after:opacity-0
-                               after:transition-all after:duration-300 hover:after:opacity-100
-                               after:[background-size:0%_100%] hover:after:animate-border-draw
-                               after:[mask:padding-box]
-                               transform-gpu transition-all duration-300 
-                               hover:scale-105 active:scale-95
-                               group overflow-hidden before:absolute before:inset-[1px]
-                               before:bg-dark-primary before:rounded-lg before:z-[1]"
-                      onClick={() => setSelectedAchievement(achievement)}
-                    >
-                      <div className="relative z-10 flex items-center gap-3 bg-dark-primary rounded-lg">
-                        {achievement.icon}
-                        <span className={`font-medium text-base ${
-                          achievement.name === 'Developer Program Member' ? 'text-gray-400 group-hover:text-gray-300' : 
-                          achievement.name === 'PRO' ? 'text-purple-500 border-2 border-purple-500 rounded-full px-2 hover:bg-purple-500/10' : ''
-                        }`}>
-                          {achievement.name}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                  
+                  <img
+                    src={achievement.image}
+                    alt={achievement.name}
+                    className="w-12 h-12 cursor-pointer transform-gpu transition-all duration-300 
+                             hover:rotate-[360deg] hover:scale-110 active:scale-95"
+                    onClick={() => setSelectedAchievement(achievement)}
+                  />
                   {selectedAchievement?.id === achievement.id && (
                     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 
                                   animate-fadeIn backdrop-blur-sm"
@@ -110,6 +82,57 @@ const About = () => {
                                     transition-all duration-300 animate-scaleIn"
                            onClick={e => e.stopPropagation()}>
                         <img src={achievement.image} alt={achievement.name} className="w-24 h-24 mx-auto mb-4"/>
+                        <h3 className="text-xl font-bold mb-2">{achievement.name}</h3>
+                        <p className="mb-4">{achievement.description}</p>
+                        <a
+                          href="https://github.com/LuisAbrantes"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block text-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-colors"
+                        >
+                          View GitHub Profile
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="highlights-grid flex flex-col gap-4 mt-8">
+              {achievements.slice(4).map((achievement) => (
+                <div key={achievement.id} className="relative">
+                  <div
+                    className="flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer 
+                             relative after:absolute after:inset-0 after:rounded-lg
+                             after:bg-gradient-to-r after:from-blue-500 
+                             after:via-purple-500 after:to-pink-500 after:opacity-0
+                             after:transition-all after:duration-300 hover:after:opacity-100
+                             after:[background-size:0%_100%] hover:after:animate-border-draw
+                             after:[mask:padding-box]
+                             transform-gpu transition-all duration-300 
+                             hover:scale-105 active:scale-95
+                             group overflow-hidden before:absolute before:inset-[1px]
+                             before:bg-dark-primary before:rounded-lg before:z-[1]"
+                    onClick={() => setSelectedAchievement(achievement)}
+                  >
+                    <div className="relative z-10 flex items-center gap-3 bg-dark-primary rounded-lg">
+                      {achievement.icon}
+                      <span className={`font-medium text-base ${
+                        achievement.name === 'Developer Program Member' ? 'text-gray-400 group-hover:text-gray-300' : 
+                        achievement.name === 'PRO' ? 'text-purple-500 border-2 border-purple-500 rounded-full px-2 hover:bg-purple-500/10' : ''
+                      }`}>
+                        {achievement.name}
+                      </span>
+                    </div>
+                  </div>
+                  {selectedAchievement?.id === achievement.id && (
+                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 
+                                  animate-fadeIn backdrop-blur-sm"
+                         onClick={() => setSelectedAchievement(null)}>
+                      <div className="bg-dark-secondary p-6 rounded-lg max-w-sm mx-4 transform-gpu 
+                                    transition-all duration-300 animate-scaleIn"
+                           onClick={e => e.stopPropagation()}>
                         <h3 className="text-xl font-bold mb-2">{achievement.name}</h3>
                         <p className="mb-4">{achievement.description}</p>
                         <a
