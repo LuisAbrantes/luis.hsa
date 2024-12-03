@@ -30,12 +30,27 @@ export default {
                     '0%': { backgroundPosition: '0% 50%' },
                     '50%': { backgroundPosition: '100% 50%' },
                     '100%': { backgroundPosition: '0% 50%' }
+                },
+                'border-draw': {
+                    '0%': { 
+                        'background-size': '0% 100%',
+                        'background-position': '0% 0%'
+                    },
+                    '50%': {
+                        'background-size': '100% 100%',
+                        'background-position': '100% 0%'
+                    },
+                    '100%': {
+                        'background-size': '100% 100%',
+                        'background-position': '0% 0%'
+                    }
                 }
             },
             animation: {
                 fadeIn: 'fadeIn 0.2s ease-in-out',
                 scaleIn: 'scaleIn 0.2s ease-out',
-                'border-rotate': 'border-rotate 3s ease infinite'
+                'border-rotate': 'border-rotate 3s ease infinite',
+                'border-draw': 'border-draw 1.5s ease-out forwards'
             },
             transformOrigin: {
                 'center-center': 'center center'

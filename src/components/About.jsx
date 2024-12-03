@@ -81,8 +81,9 @@ const About = () => {
                                relative after:absolute after:inset-0 after:rounded-lg
                                after:bg-gradient-to-r after:from-blue-500 
                                after:via-purple-500 after:to-pink-500 after:opacity-0
-                               after:transition-opacity after:duration-300 hover:after:opacity-100
-                               after:animate-border-rotate after:[mask:padding-box]
+                               after:transition-all after:duration-300 hover:after:opacity-100
+                               after:[background-size:0%_100%] hover:after:animate-border-draw
+                               after:[mask:padding-box]
                                transform-gpu transition-all duration-300 
                                hover:scale-105 active:scale-95
                                group overflow-hidden before:absolute before:inset-[1px]
