@@ -47,7 +47,7 @@ const About = () => {
               className="rounded-full shadow-xl w-48 h-48 mb-4"
             />
             
-            <div className="achievements-grid flex gap-4 mt-4 flex-wrap justify-center">
+            <div className="achievements-grid flex gap-4 mt-4 flex-wrap justify-start">
               {achievements.map((achievement) => (
                 <div key={achievement.id} className="relative">
                   <img
