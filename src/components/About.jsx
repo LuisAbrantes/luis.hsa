@@ -85,7 +85,7 @@ const About = () => {
                                after:animate-border-rotate after:[mask:padding-box]
                                transform-gpu transition-all duration-300 
                                hover:scale-105 active:scale-95
-                               group overflow-hidden before:absolute before:inset-[0.5px]
+                               group overflow-hidden before:absolute before:inset-[1px]
                                before:bg-dark-primary before:rounded-lg before:z-[1]"
                       onClick={() => setSelectedAchievement(achievement)}
                     >
