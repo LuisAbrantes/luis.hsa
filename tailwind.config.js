@@ -44,13 +44,23 @@ export default {
                         'background-size': '100% 100%',
                         'background-position': '0% 0%'
                     }
+                },
+                slideIn: {
+                    'from': { opacity: '0', transform: 'translateX(-20px)' },
+                    'to': { opacity: '1', transform: 'translateX(0)' }
+                },
+                slideUp: {
+                    'from': { opacity: '0', transform: 'translateY(20px)' },
+                    'to': { opacity: '1', transform: 'translateY(0)' }
                 }
             },
             animation: {
                 fadeIn: 'fadeIn 0.2s ease-in-out',
                 scaleIn: 'scaleIn 0.2s ease-out',
                 'border-rotate': 'border-rotate 3s ease infinite',
-                'border-draw': 'border-draw 1.5s ease-out forwards'
+                'border-draw': 'border-draw 1.5s ease-out forwards',
+                slideIn: 'slideIn 0.5s ease-out',
+                slideUp: 'slideUp 0.5s ease-out'
             },
             transformOrigin: {
                 'center-center': 'center center'
