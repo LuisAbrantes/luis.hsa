@@ -65,7 +65,7 @@ const Certificates = () => {
         },
         {
             id: 4,
-            title: 'Programming every day',
+            title: 'Programming Every Day',
             institution: 'GitHub',
             date: '2025',
             type: 'extracurricular',
@@ -73,6 +73,14 @@ const Certificates = () => {
         },
         {
             id: 5,
+            title: 'GitTogether SJC Community Member',
+            institution: 'GitHub Community',
+            date: '2024 2025',
+            type: 'extracurricular',
+            description: 'Active member of the GitTogether SJC community, participating in local GitHub events and contributing to the tech community development in São José dos Campos.',
+        },
+        {
+            id: 6,
             title: 'Linux Network Administration Fundamentals',
             institution:
                 'Federal Institute of Science and Technology of São Paulo - IFSP',
@@ -81,7 +89,7 @@ const Certificates = () => {
             hours: 60,
         },
         {
-            id: 6,
+            id: 7,
             title: 'Gran Prix SENAI Hackathon',
             institution: 'National Service for Industrial Learning - SENAI',
             date: '2023',
@@ -89,7 +97,7 @@ const Certificates = () => {
             hours: 40,
         },
         {
-            id: 7,
+            id: 8,
             title: 'Introduction to Databases and SQL',
             institution:
                 'Federal Institute of Science and Technology of São Paulo - IFSP',
@@ -98,7 +106,7 @@ const Certificates = () => {
             hours: 36,
         },
         {
-            id: 8,
+            id: 9,
             title: 'National English Language Olympiad - OBLI - Bronze Medal 1',
             institution: 'Seleta Educação',
             date: '2024.1',
@@ -106,7 +114,7 @@ const Certificates = () => {
             hours: 2,
         },
         {
-            id: 9,
+            id: 10,
             title: 'National English Language Olympiad - OBLI - Bronze Medal 2',
             institution: 'Seleta Educação',
             date: '2024.2',
@@ -114,7 +122,7 @@ const Certificates = () => {
             hours: 2,
         },
         {
-            id: 10,
+            id: 11,
             title: 'Introduction to Network Architecture and Protocols',
             institution: 'Federal Institute of Science and Technology of São Paulo - IFSP',
             date: '2022',
@@ -122,7 +130,7 @@ const Certificates = () => {
             hours: 100,
         },
         {
-            id: 11,
+            id: 12,
             title: 'Coorganized the 1st National English Language Olympiad - OBLI in my Campus',
             institution:
                 'Institute of Federal Education, Science and Technology of São Paulo',
@@ -131,7 +139,7 @@ const Certificates = () => {
             hours: 15,
         },
         {
-            id: 12,
+            id: 13,
             title: 'The Dream School Ambassador',
             institution: 'The Dream School',
             date: '2024',
@@ -139,7 +147,7 @@ const Certificates = () => {
             hours: 15,
         },
         {
-            id: 13,
+            id: 14,
             title: 'International Relations Consultancy (ARINTER) of IFSP Ambassador',
             institution: 'ARINTER IFSP',
             date: '2024 2025',
@@ -147,7 +155,7 @@ const Certificates = () => {
             hours: 15,
         },
         {
-            id: 14,
+            id: 15,
             title: 'Representative of the organizing committee for computer events at IFSP',
             institution: 'IFSP',
             date: '2024 2025',
@@ -155,7 +163,7 @@ const Certificates = () => {
             hours: 10,
         },
         {
-            id: 15,
+            id: 16,
             title: 'Overview of Azure by a Microsoft MVP',
             institution: 'IFSP',
             date: '2022',
@@ -163,7 +171,7 @@ const Certificates = () => {
             hours: 1.5,
         },
         {
-            id: 16,
+            id: 17,
             title: 'An experience in Brazilian Brazilian Sign Language - LIBRAS',
             institution: 'IFSP',
             date: '2022',
@@ -171,7 +179,7 @@ const Certificates = () => {
             hours: 2,
         },
         {
-            id: 17,
+            id: 18,
             title: '3rd out of 4 stages in the Brazilian National History Olympiad - ONHB',
             institution: 'University of Campinas - UNICAMP',
             date: '2023',
@@ -179,7 +187,7 @@ const Certificates = () => {
             hours: 24,
         },
         {
-            id: 18,
+            id: 19,
             title: 'Universal Design for Learning',
             institution: 'IFSP',
             date: '2022',
@@ -187,7 +195,7 @@ const Certificates = () => {
             hours: 2,
         },
         {
-            id: 19,
+            id: 20,
             title: 'Sumo Robot Battle with Arduino',
             institution: 'IFSP',
             date: '2022',
@@ -195,7 +203,7 @@ const Certificates = () => {
             hours: 1.5,
         },
         {
-            id: 20,
+            id: 21,
             title: `Saint John's Summer-Academy Online - "The Odyssey" Session`,
             institution: "Saint John's College",
             date: '2024',
@@ -255,12 +263,14 @@ const Certificates = () => {
                                 </span>
                                 <span>{certificate.institution}</span>
                             </div>
-                            <div className="flex items-center space-x-2">
-                                <span className="font-semibold">
-                                    Completion Date:
-                                </span>
-                                <span>{certificate.date}</span>
-                            </div>
+                            {certificate.type !== 'extracurricular' && (
+                                <div className="flex items-center space-x-2">
+                                    <span className="font-semibold">
+                                        Completion Date:
+                                    </span>
+                                    <span>{certificate.date}</span>
+                                </div>
+                            )}
                             <div className="flex items-center space-x-2">
                                 <span className="font-semibold">Type:</span>
                                 <span className="capitalize">{certificate.type}</span>
@@ -459,18 +469,22 @@ const Certificates = () => {
                                             </span>{' '}
                                             {certificate.institution}
                                         </p>
-                                        <p className="text-dark-muted">
-                                            <span className="font-medium">
-                                                Completion:
-                                            </span>{' '}
-                                            {certificate.date}
-                                        </p>
-                                        <p className="text-dark-muted">
-                                            <span className="font-medium">
-                                                Duration:
-                                            </span>{' '}
-                                            {certificate.hours} hours
-                                        </p>
+                                        {certificate.type !== 'extracurricular' && (
+                                            <p className="text-dark-muted">
+                                                <span className="font-medium">
+                                                    Completion:
+                                                </span>{' '}
+                                                {certificate.date}
+                                            </p>
+                                        )}
+                                        {certificate.type !== 'extracurricular' && (
+                                            <p className="text-dark-muted">
+                                                <span className="font-medium">
+                                                    Duration:
+                                                </span>{' '}
+                                                {certificate.hours} hours
+                                            </p>
+                                        )}
                                     </div>
                                     <div className="mt-6">
                                         <button
