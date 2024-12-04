@@ -1,6 +1,4 @@
-// It's not about certificate, it's all about academic achievements
-
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { 
     BookOpen, // for courses
@@ -9,11 +7,204 @@ import {
     Calendar, // for events
     Code2 // for hackathons
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+// Move certificates array outside component
+const certificatesData = [
+    {
+        id: 1,
+        title: 'PennApps XXV - Hackathon',
+        institution: 'University of Pennsylvania - Penn Engineering',
+        date: '2024',
+        type: 'hackathons',
+        hours: 40,
+    },
+    {
+        id: 2,
+        title: 'Introduction to Artificial Intelligence',
+        institution:
+            'Federal Institute of Science and Technology of São Paulo - IFSP',
+        date: '2024',
+        type: 'courses',
+        hours: 80,
+    },
+    {
+        id: 3,
+        title: 'Physics on Vacation - FIFE',
+        institution: 'University of Campinas - UNICAMP',
+        date: '2024',
+        type: 'courses',
+        hours: 47,
+    },
+    {
+        id: 4,
+        title: 'Programming Every Day',
+        institution: 'GitHub',
+        date: '2025',
+        type: 'extracurricular',
+        description: 'One day, one interaction with GitHub',
+    },
+    {
+        id: 5,
+        title: 'GitTogether SJC Community Member',
+        institution: 'GitHub Community',
+        date: '2024 2025',
+        type: 'extracurricular',
+        description: 'Active member of the GitTogether SJC community, participating in local GitHub events and contributing to the tech community development in São José dos Campos.',
+    },
+    {
+        id: 6,
+        title: 'Linux Network Administration Fundamentals',
+        institution:
+            'Federal Institute of Science and Technology of São Paulo - IFSP',
+        date: '2022',
+        type: 'courses',
+        hours: 60,
+    },
+    {
+        id: 7,
+        title: 'Gran Prix SENAI Hackathon',
+        institution: 'National Service for Industrial Learning - SENAI',
+        date: '2023',
+        type: 'hackathons',
+        hours: 40,
+    },
+    {
+        id: 8,
+        title: 'Introduction to Databases and SQL',
+        institution:
+            'Federal Institute of Science and Technology of São Paulo - IFSP',
+        date: '2023',
+        type: 'courses',
+        hours: 36,
+    },
+    {
+        id: 9,
+        title: 'National English Language Olympiad - OBLI - Bronze Medal 1',
+        institution: 'Seleta Educação',
+        date: '2024.1',
+        type: 'honors',
+        hours: 2,
+    },
+    {
+        id: 10,
+        title: 'National English Language Olympiad - OBLI - Bronze Medal 2',
+        institution: 'Seleta Educação',
+        date: '2024.2',
+        type: 'honors',
+        hours: 2,
+    },
+    {
+        id: 11,
+        title: 'Introduction to Network Architecture and Protocols',
+        institution: 'Federal Institute of Science and Technology of São Paulo - IFSP',
+        date: '2022',
+        type: 'courses',
+        hours: 100,
+    },
+    {
+        id: 12,
+        title: 'Coorganized the 1st National English Language Olympiad - OBLI in my Campus',
+        institution:
+            'Institute of Federal Education, Science and Technology of São Paulo',
+        date: '2024',
+        type: 'extracurricular',
+        hours: 15,
+    },
+    {
+        id: 13,
+        title: 'The Dream School Ambassador',
+        institution: 'The Dream School',
+        date: '2024',
+        type: 'extracurricular',
+        hours: 15,
+    },
+    {
+        id: 14,
+        title: 'International Relations Consultancy (ARINTER) of IFSP Ambassador',
+        institution: 'ARINTER IFSP',
+        date: '2024 2025',
+        type: 'extracurricular',
+        hours: 15,
+    },
+    {
+        id: 15,
+        title: 'Representative of the organizing committee for computer events at IFSP',
+        institution: 'IFSP',
+        date: '2024 2025',
+        type: 'extracurricular',
+        hours: 10,
+    },
+    {
+        id: 16,
+        title: 'Overview of Azure by a Microsoft MVP',
+        institution: 'IFSP',
+        date: '2022',
+        type: 'events',
+        hours: 1.5,
+    },
+    {
+        id: 17,
+        title: 'An experience in Brazilian Brazilian Sign Language - LIBRAS',
+        institution: 'IFSP',
+        date: '2022',
+        type: 'events',
+        hours: 2,
+    },
+    {
+        id: 18,
+        title: '3rd out of 4 stages in the Brazilian National History Olympiad - ONHB',
+        institution: 'University of Campinas - UNICAMP',
+        date: '2023',
+        type: 'honors',
+        hours: 24,
+    },
+    {
+        id: 19,
+        title: 'Universal Design for Learning',
+        institution: 'IFSP',
+        date: '2022',
+        type: 'events',
+        hours: 2,
+    },
+    {
+        id: 20,
+        title: 'Sumo Robot Battle with Arduino',
+        institution: 'IFSP',
+        date: '2022',
+        type: 'events',
+        hours: 1.5,
+    },
+    {
+        id: 21,
+        title: `Saint John's Summer-Academy Online - "The Odyssey" Session`,
+        institution: "Saint John's College",
+        date: '2024',
+        type: 'courses',
+        hours: 8,
+    }
+];
 
 const Certificates = () => {
     const [filter, setFilter] = useState('all');
+    const [sortBy, setSortBy] = useState('date-desc');
+    const [loading, setLoading] = useState(false);
     const [selectedCertificate, setSelectedCertificate] = useState(null);
     const [showModal, setShowModal] = useState(false);
+
+    const handleFilter = (type) => {
+        setLoading(true);
+        setFilter(type);
+        // Reduce loading delay from 300ms to 150ms
+        setTimeout(() => setLoading(false), 150);
+    };
+
+    const handleSort = (value) => {
+        setLoading(true);
+        setSortBy(value);
+        // Reduce loading delay from 300ms to 150ms
+        setTimeout(() => setLoading(false), 150);
+    };
 
     const getTypeIcon = (type) => {
         const iconProps = {
@@ -36,181 +227,6 @@ const Certificates = () => {
                 return null;
         }
     };
-
-    const certificates = [
-        {
-            id: 1,
-            title: 'PennApps XXV - Hackathon',
-            institution: 'University of Pennsylvania - Penn Engineering',
-            date: '2024',
-            type: 'hackathons',
-            hours: 40,
-        },
-        {
-            id: 2,
-            title: 'Introduction to Artificial Intelligence',
-            institution:
-                'Federal Institute of Science and Technology of São Paulo - IFSP',
-            date: '2024',
-            type: 'courses',
-            hours: 80,
-        },
-        {
-            id: 3,
-            title: 'Physics on Vacation - FIFE',
-            institution: 'University of Campinas - UNICAMP',
-            date: '2024',
-            type: 'courses',
-            hours: 47,
-        },
-        {
-            id: 4,
-            title: 'Programming Every Day',
-            institution: 'GitHub',
-            date: '2025',
-            type: 'extracurricular',
-            description: 'One day, one interaction with GitHub',
-        },
-        {
-            id: 5,
-            title: 'GitTogether SJC Community Member',
-            institution: 'GitHub Community',
-            date: '2024 2025',
-            type: 'extracurricular',
-            description: 'Active member of the GitTogether SJC community, participating in local GitHub events and contributing to the tech community development in São José dos Campos.',
-        },
-        {
-            id: 6,
-            title: 'Linux Network Administration Fundamentals',
-            institution:
-                'Federal Institute of Science and Technology of São Paulo - IFSP',
-            date: '2022',
-            type: 'courses',
-            hours: 60,
-        },
-        {
-            id: 7,
-            title: 'Gran Prix SENAI Hackathon',
-            institution: 'National Service for Industrial Learning - SENAI',
-            date: '2023',
-            type: 'hackathons',
-            hours: 40,
-        },
-        {
-            id: 8,
-            title: 'Introduction to Databases and SQL',
-            institution:
-                'Federal Institute of Science and Technology of São Paulo - IFSP',
-            date: '2023',
-            type: 'courses',
-            hours: 36,
-        },
-        {
-            id: 9,
-            title: 'National English Language Olympiad - OBLI - Bronze Medal 1',
-            institution: 'Seleta Educação',
-            date: '2024.1',
-            type: 'honors',
-            hours: 2,
-        },
-        {
-            id: 10,
-            title: 'National English Language Olympiad - OBLI - Bronze Medal 2',
-            institution: 'Seleta Educação',
-            date: '2024.2',
-            type: 'honors',
-            hours: 2,
-        },
-        {
-            id: 11,
-            title: 'Introduction to Network Architecture and Protocols',
-            institution: 'Federal Institute of Science and Technology of São Paulo - IFSP',
-            date: '2022',
-            type: 'courses',
-            hours: 100,
-        },
-        {
-            id: 12,
-            title: 'Coorganized the 1st National English Language Olympiad - OBLI in my Campus',
-            institution:
-                'Institute of Federal Education, Science and Technology of São Paulo',
-            date: '2024',
-            type: 'extracurricular',
-            hours: 15,
-        },
-        {
-            id: 13,
-            title: 'The Dream School Ambassador',
-            institution: 'The Dream School',
-            date: '2024',
-            type: 'extracurricular',
-            hours: 15,
-        },
-        {
-            id: 14,
-            title: 'International Relations Consultancy (ARINTER) of IFSP Ambassador',
-            institution: 'ARINTER IFSP',
-            date: '2024 2025',
-            type: 'extracurricular',
-            hours: 15,
-        },
-        {
-            id: 15,
-            title: 'Representative of the organizing committee for computer events at IFSP',
-            institution: 'IFSP',
-            date: '2024 2025',
-            type: 'extracurricular',
-            hours: 10,
-        },
-        {
-            id: 16,
-            title: 'Overview of Azure by a Microsoft MVP',
-            institution: 'IFSP',
-            date: '2022',
-            type: 'events',
-            hours: 1.5,
-        },
-        {
-            id: 17,
-            title: 'An experience in Brazilian Brazilian Sign Language - LIBRAS',
-            institution: 'IFSP',
-            date: '2022',
-            type: 'events',
-            hours: 2,
-        },
-        {
-            id: 18,
-            title: '3rd out of 4 stages in the Brazilian National History Olympiad - ONHB',
-            institution: 'University of Campinas - UNICAMP',
-            date: '2023',
-            type: 'honors',
-            hours: 24,
-        },
-        {
-            id: 19,
-            title: 'Universal Design for Learning',
-            institution: 'IFSP',
-            date: '2022',
-            type: 'events',
-            hours: 2,
-        },
-        {
-            id: 20,
-            title: 'Sumo Robot Battle with Arduino',
-            institution: 'IFSP',
-            date: '2022',
-            type: 'events',
-            hours: 1.5,
-        },
-        {
-            id: 21,
-            title: `Saint John's Summer-Academy Online - "The Odyssey" Session`,
-            institution: "Saint John's College",
-            date: '2024',
-            type: 'courses',
-            hours: 8,
-        }
-    ];
 
     const handleViewCertificate = certificate => {
         setSelectedCertificate(certificate);
@@ -337,6 +353,55 @@ const Certificates = () => {
         onClose: PropTypes.func.isRequired
     };
 
+    // Combine category counts and filtered/sorted certificates into one memo
+    const { categoryCounts, filteredAndSortedCertificates } = useMemo(() => {
+        // Calculate counts
+        const counts = certificatesData.reduce((acc, cert) => {
+            acc[cert.type] = (acc[cert.type] || 0) + 1;
+            return acc;
+        }, {});
+
+        // Filter and sort
+        let filtered = certificatesData.filter(
+            cert => filter === 'all' || cert.type === filter
+        );
+
+        const sorted = filtered.sort((a, b) => {
+            switch (sortBy) {
+                case 'date-desc':
+                    return new Date(b.date) - new Date(a.date);
+                case 'date-asc':
+                    return new Date(a.date) - new Date(b.date);
+                case 'title':
+                    return a.title.localeCompare(b.title);
+                default:
+                    return 0;
+            }
+        });
+
+        return {
+            categoryCounts: counts,
+            filteredAndSortedCertificates: sorted
+        };
+    }, [filter, sortBy]); // Remove certificates from dependencies
+
+    // Filter button component
+    const FilterButton = ({ type, label }) => (
+        <button
+            onClick={() => handleFilter(type)}
+            className={`px-6 py-2 rounded-full transition-all duration-300 flex items-center space-x-2
+                ${filter === type 
+                    ? 'bg-dark-accent text-dark-text'
+                    : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
+                }`}
+        >
+            <span>{label}</span>
+            <span className="bg-dark-hover px-2 py-0.5 rounded-full text-sm">
+                {type === 'all' ? certificatesData.length : categoryCounts[type] || 0}
+            </span>
+        </button>
+    );
+
     return (
         <div className="min-h-screen bg-dark-primary py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
@@ -374,134 +439,109 @@ const Certificates = () => {
                     My professional qualifications and certifications
                 </p>
 
-                {/* Filter Buttons */}
-                <div className="flex justify-center gap-4 mb-12 flex-wrap">
-                    <button
-                        onClick={() => setFilter('all')}
-                        className={`px-6 py-2 rounded-full transition-all duration-300 
-                            ${
-                                filter === 'all'
-                                    ? 'bg-dark-accent text-dark-text'
-                                    : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
-                            }`}
+                {/* Add Sort Controls */}
+                <div className="flex justify-end mb-6">
+                    <select
+                        value={sortBy}
+                        onChange={(e) => handleSort(e.target.value)}
+                        className="bg-dark-secondary text-dark-text px-4 py-2 rounded-lg"
                     >
-                        All
-                    </button>
-                    <button
-                        onClick={() => setFilter('courses')}
-                        className={`px-6 py-2 rounded-full transition-all duration-300 
-                            ${
-                                filter === 'courses'
-                                    ? 'bg-dark-accent text-dark-text'
-                                    : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
-                            }`}
-                    >
-                        Courses
-                    </button>
-                    <button
-                        onClick={() => setFilter('extracurricular')}
-                        className={`px-6 py-2 rounded-full transition-all duration-300 
-                            ${
-                                filter === 'extracurricular'
-                                    ? 'bg-dark-accent text-dark-text'
-                                    : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
-                            }`}
-                    >
-                        Extracurricular
-                    </button>
-                    <button
-                        onClick={() => setFilter('honors')}
-                        className={`px-6 py-2 rounded-full transition-all duration-300 
-                            ${
-                                filter === 'honors'
-                                    ? 'bg-dark-accent text-dark-text'
-                                    : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
-                            }`}
-                    >
-                        Honors
-                    </button>
-                    <button
-                        onClick={() => setFilter('events')}
-                        className={`px-6 py-2 rounded-full transition-all duration-300 
-                            ${
-                                filter === 'events'
-                                    ? 'bg-dark-accent text-dark-text'
-                                    : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
-                            }`}
-                    >
-                        Events
-                    </button>
-                    <button
-                        onClick={() => setFilter('hackathons')}
-                        className={`px-6 py-2 rounded-full transition-all duration-300 
-                            ${
-                                filter === 'hackathons'
-                                    ? 'bg-dark-accent text-dark-text'
-                                    : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
-                            }`}
-                    >
-                        Hackathons
-                    </button>
+                        <option value="date-desc">Newest First</option>
+                        <option value="date-asc">Oldest First</option>
+                        <option value="title">Alphabetical</option>
+                    </select>
                 </div>
 
-                {/* Certificates Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {certificates
-                        .filter(
-                            cert => filter === 'all' || cert.type === filter
-                        )
-                        .map(certificate => (
-                            <div
-                                key={certificate.id}
-                                className="bg-dark-secondary rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
-                            >
-                                <div className="p-6">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <h3 className="text-xl font-semibold text-dark-text">
-                                            {certificate.title}
-                                        </h3>
-                                        {getTypeIcon(certificate.type)}
-                                    </div>
-                                    <div className="space-y-2">
-                                        <p className="text-dark-muted">
-                                            <span className="font-medium">
-                                                Institution:
-                                            </span>{' '}
-                                            {certificate.institution}
-                                        </p>
-                                        {certificate.type !== 'extracurricular' && (
-                                            <p className="text-dark-muted">
-                                                <span className="font-medium">
-                                                    Completion:
-                                                </span>{' '}
-                                                {certificate.date}
-                                            </p>
-                                        )}
-                                        {certificate.type !== 'extracurricular' && (
-                                            <p className="text-dark-muted">
-                                                <span className="font-medium">
-                                                    Duration:
-                                                </span>{' '}
-                                                {certificate.hours} hours
-                                            </p>
-                                        )}
-                                    </div>
-                                    <div className="mt-6">
-                                        <button
-                                            onClick={() =>
-                                                handleViewCertificate(
-                                                    certificate
-                                                )
-                                            }
-                                            className="w-full bg-indigo-50 text-indigo-600 py-2 px-4 rounded-lg hover:bg-indigo-100 transition-colors duration-300"
-                                        >
-                                            View Details
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                {/* Updated Filter Buttons */}
+                <div className="flex justify-center gap-4 mb-12 flex-wrap">
+                    <FilterButton type="all" label="All" />
+                    <FilterButton type="courses" label="Courses" />
+                    <FilterButton type="extracurricular" label="Extracurricular" />
+                    <FilterButton type="honors" label="Honors" />
+                    <FilterButton type="events" label="Events" />
+                    <FilterButton type="hackathons" label="Hackathons" />
                 </div>
+
+                {/* Animated Certificates Grid */}
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        // Add faster transition for grid
+                        transition={{ duration: 0.2 }}
+                    >
+                        {loading ? (
+                            // Loading skeleton
+                            Array(6).fill(0).map((_, i) => (
+                                <div key={i} className="animate-pulse bg-dark-secondary rounded-xl p-6">
+                                    <div className="h-6 bg-dark-hover rounded w-3/4 mb-4"></div>
+                                    <div className="h-4 bg-dark-hover rounded w-1/2 mb-2"></div>
+                                    <div className="h-4 bg-dark-hover rounded w-2/3"></div>
+                                </div>
+                            ))
+                        ) : (
+                            filteredAndSortedCertificates.map(certificate => (
+                                <motion.div
+                                    key={certificate.id}
+                                    layout
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    // Reduce individual card animation from 0.3s to 0.2s
+                                    transition={{ duration: 0.2 }}
+                                    className="bg-dark-secondary rounded-xl shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-xl transition-all duration-300"
+                                >
+                                    <div className="p-6">
+                                        <div className="flex justify-between items-start mb-4">
+                                            <h3 className="text-xl font-semibold text-dark-text">
+                                                {certificate.title}
+                                            </h3>
+                                            {getTypeIcon(certificate.type)}
+                                        </div>
+                                        <div className="space-y-2">
+                                            <p className="text-dark-muted">
+                                                <span className="font-medium">
+                                                    Institution:
+                                                </span>{' '}
+                                                {certificate.institution}
+                                            </p>
+                                            {certificate.type !== 'extracurricular' && (
+                                                <p className="text-dark-muted">
+                                                    <span className="font-medium">
+                                                        Completion:
+                                                    </span>{' '}
+                                                    {certificate.date}
+                                                </p>
+                                            )}
+                                            {certificate.type !== 'extracurricular' && (
+                                                <p className="text-dark-muted">
+                                                    <span className="font-medium">
+                                                        Duration:
+                                                    </span>{' '}
+                                                    {certificate.hours} hours
+                                                </p>
+                                            )}
+                                        </div>
+                                        <div className="mt-6">
+                                            <button
+                                                onClick={() =>
+                                                    handleViewCertificate(
+                                                        certificate
+                                                    )
+                                                }
+                                                className="w-full bg-indigo-50 text-indigo-600 py-2 px-4 rounded-lg hover:bg-indigo-100 transition-colors duration-300"
+                                            >
+                                                View Details
+                                            </button>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))
+                        )}
+                    </motion.div>
+                </AnimatePresence>
             </div>
 
             {/* Modal */}
