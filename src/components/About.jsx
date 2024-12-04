@@ -53,18 +53,18 @@ const About = () => {
   ];
 
   return (
-    <div className="about-section bg-dark-primary text-dark-text p-8">
+    <div className="about-section bg-dark-primary text-dark-text p-4 sm:p-8">
       <div className="max-w-4xl mx-auto">
-        <div className="flex flex-row items-start gap-8">
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
           {/* Profile Section */}
-          <div className="profile-section w-1/3">
+          <div className="profile-section w-full md:w-1/3 flex flex-col items-center md:items-start">
             <img 
               src="https://avatars.githubusercontent.com/u/24616338?v=4"
               alt="Profile" 
-              className="rounded-full shadow-xl w-48 h-48 mb-4"
+              className="rounded-full shadow-xl w-32 h-32 sm:w-48 sm:h-48 mb-4"
             />
             
-            <div className="achievements-grid flex gap-4 mt-4 flex-wrap justify-start">
+            <div className="achievements-grid flex gap-3 sm:gap-4 mt-4 flex-wrap justify-center md:justify-start">
               {achievements.slice(0, 4).map((achievement) => (
                 <div key={achievement.id} className="relative">
                   <img
@@ -99,11 +99,11 @@ const About = () => {
               ))}
             </div>
 
-            <div className="highlights-grid flex flex-col gap-4 mt-8">
+            <div className="highlights-grid flex flex-col gap-3 sm:gap-4 mt-6 sm:mt-8 w-full">
               {achievements.slice(4).map((achievement) => (
-                <div key={achievement.id} className="relative">
+                <div key={achievement.id} className="relative w-full">
                   <div
-                    className="flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer 
+                    className="flex items-center gap-3 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg cursor-pointer 
                              relative after:absolute after:inset-0 after:rounded-lg
                              after:bg-gradient-to-r after:from-blue-500 
                              after:via-purple-500 after:to-pink-500 after:opacity-0
@@ -152,12 +152,12 @@ const About = () => {
           </div>
 
           {/* Academic Section */}
-          <div className="flex-1">
+          <div className="flex-1 w-full">
             <div className="academic-section">
-              <h2 className="text-2xl font-bold mb-6 flex items-center">
+              <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center justify-center md:justify-start">
                 <FaGraduationCap className="mr-2" /> Academic Excellence
               </h2>
-              <div className="bg-dark-secondary p-6 rounded-lg shadow-lg">
+              <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg shadow-lg">
                 <div className="achievement-timeline">
                   {/* Add your academic achievements here */}
                   <div className="achievement-item flex items-center mb-4">
@@ -174,6 +174,32 @@ const About = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal - Ajustar para mobile */}
+      {selectedAchievement && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 
+                      animate-fadeIn backdrop-blur-sm p-4"
+             onClick={() => setSelectedAchievement(null)}>
+          <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg w-full max-w-sm mx-4 transform-gpu 
+                        transition-all duration-300 animate-scaleIn"
+               onClick={e => e.stopPropagation()}>
+            {selectedAchievement.image && (
+              <img src={selectedAchievement.image} alt={selectedAchievement.name} 
+                   className="w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-4"/>
+            )}
+            <h3 className="text-lg sm:text-xl font-bold mb-2">{selectedAchievement.name}</h3>
+            <p className="mb-4 text-sm sm:text-base">{selectedAchievement.description}</p>
+            <a
+              href="https://github.com/LuisAbrantes"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-colors text-sm sm:text-base"
+            >
+              View GitHub Profile
+            </a>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
