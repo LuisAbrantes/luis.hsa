@@ -314,7 +314,7 @@ const About = () => {
                                             Coding Club President
                                         </div>
                                         <div className="bg-dark-primary p-2 rounded">
-                                            Hackathon Organizer
+                                            Maratons and Hackathon Organizer
                                         </div>
                                     </div>
                                 </div>
