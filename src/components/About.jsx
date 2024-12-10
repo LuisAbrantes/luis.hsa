@@ -9,6 +9,8 @@ import {
     FaChalkboardTeacher
 } from 'react-icons/fa';
 import { Cpu, Star } from 'lucide-react';
+import pullShark from '../assets/about/pullsharkbronze.png';
+import arcticVault from '../assets/about/articcodevault.png';
 import yolo from '../assets/about/yolo.png';
 import starTruck from '../assets/about/startruck.png';
 
@@ -203,6 +205,148 @@ const About = () => {
 
                     {/* Main Content Section */}
                     <div className="flex-1 w-full space-y-8">
+                        {/* Academic Achievements Section */}
+                        <div className="academic-section">
+                            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center">
+                                <FaGraduationCap className="mr-2" /> Academic
+                                Profile
+                            </h2>
+                            <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg shadow-lg space-y-6">
+                                {/* School Highlight */}
+                                <div className="bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 p-4 rounded-lg border border-blue-500/20">
+                                    <div className="flex items-start gap-4">
+                                        <FaTrophy className="text-yellow-500 text-2xl mt-1 flex-shrink-0" />
+                                        <div>
+                                            <h3 className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+                                                Instituto Federal de São Paulo (IFSP)
+                                            </h3>
+                                            <p className="text-sm text-gray-300 mt-1">
+                                                Brazil&apos;s Top Technical Education Institutions
+                                            </p>
+                                            <p className="text-sm opacity-75 mt-2">
+                                                • Excellence in Technical and Academic Education
+                                                <br />
+                                                • Recognized for Innovation and Research
+                                                <br />
+                                                • Strong Industry Partnerships
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Academic Stats */}
+                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                                    <div className="bg-dark-primary p-4 rounded-lg text-center">
+                                        <div className="text-2xl font-bold text-blue-500">
+                                            4.0
+                                        </div>
+                                        <div className="text-sm">GPA</div>
+                                    </div>
+                                    <div className="bg-dark-primary p-4 rounded-lg text-center">
+                                        <div className="text-2xl font-bold text-purple-500">
+                                            1500+
+                                        </div>
+                                        <div className="text-sm">
+                                            SAT Score
+                                        </div>
+                                    </div>
+                                    <div className="bg-dark-primary p-4 rounded-lg text-center">
+                                        <div className="text-2xl font-bold text-green-500">
+                                            5
+                                        </div>
+                                        <div className="text-sm">
+                                            AP Courses
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Academic Achievements Timeline */}
+                                <div className="space-y-4">
+                                    <div className="flex gap-4 items-start">
+                                        <FaTrophy className="text-yellow-500 mt-1" />
+                                        <div>
+                                            <h3 className="font-bold">Academic Excellence</h3>
+                                            <p className="text-sm opacity-75">
+                                                Maintaining consistent high performance across technical and academic subjects
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-4 items-start">
+                                        <FaAward className="text-blue-500 mt-1" />
+                                        <div>
+                                            <h3 className="font-bold">Brazilian English Language Olympics</h3>
+                                            <p className="text-sm opacity-75">
+                                                Two-time Bronze Medalist - Consecutive achievements demonstrating consistent English language proficiency
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Technical & Leadership Section */}
+                        <div className="skills-section">
+                            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center">
+                                <FaCode className="mr-2" /> Technical &
+                                Leadership
+                            </h2>
+                            <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg shadow-lg space-y-6">
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <h3 className="font-semibold">
+                                            Programming
+                                        </h3>
+                                        <div className="bg-dark-primary p-2 rounded">
+                                            Python
+                                        </div>
+                                        <div className="bg-dark-primary p-2 rounded">
+                                            JavaScript
+                                        </div>
+                                        <div className="bg-dark-primary p-2 rounded">
+                                            React
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <h3 className="font-semibold">
+                                            Leadership
+                                        </h3>
+                                        <div className="bg-dark-primary p-2 rounded">
+                                            Coding Club President
+                                        </div>
+                                        <div className="bg-dark-primary p-2 rounded">
+                                            Hackathon Organizer
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Portfolio Services Section */}
+                        <div className="services-section">
+                            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-[1px] rounded-lg">
+                                <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg">
+                                    <h3 className="text-lg font-semibold mb-3 flex items-center">
+                                        <FaChalkboardTeacher className="mr-2" />{' '}
+                                        Portfolio Development
+                                    </h3>
+                                    <p className="text-sm opacity-90 mb-4">
+                                        Need a professional portfolio like this?
+                                        I help students and professionals create
+                                        stunning digital portfolios that stand
+                                        out.
+                                    </p>
+                                    <div className="flex justify-end">
+                                        <a
+                                            href="#contact"
+                                            className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300"
+                                        >
+                                            Learn more →
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         {/* About Me Section */}
                         <div className="about-me-section">
                             <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center">
@@ -270,32 +414,6 @@ const About = () => {
                                             </p>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Academic Section */}
-                        <div className="academic-section">
-                            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center justify-center md:justify-start">
-                                <FaGraduationCap className="mr-2" /> Academic
-                                Excellence
-                            </h2>
-                            <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg shadow-lg">
-                                <div className="achievement-timeline">
-                                    {/* Add your academic achievements here */}
-                                    <div className="achievement-item flex items-center mb-4">
-                                        <FaTrophy className="text-yellow-500 mr-4" />
-                                        <div>
-                                            <h3 className="font-bold">
-                                                Your School Achievement
-                                            </h3>
-                                            <p className="opacity-75">
-                                                Description of your academic
-                                                accomplishment
-                                            </p>
-                                        </div>
-                                    </div>
-                                    {/* Add more achievements as needed */}
                                 </div>
                             </div>
                         </div>
