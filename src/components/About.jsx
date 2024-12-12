@@ -5,7 +5,6 @@ import {
     FaUserAlt,
     FaCode,
     FaLightbulb,
-    FaAward,
     FaChalkboardTeacher
 } from 'react-icons/fa';
 import { Cpu, Star } from 'lucide-react';
@@ -256,28 +255,6 @@ const About = () => {
                                         </div>
                                         <div className="text-sm">
                                             AP Courses
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Academic Achievements Timeline */}
-                                <div className="space-y-4">
-                                    <div className="flex gap-4 items-start">
-                                        <FaTrophy className="text-yellow-500 mt-1" />
-                                        <div>
-                                            <h3 className="font-bold">Academic Excellence</h3>
-                                            <p className="text-sm opacity-75">
-                                                Maintaining consistent high performance across technical and academic subjects
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-4 items-start">
-                                        <FaAward className="text-blue-500 mt-1" />
-                                        <div>
-                                            <h3 className="font-bold">Brazilian English Language Olympics</h3>
-                                            <p className="text-sm opacity-75">
-                                                Two-time Bronze Medalist - Consecutive achievements demonstrating consistent English language proficiency
-                                            </p>
                                         </div>
                                     </div>
                                 </div>
