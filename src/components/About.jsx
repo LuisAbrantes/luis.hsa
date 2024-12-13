@@ -210,51 +210,53 @@ const About = () => {
                                 <FaGraduationCap className="mr-2" /> Academic
                                 Profile
                             </h2>
-                            <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg shadow-lg space-y-6">
-                                {/* School Highlight */}
-                                <div className="bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 p-4 rounded-lg border border-blue-500/20">
-                                    <div className="flex items-start gap-4">
-                                        <FaTrophy className="text-yellow-500 text-2xl mt-1 flex-shrink-0" />
-                                        <div>
-                                            <h3 className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-                                                Instituto Federal de São Paulo (IFSP)
-                                            </h3>
-                                            <p className="text-sm text-gray-300 mt-1">
-                                                Brazil&apos;s Top Technical Education Institutions
-                                            </p>
-                                            <p className="text-sm opacity-75 mt-2">
-                                                • Excellence in Technical and Academic Education
-                                                <br />
-                                                • Recognized for Innovation and Research
-                                                <br />
-                                                • Strong Industry Partnerships
-                                            </p>
+                            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-[1px] rounded-lg">
+                                <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg shadow-lg space-y-6">
+                                    {/* School Highlight */}
+                                    <div className="bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 p-4 rounded-lg border border-blue-500/20">
+                                        <div className="flex items-start gap-4">
+                                            <FaTrophy className="text-yellow-500 text-2xl mt-1 flex-shrink-0" />
+                                            <div>
+                                                <h3 className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+                                                    Instituto Federal de São Paulo (IFSP)
+                                                </h3>
+                                                <p className="text-sm text-gray-300 mt-1">
+                                                    Brazil&apos;s Top Technical Education Institutions
+                                                </p>
+                                                <p className="text-sm opacity-75 mt-2">
+                                                    • Excellence in Technical and Academic Education
+                                                    <br />
+                                                    • Recognized for Innovation and Research
+                                                    <br />
+                                                    • Strong Industry Partnerships
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                {/* Academic Stats */}
-                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                                    <div className="bg-dark-primary p-4 rounded-lg text-center">
-                                        <div className="text-2xl font-bold text-blue-500">
-                                            4.0
+                                    {/* Academic Stats */}
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                                        <div className="bg-dark-primary p-4 rounded-lg text-center">
+                                            <div className="text-2xl font-bold text-blue-500">
+                                                4.0
+                                            </div>
+                                            <div className="text-sm">GPA</div>
                                         </div>
-                                        <div className="text-sm">GPA</div>
-                                    </div>
-                                    <div className="bg-dark-primary p-4 rounded-lg text-center">
-                                        <div className="text-2xl font-bold text-purple-500">
-                                            1500+
+                                        <div className="bg-dark-primary p-4 rounded-lg text-center">
+                                            <div className="text-2xl font-bold text-purple-500">
+                                                1500+
+                                            </div>
+                                            <div className="text-sm">
+                                                SAT Score
+                                            </div>
                                         </div>
-                                        <div className="text-sm">
-                                            SAT Score
-                                        </div>
-                                    </div>
-                                    <div className="bg-dark-primary p-4 rounded-lg text-center">
-                                        <div className="text-2xl font-bold text-green-500">
-                                            5
-                                        </div>
-                                        <div className="text-sm">
-                                            AP Courses
+                                        <div className="bg-dark-primary p-4 rounded-lg text-center">
+                                            <div className="text-2xl font-bold text-green-500">
+                                                5
+                                            </div>
+                                            <div className="text-sm">
+                                                AP Courses
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -267,31 +269,33 @@ const About = () => {
                                 <FaCode className="mr-2" /> Technical &
                                 Leadership
                             </h2>
-                            <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg shadow-lg space-y-6">
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <h3 className="font-semibold">
-                                            Programming
-                                        </h3>
-                                        <div className="bg-dark-primary p-2 rounded">
-                                            Python
+                            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-[1px] rounded-lg">
+                                <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg shadow-lg space-y-6">
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <h3 className="font-semibold">
+                                                Programming
+                                            </h3>
+                                            <div className="bg-dark-primary p-2 rounded">
+                                                Python
+                                            </div>
+                                            <div className="bg-dark-primary p-2 rounded">
+                                                JavaScript
+                                            </div>
+                                            <div className="bg-dark-primary p-2 rounded">
+                                                React
+                                            </div>
                                         </div>
-                                        <div className="bg-dark-primary p-2 rounded">
-                                            JavaScript
-                                        </div>
-                                        <div className="bg-dark-primary p-2 rounded">
-                                            React
-                                        </div>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <h3 className="font-semibold">
-                                            Leadership
-                                        </h3>
-                                        <div className="bg-dark-primary p-2 rounded">
-                                            Coding Club President
-                                        </div>
-                                        <div className="bg-dark-primary p-2 rounded">
-                                            Maratons and Hackathon Organizer
+                                        <div className="space-y-2">
+                                            <h3 className="font-semibold">
+                                                Leadership
+                                            </h3>
+                                            <div className="bg-dark-primary p-2 rounded">
+                                                Coding Club President
+                                            </div>
+                                            <div className="bg-dark-primary p-2 rounded">
+                                                Maratons and Hackathon Organizer
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -329,66 +333,68 @@ const About = () => {
                             <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center">
                                 <FaUserAlt className="mr-2" /> About Me
                             </h2>
-                            <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg shadow-lg space-y-6">
-                                {/* Personal Introduction */}
-                                <div className="prose prose-invert max-w-none">
-                                    <p className="text-base sm:text-lg">
-                                        {/* Add your personal introduction here */}
-                                        Your personal introduction and
-                                        overview...
-                                    </p>
-                                </div>
+                            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-[1px] rounded-lg">
+                                <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg shadow-lg space-y-6">
+                                    {/* Personal Introduction */}
+                                    <div className="prose prose-invert max-w-none">
+                                        <p className="text-base sm:text-lg">
+                                            {/* Add your personal introduction here */}
+                                            Your personal introduction and
+                                            overview...
+                                        </p>
+                                    </div>
 
-                                {/* Technical Skills */}
-                                <div>
-                                    <h3 className="text-lg font-semibold mb-3 flex items-center">
-                                        <FaCode className="mr-2" /> Technical
-                                        Skills
-                                    </h3>
-                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                                        {/* Add your key technical skills */}
-                                        <div className="bg-dark-primary p-3 rounded">
-                                            Frontend Development
-                                        </div>
-                                        <div className="bg-dark-primary p-3 rounded">
-                                            Backend Development
-                                        </div>
-                                        <div className="bg-dark-primary p-3 rounded">
-                                            Database Design
+                                    {/* Technical Skills */}
+                                    <div>
+                                        <h3 className="text-lg font-semibold mb-3 flex items-center">
+                                            <FaCode className="mr-2" /> Technical
+                                            Skills
+                                        </h3>
+                                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                                            {/* Add your key technical skills */}
+                                            <div className="bg-dark-primary p-3 rounded">
+                                                Frontend Development
+                                            </div>
+                                            <div className="bg-dark-primary p-3 rounded">
+                                                Backend Development
+                                            </div>
+                                            <div className="bg-dark-primary p-3 rounded">
+                                                Database Design
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                {/* Interests & Passions */}
-                                <div>
-                                    <h3 className="text-lg font-semibold mb-3 flex items-center">
-                                        <FaLightbulb className="mr-2" />{' '}
-                                        Interests & Passions
-                                    </h3>
-                                    <ul className="list-disc list-inside space-y-2 ml-4">
-                                        {/* Add your interests */}
-                                        <li>Interest 1</li>
-                                        <li>Interest 2</li>
-                                        <li>Interest 3</li>
-                                    </ul>
-                                </div>
+                                    {/* Interests & Passions */}
+                                    <div>
+                                        <h3 className="text-lg font-semibold mb-3 flex items-center">
+                                            <FaLightbulb className="mr-2" />{' '}
+                                            Interests & Passions
+                                        </h3>
+                                        <ul className="list-disc list-inside space-y-2 ml-4">
+                                            {/* Add your interests */}
+                                            <li>Interest 1</li>
+                                            <li>Interest 2</li>
+                                            <li>Interest 3</li>
+                                        </ul>
+                                    </div>
 
-                                {/* Professional Journey */}
-                                <div className="timeline space-y-4">
-                                    <h3 className="text-lg font-semibold">
-                                        Professional Journey
-                                    </h3>
-                                    {/* Add key career milestones */}
-                                    <div className="flex gap-4">
-                                        <div className="w-2 bg-blue-500 rounded"></div>
-                                        <div>
-                                            <h4 className="font-medium">
-                                                Current/Recent Position
-                                            </h4>
-                                            <p className="text-sm opacity-75">
-                                                Brief description of your role
-                                                and achievements
-                                            </p>
+                                    {/* Professional Journey */}
+                                    <div className="timeline space-y-4">
+                                        <h3 className="text-lg font-semibold">
+                                            Professional Journey
+                                        </h3>
+                                        {/* Add key career milestones */}
+                                        <div className="flex gap-4">
+                                            <div className="w-2 bg-blue-500 rounded"></div>
+                                            <div>
+                                                <h4 className="font-medium">
+                                                    Current/Recent Position
+                                                </h4>
+                                                <p className="text-sm opacity-75">
+                                                    Brief description of your role
+                                                    and achievements
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
