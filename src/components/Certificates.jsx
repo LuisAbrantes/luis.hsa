@@ -499,9 +499,9 @@ const Certificates = () => {
                                     exit={{ opacity: 0, y: -20 }}
                                     // Reduce individual card animation from 0.3s to 0.2s
                                     transition={{ duration: 0.2 }}
-                                    className="bg-dark-secondary rounded-xl shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-xl transition-all duration-300"
+                                    className="bg-dark-secondary rounded-xl shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-xl transition-all duration-300 flex flex-col h-full"
                                 >
-                                    <div className="p-6">
+                                    <div className="p-6 flex flex-col h-full">
                                         <div className="flex justify-between items-start mb-4">
                                             <h3 className="text-xl font-semibold text-dark-text">
                                                 {certificate.title}
@@ -532,7 +532,7 @@ const Certificates = () => {
                                                 </p>
                                             )}
                                         </div>
-                                        <div className="mt-6">
+                                        <div className="mt-auto pt-6">
                                             <button
                                                 onClick={() =>
                                                     handleViewCertificate(
