@@ -238,7 +238,7 @@ const About = () => {
                                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                                         <div className="bg-dark-primary p-4 rounded-lg text-center">
                                             <div className="text-2xl font-bold text-blue-500">
-                                                4.0
+                                                7.96
                                             </div>
                                             <div className="text-sm">GPA</div>
                                         </div>
