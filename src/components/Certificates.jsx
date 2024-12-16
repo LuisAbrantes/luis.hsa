@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { 
+import {
     BookOpen, // for courses
     Users, // for extracurricular
     Award, // for honors
@@ -17,7 +17,7 @@ const certificatesData = [
         institution: 'University of Pennsylvania - Penn Engineering',
         date: '2024',
         type: 'hackathons',
-        hours: 40,
+        hours: 40
     },
     {
         id: 2,
@@ -26,7 +26,7 @@ const certificatesData = [
             'Federal Institute of Science and Technology of São Paulo - IFSP',
         date: '2024',
         type: 'courses',
-        hours: 80,
+        hours: 80
     },
     {
         id: 3,
@@ -34,7 +34,7 @@ const certificatesData = [
         institution: 'University of Campinas - UNICAMP',
         date: '2024',
         type: 'courses',
-        hours: 47,
+        hours: 47
     },
     {
         id: 4,
@@ -42,7 +42,7 @@ const certificatesData = [
         institution: 'GitHub',
         date: '2025',
         type: 'extracurricular',
-        description: 'One day, one interaction with GitHub',
+        description: 'One day, one interaction with GitHub'
     },
     {
         id: 5,
@@ -50,7 +50,8 @@ const certificatesData = [
         institution: 'GitHub Community',
         date: '2024 2025',
         type: 'extracurricular',
-        description: 'Active member of the GitTogether SJC community, participating in local GitHub events and contributing to the tech community development in São José dos Campos.',
+        description:
+            'Active member of the GitTogether SJC community, participating in local GitHub events and contributing to the tech community development in São José dos Campos.'
     },
     {
         id: 6,
@@ -59,7 +60,7 @@ const certificatesData = [
             'Federal Institute of Science and Technology of São Paulo - IFSP',
         date: '2022',
         type: 'courses',
-        hours: 60,
+        hours: 60
     },
     {
         id: 7,
@@ -67,7 +68,7 @@ const certificatesData = [
         institution: 'National Service for Industrial Learning - SENAI',
         date: '2023',
         type: 'hackathons',
-        hours: 40,
+        hours: 40
     },
     {
         id: 8,
@@ -76,7 +77,7 @@ const certificatesData = [
             'Federal Institute of Science and Technology of São Paulo - IFSP',
         date: '2023',
         type: 'courses',
-        hours: 36,
+        hours: 36
     },
     {
         id: 9,
@@ -84,7 +85,7 @@ const certificatesData = [
         institution: 'Seleta Educação',
         date: '2024.1',
         type: 'honors',
-        hours: 2,
+        hours: 2
     },
     {
         id: 10,
@@ -92,15 +93,16 @@ const certificatesData = [
         institution: 'Seleta Educação',
         date: '2024.2',
         type: 'honors',
-        hours: 2,
+        hours: 2
     },
     {
         id: 11,
         title: 'Introduction to Network Architecture and Protocols',
-        institution: 'Federal Institute of Science and Technology of São Paulo - IFSP',
+        institution:
+            'Federal Institute of Science and Technology of São Paulo - IFSP',
         date: '2022',
         type: 'courses',
-        hours: 100,
+        hours: 100
     },
     {
         id: 12,
@@ -109,7 +111,7 @@ const certificatesData = [
             'Institute of Federal Education, Science and Technology of São Paulo',
         date: '2024',
         type: 'extracurricular',
-        hours: 15,
+        hours: 15
     },
     {
         id: 13,
@@ -117,7 +119,7 @@ const certificatesData = [
         institution: 'The Dream School',
         date: '2024',
         type: 'extracurricular',
-        hours: 15,
+        hours: 15
     },
     {
         id: 14,
@@ -125,7 +127,7 @@ const certificatesData = [
         institution: 'ARINTER IFSP',
         date: '2024 2025',
         type: 'extracurricular',
-        hours: 15,
+        hours: 15
     },
     {
         id: 15,
@@ -133,7 +135,7 @@ const certificatesData = [
         institution: 'IFSP',
         date: '2024 2025',
         type: 'extracurricular',
-        hours: 10,
+        hours: 10
     },
     {
         id: 16,
@@ -141,7 +143,7 @@ const certificatesData = [
         institution: 'IFSP',
         date: '2022',
         type: 'events',
-        hours: 1.5,
+        hours: 1.5
     },
     {
         id: 17,
@@ -149,7 +151,7 @@ const certificatesData = [
         institution: 'IFSP',
         date: '2022',
         type: 'events',
-        hours: 2,
+        hours: 2
     },
     {
         id: 18,
@@ -157,7 +159,7 @@ const certificatesData = [
         institution: 'University of Campinas - UNICAMP',
         date: '2023',
         type: 'honors',
-        hours: 24,
+        hours: 24
     },
     {
         id: 19,
@@ -165,7 +167,7 @@ const certificatesData = [
         institution: 'IFSP',
         date: '2022',
         type: 'events',
-        hours: 2,
+        hours: 2
     },
     {
         id: 20,
@@ -173,7 +175,7 @@ const certificatesData = [
         institution: 'IFSP',
         date: '2022',
         type: 'events',
-        hours: 1.5,
+        hours: 1.5
     },
     {
         id: 21,
@@ -181,26 +183,92 @@ const certificatesData = [
         institution: "Saint John's College",
         date: '2024',
         type: 'courses',
-        hours: 8,
+        hours: 8
     }
 ];
+
+// Mover o SearchBar para fora do componente Certificates
+const SearchBar = ({ setSearchQuery }) => {
+    const [inputValue, setInputValue] = useState('');
+
+    const handleClear = () => {
+        setInputValue('');
+        setSearchQuery('');
+    };
+
+    const handleChange = (e) => {
+        setInputValue(e.target.value);
+        setSearchQuery(e.target.value);
+    };
+
+    return (
+        <div className="w-full max-w-md mx-auto mb-8">
+            <div className="relative">
+                <input
+                    type="text"
+                    placeholder="Search certificates..."
+                    value={inputValue}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 pr-12 bg-dark-secondary text-dark-text rounded-lg 
+                            border border-dark-hover focus:border-dark-accent focus:ring-1 
+                            focus:ring-dark-accent outline-none transition-all duration-300"
+                />
+                {inputValue && (
+                    <button
+                        onClick={handleClear}
+                        className="absolute right-10 top-2.5 text-dark-text hover:text-dark-accent transition-colors duration-200"
+                        aria-label="Clear search"
+                    >
+                        <svg
+                            className="h-5 w-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M6 18L18 6M6 6l12 12"
+                            />
+                        </svg>
+                    </button>
+                )}
+                <svg
+                    className="absolute right-3 top-2.5 h-5 w-5 text-dark-muted pointer-events-none"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                </svg>
+            </div>
+        </div>
+    );
+};
 
 const Certificates = () => {
     const [filter, setFilter] = useState('all');
     const [loading, setLoading] = useState(false);
     const [selectedCertificate, setSelectedCertificate] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const handleFilter = (type) => {
+    const handleFilter = type => {
         setLoading(true);
         setFilter(type);
         setTimeout(() => setLoading(false), 150);
     };
 
-    const getTypeIcon = (type) => {
+    const getTypeIcon = type => {
         const iconProps = {
             size: 24,
-            className: "text-dark-accent"
+            className: 'text-dark-accent'
         };
 
         switch (type) {
@@ -280,13 +348,19 @@ const Certificates = () => {
                             )}
                             <div className="flex items-center space-x-2">
                                 <span className="font-semibold">Type:</span>
-                                <span className="capitalize">{certificate.type}</span>
+                                <span className="capitalize">
+                                    {certificate.type}
+                                </span>
                                 {getTypeIcon(certificate.type)}
                             </div>
                             {certificate.type === 'extracurricular' ? (
                                 <div className="flex items-start space-x-2">
-                                    <span className="font-semibold">Description:</span>
-                                    <span className="flex-1">{certificate.description}</span>
+                                    <span className="font-semibold">
+                                        Description:
+                                    </span>
+                                    <span className="flex-1">
+                                        {certificate.description}
+                                    </span>
                                 </div>
                             ) : (
                                 <div className="flex items-center space-x-2">
@@ -336,7 +410,13 @@ const Certificates = () => {
             title: PropTypes.string.isRequired,
             institution: PropTypes.string.isRequired,
             date: PropTypes.string.isRequired,
-            type: PropTypes.oneOf(['courses', 'extracurricular', 'honors', 'events', 'hackathons']).isRequired,
+            type: PropTypes.oneOf([
+                'courses',
+                'extracurricular',
+                'honors',
+                'events',
+                'hackathons'
+            ]).isRequired,
             pdfPath: PropTypes.string,
             hours: PropTypes.number,
             description: PropTypes.string
@@ -344,38 +424,67 @@ const Certificates = () => {
         onClose: PropTypes.func.isRequired
     };
 
-    // Simplified useMemo without sorting
+    // Enhanced useMemo with filtering and search only
     const { categoryCounts, filteredCertificates } = useMemo(() => {
         const counts = certificatesData.reduce((acc, cert) => {
             acc[cert.type] = (acc[cert.type] || 0) + 1;
             return acc;
         }, {});
 
-        const filtered = certificatesData.filter(
-            cert => filter === 'all' || cert.type === filter
-        );
+        const filtered = certificatesData
+            .filter(cert => filter === 'all' || cert.type === filter)
+            .filter(
+                cert =>
+                    cert.title
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase()) ||
+                    cert.institution
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase())
+            );
 
         return {
             categoryCounts: counts,
             filteredCertificates: filtered
         };
-    }, [filter]);
+    }, [filter, searchQuery]);
 
     // Filter button component
     const FilterButton = ({ type, label }) => (
         <button
             onClick={() => handleFilter(type)}
             className={`px-6 py-2 rounded-full transition-all duration-300 flex items-center space-x-2
-                ${filter === type 
-                    ? 'bg-dark-accent text-dark-text'
-                    : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
+                ${
+                    filter === type
+                        ? 'bg-dark-accent text-dark-text'
+                        : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
                 }`}
         >
             <span>{label}</span>
             <span className="bg-dark-hover px-2 py-0.5 rounded-full text-sm">
-                {type === 'all' ? certificatesData.length : categoryCounts[type] || 0}
+                {type === 'all'
+                    ? certificatesData.length
+                    : categoryCounts[type] || 0}
             </span>
         </button>
+    );
+
+    // Enhanced loading skeleton
+    const LoadingSkeleton = () => (
+        <div className="animate-pulse bg-dark-secondary rounded-xl p-6">
+            <div className="flex justify-between">
+                <div className="h-6 bg-dark-hover rounded w-3/4"></div>
+                <div className="h-6 w-6 bg-dark-hover rounded"></div>
+            </div>
+            <div className="space-y-3 mt-4">
+                <div className="h-4 bg-dark-hover rounded w-2/3"></div>
+                <div className="h-4 bg-dark-hover rounded w-1/2"></div>
+                <div className="h-4 bg-dark-hover rounded w-3/5"></div>
+            </div>
+            <div className="mt-6">
+                <div className="h-10 bg-dark-hover rounded"></div>
+            </div>
+        </div>
     );
 
     return (
@@ -395,7 +504,10 @@ const Certificates = () => {
                         </div>
                         <div className="flex-1">
                             <p className="text-dark-githubText font-medium text-sm sm:text-base">
-                                <span className="block sm:inline">All certificates can be validated in my GitHub repository:</span>{' '}
+                                <span className="block sm:inline">
+                                    All certificates can be validated in my
+                                    GitHub repository:
+                                </span>{' '}
                                 <a
                                     href="https://github.com/LuisAbrantes/Certificates"
                                     target="_blank"
@@ -423,11 +535,17 @@ const Certificates = () => {
                     My qualifications and certifications
                 </p>
 
+                {/* Mover o SearchBar para cá e passar setSearchQuery como prop */}
+                <SearchBar setSearchQuery={setSearchQuery} />
+
                 {/* Updated Filter Buttons */}
                 <div className="flex justify-center gap-4 mb-12 flex-wrap">
                     <FilterButton type="all" label="All" />
                     <FilterButton type="courses" label="Courses" />
-                    <FilterButton type="extracurricular" label="Extracurricular" />
+                    <FilterButton
+                        type="extracurricular"
+                        label="Extracurricular"
+                    />
                     <FilterButton type="honors" label="Honors" />
                     <FilterButton type="events" label="Events" />
                     <FilterButton type="hackathons" label="Hackathons" />
@@ -444,14 +562,20 @@ const Certificates = () => {
                         transition={{ duration: 0.2 }}
                     >
                         {loading ? (
-                            // Loading skeleton
-                            Array(6).fill(0).map((_, i) => (
-                                <div key={i} className="animate-pulse bg-dark-secondary rounded-xl p-6">
-                                    <div className="h-6 bg-dark-hover rounded w-3/4 mb-4"></div>
-                                    <div className="h-4 bg-dark-hover rounded w-1/2 mb-2"></div>
-                                    <div className="h-4 bg-dark-hover rounded w-2/3"></div>
-                                </div>
-                            ))
+                            // Enhanced loading skeleton
+                            Array(6)
+                                .fill(0)
+                                .map((_, i) => <LoadingSkeleton key={i} />)
+                        ) : filteredCertificates.length === 0 ? (
+                            <motion.div
+                                className="col-span-full text-center py-12"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                            >
+                                <p className="text-xl text-dark-muted">
+                                    No certificates found matching your criteria
+                                </p>
+                            </motion.div>
                         ) : (
                             filteredCertificates.map(certificate => (
                                 <motion.div
@@ -478,7 +602,8 @@ const Certificates = () => {
                                                 </span>{' '}
                                                 {certificate.institution}
                                             </p>
-                                            {certificate.type !== 'extracurricular' && (
+                                            {certificate.type !==
+                                                'extracurricular' && (
                                                 <p className="text-dark-muted">
                                                     <span className="font-medium">
                                                         Completion:
@@ -486,7 +611,8 @@ const Certificates = () => {
                                                     {certificate.date}
                                                 </p>
                                             )}
-                                            {certificate.type !== 'extracurricular' && (
+                                            {certificate.type !==
+                                                'extracurricular' && (
                                                 <p className="text-dark-muted">
                                                     <span className="font-medium">
                                                         Duration:
