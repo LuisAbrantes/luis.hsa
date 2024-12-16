@@ -4,8 +4,7 @@ import {
     FaTrophy,
     FaUserAlt,
     FaCode,
-    FaLightbulb,
-    FaChalkboardTeacher
+    FaLightbulb
 } from 'react-icons/fa';
 import { Cpu, Star } from 'lucide-react';
 import pullShark from '../assets/about/pullsharkbronze.png';
@@ -218,17 +217,21 @@ const About = () => {
                                             <FaTrophy className="text-yellow-500 text-2xl mt-1 flex-shrink-0" />
                                             <div>
                                                 <h3 className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-                                                    Instituto Federal de São Paulo (IFSP)
+                                                    Instituto Federal de São
+                                                    Paulo (IFSP)
                                                 </h3>
                                                 <p className="text-sm text-gray-300 mt-1">
-                                                    Brazil&apos;s Top Technical Education Institutions
+                                                    Brazil&apos;s Top Technical
+                                                    Education Institutions
                                                 </p>
                                                 <p className="text-sm opacity-75 mt-2">
-                                                    • Excellence in Technical and Academic Education
+                                                    • Excellence in Technical
+                                                    and Academic Education
                                                     <br />
-                                                    • Recognized for Innovation and Research
-                                                    <br />
-                                                    • Strong Industry Partnerships
+                                                    • Recognized for Innovation
+                                                    and Research
+                                                    <br />• Strong Industry
+                                                    Partnerships
                                                 </p>
                                             </div>
                                         </div>
@@ -302,32 +305,6 @@ const About = () => {
                             </div>
                         </div>
 
-                        {/* Portfolio Services Section */}
-                        <div className="services-section">
-                            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-[1px] rounded-lg">
-                                <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg">
-                                    <h3 className="text-lg font-semibold mb-3 flex items-center">
-                                        <FaChalkboardTeacher className="mr-2" />{' '}
-                                        Portfolio Development
-                                    </h3>
-                                    <p className="text-sm opacity-90 mb-4">
-                                        Need a professional portfolio like this?
-                                        I help students and professionals create
-                                        stunning digital portfolios that stand
-                                        out.
-                                    </p>
-                                    <div className="flex justify-end">
-                                        <a
-                                            href="#contact"
-                                            className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300"
-                                        >
-                                            Learn more →
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         {/* About Me Section */}
                         <div className="about-me-section">
                             <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center">
@@ -347,8 +324,8 @@ const About = () => {
                                     {/* Technical Skills */}
                                     <div>
                                         <h3 className="text-lg font-semibold mb-3 flex items-center">
-                                            <FaCode className="mr-2" /> Technical
-                                            Skills
+                                            <FaCode className="mr-2" />{' '}
+                                            Technical Skills
                                         </h3>
                                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                                             {/* Add your key technical skills */}
@@ -376,26 +353,6 @@ const About = () => {
                                             <li>Interest 2</li>
                                             <li>Interest 3</li>
                                         </ul>
-                                    </div>
-
-                                    {/* Professional Journey */}
-                                    <div className="timeline space-y-4">
-                                        <h3 className="text-lg font-semibold">
-                                            Professional Journey
-                                        </h3>
-                                        {/* Add key career milestones */}
-                                        <div className="flex gap-4">
-                                            <div className="w-2 bg-blue-500 rounded"></div>
-                                            <div>
-                                                <h4 className="font-medium">
-                                                    Current/Recent Position
-                                                </h4>
-                                                <p className="text-sm opacity-75">
-                                                    Brief description of your role
-                                                    and achievements
-                                                </p>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

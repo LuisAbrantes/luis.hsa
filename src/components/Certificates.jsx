@@ -187,7 +187,6 @@ const certificatesData = [
 
 const Certificates = () => {
     const [filter, setFilter] = useState('all');
-    const [sortBy, setSortBy] = useState('date-desc');
     const [loading, setLoading] = useState(false);
     const [selectedCertificate, setSelectedCertificate] = useState(null);
     const [showModal, setShowModal] = useState(false);
@@ -195,14 +194,6 @@ const Certificates = () => {
     const handleFilter = (type) => {
         setLoading(true);
         setFilter(type);
-        // Reduce loading delay from 300ms to 150ms
-        setTimeout(() => setLoading(false), 150);
-    };
-
-    const handleSort = (value) => {
-        setLoading(true);
-        setSortBy(value);
-        // Reduce loading delay from 300ms to 150ms
         setTimeout(() => setLoading(false), 150);
     };
 
@@ -353,37 +344,22 @@ const Certificates = () => {
         onClose: PropTypes.func.isRequired
     };
 
-    // Combine category counts and filtered/sorted certificates into one memo
-    const { categoryCounts, filteredAndSortedCertificates } = useMemo(() => {
-        // Calculate counts
+    // Simplified useMemo without sorting
+    const { categoryCounts, filteredCertificates } = useMemo(() => {
         const counts = certificatesData.reduce((acc, cert) => {
             acc[cert.type] = (acc[cert.type] || 0) + 1;
             return acc;
         }, {});
 
-        // Filter and sort
-        let filtered = certificatesData.filter(
+        const filtered = certificatesData.filter(
             cert => filter === 'all' || cert.type === filter
         );
 
-        const sorted = filtered.sort((a, b) => {
-            switch (sortBy) {
-                case 'date-desc':
-                    return new Date(b.date) - new Date(a.date);
-                case 'date-asc':
-                    return new Date(a.date) - new Date(b.date);
-                case 'title':
-                    return a.title.localeCompare(b.title);
-                default:
-                    return 0;
-            }
-        });
-
         return {
             categoryCounts: counts,
-            filteredAndSortedCertificates: sorted
+            filteredCertificates: filtered
         };
-    }, [filter, sortBy]); // Remove certificates from dependencies
+    }, [filter]);
 
     // Filter button component
     const FilterButton = ({ type, label }) => (
@@ -444,21 +420,8 @@ const Certificates = () => {
                     Academic Achievements
                 </h1>
                 <p className="text-xl text-dark-muted text-center mb-12">
-                    My professional qualifications and certifications
+                    My qualifications and certifications
                 </p>
-
-                {/* Add Sort Controls */}
-                <div className="flex justify-end mb-6">
-                    <select
-                        value={sortBy}
-                        onChange={(e) => handleSort(e.target.value)}
-                        className="bg-dark-secondary text-dark-text px-4 py-2 rounded-lg"
-                    >
-                        <option value="date-desc">Newest First</option>
-                        <option value="date-asc">Oldest First</option>
-                        <option value="title">Alphabetical</option>
-                    </select>
-                </div>
 
                 {/* Updated Filter Buttons */}
                 <div className="flex justify-center gap-4 mb-12 flex-wrap">
@@ -490,7 +453,7 @@ const Certificates = () => {
                                 </div>
                             ))
                         ) : (
-                            filteredAndSortedCertificates.map(certificate => (
+                            filteredCertificates.map(certificate => (
                                 <motion.div
                                     key={certificate.id}
                                     layout
