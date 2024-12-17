@@ -2,22 +2,22 @@ import { motion } from 'framer-motion';
 
 const timelineData = [
     {
-        year: '2009',
-        description: 'Started my first project at the age of 9.',
+        year: '2016',
+        description: 'Started programming at the age of nine, creating small projects to solve problems and learn new skills.',
     },
     {
-        year: '2015',
-        description: 'Developed a full-stack web application for a local business.',
+        year: '2022',
+        description: 'Accepted into the most competitive and prestigious free high school program in Brazil, excelling in various subjects.',
     },
     {
-        year: '2020',
-        description: 'Graduated with a degree in Computer Science.',
+        year: '2024',
+        description: 'Achieved a dream by participating in my first hackathon at an Ivy League, PennApps at UPenn, marking my first academic and alone trip abroad.',
     },
     {
-        year: '2023',
-        description: 'Joined a leading tech company as a Software Engineer.',
+        year: '2025',
+        description: 'Developing PiedPiper - IFSP, a full-stack project to train students aspiring to join my institute of science and technology.',
     },
-    // Adicione mais itens conforme necessário
+    // Add more items as needed
 ];
 
 const Home = () => {
