@@ -52,7 +52,7 @@ const certificatesData = [
         date: '2024 2025',
         type: 'extracurricular',
         description:
-            'Active member of the GitTogether SJC community, participating in local GitHub events and contributing to the tech community development in São José dos Campos.'
+            'Played an active role in the GitHub SJC Community, leading the ideation and implementation of programming projects and participating in workshops. Currently, I am preparing to expand this impact by hosting events for my school, combining community resources and partnerships with prominent education companies such as Alura and FIAP to inspire the next generation of programmers.'
     },
     {
         id: 6,
@@ -113,7 +113,7 @@ const certificatesData = [
         date: '2024',
         type: 'extracurricular',
         description:
-            'Helped organize and manage the first OBLI event at my campus.'
+            'Discovered and independently organized the OBLI event at IFSP, engaging over 300 community members, including students, teachers, and staff. Secured partnerships with institutions like Kumon and Yázigi to reward medalists and participants. Coordinated logistics, supported students with technical issues during the competition, and shared study methods. Over two years, this initiative celebrated approximately 50 medalists, significantly promoting academic excellence in the community.'
     },
     {
         id: 13,
@@ -122,7 +122,7 @@ const certificatesData = [
         date: '2024',
         type: 'extracurricular',
         description:
-            'Represented The Dream School and promoted its values and programs.'
+            'Selected as a representative of the students for The Dream School, where I actively participate in strategic discussions shaping the future of the largest exchange preparation institution in Latin America. Through these efforts, I contribute to improving classes and preparation systems, helping to recruit new students and ambassadors. This collective work has led to remarkable growth in enrollment, ambassador engagement, and overall institutional impact.'
     },
     {
         id: 14,
