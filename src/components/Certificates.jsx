@@ -42,7 +42,8 @@ const certificatesData = [
         institution: 'GitHub',
         date: '2025',
         type: 'extracurricular',
-        description: 'One day, one interaction with GitHub'
+        description:
+            'Committed to continuous learning through daily programming activities on GitHub, contributing to open-source projects and developing personal initiatives. This consistent engagement has allowed me to explore various technologies, solve real-world challenges, and grow as a programmer through collaboration with other developers.'
     },
     {
         id: 5,
@@ -111,7 +112,8 @@ const certificatesData = [
             'Institute of Federal Education, Science and Technology of São Paulo',
         date: '2024',
         type: 'extracurricular',
-        hours: 15
+        description:
+            'Helped organize and manage the first OBLI event at my campus.'
     },
     {
         id: 13,
@@ -119,7 +121,8 @@ const certificatesData = [
         institution: 'The Dream School',
         date: '2024',
         type: 'extracurricular',
-        hours: 15
+        description:
+            'Represented The Dream School and promoted its values and programs.'
     },
     {
         id: 14,
@@ -127,7 +130,8 @@ const certificatesData = [
         institution: 'ARINTER IFSP',
         date: '2024 2025',
         type: 'extracurricular',
-        hours: 15
+        description:
+            'As an ARINTER ambassador, I work to promote fair and transparent international academic exchanges, focusing on opportunities for low-income students. Current projects include organizing roundtables with alumni to share experiences, facilitating international video calls for English practice, and creating collaborative initiatives between my campus and U.S. public schools to foster cross-cultural and academic collaboration. These efforts aim to provide transformative experiences while showcasing Brazilian talent globally.'
     },
     {
         id: 15,
@@ -135,7 +139,8 @@ const certificatesData = [
         institution: 'IFSP',
         date: '2024 2025',
         type: 'extracurricular',
-        hours: 10
+        description:
+            'Led the organization of programming events at IFSP, such as a marathon with 55 participants where I managed logistics, resolved technical issues, and secured sponsorships from companies like GitHub, Cebras, and Tune.AI. Inspired students to explore programming creatively, addressing complaints about monotonous classroom experiences. Currently, I am conceptualizing a week-long hackathon modeled on PennApps, aiming to create an engaging and impactful learning experience for the campus community.'
     },
     {
         id: 16,
