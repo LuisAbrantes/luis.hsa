@@ -73,9 +73,9 @@ const projectsData = [
         id: 3,
         title: 'TutorTime',
         shortDescription:
-            'Python Package to generate README.md files for your projects quickly.',
+            'A comprehensive platform for organizing and managing tutoring sessions and office hours in educational institutions.',
         fullDescription:
-            'A more detailed description of the project that appears in the modal, explaining its objectives, challenges, and implemented solutions.',
+            'TutorTime is an innovative platform designed to streamline the organization and promotion of tutoring sessions and office hours in schools. The system helps connect students with peer tutors and teachers, manage schedules, and track academic support activities. Built with a robust tech stack including Node.js and MySQL, this project is being developed with the potential to become a startup venture.',
         image: tutortime,
         thumbnail: tutortime,
         technologies: [
@@ -89,9 +89,10 @@ const projectsData = [
         github: 'https://github.com/LuisAbrantes/TutorTimeModel',
         demo: '',
         highlights: [
-            'My current most starred project on GitHub',
-            'Technical challenge overcome',
-            'Achievement reached'
+            'Comprehensive scheduling system for tutoring sessions',
+            'Student-tutor matching algorithm',
+            'Real-time availability tracking',
+            'Potential startup project for 2024'
         ]
     },
     {
