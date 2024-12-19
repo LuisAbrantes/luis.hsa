@@ -37,7 +37,7 @@ const projectsData = [
         shortDescription:
             'Distance learning platform for training agricultural machinery operators for the GP SENAI hackathon.',
         fullDescription:
-            'Uma descrição mais detalhada do projeto que aparece no modal, explicando seus objetivos, desafios e soluções implementadas.',
+            'A more detailed description of the project that appears in the modal, explaining its objectives, challenges, and implemented solutions.',
         image: agrolearn,
         thumbnail: agrolearn,
         technologies: ['React', 'Vite', 'Tailwind CSS', 'Vercel'],
@@ -45,9 +45,9 @@ const projectsData = [
         github: 'https://github.com/LuisAbrantes/AgroLearn',
         demo: 'https://agrolearn.vercel.app/',
         highlights: [
-            'Feature principal implementada',
-            'Desafio técnico superado',
-            'Resultado alcançado'
+            'Main feature implemented',
+            'Technical challenge overcome',
+            'Achievement reached'
         ]
     },
     {
@@ -64,9 +64,9 @@ const projectsData = [
         github: 'https://github.com/LuisAbrantes/QuickReadme',
         demo: '',
         highlights: [
-            'My current most stared project on GitHub',
-            'Desafio técnico superado',
-            'Resultado alcançado'
+            'My current most starred project on GitHub',
+            'Technical challenge overcome',
+            'Achievement reached'
         ]
     },
     {
@@ -75,7 +75,7 @@ const projectsData = [
         shortDescription:
             'Python Package to generate README.md files for your projects quickly.',
         fullDescription:
-            'Uma descrição mais detalhada do projeto que aparece no modal, explicando seus objetivos, desafios e soluções implementadas.',
+            'A more detailed description of the project that appears in the modal, explaining its objectives, challenges, and implemented solutions.',
         image: tutortime,
         thumbnail: tutortime,
         technologies: [
@@ -89,9 +89,9 @@ const projectsData = [
         github: 'https://github.com/LuisAbrantes/TutorTimeModel',
         demo: '',
         highlights: [
-            'My current most stared project on GitHub',
-            'Desafio técnico superado',
-            'Resultado alcançado'
+            'My current most starred project on GitHub',
+            'Technical challenge overcome',
+            'Achievement reached'
         ]
     },
     {
@@ -123,18 +123,18 @@ const ProjectCard = ({ project, onClick }) => (
     whileHover={{ y: -5 }}
     className="bg-dark-secondary rounded-lg overflow-hidden shadow-xl"
   >
-    <div className="relative group">
+    <div className="relative group aspect-[16/9]">
       <img 
         src={project.thumbnail} 
         alt={project.title} 
-        className="w-full h-48 object-cover transition-transform group-hover:scale-105"
+        className="w-full h-full object-cover"
       />
-      <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+      <div className="absolute inset-0 bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
         <button
           onClick={() => onClick(project)}
           className="bg-dark-accent text-white px-4 py-2 rounded-md hover:bg-dark-accent transition"
         >
-          Ver Detalhes
+          View Details
         </button>
       </div>
     </div>
@@ -158,7 +158,7 @@ const ProjectCard = ({ project, onClick }) => (
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-gray-400 hover:text-dark-accent transition"
         >
-          <Github size={18} /> Código
+          <Github size={18} /> Code
         </a>
         <a
           href={project.demo}
@@ -185,7 +185,7 @@ const ProjectModal = ({ project, onClose }) => (
         <h2 className="text-2xl font-bold text-gray-200 mb-4">{project.title}</h2>
         <p className="text-gray-400 mb-6">{project.fullDescription}</p>
         
-        <h3 className="text-lg font-semibold text-gray-300 mb-3">Destaques</h3>
+        <h3 className="text-lg font-semibold text-gray-300 mb-3">Highlights</h3>
         <ul className="list-disc list-inside text-gray-400 mb-6">
           {project.highlights.map((highlight, index) => (
             <li key={index}>{highlight}</li>
@@ -199,13 +199,13 @@ const ProjectModal = ({ project, onClose }) => (
             rel="noopener noreferrer"
             className="bg-dark-accent text-white px-6 py-2 rounded-md hover:bg-dark-accent transition flex items-center gap-2"
           >
-            <Github size={18} /> Ver Código
+            <Github size={18} /> View Code
           </a>
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-600 text-gray-400 rounded-md hover:bg-dark-hover transition"
           >
-            Fechar
+            Close
           </button>
         </div>
       </div>
@@ -231,7 +231,7 @@ const Projects = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-4xl font-bold text-gray-200 mb-8 text-center"
         >
-          Meus Projetos
+          My Projects
         </motion.h1>
 
         <div className="flex justify-center gap-4 mb-12">
