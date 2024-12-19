@@ -241,13 +241,13 @@ const About = () => {
                                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                                         <div className="bg-dark-primary p-4 rounded-lg text-center">
                                             <div className="text-2xl font-bold text-blue-500">
-                                                8.23
+                                                8.20
                                             </div>
                                             <div className="text-sm">GPA</div>
                                         </div>
                                         <div className="bg-dark-primary p-4 rounded-lg text-center">
                                             <div className="text-2xl font-bold text-purple-500">
-                                                1500+
+                                                X
                                             </div>
                                             <div className="text-sm">
                                                 SAT Score
@@ -315,9 +315,47 @@ const About = () => {
                                     {/* Personal Introduction */}
                                     <div className="prose prose-invert max-w-none">
                                         <p className="text-base sm:text-lg">
-                                            {/* Add your personal introduction here */}
-                                            Your personal introduction and
-                                            overview...
+                                            I’m Luis Henrique Abrantes, a high
+                                            school senior enrolled in an
+                                            integrated technical program in
+                                            Information Technology at the
+                                            Federal Institute of São Paulo
+                                            (IFSP). Passionate about technology,
+                                            I focus on building full-stack
+                                            applications using React, Python,
+                                            and Node.js while exploring
+                                            innovative solutions to real-world
+                                            problems.
+                                        </p>
+                                        <p className="text-base sm:text-lg">
+                                            My academic journey includes
+                                            participation in hackathons like
+                                            PennApps XXV and leading projects
+                                            such as Pied Piper-IFSP, which
+                                            automates mock exam creation and
+                                            analysis. I’ve also contributed to
+                                            Space INP, blending programming with
+                                            my interest in astronomy and space
+                                            research.
+                                        </p>
+                                        <p className="text-base sm:text-lg">
+                                            As President of the Coding Club and
+                                            ARINTER Ambassador, I’ve developed
+                                            leadership and organizational skills
+                                            while fostering collaboration within
+                                            the tech community. My
+                                            certifications in Artificial
+                                            Intelligence, Linux Network
+                                            Administration, and Database
+                                            Management highlight my commitment
+                                            to continuous learning and skill
+                                            development.
+                                        </p>
+                                        <p className="text-base sm:text-lg">
+                                            My mission is to leverage technology
+                                            to create meaningful solutions and
+                                            inspire others to innovate and
+                                            achieve their potential.
                                         </p>
                                     </div>
 
@@ -348,10 +386,18 @@ const About = () => {
                                             Interests & Passions
                                         </h3>
                                         <ul className="list-disc list-inside space-y-2 ml-4">
-                                            {/* Add your interests */}
-                                            <li>Interest 1</li>
-                                            <li>Interest 2</li>
-                                            <li>Interest 3</li>
+                                            <li>
+                                                Innovating through technology
+                                            </li>
+                                            <li>
+                                                Exploring astronomy and space
+                                                research
+                                            </li>
+                                            <li>Collaborating in hackathons</li>
+                                            <li>
+                                                Traveling and experiencing new
+                                                cultures
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

@@ -31,14 +31,18 @@ const Home = () => {
                 Christian & Tech Enthusiast
             </h3>
             <p className="introduction mt-4 text-lg leading-relaxed">
-                Hi, I&apos;m a passionate tech enthusiast and aspiring software
-                engineer based in Brazil. With expertise in full-stack
-                development and a strong focus on creating efficient and
-                scalable solutions, I&apos;ve been exploring modern web
-                technologies since my first project at the age of 9. Driven by
-                curiosity and a commitment to writing clean, maintainable code,
-                I am always eager to tackle new challenges and make an impact in
-                the tech world. Let&apos;s innovate together!
+                Hi, I’m Luis Henrique Abrantes, a high school senior enrolled in
+                an integrated technical program in Information Technology at the
+                Federal Institute of São Paulo (IFSP). With a passion for
+                innovation and programming, I specialize in creating scalable
+                and efficient full-stack applications using technologies like
+                React, Node.js, and Python. Over the years, I’ve participated in
+                competitive programming events and impactful projects, including
+                Pied Piper-IFSP and PennApps XXV, honing my skills and
+                contributing to meaningful solutions. Always driven by curiosity
+                and a commitment to excellence, I’m eager to take on new
+                challenges and collaborate on transformative ideas. Let’s create
+                something extraordinary together!
             </p>
             <div className="timeline-container mt-10 relative">
                 <h2 className="text-3xl font-bold mb-6 text-center text-dark-text">
