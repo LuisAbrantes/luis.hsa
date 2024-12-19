@@ -45,9 +45,9 @@ const projectsData = [
         github: 'https://github.com/LuisAbrantes/AgroLearn',
         demo: 'https://agrolearn.vercel.app/',
         highlights: [
-            'Main feature implemented',
-            'Technical challenge overcome',
-            'Achievement reached'
+            'Implemented a comprehensive distance learning platform for agricultural machinery operators',
+            'Successfully developed and first deployed the application for the GP SENAI hackathon',
+            'Utilized React, Vite, and Tailwind CSS to create a responsive and high-performance user interface'
         ]
     },
     {
@@ -65,8 +65,8 @@ const projectsData = [
         demo: '',
         highlights: [
             'My current most starred project on GitHub',
-            'Technical challenge overcome',
-            'Achievement reached'
+            'Overcame the technical and criative challenge of create my first usable Python package by my own.',
+            'My most starred project on GitHub, which earned me the StarTruck achievement.'
         ]
     },
     {
