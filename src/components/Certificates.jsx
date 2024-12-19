@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Move certificates array outside component
+// Move the certificates array outside the Certificates component
 const certificatesData = [
     {
         id: 1,
@@ -209,7 +209,7 @@ const certificatesData = [
     }
 ];
 
-// Mover o SearchBar para fora do componente Certificates
+// Move the SearchBar outside the Certificates component
 const SearchBar = ({ setSearchQuery }) => {
     const [inputValue, setInputValue] = useState('');
 
