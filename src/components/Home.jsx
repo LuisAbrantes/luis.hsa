@@ -28,7 +28,7 @@ const Home = () => {
                 Luis Henrique Abrantes
             </h2>
             <h3 className="title text-xl text-gray-400">
-                Software Engineer & Tech Enthusiast
+                Christian & Tech Enthusiast
             </h3>
             <p className="introduction mt-4 text-lg leading-relaxed">
                 Hi, I&apos;m a passionate tech enthusiast and aspiring software
