@@ -86,7 +86,7 @@ const certificatesData = [
         institution: 'Seleta Educação',
         date: '2024.1',
         type: 'honors',
-        hours: 2
+        hours: 3
     },
     {
         id: 10,
@@ -94,7 +94,7 @@ const certificatesData = [
         institution: 'Seleta Educação',
         date: '2024.2',
         type: 'honors',
-        hours: 2
+        hours: 3
     },
     {
         id: 11,
@@ -189,6 +189,23 @@ const certificatesData = [
         date: '2024',
         type: 'courses',
         hours: 8
+    },
+    {
+        id: 22,
+        title: 'Understanding Copilots - Workshop with Microsoft MVPs and GitHub Star',
+        institution: 'GitHub Community - GitTogether SJC',
+        date: '2024',
+        type: 'events',
+        hours: 3
+    },
+    {
+        id: 23,
+        title: 'IFSP Entrance Exam - Top 10 Performance',
+        institution: 'Federal Institute of Science and Technology of São Paulo - IFSP',
+        date: '2021',
+        type: 'honors',
+        hours: 4,
+        description: 'Achieved a position between 6th and 10th place among prepared 181 candidates, being one of 40 approved students. This result demonstrated strong academic preparation and competitive performance in the entrance examination.'
     }
 ];
 
@@ -638,7 +655,7 @@ const Certificates = () => {
                                                         certificate
                                                     )
                                                 }
-                                                className="w-full bg-indigo-50 text-indigo-600 py-2 px-4 rounded-lg hover:bg-indigo-100 transition-colors duration-300"
+                                                className="w-full bg-dark-accent text-white py-2 px-4 rounded-lg hover:bg-dark-accent-hover transition-colors duration-300"
                                             >
                                                 View Details
                                             </button>
