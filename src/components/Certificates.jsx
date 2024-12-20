@@ -131,7 +131,7 @@ const certificatesData = [
         date: '2024 2025',
         type: 'extracurricular',
         description:
-            'As an ARINTER ambassador, I work to promote fair and transparent international academic exchanges, focusing on opportunities for low-income students. Current projects include organizing roundtables with alumni to share experiences, facilitating international video calls for English practice, and creating collaborative initiatives between my campus and U.S. public schools to foster cross-cultural and academic collaboration. These efforts aim to provide transformative experiences while showcasing Brazilian talent globally.'
+            'As an ARINTER ambassador, I work to promote fair and transparent international academic exchanges, focusing on opportunities for low-income students. Current projects include organizing roundtables with alumni to share experiences and another roundtable with international students, facilitating international video calls for English practice.'
     },
     {
         id: 15,
