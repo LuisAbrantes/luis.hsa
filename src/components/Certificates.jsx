@@ -152,7 +152,7 @@ const certificatesData = [
     },
     {
         id: 17,
-        title: 'An experience in Brazilian Brazilian Sign Language - LIBRAS',
+        title: 'An experience in Brazilian Sign Language - LIBRAS',
         institution: 'IFSP',
         date: '2022',
         type: 'events',
