@@ -11,6 +11,7 @@ import pullShark from '../assets/about/pullsharkbronze.png';
 import arcticVault from '../assets/about/articcodevault.png';
 import yolo from '../assets/about/yolo.png';
 import starTruck from '../assets/about/startruck.png';
+import quickdraw from '../assets/about/quickdraw.png';
 
 const About = () => {
     const [selectedAchievement, setSelectedAchievement] = useState(null);
@@ -39,6 +40,12 @@ const About = () => {
             name: 'Starstruck',
             image: starTruck,
             description: 'Created a repository that earned stars'
+        },
+        {
+            id: 7,
+            name: 'Quickdraw',
+            image: quickdraw,
+            description: 'Completed a pull request review in record time'
         },
         {
             id: 5,
@@ -71,7 +78,7 @@ const About = () => {
                         />
 
                         <div className="achievements-grid flex gap-3 sm:gap-4 mt-4 flex-wrap justify-center md:justify-start">
-                            {achievements.slice(0, 4).map(achievement => (
+                            {achievements.slice(0, 5).map(achievement => (
                                 <div key={achievement.id} className="relative">
                                     <img
                                         src={achievement.image}
@@ -125,7 +132,7 @@ const About = () => {
                         </div>
 
                         <div className="highlights-grid flex flex-col gap-3 sm:gap-4 mt-6 sm:mt-8 w-full">
-                            {achievements.slice(4).map(achievement => (
+                            {achievements.slice(5).map(achievement => (
                                 <div
                                     key={achievement.id}
                                     className="relative w-full"
