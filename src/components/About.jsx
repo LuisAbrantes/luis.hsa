@@ -1,11 +1,5 @@
 import { useState } from 'react';
-import {
-    FaGraduationCap,
-    FaTrophy,
-    FaUserAlt,
-    FaCode,
-    FaLightbulb
-} from 'react-icons/fa';
+import { FaGraduationCap, FaTrophy, FaCode, FaUserAlt } from 'react-icons/fa';
 import { Cpu, Star } from 'lucide-react';
 import pullShark from '../assets/about/pullsharkbronze.png';
 import arcticVault from '../assets/about/articcodevault.png';
@@ -322,90 +316,8 @@ const About = () => {
                                     {/* Personal Introduction */}
                                     <div className="prose prose-invert max-w-none">
                                         <p className="text-base sm:text-lg">
-                                            I’m Luis Henrique Abrantes, a high
-                                            school senior enrolled in an
-                                            integrated technical program in
-                                            Information Technology at the
-                                            Federal Institute of São Paulo
-                                            (IFSP). Passionate about technology,
-                                            I focus on building full-stack
-                                            applications using React, Python,
-                                            and Node.js while exploring
-                                            innovative solutions to real-world
-                                            problems.
+                                            {/* Add your personal introduction here */}
                                         </p>
-                                        <p className="text-base sm:text-lg">
-                                            My academic journey includes
-                                            participation in hackathons like
-                                            PennApps XXV and leading projects
-                                            such as Pied Piper-IFSP, which
-                                            automates mock exam creation and
-                                            analysis. I’ve also contributed to
-                                            Space INP, blending programming with
-                                            my interest in astronomy and space
-                                            research.
-                                        </p>
-                                        <p className="text-base sm:text-lg">
-                                            As President of the Coding Club and
-                                            ARINTER Ambassador, I’ve developed
-                                            leadership and organizational skills
-                                            while fostering collaboration within
-                                            the tech community. My
-                                            certifications in Artificial
-                                            Intelligence, Linux Network
-                                            Administration, and Database
-                                            Management highlight my commitment
-                                            to continuous learning and skill
-                                            development.
-                                        </p>
-                                        <p className="text-base sm:text-lg">
-                                            My mission is to leverage technology
-                                            to create meaningful solutions and
-                                            inspire others to innovate and
-                                            achieve their potential.
-                                        </p>
-                                    </div>
-
-                                    {/* Technical Skills */}
-                                    <div>
-                                        <h3 className="text-lg font-semibold mb-3 flex items-center">
-                                            <FaCode className="mr-2" />{' '}
-                                            Technical Skills
-                                        </h3>
-                                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                                            {/* Add your key technical skills */}
-                                            <div className="bg-dark-primary p-3 rounded">
-                                                Frontend Development
-                                            </div>
-                                            <div className="bg-dark-primary p-3 rounded">
-                                                Backend Development
-                                            </div>
-                                            <div className="bg-dark-primary p-3 rounded">
-                                                Database Design
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Interests & Passions */}
-                                    <div>
-                                        <h3 className="text-lg font-semibold mb-3 flex items-center">
-                                            <FaLightbulb className="mr-2" />{' '}
-                                            Interests & Passions
-                                        </h3>
-                                        <ul className="list-disc list-inside space-y-2 ml-4">
-                                            <li>
-                                                Innovating through technology
-                                            </li>
-                                            <li>
-                                                Exploring astronomy and space
-                                                research
-                                            </li>
-                                            <li>Collaborating in hackathons</li>
-                                            <li>
-                                                Traveling and experiencing new
-                                                cultures
-                                            </li>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
