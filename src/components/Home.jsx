@@ -64,9 +64,9 @@ const Home = () => {
                     Piper-IFSP. As President of the Coding Club and ARINTER
                     Ambassador, I’ve built leadership and organizational
                     abilities while collaborating with a diverse tech community.
-                    My certifications in AI, Linux Network Administration, and
-                    Database Management demonstrate my drive for continuous
-                    learning.
+                    My certifications in Artificial Intelligence, Linux Network
+                    Administration, and Database Management demonstrate my drive
+                    for continuous learning.
                 </p>
                 <p>
                     My expertise ranges from frontend development to backend
