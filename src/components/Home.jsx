@@ -34,6 +34,15 @@ const Home = () => {
             <h3 className="title text-xl text-gray-400">
                 Christian & Tech Enthusiast
             </h3>
+            <div className="portfolio-highlights bg-dark-secondary p-5 my-8 rounded-md text-center">
+                <h4 className="text-2xl font-semibold mb-4">Highlights</h4>
+                <ul className="list-disc list-inside text-lg space-y-2">
+                    <li>Experience in hackathons and international projects</li>
+                    <li>Creative approach to problem-solving</li>
+                    <li>Passion for inspiring and sharing knowledge</li>
+                </ul>
+            </div>
+
             {/* Expanded multi-paragraph introduction */}
             <div className="intro mt-4 text-lg leading-relaxed space-y-4">
                 <p>
@@ -48,27 +57,27 @@ const Home = () => {
                     solutions in various fields.
                 </p>
                 <p>
-                    Always driven by curiosity and a commitment to excellence, I
+                    Driven by curiosity and a commitment to excellence, I
                     approach new challenges with creativity and determination.
-                    My academic journey includes hackathons like PennApps XXV,
-                    alongside leading efforts to automate mock exam creation in
-                    Pied Piper-IFSP. As President of the Coding Club and ARINTER
-                    Ambassador, I’ve also built leadership and organizational
+                    My journey includes hackathons like PennApps XXV, and
+                    leading efforts to automate mock exam creation in Pied
+                    Piper-IFSP. As President of the Coding Club and ARINTER
+                    Ambassador, I’ve built leadership and organizational
                     abilities while collaborating with a diverse tech community.
-                    My certifications in Artificial Intelligence, Linux Network
-                    Administration, and Database Management demonstrate my drive
-                    for continuous learning.
+                    My certifications in AI, Linux Network Administration, and
+                    Database Management demonstrate my drive for continuous
+                    learning.
                 </p>
                 <p>
-                    My technical expertise ranges from frontend development to
-                    backend logic and database design. I’ve explored astronomy
-                    through Space INPE, blending curiosity for the cosmos with
-                    the power of code. Beyond building software, I’m passionate
-                    about exploring new cultures, brainstorming with fellow
-                    hackers, and pushing the boundaries of technology to create
-                    transformative solutions. I firmly believe in leveraging
-                    programming as a tool to inspire others and bring innovative
-                    ideas to life.
+                    My expertise ranges from frontend development to backend
+                    logic and database design. I’ve explored astronomy through
+                    Space INPE, blending curiosity for the cosmos with the power
+                    of code. Beyond building software, I’m passionate about
+                    exploring new cultures, brainstorming with fellow hackers,
+                    and pushing the boundaries of technology to create
+                    transformative solutions. I believe in leveraging
+                    programming to inspire others and bring innovative ideas to
+                    life.
                 </p>
             </div>
 
