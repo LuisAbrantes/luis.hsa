@@ -316,7 +316,42 @@ const About = () => {
                                     {/* Personal Introduction */}
                                     <div className="prose prose-invert max-w-none">
                                         <p className="text-base sm:text-lg">
-                                            {/* Add your personal introduction here */}
+                                            My ultimate goal is to leverage
+                                            technology to make education more
+                                            accessible, bridge gaps in
+                                            knowledge, and empower communities.
+                                            I aspire to develop tools that
+                                            address real-world problems, from
+                                            improving educational systems to
+                                            exploring innovations in space
+                                            research. Through my work, I want to
+                                            inspire others to embrace
+                                            creativity, take on challenges, and
+                                            unlock their full potential.
+                                        </p>
+                                        <p className="text-base sm:text-lg">
+                                            Looking ahead, I aim to pursue
+                                            higher education in Computer Science
+                                            in the United States, seeking to
+                                            collaborate with global talents and
+                                            expand my knowledge in fields like
+                                            artificial intelligence, software
+                                            engineering, and space exploration.
+                                            My ambition is to contribute to
+                                            transformative projects that drive
+                                            social impact, whether through
+                                            startups, research, or large-scale
+                                            initiatives.
+                                        </p>
+                                        <p className="text-base sm:text-lg">
+                                            With my skills, certifications, and
+                                            passion for learning, I’m committed
+                                            to building a future where
+                                            technology becomes a force for good,
+                                            breaking barriers and creating
+                                            opportunities for everyone. Let’s
+                                            connect and make a difference
+                                            together.
                                         </p>
                                     </div>
                                 </div>
