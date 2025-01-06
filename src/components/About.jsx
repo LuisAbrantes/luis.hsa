@@ -316,42 +316,56 @@ const About = () => {
                                     {/* Personal Introduction */}
                                     <div className="prose prose-invert max-w-none">
                                         <p className="text-base sm:text-lg">
-                                            My ultimate goal is to leverage
-                                            technology to make education more
-                                            accessible, bridge gaps in
-                                            knowledge, and empower communities.
-                                            I aspire to develop tools that
-                                            address real-world problems, from
-                                            improving educational systems to
-                                            exploring innovations in space
-                                            research. Through my work, I want to
-                                            inspire others to embrace
-                                            creativity, take on challenges, and
-                                            unlock their full potential.
+                                            <strong>
+                                                True innovation happens outside
+                                                our comfort zone – and that’s
+                                                exactly where I choose to be.
+                                            </strong>{' '}
+                                            My greatest dream is to one day
+                                            establish a church that goes beyond
+                                            a place of worship, serving as a hub
+                                            where children and young people can
+                                            learn programming from an early age,
+                                            developing both technical skills and
                                         </p>
                                         <p className="text-base sm:text-lg">
-                                            Looking ahead, I aim to pursue
-                                            higher education in Computer Science
-                                            in the United States, seeking to
-                                            collaborate with global talents and
-                                            expand my knowledge in fields like
-                                            artificial intelligence, software
-                                            engineering, and space exploration.
-                                            My ambition is to contribute to
-                                            transformative projects that drive
-                                            social impact, whether through
-                                            startups, research, or large-scale
-                                            initiatives.
+                                            Dedicating myself every day to
+                                            studying and improving my skills,
+                                            even in the face of daily challenges
+                                            and problems, I maintain a routine
+                                            of constant growth. Demonstrating
+                                            discipline and consistency, I
+                                            approach learning as an
+                                            uninterrupted process, regardless of
+                                            circumstances. Facing the rapid
+                                            changes in technology, I adapt to
+                                            new advancements with creativity and
+                                            determination. Through practical
+                                            projects—such as creating
+                                            community-oriented applications or
+                                            group-based learning activities—I
+                                            demonstrate that programming is not
+                                            just about writing code but about
+                                            building solutions that merge
+                                            innovation, empathy, and
+                                            collaboration.
                                         </p>
                                         <p className="text-base sm:text-lg">
                                             With my skills, certifications, and
-                                            passion for learning, I’m committed
-                                            to building a future where
-                                            technology becomes a force for good,
-                                            breaking barriers and creating
-                                            opportunities for everyone. Let’s
-                                            connect and make a difference
-                                            together.
+                                            passion for learning, I aim to
+                                            present myself as someone committed
+                                            to growth and to one day fulfilling
+                                            this dream of inspiring and
+                                            transforming lives. I believe that
+                                            the knowledge I acquire will be
+                                            essential to generate a positive
+                                            impact on the people around me and
+                                            those who, for some reason, come
+                                            into contact with me or something I
+                                            create. And it is in this spirit of
+                                            faith, innovation, and dedication
+                                            that I continue to seek
+                                            opportunities to learn and share.
                                         </p>
                                     </div>
                                 </div>
