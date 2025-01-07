@@ -34,14 +34,39 @@ const Home = () => {
             <h3 className="title text-xl text-gray-400">
                 Christian & Tech Enthusiast
             </h3>
-            <div className="portfolio-highlights bg-dark-secondary p-5 my-8 rounded-md text-center">
-                <h4 className="text-2xl font-semibold mb-4">Highlights</h4>
-                <ul className="list-disc list-inside text-lg space-y-2">
-                    <li>Experience in hackathons and international projects</li>
-                    <li>Creative approach to problem-solving</li>
-                    <li>Passion for inspiring and sharing knowledge</li>
+            <motion.div
+                className="portfolio-highlights bg-dark-secondary p-8 my-8 rounded-lg text-center shadow-xl hover:shadow-2xl transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+            >
+                <h4 className="text-2xl font-bold mb-6 text-dark-accent">
+                    Highlights
+                </h4>
+                <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <motion.li
+                        className="bg-dark-primary p-4 rounded-lg hover:bg-dark-hover cursor-pointer"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                    >
+                        Experience in hackathons and international projects
+                    </motion.li>
+                    <motion.li
+                        className="bg-dark-primary p-4 rounded-lg hover:bg-dark-hover cursor-pointer"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                    >
+                        Creative approach to problem-solving
+                    </motion.li>
+                    <motion.li
+                        className="bg-dark-primary p-4 rounded-lg hover:bg-dark-hover cursor-pointer"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                    >
+                        Passion for inspiring and sharing knowledge
+                    </motion.li>
                 </ul>
-            </div>
+            </motion.div>
 
             {/* Expanded multi-paragraph introduction */}
             <div className="intro mt-4 text-lg leading-relaxed space-y-4">
