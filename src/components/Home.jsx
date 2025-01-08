@@ -14,7 +14,7 @@ const timelineData = [
     {
         year: '2024',
         description:
-            'Achieved a dream by participating in my first hackathon at an Ivy League, PennApps at UPenn, marking my first academic and alone trip abroad.'
+            'Developed TutorTime, my first full stack application. Achieved a dream by participating in my first hackathon at an Ivy League, PennApps at UPenn, marking my first academic and alone trip abroad.'
     },
     {
         year: '2025',
