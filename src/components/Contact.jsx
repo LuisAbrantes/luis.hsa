@@ -98,10 +98,38 @@ const Contact = () => {
                 </p>
             </div>
 
+            {/* New Highlighted Social Links at Top */}
+            <div className="max-w-6xl mx-auto px-4 mt-6 mb-6">
+                <div className="bg-dark-secondary p-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                    <h2 className="text-2xl font-bold mb-4 text-dark-accent text-center">
+                        Connect With Me
+                    </h2>
+                    <div className="flex justify-center space-x-6">
+                        {socialLinks.map((social, index) => (
+                            <a
+                                key={index}
+                                href={social.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-dark-accent hover:text-purple-400 transition-all duration-300 transform hover:scale-125 hover:rotate-6"
+                            >
+                                {social.icon}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
             <div className="max-w-6xl mx-auto px-4 mb-20">
                 {!showForm ? (
                     // Centered service section when form is not shown
-                    <div className={`max-w-md mx-auto transition-all duration-300 transform ${isFormVisible ? 'scale-95 opacity-0' : 'scale-100 opacity-100'}`}>
+                    <div
+                        className={`max-w-md mx-auto transition-all duration-300 transform ${
+                            isFormVisible
+                                ? 'scale-95 opacity-0'
+                                : 'scale-100 opacity-100'
+                        }`}
+                    >
                         <div className="bg-dark-secondary p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                             <h2 className="text-2xl font-bold mb-6 text-dark-accent">
                                 Portfolio Development Service
@@ -148,7 +176,13 @@ const Contact = () => {
                     </div>
                 ) : (
                     // Side by side layout when form is shown
-                    <div className={`grid md:grid-cols-2 gap-8 transition-all duration-300 transform ${!isFormVisible ? 'scale-95 opacity-0' : 'scale-100 opacity-100'}`}>
+                    <div
+                        className={`grid md:grid-cols-2 gap-8 transition-all duration-300 transform ${
+                            !isFormVisible
+                                ? 'scale-95 opacity-0'
+                                : 'scale-100 opacity-100'
+                        }`}
+                    >
                         <div className="bg-dark-secondary p-6 rounded-xl shadow-lg relative">
                             <button
                                 onClick={handleCloseForm}
@@ -316,27 +350,6 @@ const Contact = () => {
                         </div>
                     </div>
                 )}
-            </div>
-
-            <div className="bg-dark-secondary py-10">
-                <div className="max-w-6xl mx-auto px-4">
-                    <h2 className="text-2xl font-bold text-center mb-8 text-dark-accent">
-                        Connect With Me
-                    </h2>
-                    <div className="flex justify-center space-x-6">
-                        {socialLinks.map((social, index) => (
-                            <a
-                                key={index}
-                                href={social.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-dark-accent hover:text-purple-400 transition-all duration-300 transform hover:scale-125 hover:rotate-6"
-                            >
-                                {social.icon}
-                            </a>
-                        ))}
-                    </div>
-                </div>
             </div>
         </div>
     );
