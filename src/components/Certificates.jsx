@@ -17,7 +17,8 @@ const certificatesData = [
         institution: 'University of Pennsylvania - Penn Engineering',
         date: '2024',
         type: 'hackathons',
-        hours: 40
+        hours: 40,
+        image: 'https://d112y698adiu2z.cloudfront.net/photos/production/challenge_photos/003/000/041/datas/full_width.png' //
     },
     {
         id: 2,
@@ -26,7 +27,8 @@ const certificatesData = [
             'Federal Institute of Science and Technology of São Paulo - IFSP',
         date: '2024',
         type: 'courses',
-        hours: 80
+        hours: 80,
+        image: 'https://yt3.googleusercontent.com/UqT_vCkJIn1P2fH1pchr6lbe3xeEekY61h4bUpJkVuityqKOEtUYcNy3pLiJ5OKdj4uKA81FWE8=s900-c-k-c0x00ffffff-no-rj'
     },
     {
         id: 3,
@@ -34,7 +36,8 @@ const certificatesData = [
         institution: 'University of Campinas - UNICAMP',
         date: '2024',
         type: 'courses',
-        hours: 47
+        hours: 47,
+        image: 'https://sites.ifi.unicamp.br/fife/files/2024/05/fisica-ferias.png'
     },
     {
         id: 4,
@@ -43,7 +46,8 @@ const certificatesData = [
         date: '2025',
         type: 'extracurricular',
         description:
-            'Committed to continuous learning through daily programming activities on GitHub, contributing to open-source projects and developing personal initiatives. This consistent engagement has allowed me to explore various technologies, solve real-world challenges, and grow as a programmer through collaboration with other developers.'
+            'Committed to continuous learning through daily programming activities on GitHub, contributing to open-source projects and developing personal initiatives. This consistent engagement has allowed me to explore various technologies, solve real-world challenges, and grow as a programmer through collaboration with other developers.',
+        image: 'https://miro.medium.com/v2/resize:fit:1400/0*TJvbdqOLs0vMhxQp'
     },
     {
         id: 5,
@@ -52,7 +56,8 @@ const certificatesData = [
         date: '2024 2025',
         type: 'extracurricular',
         description:
-            'Played an active role in the GitHub SJC Community, leading the ideation and implementation of programming projects and participating in workshops. Currently, I am preparing to expand this impact by hosting events for my school, combining community resources and partnerships with prominent education companies such as Alura and FIAP to inspire the next generation of programmers.'
+            'Played an active role in the GitHub SJC Community, leading the ideation and implementation of programming projects and participating in workshops. Currently, I am preparing to expand this impact by hosting events for my school, combining community resources and partnerships with prominent education companies such as Alura and FIAP to inspire the next generation of programmers.',
+        image: 'https://media.licdn.com/dms/image/v2/D4D0BAQGL5HVhqpRoFQ/img-crop_100/img-crop_100/0/1734304088175?e=1744243200&v=beta&t=Um4sC-DTQ_3AFoCyGy8sQRz4-HD7MiRsCyxp2wY04bg'
     },
     {
         id: 6,
@@ -61,7 +66,8 @@ const certificatesData = [
             'Federal Institute of Science and Technology of São Paulo - IFSP',
         date: '2022',
         type: 'courses',
-        hours: 60
+        hours: 60,
+        image: 'https://t2.tudocdn.net/606607?w=1920'
     },
     {
         id: 7,
@@ -69,7 +75,8 @@ const certificatesData = [
         institution: 'National Service for Industrial Learning - SENAI',
         date: '2023',
         type: 'hackathons',
-        hours: 40
+        hours: 40,
+        image: 'https://static.portaldaindustria.com.br/media/filer_public/15/bf/15bf07e0-a084-403d-bcc9-b206240d90f7/logo.png'
     },
     {
         id: 8,
@@ -78,7 +85,8 @@ const certificatesData = [
             'Federal Institute of Science and Technology of São Paulo - IFSP',
         date: '2023',
         type: 'courses',
-        hours: 36
+        hours: 36,
+        image: 'https://accutivesecurity.com/wp-content/uploads/2024/06/Data-Masking-for-MySQL-background.svg'
     },
     {
         id: 9,
@@ -86,7 +94,8 @@ const certificatesData = [
         institution: 'Seleta Educação',
         date: '2024.1',
         type: 'honors',
-        hours: 3
+        hours: 3,
+        image: 'https://static.wixstatic.com/media/833218_84d0f153678d41deabfac2a21f1c9d04~mv2.png/v1/fill/w_380,h_380,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1.png'
     },
     {
         id: 10,
@@ -94,7 +103,8 @@ const certificatesData = [
         institution: 'Seleta Educação',
         date: '2024.2',
         type: 'honors',
-        hours: 3
+        hours: 3,
+        image: 'https://static.wixstatic.com/media/833218_84d0f153678d41deabfac2a21f1c9d04~mv2.png/v1/fill/w_380,h_380,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1.png'
     },
     {
         id: 11,
@@ -113,7 +123,8 @@ const certificatesData = [
         date: '2024',
         type: 'extracurricular',
         description:
-            'Discovered and independently organized the OBLI event at IFSP, engaging over 300 community members, including students, teachers, and staff. Secured partnerships with institutions like Kumon and Yázigi to reward medalists and participants. Coordinated logistics, supported students with technical issues during the competition, and shared study methods. Over two years, this initiative celebrated approximately 50 medalists, significantly promoting academic excellence in the community.'
+            'Discovered and independently organized the OBLI event at IFSP, engaging over 300 community members, including students, teachers, and staff. Secured partnerships with institutions like Kumon and Yázigi to reward medalists and participants. Coordinated logistics, supported students with technical issues during the competition, and shared study methods. Over two years, this initiative celebrated approximately 50 medalists, significantly promoting academic excellence in the community.',
+        image: 'https://images.inc.com/uploaded_files/image/1920x1080/shutterstock_500593225_354026.jpg'
     },
     {
         id: 13,
@@ -201,11 +212,14 @@ const certificatesData = [
     {
         id: 23,
         title: 'IFSP Entrance Exam - Top 10 Performance',
-        institution: 'Federal Institute of Science and Technology of São Paulo - IFSP',
+        institution:
+            'Federal Institute of Science and Technology of São Paulo - IFSP',
         date: '2021',
         type: 'honors',
         hours: 4,
-        description: 'Achieved a position between 6th and 10th place among prepared 181 candidates, being one of 40 approved students. This result demonstrated strong academic preparation and competitive performance in the entrance examination.'
+        description:
+            'Achieved a position between 6th and 10th place among prepared 181 candidates, being one of 40 approved students. This result demonstrated strong academic preparation and competitive performance in the entrance examination.',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd2cuEoKZydmlYcod_8jkSEqpD86gnRuWVgA&s'
     }
 ];
 
@@ -218,7 +232,7 @@ const SearchBar = ({ setSearchQuery }) => {
         setSearchQuery('');
     };
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         setInputValue(e.target.value);
         setSearchQuery(e.target.value);
     };
@@ -362,6 +376,14 @@ const Certificates = () => {
 
                         {/* Modal Content */}
                         <div className="p-6 text-dark-text space-y-6">
+                            {/* Certificate Image */}
+                            {certificate.image && (
+                                <img
+                                    src={certificate.image}
+                                    alt={certificate.title}
+                                    className="w-full h-64 object-cover rounded-lg mb-6"
+                                />
+                            )}
                             {/* Certificate Icon and Type */}
                             <div className="flex items-center space-x-3">
                                 <div className="text-dark-accent">
@@ -377,24 +399,33 @@ const Certificates = () => {
                             {/* Certificate Details */}
                             <div className="space-y-4">
                                 <div>
-                                    <h3 className="font-semibold">Institution:</h3>
+                                    <h3 className="font-semibold">
+                                        Institution:
+                                    </h3>
                                     <p>{certificate.institution}</p>
                                 </div>
                                 {certificate.type !== 'extracurricular' && (
                                     <div>
-                                        <h3 className="font-semibold">Completion Date:</h3>
+                                        <h3 className="font-semibold">
+                                            Completion Date:
+                                        </h3>
                                         <p>{certificate.date}</p>
                                     </div>
                                 )}
-                                {certificate.hours && certificate.type !== 'extracurricular' && (
-                                    <div>
-                                        <h3 className="font-semibold">Duration:</h3>
-                                        <p>{certificate.hours} hours</p>
-                                    </div>
-                                )}
+                                {certificate.hours &&
+                                    certificate.type !== 'extracurricular' && (
+                                        <div>
+                                            <h3 className="font-semibold">
+                                                Duration:
+                                            </h3>
+                                            <p>{certificate.hours} hours</p>
+                                        </div>
+                                    )}
                                 {certificate.description && (
                                     <div>
-                                        <h3 className="font-semibold">Description:</h3>
+                                        <h3 className="font-semibold">
+                                            Description:
+                                        </h3>
                                         <p>{certificate.description}</p>
                                     </div>
                                 )}
@@ -404,7 +435,9 @@ const Certificates = () => {
                             {certificate.pdfPath && (
                                 <div className="pt-4">
                                     <button
-                                        onClick={() => handleOpenPDF(certificate.pdfPath)}
+                                        onClick={() =>
+                                            handleOpenPDF(certificate.pdfPath)
+                                        }
                                         className="w-full bg-dark-accent text-white py-3 px-4 rounded-lg hover:bg-dark-accent-hover transition-colors duration-300 flex items-center justify-center space-x-2"
                                     >
                                         <svg
@@ -562,10 +595,8 @@ const Certificates = () => {
                     My qualifications and certifications
                 </p>
 
-                {/* Mover o SearchBar para cá e passar setSearchQuery como prop */}
                 <SearchBar setSearchQuery={setSearchQuery} />
 
-                {/* Updated Filter Buttons */}
                 <div className="flex justify-center gap-4 mb-12 flex-wrap">
                     <FilterButton type="all" label="All" />
                     <FilterButton type="courses" label="Courses" />
@@ -578,18 +609,15 @@ const Certificates = () => {
                     <FilterButton type="hackathons" label="Hackathons" />
                 </div>
 
-                {/* Animated Certificates Grid */}
                 <AnimatePresence mode="wait">
                     <motion.div
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        // Add faster transition for grid
                         transition={{ duration: 0.2 }}
                     >
                         {loading ? (
-                            // Enhanced loading skeleton
                             Array(6)
                                 .fill(0)
                                 .map((_, i) => <LoadingSkeleton key={i} />)
@@ -611,10 +639,16 @@ const Certificates = () => {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
-                                    // Reduce individual card animation from 0.3s to 0.2s
                                     transition={{ duration: 0.2 }}
                                     className="bg-dark-secondary rounded-xl shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-xl transition-all duration-300 flex flex-col h-full"
                                 >
+                                    {certificate.image && (
+                                        <img
+                                            src={certificate.image}
+                                            alt={certificate.title}
+                                            className="w-full h-48 object-cover"
+                                        />
+                                    )}
                                     <div className="p-6 flex flex-col h-full">
                                         <div className="flex justify-between items-start mb-4">
                                             <h3 className="text-xl font-semibold text-dark-text">
@@ -668,7 +702,6 @@ const Certificates = () => {
                 </AnimatePresence>
             </div>
 
-            {/* Modal */}
             {showModal && selectedCertificate && (
                 <CertificateModal
                     certificate={selectedCertificate}
