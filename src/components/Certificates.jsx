@@ -28,7 +28,7 @@ const certificatesData = [
         date: '2024',
         type: 'courses',
         hours: 80,
-        image: 'https://yt3.googleusercontent.com/UqT_vCkJIn1P2fH1pchr6lbe3xeEekY61h4bUpJkVuityqKOEtUYcNy3pLiJ5OKdj4uKA81FWE8=s900-c-k-c0x00ffffff-no-rj'
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmtStunAJeFhpcASYAIasKgfy7pYAnZJDgzQ&s'
     },
     {
         id: 3,
@@ -113,7 +113,8 @@ const certificatesData = [
             'Federal Institute of Science and Technology of São Paulo - IFSP',
         date: '2022',
         type: 'courses',
-        hours: 100
+        hours: 100,
+        image: 'https://t.ctcdn.com.br/C3HzEgvL7HZKHPHr0UhHH7cYwvc=/i658265.png'
     },
     {
         id: 12,
@@ -133,7 +134,8 @@ const certificatesData = [
         date: '2024',
         type: 'extracurricular',
         description:
-            'Selected as a representative of the students for The Dream School, where I actively participate in strategic discussions shaping the future of the largest exchange preparation institution in Latin America. Through these efforts, I contribute to improving classes and preparation systems, helping to recruit new students and ambassadors. This collective work has led to remarkable growth in enrollment, ambassador engagement, and overall institutional impact.'
+            'Selected as a representative of the students for The Dream School, where I actively participate in strategic discussions shaping the future of the largest exchange preparation institution in Latin America. Through these efforts, I contribute to improving classes and preparation systems, helping to recruit new students and ambassadors. This collective work has led to remarkable growth in enrollment, ambassador engagement, and overall institutional impact.',
+        image: 'https://thedream.com.br/wp-content/uploads/2020/11/Logo_TheDreamSchool.png'
     },
     {
         id: 14,
@@ -142,7 +144,8 @@ const certificatesData = [
         date: '2024 2025',
         type: 'extracurricular',
         description:
-            'As an ARINTER ambassador, I work to promote fair and transparent international academic exchanges, focusing on opportunities for low-income students. Current projects include organizing roundtables with alumni to share experiences and another roundtable with international students, facilitating international video calls for English practice.'
+            'As an ARINTER ambassador, I work to promote fair and transparent international academic exchanges, focusing on opportunities for low-income students. Current projects include organizing roundtables with alumni to share experiences and another roundtable with international students, facilitating international video calls for English practice.',
+        image: 'https://itp.ifsp.edu.br/images/CTI/ARINTER.png'
     },
     {
         id: 15,
@@ -159,7 +162,8 @@ const certificatesData = [
         institution: 'IFSP',
         date: '2022',
         type: 'events',
-        hours: 1.5
+        hours: 1.5,
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/1200px-Microsoft_Azure.svg.png'
     },
     {
         id: 17,
@@ -183,7 +187,8 @@ const certificatesData = [
         institution: 'IFSP',
         date: '2022',
         type: 'events',
-        hours: 2
+        hours: 2,
+        image: 'https://education.nsw.gov.au/content/dam/main-education/teaching-and-learning/learning-from-home/teachers/images/UDL.png/jcr:content/renditions/cq5dam.web.1280.1280.png'
     },
     {
         id: 20,
@@ -207,7 +212,8 @@ const certificatesData = [
         institution: 'GitHub Community - GitTogether SJC',
         date: '2024',
         type: 'events',
-        hours: 3
+        hours: 3,
+        image: 'https://github.blog/wp-content/uploads/2024/10/copilot-square.png'
     },
     {
         id: 23,
