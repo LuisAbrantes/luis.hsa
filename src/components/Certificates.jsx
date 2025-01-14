@@ -154,7 +154,8 @@ const certificatesData = [
         date: '2024 2025',
         type: 'extracurricular',
         description:
-            'Led the organization of programming events at IFSP, such as a marathon with 55 participants where I managed logistics, resolved technical issues, and secured sponsorships from companies like GitHub, Cebras, and Tune.AI. Inspired students to explore programming creatively, addressing complaints about monotonous classroom experiences. Currently, I am conceptualizing a week-long hackathon modeled on PennApps, aiming to create an engaging and impactful learning experience for the campus community.'
+            'Led the organization of programming events at IFSP, such as a marathon with 55 participants where I managed logistics, resolved technical issues, and secured sponsorships from companies like GitHub, Cebras, and Tune.AI. Inspired students to explore programming creatively, addressing complaints about monotonous classroom experiences. Currently, I am conceptualizing a week-long hackathon modeled on PennApps, aiming to create an engaging and impactful learning experience for the campus community.',
+        image: 'https://miro.medium.com/v2/resize:fit:1400/0*TJvbdqOLs0vMhxQp'
     },
     {
         id: 16,
@@ -171,7 +172,8 @@ const certificatesData = [
         institution: 'IFSP',
         date: '2022',
         type: 'events',
-        hours: 2
+        hours: 2,
+        image: 'https://pbs.twimg.com/media/EimmmXqX0AE0G0z.jpg'
     },
     {
         id: 18,
@@ -179,7 +181,8 @@ const certificatesData = [
         institution: 'University of Campinas - UNICAMP',
         date: '2023',
         type: 'honors',
-        hours: 24
+        hours: 24,
+        image: 'https://styles.redditmedia.com/t5_2scpm/styles/communityIcon_72kalishkfl81.png'
     },
     {
         id: 19,
@@ -196,7 +199,8 @@ const certificatesData = [
         institution: 'IFSP',
         date: '2022',
         type: 'events',
-        hours: 1.5
+        hours: 1.5,
+        image: 'https://mcuoneclipse.com/wp-content/uploads/2013/09/sumo-robot-fight.png'
     },
     {
         id: 21,
@@ -204,7 +208,8 @@ const certificatesData = [
         institution: "Saint John's College",
         date: '2024',
         type: 'courses',
-        hours: 8
+        hours: 8,
+        image: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/St._John%27s_College.svg/1200px-St._John%27s_College.svg.png'
     },
     {
         id: 22,
