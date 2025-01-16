@@ -71,9 +71,9 @@ const certificatesData = [
     },
     {
         id: 7,
-        title: 'Gran Prix SENAI Hackathon',
+        title: 'Grand Prix SENAI Hackathon',
         institution: 'National Service for Industrial Learning - SENAI',
-        date: '2023',
+        date: '2024',
         type: 'hackathons',
         hours: 40,
         image: 'https://static.portaldaindustria.com.br/media/filer_public/15/bf/15bf07e0-a084-403d-bcc9-b206240d90f7/logo.png'
