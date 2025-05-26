@@ -1,3 +1,4 @@
+// filepath: /Users/luisabrantes/Documents/luis.hsa/src/components/Home.jsx
 import { motion } from 'framer-motion';
 // Quero fazer um import de uma foto da pasta assets
 import meOne from '../assets/home/meOne.png';
@@ -17,11 +18,6 @@ const timelineData = [
         year: '2024',
         description:
             'Developed TutorTime, my first full stack application. Achieved a dream by participating in my first hackathon at an Ivy League, PennApps at UPenn, marking my first academic and alone trip abroad.'
-    },
-    {
-        year: '2025',
-        description:
-            'Developing PiedPiper - IFSP, a full-stack project to train students aspiring to join my institute of science and technology.'
     }
     // Add more items as needed
 ];
@@ -83,24 +79,24 @@ const Home = () => {
                 {/* Expanded multi-paragraph introduction */}
                 <div className="intro mt-4 text-lg leading-relaxed space-y-4">
                     <p>
-                        I’m Luis Henrique Abrantes, a high school senior
+                        I&apos;m Luis Henrique Abrantes, a high school senior
                         enrolled in an integrated technical program at the
                         Federal Institute of São Paulo (IFSP). With a passion
                         for innovation and programming, I focus on creating
                         scalable and efficient full-stack applications using
-                        React, Node.js, and Python. Over the years, I’ve
+                        React, Node.js, and Python. Over the years, I&apos;ve
                         participated in competitive programming events and
-                        impactful projects such as PennApps XXV and Pied
-                        Piper-IFSP, honing my skills and contributing to
-                        meaningful solutions in various fields.
+                        impactful projects such as PennApps XXV, honing my
+                        skills and contributing to meaningful solutions in
+                        various fields.
                     </p>
                     <p>
                         Driven by curiosity and a commitment to excellence, I
                         approach new challenges with creativity and
                         determination. My journey includes hackathons like
                         PennApps XXV, and leading efforts to automate mock exam
-                        creation in Pied Piper-IFSP. As President of the Coding
-                        Club and ARINTER Ambassador, I’ve built leadership and
+                        creation. As President of the Coding Club and ARINTER
+                        Ambassador, I&apos;ve built leadership and
                         organizational abilities while collaborating with a
                         diverse tech community. My certifications in Artificial
                         Intelligence, Linux Network Administration, and Database
@@ -108,14 +104,14 @@ const Home = () => {
                     </p>
                     <p>
                         My expertise ranges from frontend development to backend
-                        logic and database design. I’ve explored astronomy
+                        logic and database design. I&apos;ve explored astronomy
                         through Space INPE, blending curiosity for the cosmos
-                        with the power of code. Beyond building software, I’m
-                        passionate about exploring new cultures, brainstorming
-                        with fellow hackers, and pushing the boundaries of
-                        technology to create transformative solutions. I believe
-                        in leveraging programming to inspire others and bring
-                        innovative ideas to life.
+                        with the power of code. Beyond building software,
+                        I&apos;m passionate about exploring new cultures,
+                        brainstorming with fellow hackers, and pushing the
+                        boundaries of technology to create transformative
+                        solutions. I believe in leveraging programming to
+                        inspire others and bring innovative ideas to life.
                     </p>
                 </div>
 
