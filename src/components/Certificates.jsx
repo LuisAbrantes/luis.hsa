@@ -231,6 +231,34 @@ const certificatesData = [
         description:
             'Achieved a position between 6th and 10th place among prepared 181 candidates, being one of 40 approved students. This result demonstrated strong academic preparation and competitive performance in the entrance examination.',
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd2cuEoKZydmlYcod_8jkSEqpD86gnRuWVgA&s'
+    },
+    {
+        id: 24,
+        title: 'OBI - Olimpiada Brasileira de Informatica',
+        institution: 'University of Campinas - UNICAMP',
+        date: '2024',
+        type: 'honors',
+        hours: 8,
+        description:
+            'Advanced to the second phase of the Brazilian Olympiad of Informatics (OBI), the most prestigious programming competition in Latin America, organized by UNICAMP. The competition evaluates programming skills, logical reasoning, and problem-solving abilities across three phases. My achievement was featured in a news article by IFSP Jacareí campus, highlighting the accomplishment. [First phase score: TBD, Cut-off score: TBD] [Second phase score: TBD, Cut-off score: TBD]',
+        image: 'https://jcr.ifsp.edu.br/images/Image_2024-08-15_at_144156.jpeg',
+        imagePosition: 'object-bottom',
+        newsArticle:
+            'https://jcr.ifsp.edu.br/index.php/ultimas-noticias/2381-alunos-do-curso-tecnico-em-informatica-do-campus-jacarei-sao-aprovados-para-a-segunda-fase-da-olimpiada-brasileira-de-informatica'
+    },
+    {
+        id: 25,
+        title: 'ONC - Olimpiada Nacional de Ciencias',
+        institution: 'Ministry of Science, Technology and Innovation (MCTI)',
+        date: '2024',
+        type: 'honors',
+        hours: 8,
+        description:
+            'Advanced to the second phase of the National Science Olympiad (ONC), a multidisciplinary science competition organized by the Brazilian Ministry of Science, Technology and Innovation (MCTI). The competition tests knowledge in various scientific fields including physics, chemistry, and biology. My achievement was recognized in a news article published by Instituto Federal de São Paulo - Jacareí campus.',
+        image: 'https://www.ifsp.edu.br/images/2022/10_Outubro/cartaz-onc-2022-noticia.jpg',
+        imagePosition: 'object-bottom',
+        newsArticle:
+            'https://jcr.ifsp.edu.br/index.php/component/content/article/17-ultimas-noticias/2389-alunos-do-campus-jacarei-se-classificam-para-a-2-fase-da-olimpiada-nacional-de-ciencias'
     }
 ];
 
@@ -392,7 +420,9 @@ const Certificates = () => {
                                 <img
                                     src={certificate.image}
                                     alt={certificate.title}
-                                    className="w-full h-64 object-cover rounded-lg mb-6"
+                                    className={`w-full h-64 object-cover rounded-lg mb-6 ${
+                                        certificate.imagePosition || ''
+                                    }`}
                                 />
                             )}
                             {/* Certificate Icon and Type */}
@@ -438,6 +468,21 @@ const Certificates = () => {
                                             Description:
                                         </h3>
                                         <p>{certificate.description}</p>
+                                    </div>
+                                )}
+                                {certificate.newsArticle && (
+                                    <div>
+                                        <h3 className="font-semibold">
+                                            Featured In:
+                                        </h3>
+                                        <a
+                                            href={certificate.newsArticle}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-dark-accent hover:underline"
+                                        >
+                                            IFSP Campus Jacareí News Article
+                                        </a>
                                     </div>
                                 )}
                             </div>
@@ -490,7 +535,9 @@ const Certificates = () => {
             ]).isRequired,
             pdfPath: PropTypes.string,
             hours: PropTypes.number,
-            description: PropTypes.string
+            description: PropTypes.string,
+            imagePosition: PropTypes.string,
+            newsArticle: PropTypes.string
         }).isRequired,
         onClose: PropTypes.func.isRequired
     };
@@ -657,7 +704,9 @@ const Certificates = () => {
                                         <img
                                             src={certificate.image}
                                             alt={certificate.title}
-                                            className="w-full h-48 object-cover"
+                                            className={`w-full h-48 object-cover ${
+                                                certificate.imagePosition || ''
+                                            }`}
                                         />
                                     )}
                                     <div className="p-6 flex flex-col h-full">

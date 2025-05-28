@@ -239,7 +239,7 @@ const About = () => {
                                     </div>
 
                                     {/* Academic Stats */}
-                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                                    <div className="grid grid-cols-2 gap-4">
                                         <div className="bg-dark-primary p-4 rounded-lg text-center">
                                             <div className="text-2xl font-bold text-blue-500">
                                                 8.20
@@ -252,14 +252,6 @@ const About = () => {
                                             </div>
                                             <div className="text-sm">
                                                 SAT Score
-                                            </div>
-                                        </div>
-                                        <div className="bg-dark-primary p-4 rounded-lg text-center">
-                                            <div className="text-2xl font-bold text-green-500">
-                                                5
-                                            </div>
-                                            <div className="text-sm">
-                                                AP Courses
                                             </div>
                                         </div>
                                     </div>

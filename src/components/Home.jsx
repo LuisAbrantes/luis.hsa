@@ -1,6 +1,5 @@
 // filepath: /Users/luisabrantes/Documents/luis.hsa/src/components/Home.jsx
 import { motion } from 'framer-motion';
-// Quero fazer um import de uma foto da pasta assets
 import meOne from '../assets/home/meOne.png';
 
 const timelineData = [
@@ -17,7 +16,12 @@ const timelineData = [
     {
         year: '2024',
         description:
-            'Developed TutorTime, my first full stack application. Achieved a dream by participating in my first hackathon at an Ivy League, PennApps at UPenn, marking my first academic and alone trip abroad.'
+            'Developed TutorTime, my first full stack application. Achieved a dream by participating in my first hackathon at an Ivy League, PennApps at UPenn, marking my first academic trip abroad. I successfully organized a fundraiser campaign to raise the necessary funds for this independent journey.'
+    },
+    {
+        year: '2024-2025',
+        description:
+            'Completed an intensive programming challenge by coding every day from September 22, 2024 to January 16, 2025. This consistent practice strengthened my skills, expanded my portfolio, and demonstrated my dedication to continuous improvement in software development.'
     }
     // Add more items as needed
 ];
@@ -28,8 +32,8 @@ const Home = () => {
             <div className="profile-picture-container md:mr-8 mb-8 md:mb-0">
                 <img
                     src={meOne}
-                    alt="Luis Henrique Abrantes"
-                    className="rounded-full w-48 h-48 object-cover"
+                    alt="Luis Henrique Abrantes at University of Pennsylvania"
+                    className="rounded-full w-60 h-60 object-cover object-top"
                 />
             </div>
             <div className="content-container flex-1">
@@ -84,18 +88,31 @@ const Home = () => {
                         Federal Institute of São Paulo (IFSP). With a passion
                         for innovation and programming, I focus on creating
                         scalable and efficient full-stack applications using
-                        React, Node.js, and Python. Over the years, I&apos;ve
-                        participated in competitive programming events and
-                        impactful projects such as PennApps XXV, honing my
-                        skills and contributing to meaningful solutions in
-                        various fields.
+                        React, Node.js, and Python. As the Founder and CEO of
+                        TutorTime, I&apos;ve led the development of an
+                        innovative platform that connects students with peer
+                        tutors and teachers, revolutionizing how academic
+                        support is organized in educational institutions.
+                    </p>
+                    <p>
+                        TutorTime represents my vision for making education more
+                        accessible and efficiently managed. Under my leadership,
+                        the platform has evolved from a concept to a
+                        comprehensive solution built with Supabase, React, and
+                        Vite. I oversee all aspects of development while
+                        maintaining the strategic direction, transforming
+                        TutorTime from a project into a potential startup
+                        venture with real-world applications for schools and
+                        universities.
                     </p>
                     <p>
                         Driven by curiosity and a commitment to excellence, I
                         approach new challenges with creativity and
                         determination. My journey includes hackathons like
-                        PennApps XXV, and leading efforts to automate mock exam
-                        creation. As President of the Coding Club and ARINTER
+                        PennApps XXV at the University of Pennsylvania, where I
+                        participated after successfully organizing a
+                        crowdfunding campaign to finance my first international
+                        trip. As President of the Coding Club and ARINTER
                         Ambassador, I&apos;ve built leadership and
                         organizational abilities while collaborating with a
                         diverse tech community. My certifications in Artificial

@@ -1,3 +1,4 @@
+// filepath: /Users/luisabrantes/Documents/luis.hsa/src/components/Projects.jsx
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
@@ -6,28 +7,36 @@ import {
     Code2,
     Zap,
     Palette,
-    Triangle, // Add this import
-    Terminal, // Add this import
-    Database // Add this import
+    Triangle,
+    Terminal,
+    Database
 } from 'lucide-react';
 import agrolearn from '../assets/projects/agrolearn.png';
 import quickreadme from '../assets/projects/quickreadme.png';
 import elementaryschoolwebsite from '../assets/projects/elementaryschoolwebsite.png';
-import tutortime from '../assets/projects/tutortime.png'; // Add this import
+import tutortime from '../assets/projects/tutortime.png';
+// Using placeholder images - replace with actual project screenshots when available
+import webdevclasses from '../assets/projects/agrolearn.png'; // Placeholder - replace with actual image
+import historytestsite from '../assets/projects/agrolearn.png'; // Placeholder - replace with actual image
 
 const techIcons = {
     React: <Code2 size={14} className="inline-block" />,
     Vite: <Zap size={14} className="inline-block" />,
     'Tailwind CSS': <Palette size={14} className="inline-block" />,
-    Vercel: <Triangle size={14} className="inline-block" />, // Replace Cloud with Triangle
-    Python: <Terminal size={14} className="inline-block" />, // Add Python icon
-    HandleBars: <Code2 size={14} className="inline-block" />, // Add HandleBars icon
-    'Node.js': <Terminal size={14} className="inline-block" />, // Add Node.js icon
-    'Express.js': <Terminal size={14} className="inline-block" />, // Add Express.js icon
-    MySQL: <Database size={14} className="inline-block" />, // Replace Terminal with Database icon
-    Sequelize: <Database size={14} className="inline-block" />, // Replace Terminal with Database icon
-    HTML: <Code2 size={14} className="inline-block" />, // Add HTML icon
-    CSS: <Palette size={14} className="inline-block" /> // Add CSS icon
+    Vercel: <Triangle size={14} className="inline-block" />,
+    Python: <Terminal size={14} className="inline-block" />,
+    HandleBars: <Code2 size={14} className="inline-block" />,
+    'Node.js': <Terminal size={14} className="inline-block" />,
+    'Express.js': <Terminal size={14} className="inline-block" />,
+    MySQL: <Database size={14} className="inline-block" />,
+    Sequelize: <Database size={14} className="inline-block" />,
+    HTML: <Code2 size={14} className="inline-block" />,
+    CSS: <Palette size={14} className="inline-block" />,
+    JavaScript: <Code2 size={14} className="inline-block" />,
+    TypeScript: <Code2 size={14} className="inline-block" />,
+    Bootstrap: <Palette size={14} className="inline-block" />,
+    'Community Service': <Triangle size={14} className="inline-block" />,
+    Supabase: <Database size={14} className="inline-block" />
 };
 
 const projectsData = [
@@ -56,7 +65,7 @@ const projectsData = [
         shortDescription:
             'Command-line Open Source Python Package tool to generate README.md files for your projects quickly.',
         fullDescription:
-            'uickReadme is a Python-based command-line tool designed to streamline the creation of README.md files for your projects. After installing the tool, you can navigate to your project directory and run quickreadme. The tool will guide you through interactive prompts to input your project’s details, and then generate a comprehensive README.md file based on your responses. Contributions to the project are welcome, and you can follow the standard GitHub flow to propose improvements or new features. If you find QuickReadme useful, consider starring the repository on GitHub to show your support.',
+            "QuickReadme is a Python-based command-line tool designed to streamline the creation of README.md files for your projects. After installing the tool, you can navigate to your project directory and run quickreadme. The tool will guide you through interactive prompts to input your project's details, and then generate a comprehensive README.md file based on your responses. Contributions to the project are welcome, and you can follow the standard GitHub flow to propose improvements or new features. If you find QuickReadme useful, consider starring the repository on GitHub to show your support.",
         image: quickreadme,
         thumbnail: quickreadme,
         technologies: ['Python'],
@@ -75,16 +84,10 @@ const projectsData = [
         shortDescription:
             'A comprehensive platform for organizing and managing tutoring sessions and office hours in educational institutions.',
         fullDescription:
-            'TutorTime is an innovative platform designed to streamline the organization and promotion of tutoring sessions and office hours in schools. The system helps connect students with peer tutors and teachers, manage schedules, and track academic support activities. Built with a robust tech stack including Node.js and MySQL, this project is being developed with the potential to become a startup venture.',
+            'TutorTime is an innovative platform designed to streamline the organization and promotion of tutoring sessions and office hours in schools. The system helps connect students with peer tutors and teachers, manage schedules, and track academic support activities. Built with a modern tech stack including Supabase, React, and Vite, this project is being developed with the potential to become a startup venture.',
         image: tutortime,
         thumbnail: tutortime,
-        technologies: [
-            'HandleBars',
-            'Node.js',
-            'Express.js',
-            'MySQL',
-            'Sequelize'
-        ],
+        technologies: ['Supabase', 'React', 'Vite'],
         category: 'Web App',
         github: 'https://github.com/LuisAbrantes/TutorTimeModel',
         demo: '',
@@ -101,7 +104,7 @@ const projectsData = [
         shortDescription:
             'A website I created at 13 to help organize exam schedules and study materials for my school.',
         fullDescription:
-            'This is a website that I am very proud of because it was the first site I made using only HTML and CSS. When I was 13, my school was facing issues with exam organization, so I created a site with the exam calendar and their contents, followed by links to study materials. It was something that helped my class and increased everyone’s productivity, including the teachers.',
+            "This is a website that I am very proud of because it was the first site I made using only HTML and CSS. When I was 13, my school was facing issues with exam organization, so I created a site with the exam calendar and their contents, followed by links to study materials. It was something that helped my class and increased everyone's productivity, including the teachers.",
         image: elementaryschoolwebsite,
         thumbnail: elementaryschoolwebsite,
         technologies: ['HTML', 'CSS'],
@@ -113,8 +116,47 @@ const projectsData = [
             'Improved exam organization for my school',
             'Increased productivity for students and teachers'
         ]
+    },
+    {
+        id: 5,
+        title: 'WebDevClasses',
+        shortDescription:
+            'A living digital classroom I built and update after every web development lecture to support 40 classmates on their coding journey.',
+        fullDescription:
+            "WebDevClasses began with a simple observation: many of my classmates were struggling to keep pace with our intensive web development curriculum. Some missed crucial classes due to illness or commitments, while others found it challenging to take comprehensive notes while simultaneously absorbing complex coding concepts. Rather than watching my peers fall behind, I volunteered to create a solution. After each class, I meticulously document every lecture, transform complex concepts into accessible explanations, organize code examples, and create supplementary resources. The site grows organically with our curriculum—a living, breathing knowledge repository that evolves with each class session. What started as a personal initiative has become an essential lifeline for our cohort of 40 students. Beyond just lecture notes, it's now a complete learning ecosystem with detailed explanations, troubleshooting guides for common errors, and a centralized hub for assignments and resources. The platform has transformed our learning experience, fostering collaboration and ensuring no student gets left behind due to a missed class or a complex concept. It's become so valuable that instructors now officially recommend it as a course resource—a testament to how individual initiative can elevate an entire learning community.",
+        image: webdevclasses,
+        thumbnail: webdevclasses,
+        technologies: ['React', 'Vite', 'Tailwind CSS', 'Vercel'],
+        category: 'Community Project',
+        github: 'https://github.com/LuisAbrantes/WebDevClasses2025',
+        demo: 'https://webdevclasses.vercel.app/',
+        highlights: [
+            'Voluntarily created and maintain a comprehensive digital classroom that grows with each lecture, providing real-time support to 40+ students',
+            'Developed detailed code documentation, troubleshooting guides, and assignment resources all in one centralized hub',
+            'Recognized by instructors who now officially recommend the platform as a supplementary course resource',
+            'Transformed the learning experience for students who missed classes or needed additional support understanding complex concepts'
+        ]
+    },
+    {
+        id: 6,
+        title: 'History Test Study Portal',
+        shortDescription:
+            'A rescue mission: I created this TypeScript-powered study platform when an entire class at another school was at risk of failing history.',
+        fullDescription:
+            "The History Test Study Portal emerged from an urgent call for help when I learned about a class at a neighboring school facing mass academic probation in history. The students were overwhelmed by the school's rigorous standards and struggling with complex topics like the Napoleonic Era, Liberalism, Socialism, and Liberal Revolutions. Within days, I volunteered to build a comprehensive digital lifeline using TypeScript (my first project with this language), React, Vite, and Tailwind CSS. The platform featured carefully crafted content based on their textbooks and class notes, AI-generated flashcards tailored to previous exam questions, interactive quizzes, and a comprehensive glossary of historical terms. What made this project special wasn't just the technology but the real human impact—watching students who had been demoralized transform into confident learners. The results spoke volumes: every student who used the platform passed their recovery exam, with many exceeding their targets. This experience taught me that technical skills gain their greatest meaning when applied to solve real human problems, and it remains one of my most meaningful volunteer contributions.",
+        image: historytestsite,
+        thumbnail: historytestsite,
+        technologies: ['React', 'Vite', 'Tailwind CSS', 'TypeScript', 'Vercel'],
+        category: 'Community Project',
+        github: 'https://github.com/LuisAbrantes/HistoryTestStudy',
+        demo: 'https://history-test-study-kjwj7gyl1-luis-abrantes-projects.vercel.app/',
+        highlights: [
+            'Volunteered to create targeted study resources for four complex historical topics that were causing students to struggle',
+            'Developed AI-powered flashcards and quizzes based on actual exam content to maximize study effectiveness',
+            'My first TypeScript project, built under pressure to help students meet an urgent deadline',
+            'Achieved 100% success rate with all students passing their recovery exams after using the platform'
+        ]
     }
-    // Add more projects here
 ];
 
 const ProjectCard = ({ project, onClick }) => (
@@ -249,7 +291,7 @@ const Projects = () => {
                     My Projects
                 </motion.h1>
 
-                <div className="flex justify-center gap-4 mb-12">
+                <div className="flex justify-center gap-4 mb-12 flex-wrap">
                     {categories.map(category => (
                         <button
                             key={category}
