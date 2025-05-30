@@ -8,11 +8,17 @@ import {
     Zap,
     Palette,
     Triangle,
-    Terminal,
     Database,
     Hexagon,
     Youtube,
-    FileText
+    FileText,
+    FileType,
+    FileJson,
+    Brackets,
+    Braces,
+    SquareCode,
+    Brain,
+    Terminal
 } from 'lucide-react';
 import agrolearn from '../assets/projects/agrolearn.png';
 import quickreadme from '../assets/projects/quickreadme.png';
@@ -29,20 +35,19 @@ const techIcons = {
     'Tailwind CSS': <Palette size={14} className="inline-block" />,
     Vercel: <Triangle size={14} className="inline-block" />,
     Python: <Terminal size={14} className="inline-block" />,
-    HandleBars: <Code2 size={14} className="inline-block" />,
-    'Node.js': <Terminal size={14} className="inline-block" />,
-    'Express.js': <Terminal size={14} className="inline-block" />,
+    HandleBars: <Brackets size={14} className="inline-block" />,
+    'Node.js': <FileJson size={14} className="inline-block" />,
+    'Express.js': <SquareCode size={14} className="inline-block" />,
     MySQL: <Database size={14} className="inline-block" />,
     Sequelize: <Database size={14} className="inline-block" />,
     HTML: <Code2 size={14} className="inline-block" />,
     CSS: <Palette size={14} className="inline-block" />,
-    JavaScript: <Code2 size={14} className="inline-block" />,
-    TypeScript: <Code2 size={14} className="inline-block" />,
+    JavaScript: <Braces size={14} className="inline-block" />,
+    TypeScript: <FileType size={14} className="inline-block" />,
     Bootstrap: <Palette size={14} className="inline-block" />,
-    'Community Service': <Triangle size={14} className="inline-block" />,
+    'Community Service': <Hexagon size={14} className="inline-block" />,
     Supabase: <Database size={14} className="inline-block" />,
-    'GPT-3.5 Turbo': <Zap size={14} className="inline-block" />,
-    Flask: <Terminal size={14} className="inline-block" />
+    'GPT-3.5 Turbo': <Brain size={14} className="inline-block" />
 };
 
 const projectsData = [
