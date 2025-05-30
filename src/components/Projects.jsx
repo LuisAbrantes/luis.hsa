@@ -9,7 +9,10 @@ import {
     Palette,
     Triangle,
     Terminal,
-    Database
+    Database,
+    Hexagon,
+    Youtube,
+    FileText
 } from 'lucide-react';
 import agrolearn from '../assets/projects/agrolearn.png';
 import quickreadme from '../assets/projects/quickreadme.png';
@@ -18,6 +21,7 @@ import tutortime from '../assets/projects/tutortime.png';
 // Using placeholder images - replace with actual project screenshots when available
 import webdevclasses from '../assets/projects/agrolearn.png'; // Placeholder - replace with actual image
 import historytestsite from '../assets/projects/agrolearn.png'; // Placeholder - replace with actual image
+import speakScribeImage from '../assets/projects/agrolearn.png'; // Placeholder - replace with actual SpeakScribe image
 
 const techIcons = {
     React: <Code2 size={14} className="inline-block" />,
@@ -36,12 +40,37 @@ const techIcons = {
     TypeScript: <Code2 size={14} className="inline-block" />,
     Bootstrap: <Palette size={14} className="inline-block" />,
     'Community Service': <Triangle size={14} className="inline-block" />,
-    Supabase: <Database size={14} className="inline-block" />
+    Supabase: <Database size={14} className="inline-block" />,
+    'GPT-3.5 Turbo': <Zap size={14} className="inline-block" />,
+    Flask: <Terminal size={14} className="inline-block" />
 };
 
 const projectsData = [
     {
         id: 1,
+        title: 'SpeakScribe',
+        shortDescription:
+            'AI tool to assist students and educators, simplifying assignment creation and lecture summarization.',
+        fullDescription: `SpeakScribe was developed at PennApps, the University of Pennsylvania's hackathon, with the goal of optimizing the learning and teaching process. For educators, the tool generates personalized assignments based on provided lesson plans, using GPT-3.5 Turbo to tailor activities to students' preferences and exporting them as PDFs. For students, with the teacher's permission, SpeakScribe records lectures, generates transcriptions, summaries, and key points, deepening their understanding of the content. The inspiration came from the need to process information more efficiently in the modern educational environment, especially with the growth of online learning. We wanted a solution that could convert speech to text and summarize visual data (like images into summaries, with future plans for charts) so students could focus on learning instead of manual note-taking. We used Python for the backend and React TypeScript for the frontend.`,
+        image: speakScribeImage,
+        thumbnail: speakScribeImage,
+        technologies: ['React', 'TypeScript', 'Python', 'GPT-3.5 Turbo'],
+        category: 'Hackathon Project',
+        github: 'https://github.com/pranayrishi/SpeakScribe',
+        devpost: 'https://devpost.com/software/speakscribe',
+        youtube: 'https://www.youtube.com/watch?v=-Jz9-tNqB88',
+        slides: 'https://docs.google.com/presentation/d/1MZ2BW9BR5UsyCl-LKMA4JZM3C9MduWuxzFUxp7TmygE/edit?slide=id.g7290233416_0_2#slide=id.g7290233416_0_2',
+        highlights: [
+            'Developed as a team during the PennApps hackathon at the University of Pennsylvania',
+            'Creation of personalized assignments for students using GPT-3.5 Turbo',
+            'Lecture recording, transcription, and summarization functionality for students',
+            'Overcame challenges in installing Python packages and integrating pre-trained AI models',
+            'Valuable learning about using API keys, handling real-time speech functions, and teamwork collaboration under pressure',
+            'Future plans include expansion to more languages, summarization of long lectures, and reading charts/tables'
+        ]
+    },
+    {
+        id: 2,
         title: 'AgroLearn',
         shortDescription:
             'Distance learning platform for training agricultural machinery operators for the GP SENAI hackathon.',
@@ -60,7 +89,7 @@ const projectsData = [
         ]
     },
     {
-        id: 2,
+        id: 3,
         title: 'QuickReadme',
         shortDescription:
             'Command-line Open Source Python Package tool to generate README.md files for your projects quickly.',
@@ -79,7 +108,7 @@ const projectsData = [
         ]
     },
     {
-        id: 3,
+        id: 4,
         title: 'TutorTime',
         shortDescription:
             'A comprehensive platform for organizing and managing tutoring sessions and office hours in educational institutions.',
@@ -99,7 +128,7 @@ const projectsData = [
         ]
     },
     {
-        id: 4,
+        id: 5,
         title: 'Elementary School website',
         shortDescription:
             'A website I created at 13 to help organize exam schedules and study materials for my school.',
@@ -118,7 +147,7 @@ const projectsData = [
         ]
     },
     {
-        id: 5,
+        id: 6,
         title: 'WebDevClasses',
         shortDescription:
             'A living digital classroom I built and update after every web development lecture to support 40 classmates on their coding journey.',
@@ -138,7 +167,7 @@ const projectsData = [
         ]
     },
     {
-        id: 6,
+        id: 7,
         title: 'History Test Study Portal',
         shortDescription:
             'A rescue mission: I created this TypeScript-powered study platform when an entire class at another school was at risk of failing history.',
@@ -208,14 +237,48 @@ const ProjectCard = ({ project, onClick }) => (
                 >
                     <Github size={18} /> Code
                 </a>
-                <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-gray-400 hover:text-dark-accent transition"
-                >
-                    <ExternalLink size={18} /> Demo
-                </a>
+                {project.demo && (
+                    <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-gray-400 hover:text-dark-accent transition"
+                    >
+                        <ExternalLink size={18} /> Demo
+                    </a>
+                )}
+                {project.devpost && (
+                    <a
+                        href={project.devpost}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-gray-400 hover:text-dark-accent transition"
+                    >
+                        <Hexagon size={18} className="relative">
+                            <text
+                                x="50%"
+                                y="52%"
+                                dominantBaseline="middle"
+                                textAnchor="middle"
+                                className="fill-current text-xs font-bold"
+                                style={{ transform: 'translateY(1px)' }}
+                            >
+                                D
+                            </text>
+                        </Hexagon>{' '}
+                        Devpost
+                    </a>
+                )}
+                {project.youtube && (
+                    <a
+                        href={project.youtube}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-gray-400 hover:text-dark-accent transition"
+                    >
+                        <Youtube size={18} /> Video
+                    </a>
+                )}
             </div>
         </div>
     </motion.div>
@@ -248,7 +311,7 @@ const ProjectModal = ({ project, onClose }) => (
                     ))}
                 </ul>
 
-                <div className="flex gap-4">
+                <div className="flex gap-4 flex-wrap">
                     <a
                         href={project.github}
                         target="_blank"
@@ -257,6 +320,58 @@ const ProjectModal = ({ project, onClose }) => (
                     >
                         <Github size={18} /> View Code
                     </a>
+                    {project.demo && (
+                        <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-dark-accent text-white px-6 py-2 rounded-md hover:bg-dark-accent transition flex items-center gap-2"
+                        >
+                            <ExternalLink size={18} /> View Demo
+                        </a>
+                    )}
+                    {project.devpost && (
+                        <a
+                            href={project.devpost}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-dark-accent text-white px-6 py-2 rounded-md hover:bg-dark-accent transition flex items-center gap-2"
+                        >
+                            <Hexagon size={18} className="relative">
+                                <text
+                                    x="50%"
+                                    y="52%"
+                                    dominantBaseline="middle"
+                                    textAnchor="middle"
+                                    className="fill-current text-xs font-bold"
+                                    style={{ transform: 'translateY(1px)' }}
+                                >
+                                    D
+                                </text>
+                            </Hexagon>{' '}
+                            View on Devpost
+                        </a>
+                    )}
+                    {project.youtube && (
+                        <a
+                            href={project.youtube}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-dark-accent text-white px-6 py-2 rounded-md hover:bg-dark-accent transition flex items-center gap-2"
+                        >
+                            <Youtube size={18} /> Watch Video
+                        </a>
+                    )}
+                    {project.slides && (
+                        <a
+                            href={project.slides}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-dark-accent text-white px-6 py-2 rounded-md hover:bg-dark-accent transition flex items-center gap-2"
+                        >
+                            <FileText size={18} /> View Slides
+                        </a>
+                    )}
                     <button
                         onClick={onClose}
                         className="px-6 py-2 border border-gray-600 text-gray-400 rounded-md hover:bg-dark-hover transition"

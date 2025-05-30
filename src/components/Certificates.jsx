@@ -234,13 +234,13 @@ const certificatesData = [
     },
     {
         id: 24,
-        title: 'OBI - Olimpiada Brasileira de Informatica',
+        title: 'OBI - Olimpiada Brasileira de Informatica - 2 out of 3 stages',
         institution: 'University of Campinas - UNICAMP',
         date: '2024',
         type: 'honors',
         hours: 8,
         description:
-            'Advanced to the second phase of the Brazilian Olympiad of Informatics (OBI), the most prestigious programming competition in Latin America, organized by UNICAMP. The competition evaluates programming skills, logical reasoning, and problem-solving abilities across three phases. My achievement was featured in a news article by IFSP Jacareí campus, highlighting the accomplishment. [First phase score: TBD, Cut-off score: TBD] [Second phase score: TBD, Cut-off score: TBD]',
+            "Advanced to the second phase of the Brazilian Olympiad of Informatics (OBI), the most prestigious and difficult programming competition in Latin America, organized by UNICAMP. This highly competitive event evaluates programming skills, logical reasoning, and problem-solving abilities across three challenging phases. My achievement was featured in a news article by IFSP Jacareí campus, highlighting the accomplishment.\n\n🏆 Competition Performance (2 out of 3 stages completed):\n• First Phase: Scored 180/400 points (exactly meeting the 180-point cut-off)\n• Second Phase: Scored 300/400 points (cut-off was 400 points)\n\nThis performance demonstrates strong programming fundamentals and problem-solving skills in Latin America's most challenging and prestigious technical competition.",
         image: 'https://jcr.ifsp.edu.br/images/Image_2024-08-15_at_144156.jpeg',
         imagePosition: 'object-bottom',
         newsArticle:
@@ -248,13 +248,13 @@ const certificatesData = [
     },
     {
         id: 25,
-        title: 'ONC - Olimpiada Nacional de Ciencias',
+        title: 'ONC - Olimpiada Nacional de Ciencias - 2 out of 2 stages',
         institution: 'Ministry of Science, Technology and Innovation (MCTI)',
         date: '2024',
         type: 'honors',
         hours: 8,
         description:
-            'Advanced to the second phase of the National Science Olympiad (ONC), a multidisciplinary science competition organized by the Brazilian Ministry of Science, Technology and Innovation (MCTI). The competition tests knowledge in various scientific fields including physics, chemistry, and biology. My achievement was recognized in a news article published by Instituto Federal de São Paulo - Jacareí campus.',
+            "Advanced to the second phase of the National Science Olympiad (ONC), the most competitive and prestigious science competition in Brazil, organized by the Federal Government through the Ministry of Science, Technology and Innovation (MCTI). This highly selective competition tests knowledge in various scientific fields including physics, chemistry, and biology across two rigorous phases. My achievement was recognized in a news article published by Instituto Federal de São Paulo - Jacareí campus.\n\n🏆 Competition Performance (2 out of 2 stages completed):\nSuccessfully completed both phases of Brazil's most prestigious science olympiad, demonstrating strong multidisciplinary scientific knowledge and analytical skills.",
         image: 'https://www.ifsp.edu.br/images/2022/10_Outubro/cartaz-onc-2022-noticia.jpg',
         imagePosition: 'object-bottom',
         newsArticle:
@@ -481,7 +481,8 @@ const Certificates = () => {
                                             rel="noopener noreferrer"
                                             className="text-dark-accent hover:underline"
                                         >
-                                            IFSP Campus Jacareí News Article
+                                            Federal Institute of Science and
+                                            Technology (IFSP) News Article
                                         </a>
                                     </div>
                                 )}
