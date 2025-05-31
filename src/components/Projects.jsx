@@ -24,10 +24,9 @@ import agrolearn from '../assets/projects/agrolearn.png';
 import quickreadme from '../assets/projects/quickreadme.png';
 import elementaryschoolwebsite from '../assets/projects/elementaryschoolwebsite.png';
 import tutortime from '../assets/projects/tutortime.png';
-// Using placeholder images - replace with actual project screenshots when available
-import webdevclasses from '../assets/projects/agrolearn.png'; // Placeholder - replace with actual image
-import historytestsite from '../assets/projects/agrolearn.png'; // Placeholder - replace with actual image
-import speakScribeImage from '../assets/projects/agrolearn.png'; // Placeholder - replace with actual SpeakScribe image
+import webdevclasses from '../assets/projects/webDevClasses.png'; // Atualizado para imagem real
+import historytestsite from '../assets/projects/historyTestStudyPortal.png'; // Atualizado para imagem real
+import speakScribeImage from '../assets/projects/speakScribe.png'; // Atualizado para imagem real
 
 const techIcons = {
     React: <Code2 size={14} className="inline-block" />,
