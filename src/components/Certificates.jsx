@@ -275,27 +275,45 @@ const SearchBar = ({ setSearchQuery }) => {
         setInputValue(e.target.value);
         setSearchQuery(e.target.value);
     };
-
     return (
         <div className="w-full max-w-md mx-auto mb-8">
             <div className="relative">
-                <input
-                    type="text"
-                    placeholder="Search certificates..."
-                    value={inputValue}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 pr-12 bg-dark-secondary text-dark-text rounded-lg 
-                            border border-dark-hover focus:border-dark-accent focus:ring-1 
-                            focus:ring-dark-accent outline-none transition-all duration-300"
-                />
-                {inputValue && (
-                    <button
-                        onClick={handleClear}
-                        className="absolute right-10 top-2.5 text-dark-text hover:text-dark-accent transition-colors duration-200"
-                        aria-label="Clear search"
-                    >
+                <div className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-2xl p-1 shadow-glass hover:shadow-glass-hover transition-all duration-500 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-purple-glass opacity-5"></div>
+                    <div className="absolute inset-0 bg-shimmer bg-no-repeat opacity-0 hover:opacity-5 transition-opacity duration-500"></div>
+
+                    <div className="relative z-10">
+                        <input
+                            type="text"
+                            placeholder="Search certificates..."
+                            value={inputValue}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 pr-12 bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-xl text-dark-text placeholder-dark-muted
+                                    focus:border-dark-accent focus:ring-1 focus:ring-dark-accent outline-none transition-all duration-300"
+                        />
+                        {inputValue && (
+                            <button
+                                onClick={handleClear}
+                                className="absolute right-10 top-2.5 text-dark-muted hover:text-dark-accent transition-colors duration-200"
+                                aria-label="Clear search"
+                            >
+                                <svg
+                                    className="h-5 w-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M6 18L18 6M6 6l12 12"
+                                    />
+                                </svg>
+                            </button>
+                        )}
                         <svg
-                            className="h-5 w-5"
+                            className="absolute right-3 top-2.5 h-5 w-5 text-dark-muted pointer-events-none"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -304,24 +322,11 @@ const SearchBar = ({ setSearchQuery }) => {
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                                 strokeWidth="2"
-                                d="M6 18L18 6M6 6l12 12"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                             />
                         </svg>
-                    </button>
-                )}
-                <svg
-                    className="absolute right-3 top-2.5 h-5 w-5 text-dark-muted pointer-events-none"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                </svg>
+                    </div>
+                </div>
             </div>
         </div>
     );
@@ -377,143 +382,160 @@ const Certificates = () => {
         return (
             <AnimatePresence>
                 <motion.div
-                    className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4"
+                    className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                 >
                     <motion.div
-                        className="bg-dark-secondary rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-lg"
+                        className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-glass relative overflow-hidden"
                         initial={{ y: 50, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: 50, opacity: 0 }}
                     >
-                        {/* Modal Header */}
-                        <div className="p-6 border-b border-dark-hover flex justify-between items-center">
-                            <h2 className="text-2xl font-bold text-dark-text">
-                                {certificate.title}
-                            </h2>
-                            <button
-                                onClick={onClose}
-                                className="text-dark-muted hover:text-dark-text transition-colors duration-200"
-                            >
-                                <svg
-                                    className="w-6 h-6"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
+                        {' '}
+                        <div className="absolute inset-0 bg-purple-glass opacity-20"></div>
+                        <div className="absolute inset-0 bg-shimmer bg-no-repeat opacity-0 hover:opacity-10 transition-opacity duration-500"></div>
+                        <div className="relative z-10">
+                            {/* Modal Header */}
+                            <div className="p-6 border-b border-dark-glassBorder flex justify-between items-center">
+                                <h2 className="text-2xl font-bold text-dark-text">
+                                    {certificate.title}
+                                </h2>
+                                <button
+                                    onClick={onClose}
+                                    className="text-dark-muted hover:text-dark-text transition-colors duration-200 bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-2xl p-2"
                                 >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                </svg>
-                            </button>
-                        </div>
-
-                        {/* Modal Content */}
-                        <div className="p-6 text-dark-text space-y-6">
-                            {/* Certificate Image */}
-                            {certificate.image && (
-                                <img
-                                    src={certificate.image}
-                                    alt={certificate.title}
-                                    className={`w-full h-64 object-cover rounded-lg mb-6 ${
-                                        certificate.imagePosition || ''
-                                    }`}
-                                />
-                            )}
-                            {/* Certificate Icon and Type */}
-                            <div className="flex items-center space-x-3">
-                                <div className="text-dark-accent">
-                                    {getTypeIcon(certificate.type)}
-                                </div>
-                                <div>
-                                    <p className="text-lg font-semibold capitalize">
-                                        {certificate.type}
-                                    </p>
-                                </div>
+                                    <svg
+                                        className="w-6 h-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M6 18L18 6M6 6l12 12"
+                                        />
+                                    </svg>
+                                </button>
                             </div>
 
-                            {/* Certificate Details */}
-                            <div className="space-y-4">
-                                <div>
-                                    <h3 className="font-semibold">
-                                        Institution:
-                                    </h3>
-                                    <p>{certificate.institution}</p>
-                                </div>
-                                {certificate.type !== 'extracurricular' && (
-                                    <div>
-                                        <h3 className="font-semibold">
-                                            Completion Date:
-                                        </h3>
-                                        <p>{certificate.date}</p>
+                            {/* Modal Content */}
+                            <div className="p-6 text-dark-text space-y-6">
+                                {/* Certificate Image */}
+                                {certificate.image && (
+                                    <div className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-3xl p-2 shadow-inner-glass">
+                                        <img
+                                            src={certificate.image}
+                                            alt={certificate.title}
+                                            className={`w-full h-64 object-cover rounded-2xl ${
+                                                certificate.imagePosition || ''
+                                            }`}
+                                        />
                                     </div>
                                 )}
-                                {certificate.hours &&
-                                    certificate.type !== 'extracurricular' && (
-                                        <div>
-                                            <h3 className="font-semibold">
-                                                Duration:
+
+                                {/* Certificate Icon and Type */}
+                                <div className="flex items-center space-x-3">
+                                    <div className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-2xl p-3 shadow-inner-glass">
+                                        {getTypeIcon(certificate.type)}
+                                    </div>
+                                    <div>
+                                        <p className="text-lg font-semibold capitalize text-dark-accent">
+                                            {certificate.type}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Certificate Details */}
+                                <div className="space-y-4">
+                                    <div className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-2xl p-4 shadow-inner-glass">
+                                        <h3 className="font-semibold text-dark-accent mb-2">
+                                            Institution:
+                                        </h3>
+                                        <p>{certificate.institution}</p>
+                                    </div>
+
+                                    {certificate.type !== 'extracurricular' && (
+                                        <div className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-2xl p-4 shadow-inner-glass">
+                                            <h3 className="font-semibold text-dark-accent mb-2">
+                                                Completion Date:
                                             </h3>
-                                            <p>{certificate.hours} hours</p>
+                                            <p>{certificate.date}</p>
                                         </div>
                                     )}
-                                {certificate.description && (
-                                    <div>
-                                        <h3 className="font-semibold">
-                                            Description:
-                                        </h3>
-                                        <p>{certificate.description}</p>
-                                    </div>
-                                )}
-                                {certificate.newsArticle && (
-                                    <div>
-                                        <h3 className="font-semibold">
-                                            Featured In:
-                                        </h3>
-                                        <a
-                                            href={certificate.newsArticle}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-dark-accent hover:underline"
+
+                                    {certificate.hours &&
+                                        certificate.type !==
+                                            'extracurricular' && (
+                                            <div className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-2xl p-4 shadow-inner-glass">
+                                                <h3 className="font-semibold text-dark-accent mb-2">
+                                                    Duration:
+                                                </h3>
+                                                <p>{certificate.hours} hours</p>
+                                            </div>
+                                        )}
+
+                                    {certificate.description && (
+                                        <div className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-2xl p-4 shadow-inner-glass">
+                                            <h3 className="font-semibold text-dark-accent mb-2">
+                                                Description:
+                                            </h3>
+                                            <p className="whitespace-pre-line">
+                                                {certificate.description}
+                                            </p>
+                                        </div>
+                                    )}
+
+                                    {certificate.newsArticle && (
+                                        <div className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-2xl p-4 shadow-inner-glass">
+                                            <h3 className="font-semibold text-dark-accent mb-2">
+                                                Featured In:
+                                            </h3>
+                                            <a
+                                                href={certificate.newsArticle}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-dark-accent hover:text-dark-accentHover underline transition-colors duration-300"
+                                            >
+                                                Federal Institute of Science and
+                                                Technology (IFSP) News Article
+                                            </a>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* PDF Button */}
+                                {certificate.pdfPath && (
+                                    <div className="pt-4">
+                                        <button
+                                            onClick={() =>
+                                                handleOpenPDF(
+                                                    certificate.pdfPath
+                                                )
+                                            }
+                                            className="w-full bg-gradient-to-r from-dark-accent to-dark-accentHover text-dark-text py-3 px-4 rounded-2xl font-medium transition-all duration-300 hover:scale-105 shadow-purple-glow hover:shadow-purple-glow-lg flex items-center justify-center space-x-2"
                                         >
-                                            Federal Institute of Science and
-                                            Technology (IFSP) News Article
-                                        </a>
+                                            <svg
+                                                className="w-5 h-5"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="2"
+                                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                                />
+                                            </svg>
+                                            <span>Open Certificate PDF</span>
+                                        </button>
                                     </div>
                                 )}
                             </div>
-
-                            {/* PDF Button */}
-                            {certificate.pdfPath && (
-                                <div className="pt-4">
-                                    <button
-                                        onClick={() =>
-                                            handleOpenPDF(certificate.pdfPath)
-                                        }
-                                        className="w-full bg-dark-accent text-white py-3 px-4 rounded-lg hover:bg-dark-accent-hover transition-colors duration-300 flex items-center justify-center space-x-2"
-                                    >
-                                        <svg
-                                            className="w-5 h-5"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth="2"
-                                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                                            />
-                                        </svg>
-                                        <span>Open Certificate PDF</span>
-                                    </button>
-                                </div>
-                            )}
                         </div>
                     </motion.div>
                 </motion.div>
@@ -572,90 +594,109 @@ const Certificates = () => {
     const FilterButton = ({ type, label }) => (
         <button
             onClick={() => handleFilter(type)}
-            className={`px-6 py-2 rounded-full transition-all duration-300 flex items-center space-x-2
+            className={`px-6 py-3 rounded-2xl transition-all duration-300 flex items-center space-x-2 backdrop-blur-md border shadow-inner-glass hover:scale-105 transform
                 ${
                     filter === type
-                        ? 'bg-dark-accent text-dark-text'
-                        : 'bg-dark-secondary text-dark-muted hover:bg-dark-hover'
+                        ? 'bg-dark-glass border-dark-purpleGlassBorder text-dark-accent shadow-purple-glow'
+                        : 'bg-dark-glass border-dark-glassBorder text-dark-muted hover:text-dark-text hover:border-dark-purpleGlassBorder'
                 }`}
         >
             <span>{label}</span>
-            <span className="bg-dark-hover px-2 py-0.5 rounded-full text-sm">
+            <span className="bg-dark-glass backdrop-blur-sm px-2 py-0.5 rounded-full text-sm border border-dark-glassBorder">
                 {type === 'all'
                     ? certificatesData.length
                     : categoryCounts[type] || 0}
             </span>
         </button>
-    );
-
-    // Enhanced loading skeleton
+    ); // Enhanced loading skeleton
     const LoadingSkeleton = () => (
-        <div className="animate-pulse bg-dark-secondary rounded-xl p-6">
-            <div className="flex justify-between">
-                <div className="h-6 bg-dark-hover rounded w-3/4"></div>
-                <div className="h-6 w-6 bg-dark-hover rounded"></div>
-            </div>
-            <div className="space-y-3 mt-4">
-                <div className="h-4 bg-dark-hover rounded w-2/3"></div>
-                <div className="h-4 bg-dark-hover rounded w-1/2"></div>
-                <div className="h-4 bg-dark-hover rounded w-3/5"></div>
-            </div>
-            <div className="mt-6">
-                <div className="h-10 bg-dark-hover rounded"></div>
+        <div className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl p-6 shadow-glass animate-pulse relative overflow-hidden">
+            <div className="absolute inset-0 bg-purple-glass opacity-5"></div>
+            <div className="absolute inset-0 bg-shimmer bg-no-repeat opacity-0"></div>
+
+            <div className="relative z-10">
+                <div className="flex justify-between">
+                    <div className="h-6 bg-dark-glass backdrop-blur-sm rounded-2xl w-3/4"></div>
+                    <div className="h-6 w-6 bg-dark-glass backdrop-blur-sm rounded-full"></div>
+                </div>
+                <div className="space-y-3 mt-4">
+                    <div className="h-4 bg-dark-glass backdrop-blur-sm rounded-2xl w-2/3"></div>
+                    <div className="h-4 bg-dark-glass backdrop-blur-sm rounded-2xl w-1/2"></div>
+                    <div className="h-4 bg-dark-glass backdrop-blur-sm rounded-2xl w-3/5"></div>
+                </div>
+                <div className="mt-6">
+                    <div className="h-10 bg-dark-glass backdrop-blur-sm rounded-2xl"></div>
+                </div>
             </div>
         </div>
     );
 
     return (
-        <div className="min-h-screen bg-dark-primary py-20 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
+        <div className="min-h-screen bg-dark-primary py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+            {/* Liquid background effect */}
+            <div className="absolute inset-0 bg-liquid-bg opacity-30"></div>
+
+            <div className="max-w-7xl mx-auto relative z-10">
+                {' '}
                 {/* Updated GitHub Repository Notice */}
-                <div className="bg-dark-githubBg border-l-4 border-dark-accent p-4 mb-8 rounded-md">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-                        <div className="hidden sm:block">
-                            <svg
-                                className="h-6 w-6 text-dark-accent"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                            </svg>
-                        </div>
-                        <div className="flex-1">
-                            <p className="text-dark-githubText font-medium text-sm sm:text-base">
-                                <span className="block sm:inline">
-                                    All certificates can be validated in my
-                                    GitHub repository:
-                                </span>{' '}
-                                <a
-                                    href="https://github.com/LuisAbrantes/Certificates"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 text-dark-accent hover:text-dark-muted break-words"
+                <div className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl p-6 mb-8 shadow-glass hover:shadow-glass-hover transition-all duration-500 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-purple-glass opacity-10"></div>
+                    <div className="absolute inset-0 bg-shimmer bg-no-repeat opacity-0 hover:opacity-10 transition-opacity duration-500"></div>
+
+                    <div className="relative z-10">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                            <div className="hidden sm:block">
+                                <svg
+                                    className="h-6 w-6 text-dark-accent"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
                                 >
-                                    <svg
-                                        className="h-4 w-4 sm:hidden"
-                                        fill="currentColor"
-                                        viewBox="0 0 24 24"
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                </svg>
+                            </div>
+                            <div className="flex-1">
+                                <p className="text-dark-text font-medium text-sm sm:text-base">
+                                    <span className="block sm:inline">
+                                        All certificates can be validated in my
+                                        GitHub repository:
+                                    </span>{' '}
+                                    <a
+                                        href="https://github.com/LuisAbrantes/Certificates"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-1 text-dark-accent hover:text-dark-accentHover break-words transition-colors duration-300"
                                     >
-                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                    </svg>
-                                    github.com/LuisAbrantes/Certificates
-                                </a>
+                                        <svg
+                                            className="h-4 w-4 sm:hidden"
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                        </svg>
+                                        github.com/LuisAbrantes/Certificates
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>{' '}
+                {/* Header */}
+                <div className="text-center mb-16">
+                    <div className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl p-8 shadow-glass hover:shadow-glass-hover transition-all duration-500 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-purple-glass opacity-20"></div>
+                        <div className="absolute inset-0 bg-shimmer bg-no-repeat opacity-0 hover:opacity-10 transition-opacity duration-500"></div>
+
+                        <div className="relative z-10">
+                            <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-dark-accent to-dark-accentHover bg-clip-text text-transparent">
+                                Academic Achievements
+                            </h1>
+                            <p className="text-xl text-dark-muted">
+                                My qualifications and certifications
                             </p>
                         </div>
                     </div>
                 </div>
-
-                <h1 className="text-4xl font-bold text-dark-text text-center mb-4">
-                    Academic Achievements
-                </h1>
-                <p className="text-xl text-dark-muted text-center mb-12">
-                    My qualifications and certifications
-                </p>
-
                 <SearchBar setSearchQuery={setSearchQuery} />
-
                 <div className="flex justify-center gap-4 mb-12 flex-wrap">
                     <FilterButton type="all" label="All" />
                     <FilterButton type="courses" label="Courses" />
@@ -667,7 +708,6 @@ const Certificates = () => {
                     <FilterButton type="events" label="Events" />
                     <FilterButton type="hackathons" label="Hackathons" />
                 </div>
-
                 <AnimatePresence mode="wait">
                     <motion.div
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -699,61 +739,75 @@ const Certificates = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
                                     transition={{ duration: 0.2 }}
-                                    className="bg-dark-secondary rounded-xl shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-xl transition-all duration-300 flex flex-col h-full"
+                                    className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl shadow-glass hover:shadow-glass-hover transform hover:scale-105 transition-all duration-500 flex flex-col h-full relative overflow-hidden group"
                                 >
-                                    {certificate.image && (
-                                        <img
-                                            src={certificate.image}
-                                            alt={certificate.title}
-                                            className={`w-full h-48 object-cover ${
-                                                certificate.imagePosition || ''
-                                            }`}
-                                        />
-                                    )}
-                                    <div className="p-6 flex flex-col h-full">
-                                        <div className="flex justify-between items-start mb-4">
-                                            <h3 className="text-xl font-semibold text-dark-text">
-                                                {certificate.title}
-                                            </h3>
-                                            {getTypeIcon(certificate.type)}
-                                        </div>
-                                        <div className="space-y-2">
-                                            <p className="text-dark-muted">
-                                                <span className="font-medium">
-                                                    Institution:
-                                                </span>{' '}
-                                                {certificate.institution}
-                                            </p>
-                                            {certificate.type !==
-                                                'extracurricular' && (
+                                    <div className="absolute inset-0 bg-purple-glass opacity-5 group-hover:opacity-15 transition-opacity duration-500"></div>
+                                    <div className="absolute inset-0 bg-shimmer bg-no-repeat animate-glass-shimmer opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+
+                                    <div className="relative z-10 flex flex-col h-full">
+                                        {certificate.image && (
+                                            <div className="relative overflow-hidden rounded-t-3xl">
+                                                <img
+                                                    src={certificate.image}
+                                                    alt={certificate.title}
+                                                    className={`w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110 ${
+                                                        certificate.imagePosition ||
+                                                        ''
+                                                    }`}
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-dark-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                            </div>
+                                        )}
+                                        <div className="p-6 flex flex-col h-full">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <h3 className="text-xl font-semibold text-dark-text group-hover:text-dark-accentHover transition-colors duration-300">
+                                                    {certificate.title}
+                                                </h3>
+                                                <div className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-2xl p-2 shadow-inner-glass">
+                                                    {getTypeIcon(
+                                                        certificate.type
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div className="space-y-2">
                                                 <p className="text-dark-muted">
                                                     <span className="font-medium">
-                                                        Completion:
+                                                        Institution:
                                                     </span>{' '}
-                                                    {certificate.date}
+                                                    {certificate.institution}
                                                 </p>
-                                            )}
-                                            {certificate.type !==
-                                                'extracurricular' && (
-                                                <p className="text-dark-muted">
-                                                    <span className="font-medium">
-                                                        Duration:
-                                                    </span>{' '}
-                                                    {certificate.hours} hours
-                                                </p>
-                                            )}
-                                        </div>
-                                        <div className="mt-auto pt-6">
-                                            <button
-                                                onClick={() =>
-                                                    handleViewCertificate(
-                                                        certificate
-                                                    )
-                                                }
-                                                className="w-full bg-dark-accent text-white py-2 px-4 rounded-lg hover:bg-dark-accent-hover transition-colors duration-300"
-                                            >
-                                                View Details
-                                            </button>
+                                                {certificate.type !==
+                                                    'extracurricular' && (
+                                                    <p className="text-dark-muted">
+                                                        <span className="font-medium">
+                                                            Completion:
+                                                        </span>{' '}
+                                                        {certificate.date}
+                                                    </p>
+                                                )}
+                                                {certificate.type !==
+                                                    'extracurricular' && (
+                                                    <p className="text-dark-muted">
+                                                        <span className="font-medium">
+                                                            Duration:
+                                                        </span>{' '}
+                                                        {certificate.hours}{' '}
+                                                        hours
+                                                    </p>
+                                                )}
+                                            </div>
+                                            <div className="mt-auto pt-6">
+                                                <button
+                                                    onClick={() =>
+                                                        handleViewCertificate(
+                                                            certificate
+                                                        )
+                                                    }
+                                                    className="w-full bg-gradient-to-r from-dark-accent to-dark-accentHover text-dark-text py-3 px-4 rounded-2xl font-medium transition-all duration-300 hover:scale-105 shadow-purple-glow hover:shadow-purple-glow-lg"
+                                                >
+                                                    View Details
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </motion.div>

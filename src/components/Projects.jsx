@@ -234,124 +234,154 @@ const ProjectCard = ({ project, onClick }) => (
     <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        whileHover={{ y: -5 }}
-        className="bg-dark-secondary rounded-lg overflow-hidden shadow-xl"
+        whileHover={{ y: -8, scale: 1.02 }}
+        className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl overflow-hidden shadow-glass hover:shadow-glass-hover transition-all duration-500 group relative"
     >
-        <div className="relative group aspect-[16/9]">
-            <img
-                src={project.thumbnail}
-                alt={project.title}
-                className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <button
-                    onClick={() => onClick(project)}
-                    className="bg-dark-accent text-white px-4 py-2 rounded-md hover:bg-dark-accent transition"
-                >
-                    View Details
-                </button>
-            </div>
-        </div>
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-purple-glass opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+        <div className="absolute inset-0 bg-shimmer bg-no-repeat animate-glass-shimmer opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
 
-        <div className="p-4">
-            <h3 className="text-xl font-bold text-gray-200 mb-2">
-                {project.title}
-            </h3>
-            <p className="text-gray-400 mb-4">{project.shortDescription}</p>
-
-            <div className="flex flex-wrap gap-2 mb-4">
-                {project.technologies.map(tech => (
-                    <span
-                        key={tech}
-                        className="px-2 py-1 bg-dark-accent bg-opacity-20 text-dark-accent rounded-md text-sm flex items-center gap-1"
+        <div className="relative z-10">
+            <div className="relative group-hover:scale-105 transition-transform duration-500 aspect-[16/9] overflow-hidden">
+                <img
+                    src={project.thumbnail}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                />
+                {/* Glass Overlay */}
+                <div className="absolute inset-0 bg-dark-glass backdrop-blur-sm opacity-0 group-hover:opacity-80 transition-all duration-500 flex items-center justify-center">
+                    <button
+                        onClick={() => onClick(project)}
+                        className="bg-dark-accent hover:bg-dark-accentHover text-dark-text px-6 py-3 rounded-2xl font-medium transition-all duration-300 shadow-purple-glow hover:shadow-purple-glow-lg backdrop-blur-md border border-dark-accent transform hover:scale-105"
                     >
-                        {techIcons[tech]} {tech}
-                    </span>
-                ))}
+                        View Details
+                    </button>
+                </div>
             </div>
 
-            <div className="flex gap-4">
-                <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-gray-400 hover:text-dark-accent transition"
-                >
-                    <Github size={18} /> Code
-                </a>
-                {project.demo && (
+            <div className="p-6">
+                <h3 className="text-xl font-bold text-dark-text mb-3 group-hover:text-dark-accentHover transition-colors duration-300">
+                    {project.title}
+                </h3>
+                <p className="text-dark-muted mb-4 leading-relaxed">
+                    {project.shortDescription}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map(tech => (
+                        <span
+                            key={tech}
+                            className="px-3 py-1 bg-dark-glass backdrop-blur-md border border-dark-glassBorder text-dark-accent rounded-xl text-sm flex items-center gap-1 hover:border-dark-purpleGlassBorder transition-colors duration-300"
+                        >
+                            {techIcons[tech]} {tech}
+                        </span>
+                    ))}
+                </div>
+
+                <div className="flex gap-4">
                     <a
-                        href={project.demo}
+                        href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-gray-400 hover:text-dark-accent transition"
+                        className="flex items-center gap-2 text-dark-muted hover:text-dark-accent transition-colors duration-300"
                     >
-                        <ExternalLink size={18} /> Demo
+                        <Github size={18} /> Code
                     </a>
-                )}
-                {project.devpost && (
-                    <a
-                        href={project.devpost}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-gray-400 hover:text-dark-accent transition"
-                    >
-                        <Hexagon size={18} className="relative">
-                            <text
-                                x="50%"
-                                y="52%"
-                                dominantBaseline="middle"
-                                textAnchor="middle"
-                                className="fill-current text-xs font-bold"
-                                style={{ transform: 'translateY(1px)' }}
-                            >
-                                D
-                            </text>
-                        </Hexagon>{' '}
-                        Devpost
-                    </a>
-                )}
-                {project.youtube && (
-                    <a
-                        href={project.youtube}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-gray-400 hover:text-dark-accent transition"
-                    >
-                        <Youtube size={18} /> Video
-                    </a>
-                )}
+                    {project.demo && (
+                        <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-dark-muted hover:text-dark-accent transition-colors duration-300"
+                        >
+                            <ExternalLink size={18} /> Demo
+                        </a>
+                    )}
+                    {project.devpost && (
+                        <a
+                            href={project.devpost}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-dark-muted hover:text-dark-accent transition-colors duration-300"
+                        >
+                            <Hexagon size={18} className="relative">
+                                <text
+                                    x="50%"
+                                    y="52%"
+                                    dominantBaseline="middle"
+                                    textAnchor="middle"
+                                    className="fill-current text-xs font-bold"
+                                    style={{ transform: 'translateY(1px)' }}
+                                >
+                                    D
+                                </text>
+                            </Hexagon>{' '}
+                            Devpost
+                        </a>
+                    )}
+                    {project.youtube && (
+                        <a
+                            href={project.youtube}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-dark-muted hover:text-dark-accent transition-colors duration-300"
+                        >
+                            <Youtube size={18} /> Video
+                        </a>
+                    )}
+                </div>
             </div>
         </div>
     </motion.div>
 );
 
 const ProjectModal = ({ project, onClose }) => (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
         <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="bg-dark-secondary rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-glass relative"
         >
-            <div className="p-6">
-                <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-64 object-cover rounded-lg mb-6"
-                />
-                <h2 className="text-2xl font-bold text-gray-200 mb-4">
+            {/* Background Effects */}
+            <div className="absolute inset-0 bg-purple-glass opacity-10 rounded-3xl"></div>
+            <div className="absolute inset-0 bg-shimmer bg-no-repeat animate-glass-shimmer opacity-5 rounded-3xl"></div>
+
+            <div className="relative z-10 p-8">
+                <div className="relative rounded-2xl overflow-hidden mb-8">
+                    <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-64 object-cover"
+                    />
+                    <div className="absolute inset-0 bg-dark-glass backdrop-blur-sm opacity-20"></div>
+                </div>
+
+                <h2 className="text-3xl font-bold text-dark-text mb-6 bg-gradient-to-r from-dark-accent to-dark-accentHover bg-clip-text text-transparent">
                     {project.title}
                 </h2>
-                <p className="text-gray-400 mb-6">{project.fullDescription}</p>
 
-                <h3 className="text-lg font-semibold text-gray-300 mb-3">
-                    Highlights
-                </h3>
-                <ul className="list-disc list-inside text-gray-400 mb-6">
-                    {project.highlights.map((highlight, index) => (
-                        <li key={index}>{highlight}</li>
-                    ))}
-                </ul>
+                <div className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-2xl p-6 mb-6">
+                    <p className="text-dark-text leading-relaxed text-lg">
+                        {project.fullDescription}
+                    </p>
+                </div>
+
+                <div className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-2xl p-6 mb-6">
+                    <h3 className="text-xl font-semibold text-dark-accent mb-4">
+                        Highlights
+                    </h3>
+                    <ul className="space-y-2">
+                        {project.highlights.map((highlight, index) => (
+                            <li
+                                key={index}
+                                className="text-dark-text flex items-start gap-3"
+                            >
+                                <span className="text-dark-accent mt-1">•</span>
+                                {highlight}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
 
                 <div className="flex gap-4 flex-wrap">
                     <a
@@ -409,14 +439,14 @@ const ProjectModal = ({ project, onClose }) => (
                             href={project.slides}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-dark-accent text-white px-6 py-2 rounded-md hover:bg-dark-accent transition flex items-center gap-2"
+                            className="bg-dark-accent hover:bg-dark-accentHover text-dark-text px-6 py-3 rounded-2xl font-medium transition-all duration-300 flex items-center gap-2 shadow-purple-glow hover:shadow-purple-glow-lg"
                         >
                             <FileText size={18} /> View Slides
                         </a>
                     )}
                     <button
                         onClick={onClose}
-                        className="px-6 py-2 border border-gray-600 text-gray-400 rounded-md hover:bg-dark-hover transition"
+                        className="px-6 py-3 bg-dark-glass backdrop-blur-md border border-dark-glassBorder text-dark-muted hover:text-dark-text hover:border-dark-purpleGlassBorder rounded-2xl font-medium transition-all duration-300"
                     >
                         Close
                     </button>
@@ -438,25 +468,42 @@ const Projects = () => {
             : projectsData.filter(p => p.category === filter);
 
     return (
-        <section className="py-20 px-4 bg-dark-primary">
-            <div className="container mx-auto">
-                <motion.h1
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-4xl font-bold text-gray-200 mb-8 text-center"
-                >
-                    My Projects
-                </motion.h1>
+        <section className="py-20 px-4 bg-transparent min-h-screen relative">
+            {/* Liquid Glass Container */}
+            <div className="container mx-auto max-w-7xl relative">
+                {/* Header with Glass Effect */}
+                <div className="text-center mb-16 relative">
+                    <div className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl p-8 shadow-glass hover:shadow-glass-hover transition-all duration-500 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-purple-glass opacity-20"></div>
+                        <div className="absolute inset-0 bg-shimmer bg-no-repeat animate-glass-shimmer opacity-10"></div>
 
+                        <div className="relative z-10">
+                            <motion.h1
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="text-5xl font-bold mb-4 bg-gradient-to-r from-dark-accent to-dark-accentHover bg-clip-text text-transparent animate-gradient-x"
+                            >
+                                My Projects
+                            </motion.h1>
+                            <p className="text-xl text-dark-muted max-w-2xl mx-auto">
+                                Explore my portfolio of innovative solutions,
+                                from hackathon projects to open-source
+                                contributions
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Filter Buttons with Glass Effect */}
                 <div className="flex justify-center gap-4 mb-12 flex-wrap">
                     {categories.map(category => (
                         <button
                             key={category}
                             onClick={() => setFilter(category)}
-                            className={`px-4 py-2 rounded-md transition ${
+                            className={`px-6 py-3 rounded-2xl font-medium transition-all duration-300 backdrop-blur-md border ${
                                 filter === category
-                                    ? 'bg-dark-accent text-white'
-                                    : 'bg-dark-secondary text-gray-400 hover:bg-dark-hover'
+                                    ? 'bg-dark-accent text-dark-text shadow-purple-glow border-dark-accent'
+                                    : 'bg-dark-glass hover:bg-dark-glassHover text-dark-muted hover:text-dark-text border-dark-glassBorder hover:border-dark-purpleGlassBorder'
                             }`}
                         >
                             {category.charAt(0).toUpperCase() +
@@ -465,6 +512,7 @@ const Projects = () => {
                     ))}
                 </div>
 
+                {/* Projects Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredProjects.map(project => (
                         <ProjectCard

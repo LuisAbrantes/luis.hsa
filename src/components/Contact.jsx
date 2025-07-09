@@ -39,7 +39,6 @@ const Contact = () => {
         setIsLoading(true);
 
         try {
-            // Create mailto URL with form data
             const mailtoUrl = `mailto:luis.hsa@gmail.com?subject=Portfolio Contact from ${
                 formData.name
             }&body=${encodeURIComponent(
@@ -88,268 +87,302 @@ const Contact = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-dark-primary to-purple-900">
-            <div className="text-center py-20 px-4 animate-fadeIn">
-                <h1 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 hover:scale-105 transition-transform">
-                    Let&apos;s Create Something Amazing
-                </h1>
-                <p className="text-dark-text mt-4 text-xl animate-slideUp">
-                    Choose how you want to connect with me
-                </p>
-            </div>
+        <div className="min-h-screen bg-dark-primary relative overflow-hidden">
+            {/* Liquid background effect */}
+            <div className="absolute inset-0 bg-liquid-bg opacity-30"></div>{' '}
+            <div className="relative z-10">
+                <div className="text-center py-20 px-4">
+                    <div className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl p-8 max-w-4xl mx-auto shadow-glass hover:shadow-glass-hover transition-all duration-500 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-purple-glass opacity-20"></div>
+                        <div className="absolute inset-0 bg-shimmer bg-no-repeat opacity-0 hover:opacity-10 transition-opacity duration-500"></div>
 
-            {/* New Highlighted Social Links at Top */}
-            <div className="max-w-6xl mx-auto px-4 mt-6 mb-6">
-                <div className="bg-dark-secondary p-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                    <h2 className="text-2xl font-bold mb-4 text-dark-accent text-center">
-                        Connect With Me
-                    </h2>
-                    <div className="flex justify-center space-x-6">
-                        {socialLinks.map((social, index) => (
-                            <a
-                                key={index}
-                                href={social.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-dark-accent hover:text-purple-400 transition-all duration-300 transform hover:scale-125 hover:rotate-6"
-                            >
-                                {social.icon}
-                            </a>
-                        ))}
+                        <div className="relative z-10">
+                            <h1 className="text-5xl font-bold bg-gradient-to-r from-dark-accent to-dark-accentHover bg-clip-text text-transparent">
+                                Let&apos;s Create Something Amazing
+                            </h1>
+                            <p className="text-dark-muted mt-4 text-xl">
+                                Choose how you want to connect with me
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="max-w-6xl mx-auto px-4 mb-20">
-                {!showForm ? (
-                    // Centered service section when form is not shown
-                    <div
-                        className={`max-w-md mx-auto transition-all duration-300 transform ${
-                            isFormVisible
-                                ? 'scale-95 opacity-0'
-                                : 'scale-100 opacity-100'
-                        }`}
-                    >
-                        <div className="bg-dark-secondary p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                            <h2 className="text-2xl font-bold mb-6 text-dark-accent">
-                                Portfolio Development Service
+                {/* New Highlighted Social Links at Top */}
+                <div className="max-w-6xl mx-auto px-4 mt-6 mb-6">
+                    <div className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl p-6 shadow-glass hover:shadow-glass-hover transition-all duration-500 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-purple-glass opacity-15"></div>
+                        <div className="absolute inset-0 bg-shimmer bg-no-repeat opacity-0 hover:opacity-5 transition-opacity duration-500"></div>
+
+                        <div className="relative z-10">
+                            <h2 className="text-2xl font-bold mb-4 text-dark-accent text-center">
+                                Connect With Me
                             </h2>
-                            <div className="space-y-4">
-                                <div className="bg-dark-primary p-4 rounded-lg transform transition-transform hover:scale-105">
-                                    <h3 className="text-xl font-bold text-purple-400">
-                                        Special Offer: $15
-                                    </h3>
-                                    <p className="mt-2">
-                                        Get your professional portfolio website
-                                        based on this template!
-                                    </p>
-                                </div>
-                                <ul className="space-y-2">
-                                    {[
-                                        '✨ Personalized Design',
-                                        '📱 Mobile Responsive',
-                                        '🎨 Custom Color Schemes',
-                                        '🚀 SEO Optimization',
-                                        '💻 Deployment Included'
-                                    ].map((feature, index) => (
-                                        <li
-                                            key={index}
-                                            className="flex items-center space-x-2 hover:translate-x-2 transition-transform duration-300 animate-slideIn"
-                                            style={{
-                                                animationDelay: `${
-                                                    index * 100
-                                                }ms`
-                                            }}
-                                        >
-                                            <span>{feature}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <button
-                                    onClick={handleShowForm}
-                                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 py-3 rounded-lg font-bold transition-all duration-300 hover:opacity-90 hover:scale-105"
-                                >
-                                    Get Started
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                ) : (
-                    // Side by side layout when form is shown
-                    <div
-                        className={`grid md:grid-cols-2 gap-8 transition-all duration-300 transform ${
-                            !isFormVisible
-                                ? 'scale-95 opacity-0'
-                                : 'scale-100 opacity-100'
-                        }`}
-                    >
-                        <div className="bg-dark-secondary p-6 rounded-xl shadow-lg relative">
-                            <button
-                                onClick={handleCloseForm}
-                                className="absolute right-4 top-4 text-dark-accent hover:text-purple-400 transition-colors"
-                                aria-label="Close form"
-                            >
-                                <X size={20} />
-                            </button>
-                            <h2 className="text-2xl font-bold mb-6 text-dark-accent">
-                                Send a Message
-                            </h2>
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                <div>
-                                    <label htmlFor="name" className="sr-only">
-                                        Name
-                                    </label>
-                                    <input
-                                        id="name"
-                                        type="text"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleInputChange}
-                                        placeholder="Your Name"
-                                        required
-                                        className={`w-full p-3 rounded-lg bg-dark-primary border ${
-                                            errors.name
-                                                ? 'border-red-500'
-                                                : 'border-dark-hover'
-                                        } focus:border-purple-500 transition-all duration-300`}
-                                    />
-                                    {errors.name && (
-                                        <p className="text-red-400 text-sm mt-1">
-                                            {errors.name}
-                                        </p>
-                                    )}
-                                </div>
-
-                                <div>
-                                    <label htmlFor="email" className="sr-only">
-                                        Email
-                                    </label>
-                                    <input
-                                        id="email"
-                                        type="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleInputChange}
-                                        placeholder="Your Email"
-                                        required
-                                        className={`w-full p-3 rounded-lg bg-dark-primary border ${
-                                            errors.email
-                                                ? 'border-red-500'
-                                                : 'border-dark-hover'
-                                        } focus:border-purple-500 transition-all duration-300`}
-                                    />
-                                    {errors.email && (
-                                        <p className="text-red-400 text-sm mt-1">
-                                            {errors.email}
-                                        </p>
-                                    )}
-                                </div>
-
-                                <div>
-                                    <label
-                                        htmlFor="message"
-                                        className="sr-only"
+                            <div className="flex justify-center space-x-6">
+                                {socialLinks.map((social, index) => (
+                                    <div
+                                        key={index}
+                                        className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-2xl p-3 hover:border-dark-purpleGlassBorder transition-all duration-300 transform hover:scale-110 shadow-inner-glass group"
                                     >
-                                        Message
-                                    </label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        value={formData.message}
-                                        onChange={handleInputChange}
-                                        placeholder="Your Message"
-                                        required
-                                        rows="4"
-                                        className={`w-full p-3 rounded-lg bg-dark-primary border ${
-                                            errors.message
-                                                ? 'border-red-500'
-                                                : 'border-dark-hover'
-                                        } focus:border-purple-500 transition-all duration-300`}
-                                    />
-                                    {errors.message && (
-                                        <p className="text-red-400 text-sm mt-1">
-                                            {errors.message}
-                                        </p>
-                                    )}
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    disabled={isLoading}
-                                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 py-3 rounded-lg font-bold
-                                             transition-all duration-300 hover:opacity-90 hover:scale-105 
-                                             disabled:opacity-50 disabled:hover:scale-100"
-                                >
-                                    {isLoading ? (
-                                        <span className="flex items-center justify-center">
-                                            <span className="animate-spin mr-2">
-                                                ⚡
-                                            </span>
-                                            Sending...
-                                        </span>
-                                    ) : (
-                                        'Send Message'
-                                    )}
-                                </button>
-                                {submitStatus === 'success' && (
-                                    <p className="text-green-400 text-center animate-fadeIn">
-                                        Message sent successfully!
-                                    </p>
-                                )}
-                                {submitStatus === 'error' && (
-                                    <p className="text-red-400 text-center animate-fadeIn">
-                                        Failed to send message. Please try
-                                        again.
-                                    </p>
-                                )}
-                            </form>
-                        </div>
-
-                        <div className="bg-dark-secondary p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                            <h2 className="text-2xl font-bold mb-6 text-dark-accent">
-                                Portfolio Development Service
-                            </h2>
-                            <div className="space-y-4">
-                                <div className="bg-dark-primary p-4 rounded-lg transform transition-transform hover:scale-105">
-                                    <h3 className="text-xl font-bold text-purple-400">
-                                        Special Offer: $15
-                                    </h3>
-                                    <p className="mt-2">
-                                        Get your professional portfolio website
-                                        based on this template!
-                                    </p>
-                                </div>
-                                <ul className="space-y-2">
-                                    {[
-                                        '✨ Personalized Design',
-                                        '📱 Mobile Responsive',
-                                        '🎨 Custom Color Schemes',
-                                        '🚀 SEO Optimization',
-                                        '💻 Deployment Included'
-                                    ].map((feature, index) => (
-                                        <li
-                                            key={index}
-                                            className="flex items-center space-x-2 hover:translate-x-2 transition-transform duration-300 animate-slideIn"
-                                            style={{
-                                                animationDelay: `${
-                                                    index * 100
-                                                }ms`
-                                            }}
+                                        <a
+                                            href={social.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-dark-accent hover:text-dark-accentHover transition-all duration-300 group-hover:scale-110 block"
                                         >
-                                            <span>{feature}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <button
-                                    onClick={() => setShowForm(true)}
-                                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 py-3 rounded-lg font-bold transition-all duration-300 hover:opacity-90 hover:scale-105"
-                                >
-                                    Get Started
-                                </button>
+                                            {social.icon}
+                                        </a>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
-                )}
+                </div>
+
+                <div className="max-w-6xl mx-auto px-4 mb-20">
+                    {!showForm ? (
+                        // Centered service section when form is not shown
+                        <div
+                            className={`max-w-md mx-auto transition-all duration-300 transform ${
+                                isFormVisible
+                                    ? 'scale-95 opacity-0'
+                                    : 'scale-100 opacity-100'
+                            }`}
+                        >
+                            <div className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl p-8 shadow-glass hover:shadow-glass-hover transition-all duration-500 relative overflow-hidden">
+                                <div className="absolute inset-0 bg-purple-glass opacity-15"></div>
+                                <div className="absolute inset-0 bg-shimmer bg-no-repeat opacity-0 hover:opacity-5 transition-opacity duration-500"></div>
+
+                                <div className="relative z-10">
+                                    <h2 className="text-2xl font-bold mb-6 text-dark-accent">
+                                        Portfolio Development Service
+                                    </h2>
+                                    <div className="space-y-4">
+                                        <div className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-2xl p-6 hover:border-dark-purpleGlassBorder transition-all duration-300 transform hover:scale-105 shadow-inner-glass">
+                                            <h3 className="text-xl font-bold text-dark-accent">
+                                                Special Offer: $15
+                                            </h3>
+                                            <p className="mt-2 text-dark-text">
+                                                Get your professional portfolio
+                                                website based on this template!
+                                            </p>
+                                        </div>
+                                        <ul className="space-y-2">
+                                            {[
+                                                '✨ Personalized Design',
+                                                '📱 Mobile Responsive',
+                                                '🎨 Custom Color Schemes',
+                                                '🚀 SEO Optimization',
+                                                '💻 Deployment Included'
+                                            ].map((feature, index) => (
+                                                <li
+                                                    key={index}
+                                                    className="flex items-center space-x-2 hover:translate-x-2 transition-transform duration-300 text-dark-text"
+                                                >
+                                                    <span>{feature}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <button
+                                            onClick={handleShowForm}
+                                            className="w-full bg-gradient-to-r from-dark-accent to-dark-accentHover py-3 rounded-2xl font-bold transition-all duration-300 hover:scale-105 shadow-purple-glow hover:shadow-purple-glow-lg text-dark-text"
+                                        >
+                                            Get Started
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        // Side by side layout when form is shown
+                        <div
+                            className={`grid md:grid-cols-2 gap-8 transition-all duration-300 transform ${
+                                !isFormVisible
+                                    ? 'scale-95 opacity-0'
+                                    : 'scale-100 opacity-100'
+                            }`}
+                        >
+                            <div className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl p-8 shadow-glass hover:shadow-glass-hover transition-all duration-500 relative overflow-hidden">
+                                <div className="absolute inset-0 bg-purple-glass opacity-15"></div>
+                                <div className="absolute inset-0 bg-shimmer bg-no-repeat opacity-0 hover:opacity-5 transition-opacity duration-500"></div>
+
+                                <div className="relative z-10">
+                                    <button
+                                        onClick={handleCloseForm}
+                                        className="absolute right-4 top-4 text-dark-accent hover:text-dark-accentHover transition-colors z-20"
+                                        aria-label="Close form"
+                                    >
+                                        <X size={20} />
+                                    </button>
+                                    <h2 className="text-2xl font-bold mb-6 text-dark-accent">
+                                        Send a Message
+                                    </h2>
+                                    <form
+                                        onSubmit={handleSubmit}
+                                        className="space-y-4"
+                                    >
+                                        <div>
+                                            <label
+                                                htmlFor="name"
+                                                className="sr-only"
+                                            >
+                                                Name
+                                            </label>
+                                            <input
+                                                id="name"
+                                                type="text"
+                                                name="name"
+                                                value={formData.name}
+                                                onChange={handleInputChange}
+                                                placeholder="Your Name"
+                                                required
+                                                className={`w-full p-3 rounded-2xl bg-dark-glass backdrop-blur-md border ${
+                                                    errors.name
+                                                        ? 'border-red-500'
+                                                        : 'border-dark-glassBorder hover:border-dark-purpleGlassBorder'
+                                                } focus:border-dark-accent transition-all duration-300 text-dark-text placeholder-dark-muted`}
+                                            />
+                                            {errors.name && (
+                                                <p className="text-red-400 text-sm mt-1">
+                                                    {errors.name}
+                                                </p>
+                                            )}
+                                        </div>
+
+                                        <div>
+                                            <label
+                                                htmlFor="email"
+                                                className="sr-only"
+                                            >
+                                                Email
+                                            </label>
+                                            <input
+                                                id="email"
+                                                type="email"
+                                                name="email"
+                                                value={formData.email}
+                                                onChange={handleInputChange}
+                                                placeholder="Your Email"
+                                                required
+                                                className={`w-full p-3 rounded-2xl bg-dark-glass backdrop-blur-md border ${
+                                                    errors.email
+                                                        ? 'border-red-500'
+                                                        : 'border-dark-glassBorder hover:border-dark-purpleGlassBorder'
+                                                } focus:border-dark-accent transition-all duration-300 text-dark-text placeholder-dark-muted`}
+                                            />
+                                            {errors.email && (
+                                                <p className="text-red-400 text-sm mt-1">
+                                                    {errors.email}
+                                                </p>
+                                            )}
+                                        </div>
+
+                                        <div>
+                                            <label
+                                                htmlFor="message"
+                                                className="sr-only"
+                                            >
+                                                Message
+                                            </label>
+                                            <textarea
+                                                id="message"
+                                                name="message"
+                                                value={formData.message}
+                                                onChange={handleInputChange}
+                                                placeholder="Your Message"
+                                                required
+                                                rows="4"
+                                                className={`w-full p-3 rounded-2xl bg-dark-glass backdrop-blur-md border ${
+                                                    errors.message
+                                                        ? 'border-red-500'
+                                                        : 'border-dark-glassBorder hover:border-dark-purpleGlassBorder'
+                                                } focus:border-dark-accent transition-all duration-300 text-dark-text placeholder-dark-muted resize-none`}
+                                            />
+                                            {errors.message && (
+                                                <p className="text-red-400 text-sm mt-1">
+                                                    {errors.message}
+                                                </p>
+                                            )}
+                                        </div>
+
+                                        <button
+                                            type="submit"
+                                            disabled={isLoading}
+                                            className="w-full bg-gradient-to-r from-dark-accent to-dark-accentHover py-3 rounded-2xl font-bold
+                                                     transition-all duration-300 hover:scale-105 shadow-purple-glow hover:shadow-purple-glow-lg
+                                                     disabled:opacity-50 disabled:hover:scale-100 text-dark-text"
+                                        >
+                                            {isLoading ? (
+                                                <span className="flex items-center justify-center">
+                                                    <span className="animate-spin mr-2">
+                                                        ⚡
+                                                    </span>
+                                                    Sending...
+                                                </span>
+                                            ) : (
+                                                'Send Message'
+                                            )}
+                                        </button>
+                                        {submitStatus === 'success' && (
+                                            <p className="text-green-400 text-center animate-fadeIn">
+                                                Message sent successfully!
+                                            </p>
+                                        )}
+                                        {submitStatus === 'error' && (
+                                            <p className="text-red-400 text-center animate-fadeIn">
+                                                Failed to send message. Please
+                                                try again.
+                                            </p>
+                                        )}
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl p-8 shadow-glass hover:shadow-glass-hover transition-all duration-500 relative overflow-hidden">
+                                <div className="absolute inset-0 bg-purple-glass opacity-15"></div>
+                                <div className="absolute inset-0 bg-shimmer bg-no-repeat opacity-0 hover:opacity-5 transition-opacity duration-500"></div>
+
+                                <div className="relative z-10">
+                                    <h2 className="text-2xl font-bold mb-6 text-dark-accent">
+                                        Portfolio Development Service
+                                    </h2>
+                                    <div className="space-y-4">
+                                        <div className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-2xl p-6 hover:border-dark-purpleGlassBorder transition-all duration-300 transform hover:scale-105 shadow-inner-glass">
+                                            <h3 className="text-xl font-bold text-dark-accent">
+                                                Special Offer: $15
+                                            </h3>
+                                            <p className="mt-2 text-dark-text">
+                                                Get your professional portfolio
+                                                website based on this template!
+                                            </p>
+                                        </div>
+                                        <ul className="space-y-2">
+                                            {[
+                                                '✨ Personalized Design',
+                                                '📱 Mobile Responsive',
+                                                '🎨 Custom Color Schemes',
+                                                '🚀 SEO Optimization',
+                                                '💻 Deployment Included'
+                                            ].map((feature, index) => (
+                                                <li
+                                                    key={index}
+                                                    className="flex items-center space-x-2 hover:translate-x-2 transition-transform duration-300 text-dark-text"
+                                                >
+                                                    <span>{feature}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <button
+                                            onClick={() => setShowForm(true)}
+                                            className="w-full bg-gradient-to-r from-dark-accent to-dark-accentHover py-3 rounded-2xl font-bold transition-all duration-300 hover:scale-105 shadow-purple-glow hover:shadow-purple-glow-lg text-dark-text"
+                                        >
+                                            Get Started
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

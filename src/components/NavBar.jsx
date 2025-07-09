@@ -13,30 +13,33 @@ const NavBar = () => {
     ];
 
     const navLinkClasses = ({ isActive }) =>
-        `px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+        `px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 backdrop-blur-md ${
             isActive
-                ? 'bg-dark-accent text-dark-text'
-                : 'text-dark-muted hover:text-dark-text hover:bg-dark-hover'
+                ? 'bg-dark-accent text-dark-text shadow-purple-glow border border-dark-purpleGlassBorder'
+                : 'text-dark-muted hover:text-dark-text hover:bg-dark-glassHover hover:backdrop-blur-lg hover:border-dark-glassBorder border border-transparent'
         }`;
 
     const mobileNavLinkClasses = ({ isActive }) =>
-        `w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+        `w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 backdrop-blur-md ${
             isActive
-                ? 'bg-dark-accent text-dark-text'
-                : 'text-dark-muted hover:text-dark-text hover:bg-dark-hover'
+                ? 'bg-dark-accent text-dark-text shadow-purple-glow border border-dark-purpleGlassBorder'
+                : 'text-dark-muted hover:text-dark-text hover:bg-dark-glassHover hover:backdrop-blur-lg hover:border-dark-glassBorder border border-transparent'
         }`;
 
     return (
-        <nav className="bg-dark-navbar">
-            <div className="max-w-7xl mx-auto px-2 sm:px-4">
+        <nav className="bg-dark-glass backdrop-blur-xl border-b border-dark-glassBorder sticky top-0 z-50 shadow-glass">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
                 <div className="h-16 flex items-center justify-between">
-                    <span className="text-dark-text font-bold text-lg sm:text-xl">
-                        Portfolio
-                    </span>
+                    <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-dark-accent to-dark-accentHover rounded-lg animate-pulse-glow"></div>
+                        <span className="text-dark-text font-bold text-lg sm:text-xl bg-gradient-to-r from-dark-accent to-dark-accentHover bg-clip-text text-transparent">
+                            Portfolio
+                        </span>
+                    </div>
 
                     {/* Hamburger Button */}
                     <button
-                        className="sm:hidden text-dark-text hover:text-dark-accent"
+                        className="sm:hidden text-dark-text hover:text-dark-accent p-2 rounded-lg hover:bg-dark-glassHover backdrop-blur-md transition-all duration-300"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     >
                         <svg
@@ -64,7 +67,7 @@ const NavBar = () => {
                     </button>
 
                     {/* Desktop Menu */}
-                    <ul className="hidden sm:flex sm:space-x-4">
+                    <ul className="hidden sm:flex sm:space-x-2">
                         {navLinks.map(link => (
                             <li key={link.label}>
                                 <NavLink
@@ -80,22 +83,24 @@ const NavBar = () => {
 
                 {/* Mobile Menu */}
                 {isMobileMenuOpen && (
-                    <div className="sm:hidden">
-                        <ul className="flex flex-col space-y-2 px-2 pt-2 pb-3 bg-dark-navbar">
-                            {navLinks.map(link => (
-                                <li key={link.label}>
-                                    <NavLink
-                                        to={link.to}
-                                        className={mobileNavLinkClasses}
-                                        onClick={() =>
-                                            setIsMobileMenuOpen(false)
-                                        }
-                                    >
-                                        {link.label}
-                                    </NavLink>
-                                </li>
-                            ))}
-                        </ul>
+                    <div className="sm:hidden animate-slideUp">
+                        <div className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-2xl m-4 p-4 shadow-glass">
+                            <ul className="flex flex-col space-y-2">
+                                {navLinks.map(link => (
+                                    <li key={link.label}>
+                                        <NavLink
+                                            to={link.to}
+                                            className={mobileNavLinkClasses}
+                                            onClick={() =>
+                                                setIsMobileMenuOpen(false)
+                                            }
+                                        >
+                                            {link.label}
+                                        </NavLink>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 )}
             </div>
