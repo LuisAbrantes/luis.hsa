@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback, memo } from 'react';
 import PropTypes from 'prop-types';
 import {
     BookOpen, // for courses
@@ -8,6 +8,30 @@ import {
     Code2 // for hackathons
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import OptimizedImage from './OptimizedImage';
+import CertificateCard from './CertificateCard';
+
+// Debounce hook
+const useDebounce = (callback, delay) => {
+    const [debounceTimer, setDebounceTimer] = useState(null);
+
+    const debouncedCallback = useCallback(
+        (...args) => {
+            if (debounceTimer) {
+                clearTimeout(debounceTimer);
+            }
+
+            const newTimer = setTimeout(() => {
+                callback(...args);
+            }, delay);
+
+            setDebounceTimer(newTimer);
+        },
+        [callback, delay, debounceTimer]
+    );
+
+    return debouncedCallback;
+};
 
 // Move the certificates array outside the Certificates component
 const certificatesData = [
@@ -266,14 +290,19 @@ const certificatesData = [
 const SearchBar = ({ setSearchQuery }) => {
     const [inputValue, setInputValue] = useState('');
 
+    const debouncedSearch = useDebounce(value => {
+        setSearchQuery(value);
+    }, 300);
+
     const handleClear = () => {
         setInputValue('');
         setSearchQuery('');
     };
 
     const handleChange = e => {
-        setInputValue(e.target.value);
-        setSearchQuery(e.target.value);
+        const value = e.target.value;
+        setInputValue(value);
+        debouncedSearch(value);
     };
     return (
         <div className="w-full max-w-md mx-auto mb-8">
@@ -339,13 +368,13 @@ const Certificates = () => {
     const [showModal, setShowModal] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
 
-    const handleFilter = type => {
+    const handleFilter = useCallback(type => {
         setLoading(true);
         setFilter(type);
         setTimeout(() => setLoading(false), 150);
-    };
+    }, []);
 
-    const getTypeIcon = type => {
+    const getTypeIcon = useCallback(type => {
         const iconProps = {
             size: 24,
             className: 'text-dark-accent'
@@ -365,7 +394,7 @@ const Certificates = () => {
             default:
                 return null;
         }
-    };
+    }, []);
 
     const handleViewCertificate = certificate => {
         setSelectedCertificate(certificate);
@@ -427,7 +456,7 @@ const Certificates = () => {
                                 {/* Certificate Image */}
                                 {certificate.image && (
                                     <div className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-3xl p-2 shadow-inner-glass">
-                                        <img
+                                        <OptimizedImage
                                             src={certificate.image}
                                             alt={certificate.title}
                                             className={`w-full h-64 object-cover rounded-2xl ${
@@ -565,24 +594,31 @@ const Certificates = () => {
         onClose: PropTypes.func.isRequired
     };
 
-    // Enhanced useMemo with filtering and search only
+    // Enhanced useMemo with filtering and search optimization
     const { categoryCounts, filteredCertificates } = useMemo(() => {
         const counts = certificatesData.reduce((acc, cert) => {
             acc[cert.type] = (acc[cert.type] || 0) + 1;
             return acc;
         }, {});
 
-        const filtered = certificatesData
-            .filter(cert => filter === 'all' || cert.type === filter)
-            .filter(
+        let filtered = certificatesData;
+
+        // Apply type filter first (more efficient)
+        if (filter !== 'all') {
+            filtered = filtered.filter(cert => cert.type === filter);
+        }
+
+        // Apply search filter only if searchQuery exists
+        if (searchQuery.trim()) {
+            const searchTerm = searchQuery.toLowerCase();
+            filtered = filtered.filter(
                 cert =>
-                    cert.title
-                        .toLowerCase()
-                        .includes(searchQuery.toLowerCase()) ||
-                    cert.institution
-                        .toLowerCase()
-                        .includes(searchQuery.toLowerCase())
+                    cert.title.toLowerCase().includes(searchTerm) ||
+                    cert.institution.toLowerCase().includes(searchTerm) ||
+                    (cert.description &&
+                        cert.description.toLowerCase().includes(searchTerm))
             );
+        }
 
         return {
             categoryCounts: counts,
@@ -590,25 +626,25 @@ const Certificates = () => {
         };
     }, [filter, searchQuery]);
 
-    // Filter button component
-    const FilterButton = ({ type, label }) => (
+    // Memoized Filter button component
+    const FilterButton = memo(({ label, isActive, onClick, count }) => (
         <button
-            onClick={() => handleFilter(type)}
+            onClick={onClick}
             className={`px-6 py-3 rounded-2xl transition-all duration-300 flex items-center space-x-2 backdrop-blur-md border shadow-inner-glass hover:scale-105 transform
                 ${
-                    filter === type
+                    isActive
                         ? 'bg-dark-glass border-dark-purpleGlassBorder text-dark-accent shadow-purple-glow'
                         : 'bg-dark-glass border-dark-glassBorder text-dark-muted hover:text-dark-text hover:border-dark-purpleGlassBorder'
                 }`}
         >
             <span>{label}</span>
             <span className="bg-dark-glass backdrop-blur-sm px-2 py-0.5 rounded-full text-sm border border-dark-glassBorder">
-                {type === 'all'
-                    ? certificatesData.length
-                    : categoryCounts[type] || 0}
+                {count}
             </span>
         </button>
-    ); // Enhanced loading skeleton
+    ));
+
+    FilterButton.displayName = 'FilterButton'; // Enhanced loading skeleton
     const LoadingSkeleton = () => (
         <div className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl p-6 shadow-glass animate-pulse relative overflow-hidden">
             <div className="absolute inset-0 bg-purple-glass opacity-5"></div>
@@ -698,15 +734,42 @@ const Certificates = () => {
                 </div>
                 <SearchBar setSearchQuery={setSearchQuery} />
                 <div className="flex justify-center gap-4 mb-12 flex-wrap">
-                    <FilterButton type="all" label="All" />
-                    <FilterButton type="courses" label="Courses" />
                     <FilterButton
-                        type="extracurricular"
-                        label="Extracurricular"
+                        label="All"
+                        isActive={filter === 'all'}
+                        onClick={() => handleFilter('all')}
+                        count={certificatesData.length}
                     />
-                    <FilterButton type="honors" label="Honors" />
-                    <FilterButton type="events" label="Events" />
-                    <FilterButton type="hackathons" label="Hackathons" />
+                    <FilterButton
+                        label="Courses"
+                        isActive={filter === 'courses'}
+                        onClick={() => handleFilter('courses')}
+                        count={categoryCounts.courses || 0}
+                    />
+                    <FilterButton
+                        label="Extracurricular"
+                        isActive={filter === 'extracurricular'}
+                        onClick={() => handleFilter('extracurricular')}
+                        count={categoryCounts.extracurricular || 0}
+                    />
+                    <FilterButton
+                        label="Honors"
+                        isActive={filter === 'honors'}
+                        onClick={() => handleFilter('honors')}
+                        count={categoryCounts.honors || 0}
+                    />
+                    <FilterButton
+                        label="Events"
+                        isActive={filter === 'events'}
+                        onClick={() => handleFilter('events')}
+                        count={categoryCounts.events || 0}
+                    />
+                    <FilterButton
+                        label="Hackathons"
+                        isActive={filter === 'hackathons'}
+                        onClick={() => handleFilter('hackathons')}
+                        count={categoryCounts.hackathons || 0}
+                    />
                 </div>
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -732,85 +795,11 @@ const Certificates = () => {
                             </motion.div>
                         ) : (
                             filteredCertificates.map(certificate => (
-                                <motion.div
+                                <CertificateCard
                                     key={certificate.id}
-                                    layout
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -20 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="bg-dark-glass backdrop-blur-xl border border-dark-glassBorder rounded-3xl shadow-glass hover:shadow-glass-hover transform hover:scale-105 transition-all duration-500 flex flex-col h-full relative overflow-hidden group"
-                                >
-                                    <div className="absolute inset-0 bg-purple-glass opacity-5 group-hover:opacity-15 transition-opacity duration-500"></div>
-                                    <div className="absolute inset-0 bg-shimmer bg-no-repeat animate-glass-shimmer opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-
-                                    <div className="relative z-10 flex flex-col h-full">
-                                        {certificate.image && (
-                                            <div className="relative overflow-hidden rounded-t-3xl">
-                                                <img
-                                                    src={certificate.image}
-                                                    alt={certificate.title}
-                                                    className={`w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110 ${
-                                                        certificate.imagePosition ||
-                                                        ''
-                                                    }`}
-                                                />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-dark-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                            </div>
-                                        )}
-                                        <div className="p-6 flex flex-col h-full">
-                                            <div className="flex justify-between items-start mb-4">
-                                                <h3 className="text-xl font-semibold text-dark-text group-hover:text-dark-accentHover transition-colors duration-300">
-                                                    {certificate.title}
-                                                </h3>
-                                                <div className="bg-dark-glass backdrop-blur-md border border-dark-glassBorder rounded-2xl p-2 shadow-inner-glass">
-                                                    {getTypeIcon(
-                                                        certificate.type
-                                                    )}
-                                                </div>
-                                            </div>
-                                            <div className="space-y-2">
-                                                <p className="text-dark-muted">
-                                                    <span className="font-medium">
-                                                        Institution:
-                                                    </span>{' '}
-                                                    {certificate.institution}
-                                                </p>
-                                                {certificate.type !==
-                                                    'extracurricular' && (
-                                                    <p className="text-dark-muted">
-                                                        <span className="font-medium">
-                                                            Completion:
-                                                        </span>{' '}
-                                                        {certificate.date}
-                                                    </p>
-                                                )}
-                                                {certificate.type !==
-                                                    'extracurricular' && (
-                                                    <p className="text-dark-muted">
-                                                        <span className="font-medium">
-                                                            Duration:
-                                                        </span>{' '}
-                                                        {certificate.hours}{' '}
-                                                        hours
-                                                    </p>
-                                                )}
-                                            </div>
-                                            <div className="mt-auto pt-6">
-                                                <button
-                                                    onClick={() =>
-                                                        handleViewCertificate(
-                                                            certificate
-                                                        )
-                                                    }
-                                                    className="w-full bg-gradient-to-r from-dark-accent to-dark-accentHover text-dark-text py-3 px-4 rounded-2xl font-medium transition-all duration-300 hover:scale-105 shadow-purple-glow hover:shadow-purple-glow-lg"
-                                                >
-                                                    View Details
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </motion.div>
+                                    certificate={certificate}
+                                    onViewCertificate={handleViewCertificate}
+                                />
                             ))
                         )}
                     </motion.div>
