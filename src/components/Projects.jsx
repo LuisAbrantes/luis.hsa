@@ -1,4 +1,3 @@
-// filepath: /Users/luisabrantes/Documents/luis.hsa/src/components/Projects.jsx
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
@@ -18,38 +17,77 @@ import {
     Braces,
     SquareCode,
     Brain,
-    Terminal
+    Terminal,
+    Mic // New icon for podcasting
 } from 'lucide-react';
 import agrolearn from '../assets/projects/agrolearn.png';
 import quickreadme from '../assets/projects/quickreadme.png';
 import elementaryschoolwebsite from '../assets/projects/elementaryschoolwebsite.png';
 import tutortime from '../assets/projects/tutortime.png';
-import webdevclasses from '../assets/projects/webDevClasses.png'; // Atualizado para imagem real
-import historytestsite from '../assets/projects/historyTestStudyPortal.png'; // Atualizado para imagem real
-import speakScribeImage from '../assets/projects/speakScribe.png'; // Atualizado para imagem real
+import webdevclasses from '../assets/projects/webDevClasses.png';
+import historytestsite from '../assets/projects/historyTestStudyPortal.png';
+import speakScribeImage from '../assets/projects/speakScribe.png';
+import girlTalkAiImage from '../assets/projects/girlTalkAI.png';
 
 const techIcons = {
-    React: <Code2 size={14} className="inline-block" />,
-    Vite: <Zap size={14} className="inline-block" />,
-    'Tailwind CSS': <Palette size={14} className="inline-block" />,
-    Vercel: <Triangle size={14} className="inline-block" />,
-    Python: <Terminal size={14} className="inline-block" />,
-    HandleBars: <Brackets size={14} className="inline-block" />,
-    'Node.js': <FileJson size={14} className="inline-block" />,
-    'Express.js': <SquareCode size={14} className="inline-block" />,
-    MySQL: <Database size={14} className="inline-block" />,
-    Sequelize: <Database size={14} className="inline-block" />,
-    HTML: <Code2 size={14} className="inline-block" />,
-    CSS: <Palette size={14} className="inline-block" />,
-    JavaScript: <Braces size={14} className="inline-block" />,
-    TypeScript: <FileType size={14} className="inline-block" />,
-    Bootstrap: <Palette size={14} className="inline-block" />,
-    'Community Service': <Hexagon size={14} className="inline-block" />,
-    Supabase: <Database size={14} className="inline-block" />,
-    'GPT-3.5 Turbo': <Brain size={14} className="inline-block" />
+    React: <Code2 size={14} className="inline-block text-current" />,
+    Vite: <Zap size={14} className="inline-block text-current" />,
+    'Tailwind CSS': <Palette size={14} className="inline-block text-current" />,
+    Vercel: <Triangle size={14} className="inline-block text-current" />,
+    Python: <Terminal size={14} className="inline-block text-current" />,
+    HandleBars: <Brackets size={14} className="inline-block text-current" />,
+    'Node.js': <FileJson size={14} className="inline-block text-current" />,
+    'Express.js': (
+        <SquareCode size={14} className="inline-block text-current" />
+    ),
+    MySQL: <Database size={14} className="inline-block text-current" />,
+    Sequelize: <Database size={14} className="inline-block text-current" />,
+    HTML: <Code2 size={14} className="inline-block text-current" />,
+    CSS: <Palette size={14} className="inline-block text-current" />,
+    JavaScript: <Braces size={14} className="inline-block text-current" />,
+    TypeScript: <FileType size={14} className="inline-block text-current" />,
+    Bootstrap: <Palette size={14} className="inline-block text-current" />,
+    'Community Service': (
+        <Hexagon size={14} className="inline-block text-current" />
+    ),
+    Supabase: <Database size={14} className="inline-block text-current" />,
+    'GPT-3.5 Turbo': <Brain size={14} className="inline-block text-current" />,
+    Firestore: <Database size={14} className="inline-block text-current" />,
+    'Murf.ai': <Mic size={14} className="inline-block text-current" />,
+    Llama: <Brain size={14} className="inline-block text-current" />
 };
 
 const projectsData = [
+    {
+        id: 8,
+        title: 'GirlTalk AI',
+        shortDescription:
+            'AI-powered platform that generates personalized podcast clips to provide advice and support.',
+        fullDescription: `Inspired by the need for a relatable female role model, GirlTalk AI was developed for the UC Berkeley AI Hackathon. It allows users to write their concerns into a chatbox and receive a personalized podcast clip from our AI host, Aisha. The platform leverages Llama API to generate personalized, empathetic text responses tailored to each user's specific situation, while Murf.ai API transforms these responses into humanized voice clips that make girls feel welcomed and supported. This creates a safe, supportive space for users to get advice tailored to their specific situations, moving beyond generalized online content. The platform also provides curated mental health resources and allows users to browse previously generated clips.`,
+        image: girlTalkAiImage,
+        thumbnail: girlTalkAiImage,
+        technologies: [
+            'React',
+            'TypeScript',
+            'Vite',
+            'Tailwind CSS',
+            'Firestore',
+            'Express.js',
+            'Murf.ai',
+            'Llama'
+        ],
+        category: 'Hackathon Project',
+        github: 'https://github.com/cicadaenjoyer/Girl-Talk-AI', // TODO: Add correct GitHub link
+        devpost: 'https://devpost.com/software/girltalk-ai', // TODO: Add correct Devpost link
+        highlights: [
+            "Developed at the world's largest AI hackathon, hosted by UC Berkeley.",
+            'Created a safe space for women to receive personalized, empathetic AI-generated advice.',
+            "Integrated Llama API for generating personalized text responses tailored to each user's specific concerns.",
+            'Utilized Murf.ai API to create humanized voice clips that make girls feel welcomed and supported.',
+            'Engineered thoughtful and age-appropriate AI responses for sensitive topics.',
+            'Utilized Firestore for data storage and built a modern frontend with React and TypeScript.'
+        ]
+    },
     {
         id: 1,
         title: 'SpeakScribe',
