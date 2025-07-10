@@ -5,12 +5,32 @@
     <link rel="icon" type="image/svg+xml" href="/luis.hsa/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Luis Henrique Abrantes</title>
-    <script type="module" crossorigin src="/luis.hsa/assets/index-D2JE2v29.js"></script>
-    <link rel="modulepreload" crossorigin href="/luis.hsa/assets/vendor-BCmh7sjI.js">
-    <link rel="modulepreload" crossorigin href="/luis.hsa/assets/animations-B3-9EfF9.js">
-    <link rel="stylesheet" crossorigin href="/luis.hsa/assets/index-BMWNXpmI.css">
+    <script type="module" crossorigin src="/luis.hsa/assets/index-B-UU5BiK.js"></script>
+    <link rel="modulepreload" crossorigin href="/luis.hsa/assets/vendor-Dv0F669o.js">
+    <link rel="modulepreload" crossorigin href="/luis.hsa/assets/animations-B9GX_niH.js">
+    <link rel="stylesheet" crossorigin href="/luis.hsa/assets/index-CR1y2k0d.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // GitHub Pages SPA redirect handling
+      (function() {
+        var url = new URL(window.location);
+        var path = url.searchParams.get('p');
+        
+        if (path) {
+          // Remove the query parameter and update the URL
+          var newUrl = window.location.origin + '/luis.hsa' + path + 
+                       (url.search ? url.search.replace('?p=' + encodeURIComponent(path), '').replace('&p=' + encodeURIComponent(path), '') : '') + 
+                       url.hash;
+          
+          // Clean up any remaining query parameters
+          newUrl = newUrl.replace(/[\?&]$/, '');
+          
+          // Replace the current URL without adding to history
+          window.history.replaceState({}, '', newUrl);
+        }
+      })();
+    </script>
   </body>
 </html>

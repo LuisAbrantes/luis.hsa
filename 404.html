@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luis Henrique Abrantes</title>
+    <script>
+        // GitHub Pages SPA redirect
+        // This script takes the current pathname and redirects to the index.html
+        // with the pathname as a query parameter
+        (function() {
+            var path = window.location.pathname;
+            var search = window.location.search;
+            var hash = window.location.hash;
+            
+            // Check if we're on GitHub Pages and not on the root path
+            if (path !== '/luis.hsa/' && path.startsWith('/luis.hsa/')) {
+                // Extract the route after the base path
+                var route = path.replace('/luis.hsa', '');
+                
+                // Redirect to index.html with the route as a query parameter
+                window.location.replace(
+                    '/luis.hsa/' + 
+                    '?p=' + encodeURIComponent(route) + 
+                    (search ? '&' + search.slice(1) : '') +
+                    hash
+                );
+            }
+        })();
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
