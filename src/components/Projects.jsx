@@ -18,7 +18,7 @@ import {
     SquareCode,
     Brain,
     Terminal,
-    Mic // New icon for podcasting
+    Mic
 } from 'lucide-react';
 import agrolearn from '../assets/projects/agrolearn.png';
 import quickreadme from '../assets/projects/quickreadme.png';
@@ -77,8 +77,8 @@ const projectsData = [
             'Llama'
         ],
         category: 'Hackathon Project',
-        github: 'https://github.com/cicadaenjoyer/Girl-Talk-AI', // TODO: Add correct GitHub link
-        devpost: 'https://devpost.com/software/girltalk-ai', // TODO: Add correct Devpost link
+        github: 'https://github.com/cicadaenjoyer/Girl-Talk-AI',
+        devpost: 'https://devpost.com/software/girltalk-ai',
         highlights: [
             "Developed at the world's largest AI hackathon, hosted by UC Berkeley.",
             'Created a safe space for women to receive personalized, empathetic AI-generated advice.',
@@ -235,90 +235,65 @@ const ProjectCard = ({ project, onClick }) => (
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ y: -5 }}
-        className="bg-dark-secondary rounded-lg overflow-hidden shadow-xl"
+        className="bg-dark-secondary/30 border border-gray-800 rounded-2xl overflow-hidden hover:border-gray-600 transition-all duration-300 group cursor-pointer"
+        onClick={() => onClick(project)}
     >
-        <div className="relative group aspect-[16/9]">
+        <div className="relative aspect-video overflow-hidden">
             <img
                 src={project.thumbnail}
                 alt={project.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <button
-                    onClick={() => onClick(project)}
-                    className="bg-dark-accent text-white px-4 py-2 rounded-md hover:bg-dark-accent transition"
-                >
+            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-white font-light tracking-wide border border-white/30 px-4 py-2 rounded-full backdrop-blur-sm">
                     View Details
-                </button>
+                </span>
             </div>
         </div>
 
-        <div className="p-4">
-            <h3 className="text-xl font-bold text-gray-200 mb-2">
+        <div className="p-6">
+            <h3 className="text-xl font-medium text-white mb-2">
                 {project.title}
             </h3>
-            <p className="text-gray-400 mb-4">{project.shortDescription}</p>
+            <p className="text-gray-400 text-sm font-light mb-4 line-clamp-2">
+                {project.shortDescription}
+            </p>
 
             <div className="flex flex-wrap gap-2 mb-4">
-                {project.technologies.map(tech => (
+                {project.technologies.slice(0, 3).map(tech => (
                     <span
                         key={tech}
-                        className="px-2 py-1 bg-dark-accent bg-opacity-20 text-dark-accent rounded-md text-sm flex items-center gap-1"
+                        className="px-2 py-1 bg-dark-primary border border-gray-800 rounded-lg text-xs text-gray-500 font-light flex items-center gap-1"
                     >
                         {techIcons[tech]} {tech}
                     </span>
                 ))}
+                {project.technologies.length > 3 && (
+                    <span className="px-2 py-1 bg-dark-primary border border-gray-800 rounded-lg text-xs text-gray-500 font-light">
+                        +{project.technologies.length - 3}
+                    </span>
+                )}
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 pt-2 border-t border-gray-800/50">
                 <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-gray-400 hover:text-dark-accent transition"
+                    onClick={e => e.stopPropagation()}
+                    className="flex items-center gap-2 text-xs text-gray-500 hover:text-white transition-colors"
                 >
-                    <Github size={18} /> Code
+                    <Github size={14} /> Code
                 </a>
                 {project.demo && (
                     <a
                         href={project.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-gray-400 hover:text-dark-accent transition"
+                        onClick={e => e.stopPropagation()}
+                        className="flex items-center gap-2 text-xs text-gray-500 hover:text-white transition-colors"
                     >
-                        <ExternalLink size={18} /> Demo
-                    </a>
-                )}
-                {project.devpost && (
-                    <a
-                        href={project.devpost}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-gray-400 hover:text-dark-accent transition"
-                    >
-                        <Hexagon size={18} className="relative">
-                            <text
-                                x="50%"
-                                y="52%"
-                                dominantBaseline="middle"
-                                textAnchor="middle"
-                                className="fill-current text-xs font-bold"
-                                style={{ transform: 'translateY(1px)' }}
-                            >
-                                D
-                            </text>
-                        </Hexagon>{' '}
-                        Devpost
-                    </a>
-                )}
-                {project.youtube && (
-                    <a
-                        href={project.youtube}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-gray-400 hover:text-dark-accent transition"
-                    >
-                        <Youtube size={18} /> Video
+                        <ExternalLink size={14} /> Demo
                     </a>
                 )}
             </div>
@@ -327,99 +302,141 @@ const ProjectCard = ({ project, onClick }) => (
 );
 
 const ProjectModal = ({ project, onClose }) => (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+    <div
+        className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+        onClick={onClose}
+    >
         <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
+            initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="bg-dark-secondary rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-dark-primary border border-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+            onClick={e => e.stopPropagation()}
         >
-            <div className="p-6">
+            <div className="relative h-64 sm:h-80">
                 <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-64 object-cover rounded-lg mb-6"
+                    className="w-full h-full object-cover"
                 />
-                <h2 className="text-2xl font-bold text-gray-200 mb-4">
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-primary to-transparent"></div>
+                <button
+                    onClick={onClose}
+                    className="absolute top-4 right-4 p-2 bg-black/50 rounded-full text-white hover:bg-black/70 transition-colors"
+                >
+                    <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M6 18L18 6M6 6l12 12"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div className="p-8 -mt-12 relative">
+                <h2 className="text-3xl font-light text-white mb-4">
                     {project.title}
                 </h2>
-                <p className="text-gray-400 mb-6">{project.fullDescription}</p>
 
-                <h3 className="text-lg font-semibold text-gray-300 mb-3">
-                    Highlights
-                </h3>
-                <ul className="list-disc list-inside text-gray-400 mb-6">
-                    {project.highlights.map((highlight, index) => (
-                        <li key={index}>{highlight}</li>
+                <div className="flex flex-wrap gap-2 mb-6">
+                    {project.technologies.map(tech => (
+                        <span
+                            key={tech}
+                            className="px-3 py-1 bg-dark-secondary/50 border border-gray-700 rounded-full text-sm text-gray-300 font-light flex items-center gap-2"
+                        >
+                            {techIcons[tech]} {tech}
+                        </span>
                     ))}
-                </ul>
+                </div>
 
-                <div className="flex gap-4 flex-wrap">
-                    <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-dark-accent text-white px-6 py-2 rounded-md hover:bg-dark-accent transition flex items-center gap-2"
-                    >
-                        <Github size={18} /> View Code
-                    </a>
-                    {project.demo && (
+                <div className="grid md:grid-cols-3 gap-8">
+                    <div className="md:col-span-2 space-y-6">
+                        <div>
+                            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
+                                Overview
+                            </h3>
+                            <p className="text-gray-300 font-light leading-relaxed">
+                                {project.fullDescription}
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
+                                Key Highlights
+                            </h3>
+                            <ul className="space-y-2">
+                                {project.highlights.map((highlight, index) => (
+                                    <li
+                                        key={index}
+                                        className="flex items-start gap-3 text-gray-400 font-light"
+                                    >
+                                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-600 flex-shrink-0"></span>
+                                        <span>{highlight}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="space-y-4">
+                        <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
+                            Links
+                        </h3>
                         <a
-                            href={project.demo}
+                            href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-dark-accent text-white px-6 py-2 rounded-md hover:bg-dark-accent transition flex items-center gap-2"
+                            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white text-black font-medium hover:bg-gray-200 transition-colors"
                         >
-                            <ExternalLink size={18} /> View Demo
+                            <Github size={18} /> View Code
                         </a>
-                    )}
-                    {project.devpost && (
-                        <a
-                            href={project.devpost}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-dark-accent text-white px-6 py-2 rounded-md hover:bg-dark-accent transition flex items-center gap-2"
-                        >
-                            <Hexagon size={18} className="relative">
-                                <text
-                                    x="50%"
-                                    y="52%"
-                                    dominantBaseline="middle"
-                                    textAnchor="middle"
-                                    className="fill-current text-xs font-bold"
-                                    style={{ transform: 'translateY(1px)' }}
-                                >
-                                    D
-                                </text>
-                            </Hexagon>{' '}
-                            View on Devpost
-                        </a>
-                    )}
-                    {project.youtube && (
-                        <a
-                            href={project.youtube}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-dark-accent text-white px-6 py-2 rounded-md hover:bg-dark-accent transition flex items-center gap-2"
-                        >
-                            <Youtube size={18} /> Watch Video
-                        </a>
-                    )}
-                    {project.slides && (
-                        <a
-                            href={project.slides}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-dark-accent text-white px-6 py-2 rounded-md hover:bg-dark-accent transition flex items-center gap-2"
-                        >
-                            <FileText size={18} /> View Slides
-                        </a>
-                    )}
-                    <button
-                        onClick={onClose}
-                        className="px-6 py-2 border border-gray-600 text-gray-400 rounded-md hover:bg-dark-hover transition"
-                    >
-                        Close
-                    </button>
+                        {project.demo && (
+                            <a
+                                href={project.demo}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-gray-700 text-white hover:bg-gray-800 transition-colors"
+                            >
+                                <ExternalLink size={18} /> Live Demo
+                            </a>
+                        )}
+                        {project.devpost && (
+                            <a
+                                href={project.devpost}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-gray-700 text-white hover:bg-gray-800 transition-colors"
+                            >
+                                <Hexagon size={18} /> Devpost
+                            </a>
+                        )}
+                        {project.youtube && (
+                            <a
+                                href={project.youtube}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-gray-700 text-white hover:bg-gray-800 transition-colors"
+                            >
+                                <Youtube size={18} /> Video
+                            </a>
+                        )}
+                        {project.slides && (
+                            <a
+                                href={project.slides}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-gray-700 text-white hover:bg-gray-800 transition-colors"
+                            >
+                                <FileText size={18} /> Slides
+                            </a>
+                        )}
+                    </div>
                 </div>
             </div>
         </motion.div>
@@ -438,25 +455,31 @@ const Projects = () => {
             : projectsData.filter(p => p.category === filter);
 
     return (
-        <section className="py-20 px-4 bg-dark-primary">
-            <div className="container mx-auto">
-                <motion.h1
+        <section className="min-h-screen bg-dark-primary pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
+            <div className="max-w-7xl mx-auto">
+                <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-4xl font-bold text-gray-200 mb-8 text-center"
+                    className="text-center mb-16"
                 >
-                    My Projects
-                </motion.h1>
+                    <h1 className="text-4xl font-light text-white mb-4 tracking-tight">
+                        Selected Projects
+                    </h1>
+                    <p className="text-gray-400 font-light max-w-2xl mx-auto">
+                        A collection of my work in web development, AI, and open
+                        source contributions.
+                    </p>
+                </motion.div>
 
-                <div className="flex justify-center gap-4 mb-12 flex-wrap">
+                <div className="flex justify-center gap-3 mb-12 flex-wrap">
                     {categories.map(category => (
                         <button
                             key={category}
                             onClick={() => setFilter(category)}
-                            className={`px-4 py-2 rounded-md transition ${
+                            className={`px-5 py-2 rounded-full text-sm font-light transition-all duration-300 border ${
                                 filter === category
-                                    ? 'bg-dark-accent text-white'
-                                    : 'bg-dark-secondary text-gray-400 hover:bg-dark-hover'
+                                    ? 'bg-white text-black border-white'
+                                    : 'bg-transparent text-gray-400 border-gray-800 hover:border-gray-600 hover:text-white'
                             }`}
                         >
                             {category.charAt(0).toUpperCase() +

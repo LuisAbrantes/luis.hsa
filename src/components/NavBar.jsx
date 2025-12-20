@@ -13,30 +13,28 @@ const NavBar = () => {
     ];
 
     const navLinkClasses = ({ isActive }) =>
-        `px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-            isActive
-                ? 'bg-dark-accent text-dark-text'
-                : 'text-dark-muted hover:text-dark-text hover:bg-dark-hover'
+        `px-4 py-2 text-sm font-light tracking-wide transition-colors duration-300 ${
+            isActive ? 'text-white' : 'text-gray-400 hover:text-white'
         }`;
 
     const mobileNavLinkClasses = ({ isActive }) =>
-        `w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+        `block w-full text-left px-4 py-3 text-sm font-light tracking-wide transition-colors duration-300 border-l-2 ${
             isActive
-                ? 'bg-dark-accent text-dark-text'
-                : 'text-dark-muted hover:text-dark-text hover:bg-dark-hover'
+                ? 'border-white text-white bg-white/5'
+                : 'border-transparent text-gray-400 hover:text-white hover:bg-white/5'
         }`;
 
     return (
-        <nav className="bg-dark-navbar">
-            <div className="max-w-7xl mx-auto px-2 sm:px-4">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-dark-primary/80 backdrop-blur-md border-b border-gray-800">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="h-16 flex items-center justify-between">
-                    <span className="text-dark-text font-bold text-lg sm:text-xl">
-                        Portfolio
+                    <span className="text-white font-light tracking-wider text-lg">
+                        Luis Henrique Abrantes
                     </span>
 
                     {/* Hamburger Button */}
                     <button
-                        className="sm:hidden text-dark-text hover:text-dark-accent"
+                        className="sm:hidden text-gray-400 hover:text-white transition-colors"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     >
                         <svg
@@ -49,14 +47,14 @@ const NavBar = () => {
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
-                                    strokeWidth={2}
+                                    strokeWidth={1.5}
                                     d="M6 18L18 6M6 6l12 12"
                                 />
                             ) : (
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
-                                    strokeWidth={2}
+                                    strokeWidth={1.5}
                                     d="M4 6h16M4 12h16M4 18h16"
                                 />
                             )}
@@ -64,7 +62,7 @@ const NavBar = () => {
                     </button>
 
                     {/* Desktop Menu */}
-                    <ul className="hidden sm:flex sm:space-x-4">
+                    <ul className="hidden sm:flex sm:space-x-8">
                         {navLinks.map(link => (
                             <li key={link.label}>
                                 <NavLink
@@ -80,8 +78,8 @@ const NavBar = () => {
 
                 {/* Mobile Menu */}
                 {isMobileMenuOpen && (
-                    <div className="sm:hidden">
-                        <ul className="flex flex-col space-y-2 px-2 pt-2 pb-3 bg-dark-navbar">
+                    <div className="sm:hidden border-t border-gray-800">
+                        <ul className="flex flex-col py-2">
                             {navLinks.map(link => (
                                 <li key={link.label}>
                                     <NavLink

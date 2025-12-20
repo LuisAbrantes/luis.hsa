@@ -60,199 +60,121 @@ const About = () => {
     ];
 
     return (
-        <div className="about-section bg-dark-primary text-dark-text p-4 sm:p-8">
-            <div className="max-w-4xl mx-auto">
-                <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+        <div className="about-section bg-dark-primary text-dark-text min-h-screen pt-24 pb-12 px-4 sm:px-8 font-sans">
+            <div className="max-w-5xl mx-auto">
+                <div className="flex flex-col md:flex-row items-start gap-12">
                     {/* Profile Section */}
                     <div className="profile-section w-full md:w-1/3 flex flex-col items-center md:items-start">
-                        <img
-                            src="https://avatars.githubusercontent.com/u/24616338?v=4"
-                            alt="Profile"
-                            className="rounded-full shadow-xl w-32 h-32 sm:w-48 sm:h-48 mb-4"
-                        />
+                        <div className="relative mb-8">
+                            <img
+                                src="https://avatars.githubusercontent.com/u/24616338?v=4"
+                                alt="Profile"
+                                className="rounded-full shadow-lg w-40 h-40 object-cover border border-gray-700/50"
+                            />
+                        </div>
 
-                        <div className="achievements-grid flex gap-3 sm:gap-4 mt-4 flex-wrap justify-center md:justify-start">
+                        <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4 w-full text-center md:text-left">
+                            GitHub Achievements
+                        </h3>
+
+                        <div className="achievements-grid flex flex-wrap justify-center md:justify-start gap-4 mb-8">
                             {achievements.slice(0, 5).map(achievement => (
-                                <div key={achievement.id} className="relative">
-                                    <img
-                                        src={achievement.image}
-                                        alt={achievement.name}
-                                        className="w-12 h-12 cursor-pointer transform-gpu transition-all duration-300 
-                             hover:rotate-[360deg] hover:scale-110 active:scale-95"
-                                        onClick={() =>
-                                            setSelectedAchievement(achievement)
-                                        }
-                                    />
-                                    {selectedAchievement?.id ===
-                                        achievement.id && (
-                                        <div
-                                            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 
-                                  animate-fadeIn backdrop-blur-sm"
-                                            onClick={() =>
-                                                setSelectedAchievement(null)
-                                            }
-                                        >
-                                            <div
-                                                className="bg-dark-secondary p-6 rounded-lg max-w-sm mx-4 transform-gpu 
-                                    transition-all duration-300 animate-scaleIn"
-                                                onClick={e =>
-                                                    e.stopPropagation()
-                                                }
-                                            >
-                                                <img
-                                                    src={achievement.image}
-                                                    alt={achievement.name}
-                                                    className="w-24 h-24 mx-auto mb-4"
-                                                />
-                                                <h3 className="text-xl font-bold mb-2">
-                                                    {achievement.name}
-                                                </h3>
-                                                <p className="mb-4">
-                                                    {achievement.description}
-                                                </p>
-                                                <a
-                                                    href="https://github.com/LuisAbrantes"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="block text-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-colors"
-                                                >
-                                                    View GitHub Profile
-                                                </a>
-                                            </div>
-                                        </div>
-                                    )}
+                                <div
+                                    key={achievement.id}
+                                    className="group relative cursor-pointer"
+                                    onClick={() =>
+                                        setSelectedAchievement(achievement)
+                                    }
+                                >
+                                    <div className="w-12 h-12 rounded-full bg-dark-secondary/30 border border-gray-800 flex items-center justify-center transition-all duration-300 group-hover:border-gray-600 group-hover:bg-dark-secondary/50">
+                                        <img
+                                            src={achievement.image}
+                                            alt={achievement.name}
+                                            className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                                        />
+                                    </div>
                                 </div>
                             ))}
                         </div>
 
-                        <div className="highlights-grid flex flex-col gap-3 sm:gap-4 mt-6 sm:mt-8 w-full">
+                        <div className="highlights-grid flex flex-col gap-3 w-full">
                             {achievements.slice(5).map(achievement => (
                                 <div
                                     key={achievement.id}
-                                    className="relative w-full"
+                                    className="group cursor-pointer"
+                                    onClick={() =>
+                                        setSelectedAchievement(achievement)
+                                    }
                                 >
-                                    <div
-                                        className="flex items-center gap-3 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg cursor-pointer 
-                             relative after:absolute after:inset-0 after:rounded-lg
-                             after:bg-gradient-to-r after:from-blue-500 
-                             after:via-purple-500 after:to-pink-500 after:opacity-0
-                             after:transition-all after:duration-300 hover:after:opacity-100
-                             after:[background-size:0%_100%] hover:after:animate-border-draw
-                             after:[mask:padding-box]
-                             transform-gpu transition-all duration-300 
-                             hover:scale-105 active:scale-95
-                             group overflow-hidden before:absolute before:inset-[1px]
-                             before:bg-dark-primary before:rounded-lg before:z-[1]"
-                                        onClick={() =>
-                                            setSelectedAchievement(achievement)
-                                        }
-                                    >
-                                        <div className="relative z-10 flex items-center gap-3 bg-dark-primary rounded-lg">
+                                    <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-dark-secondary/30 border border-gray-800 transition-all duration-300 hover:border-gray-600 hover:bg-dark-secondary/50">
+                                        <div className="text-gray-400 group-hover:text-white transition-colors">
                                             {achievement.icon}
-                                            <span
-                                                className={`font-medium text-base ${
-                                                    achievement.name ===
-                                                    'Developer Program Member'
-                                                        ? 'text-gray-400 group-hover:text-gray-300'
-                                                        : achievement.name ===
-                                                          'PRO'
-                                                        ? 'text-purple-500 border-2 border-purple-500 rounded-full px-2 hover:bg-purple-500/10'
-                                                        : ''
-                                                }`}
-                                            >
-                                                {achievement.name}
-                                            </span>
                                         </div>
+                                        <span className="font-light text-sm text-gray-300 group-hover:text-white transition-colors">
+                                            {achievement.name}
+                                        </span>
                                     </div>
-                                    {selectedAchievement?.id ===
-                                        achievement.id && (
-                                        <div
-                                            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 
-                                  animate-fadeIn backdrop-blur-sm"
-                                            onClick={() =>
-                                                setSelectedAchievement(null)
-                                            }
-                                        >
-                                            <div
-                                                className="bg-dark-secondary p-6 rounded-lg max-w-sm mx-4 transform-gpu 
-                                    transition-all duration-300 animate-scaleIn"
-                                                onClick={e =>
-                                                    e.stopPropagation()
-                                                }
-                                            >
-                                                <h3 className="text-xl font-bold mb-2">
-                                                    {achievement.name}
-                                                </h3>
-                                                <p className="mb-4">
-                                                    {achievement.description}
-                                                </p>
-                                                <a
-                                                    href="https://github.com/LuisAbrantes"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="block text-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-colors"
-                                                >
-                                                    View GitHub Profile
-                                                </a>
-                                            </div>
-                                        </div>
-                                    )}
                                 </div>
                             ))}
                         </div>
                     </div>
 
                     {/* Main Content Section */}
-                    <div className="flex-1 w-full space-y-8">
+                    <div className="flex-1 w-full space-y-12">
                         {/* Academic Achievements Section */}
                         <div className="academic-section">
-                            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center">
-                                <FaGraduationCap className="mr-2" /> Academic
-                                Profile
+                            <h2 className="text-2xl font-light text-white mb-6 flex items-center gap-3">
+                                <FaGraduationCap
+                                    className="text-gray-400"
+                                    size={24}
+                                />
+                                Academic Profile
                             </h2>
-                            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-[1px] rounded-lg">
-                                <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg shadow-lg space-y-6">
-                                    {/* School Highlight */}
-                                    <div className="bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 p-4 rounded-lg border border-blue-500/20">
-                                        <div className="flex items-start gap-4">
-                                            <FaTrophy className="text-yellow-500 text-2xl mt-1 flex-shrink-0" />
-                                            <div>
-                                                <h3 className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-                                                    Instituto Federal de São
-                                                    Paulo (IFSP)
-                                                </h3>
-                                                <p className="text-sm text-gray-300 mt-1">
-                                                    Brazil&apos;s Top Technical
-                                                    Education Institutions
-                                                </p>
-                                                <p className="text-sm opacity-75 mt-2">
-                                                    • Excellence in Technical
-                                                    and Academic Education
-                                                    <br />
-                                                    • Recognized for Innovation
-                                                    and Research
-                                                    <br />• Strong Industry
-                                                    Partnerships
-                                                </p>
-                                            </div>
+                            <div className="bg-dark-secondary/30 border border-gray-800 rounded-2xl p-6 hover:border-gray-700 transition-colors duration-300">
+                                <div className="flex flex-col sm:flex-row items-start gap-6 mb-8">
+                                    <div className="p-3 bg-dark-primary rounded-xl border border-gray-800">
+                                        <FaTrophy className="text-gray-300 text-xl" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl font-medium text-white mb-2">
+                                            Instituto Federal de São Paulo
+                                            (IFSP)
+                                        </h3>
+                                        <p className="text-sm text-gray-400 font-light mb-4">
+                                            Brazil&apos;s Top Technical
+                                            Education Institutions
+                                        </p>
+                                        <ul className="space-y-2 text-sm text-gray-500 font-light">
+                                            <li>
+                                                • Excellence in Technical and
+                                                Academic Education
+                                            </li>
+                                            <li>
+                                                • Recognized for Innovation and
+                                                Research
+                                            </li>
+                                            <li>
+                                                • Strong Industry Partnerships
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="bg-dark-primary/50 border border-gray-800 p-4 rounded-xl text-center">
+                                        <div className="text-2xl font-light text-white mb-1">
+                                            8.20
+                                        </div>
+                                        <div className="text-xs text-gray-500 uppercase tracking-wider">
+                                            GPA
                                         </div>
                                     </div>
-
-                                    {/* Academic Stats */}
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div className="bg-dark-primary p-4 rounded-lg text-center">
-                                            <div className="text-2xl font-bold text-blue-500">
-                                                8.20
-                                            </div>
-                                            <div className="text-sm">GPA</div>
+                                    <div className="bg-dark-primary/50 border border-gray-800 p-4 rounded-xl text-center">
+                                        <div className="text-2xl font-light text-white mb-1">
+                                            X
                                         </div>
-                                        <div className="bg-dark-primary p-4 rounded-lg text-center">
-                                            <div className="text-2xl font-bold text-purple-500">
-                                                X
-                                            </div>
-                                            <div className="text-sm">
-                                                SAT Score
-                                            </div>
+                                        <div className="text-xs text-gray-500 uppercase tracking-wider">
+                                            SAT Score
                                         </div>
                                     </div>
                                 </div>
@@ -261,37 +183,47 @@ const About = () => {
 
                         {/* Technical & Leadership Section */}
                         <div className="skills-section">
-                            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center">
-                                <FaCode className="mr-2" /> Technical &
-                                Leadership
+                            <h2 className="text-2xl font-light text-white mb-6 flex items-center gap-3">
+                                <FaCode className="text-gray-400" size={24} />
+                                Technical & Leadership
                             </h2>
-                            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-[1px] rounded-lg">
-                                <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg shadow-lg space-y-6">
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div className="space-y-2">
-                                            <h3 className="font-semibold">
-                                                Programming
-                                            </h3>
-                                            <div className="bg-dark-primary p-2 rounded">
-                                                Python
-                                            </div>
-                                            <div className="bg-dark-primary p-2 rounded">
-                                                JavaScript
-                                            </div>
-                                            <div className="bg-dark-primary p-2 rounded">
-                                                React
-                                            </div>
+                            <div className="bg-dark-secondary/30 border border-gray-800 rounded-2xl p-6 hover:border-gray-700 transition-colors duration-300">
+                                <div className="grid md:grid-cols-2 gap-8">
+                                    <div className="space-y-4">
+                                        <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider">
+                                            Programming
+                                        </h3>
+                                        <div className="flex flex-wrap gap-2">
+                                            {[
+                                                'Python',
+                                                'JavaScript',
+                                                'React'
+                                            ].map(skill => (
+                                                <span
+                                                    key={skill}
+                                                    className="px-3 py-1.5 bg-dark-primary border border-gray-800 rounded-lg text-sm text-gray-300 font-light"
+                                                >
+                                                    {skill}
+                                                </span>
+                                            ))}
                                         </div>
-                                        <div className="space-y-2">
-                                            <h3 className="font-semibold">
-                                                Leadership
-                                            </h3>
-                                            <div className="bg-dark-primary p-2 rounded">
-                                                Coding Club President
-                                            </div>
-                                            <div className="bg-dark-primary p-2 rounded">
-                                                ARINTER Ambassador
-                                            </div>
+                                    </div>
+                                    <div className="space-y-4">
+                                        <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider">
+                                            Leadership
+                                        </h3>
+                                        <div className="flex flex-col gap-2">
+                                            {[
+                                                'Coding Club President',
+                                                'ARINTER Ambassador'
+                                            ].map(role => (
+                                                <span
+                                                    key={role}
+                                                    className="px-3 py-1.5 bg-dark-primary border border-gray-800 rounded-lg text-sm text-gray-300 font-light"
+                                                >
+                                                    {role}
+                                                </span>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
@@ -300,66 +232,64 @@ const About = () => {
 
                         {/* About Me Section */}
                         <div className="about-me-section">
-                            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center">
-                                <FaUserAlt className="mr-2" /> About Me
+                            <h2 className="text-2xl font-light text-white mb-6 flex items-center gap-3">
+                                <FaUserAlt
+                                    className="text-gray-400"
+                                    size={20}
+                                />
+                                About Me
                             </h2>
-                            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-[1px] rounded-lg">
-                                <div className="bg-dark-secondary p-4 sm:p-6 rounded-lg shadow-lg space-y-6">
-                                    {/* Personal Introduction */}
-                                    <div className="prose prose-invert max-w-none">
-                                        <p className="text-base sm:text-lg">
-                                            <strong>
-                                                True innovation happens outside
-                                                our comfort zone – and that’s
-                                                exactly where I choose to be.
-                                            </strong>{' '}
-                                            My greatest dream is to one day
-                                            establish a church that goes beyond
-                                            a place of worship, serving as a hub
-                                            where children and young people can
-                                            learn programming from an early age,
-                                            developing both technical skills and
-                                        </p>
-                                        <p className="text-base sm:text-lg">
-                                            Dedicating myself every day to
-                                            studying and improving my skills,
-                                            even in the face of daily challenges
-                                            and problems, I maintain a routine
-                                            of constant growth. Demonstrating
-                                            discipline and consistency, I
-                                            approach learning as an
-                                            uninterrupted process, regardless of
-                                            circumstances. Facing the rapid
-                                            changes in technology, I adapt to
-                                            new advancements with creativity and
-                                            determination. Through practical
-                                            projects—such as creating
-                                            community-oriented applications or
-                                            group-based learning activities—I
-                                            demonstrate that programming is not
-                                            just about writing code but about
-                                            building solutions that merge
-                                            innovation, empathy, and
-                                            collaboration.
-                                        </p>
-                                        <p className="text-base sm:text-lg">
-                                            With my skills, certifications, and
-                                            passion for learning, I aim to
-                                            present myself as someone committed
-                                            to growth and to one day fulfilling
-                                            this dream of inspiring and
-                                            transforming lives. I believe that
-                                            the knowledge I acquire will be
-                                            essential to generate a positive
-                                            impact on the people around me and
-                                            those who, for some reason, come
-                                            into contact with me or something I
-                                            create. And it is in this spirit of
-                                            faith, innovation, and dedication
-                                            that I continue to seek
-                                            opportunities to learn and share.
-                                        </p>
-                                    </div>
+                            <div className="bg-dark-secondary/30 border border-gray-800 rounded-2xl p-8 hover:border-gray-700 transition-colors duration-300">
+                                <div className="space-y-6 text-gray-300 font-light leading-relaxed">
+                                    <p>
+                                        <strong className="text-white font-medium">
+                                            True innovation happens outside our
+                                            comfort zone – and that’s exactly
+                                            where I choose to be.
+                                        </strong>{' '}
+                                        My greatest dream is to one day
+                                        establish a church that goes beyond a
+                                        place of worship, serving as a hub where
+                                        children and young people can learn
+                                        programming from an early age,
+                                        developing both technical skills and
+                                        character.
+                                    </p>
+                                    <p>
+                                        Dedicating myself every day to studying
+                                        and improving my skills, even in the
+                                        face of daily challenges and problems, I
+                                        maintain a routine of constant growth.
+                                        Demonstrating discipline and
+                                        consistency, I approach learning as an
+                                        uninterrupted process, regardless of
+                                        circumstances. Facing the rapid changes
+                                        in technology, I adapt to new
+                                        advancements with creativity and
+                                        determination. Through practical
+                                        projects—such as creating
+                                        community-oriented applications or
+                                        group-based learning activities—I
+                                        demonstrate that programming is not just
+                                        about writing code but about building
+                                        solutions that merge innovation,
+                                        empathy, and collaboration.
+                                    </p>
+                                    <p>
+                                        With my skills, certifications, and
+                                        passion for learning, I aim to present
+                                        myself as someone committed to growth
+                                        and to one day fulfilling this dream of
+                                        inspiring and transforming lives. I
+                                        believe that the knowledge I acquire
+                                        will be essential to generate a positive
+                                        impact on the people around me and those
+                                        who, for some reason, come into contact
+                                        with me or something I create. And it is
+                                        in this spirit of faith, innovation, and
+                                        dedication that I continue to seek
+                                        opportunities to learn and share.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -367,36 +297,36 @@ const About = () => {
                 </div>
             </div>
 
-            {/* Modal - Adjust for mobile */}
+            {/* Minimalist Modal */}
             {selectedAchievement && (
                 <div
-                    className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 
-                      animate-fadeIn backdrop-blur-sm p-4"
+                    className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
                     onClick={() => setSelectedAchievement(null)}
                 >
                     <div
-                        className="bg-dark-secondary p-4 sm:p-6 rounded-lg w-full max-w-sm mx-4 transform-gpu 
-                        transition-all duration-300 animate-scaleIn"
+                        className="bg-dark-primary border border-gray-800 p-8 rounded-2xl w-full max-w-sm mx-4 shadow-2xl"
                         onClick={e => e.stopPropagation()}
                     >
                         {selectedAchievement.image && (
-                            <img
-                                src={selectedAchievement.image}
-                                alt={selectedAchievement.name}
-                                className="w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-4"
-                            />
+                            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-dark-secondary/50 flex items-center justify-center p-4">
+                                <img
+                                    src={selectedAchievement.image}
+                                    alt={selectedAchievement.name}
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
                         )}
-                        <h3 className="text-lg sm:text-xl font-bold mb-2">
+                        <h3 className="text-xl font-medium text-white mb-3 text-center">
                             {selectedAchievement.name}
                         </h3>
-                        <p className="mb-4 text-sm sm:text-base">
+                        <p className="mb-8 text-sm text-gray-400 text-center font-light leading-relaxed">
                             {selectedAchievement.description}
                         </p>
                         <a
                             href="https://github.com/LuisAbrantes"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block text-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-colors text-sm sm:text-base"
+                            className="block w-full text-center py-3 px-4 rounded-xl bg-white text-black font-medium hover:bg-gray-200 transition-colors text-sm"
                         >
                             View GitHub Profile
                         </a>
