@@ -52,7 +52,7 @@ const About = () => {
             name: 'PRO',
             icon: (
                 <div className="relative w-6 h-6 flex items-center justify-center">
-                    <Star className="w-6 h-6 text-purple-500" />
+                    <Star className="w-6 h-6 text-gray-400" />
                 </div>
             ),
             description: 'GitHub PRO Member'
@@ -60,7 +60,7 @@ const About = () => {
     ];
 
     return (
-        <div className="about-section bg-dark-primary text-dark-text min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
+        <div className="about-section bg-dark-primary text-dark-text min-h-screen pt-40 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
             <div className="max-w-5xl mx-auto">
                 <div className="flex flex-col md:flex-row items-start gap-12">
                     {/* Profile Section */}

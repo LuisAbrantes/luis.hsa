@@ -1,112 +1,108 @@
 /* Remove all background-color properties and update text colors to use CSS variables */
 :root {
-  --dark-text: #e5e7eb;
-  --dark-muted: #9ca3af;
+    --dark-text: #e5e7eb;
+    --dark-muted: #9ca3af;
 }
 
 /* NavBar styles */
 nav {
-  background-color: #333;
-  padding: 1rem;
+    background-color: #333;
+    padding: 1rem;
 }
 
 nav ul {
-  display: flex;
-  justify-content: space-around;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 nav ul li {
-  margin: 0 1rem;
+    margin: 0 1rem;
 }
 
 nav ul li button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
 }
 
 nav ul li button:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 /* Section styles */
-.home-section,
-.about-section,
-.projects-section,
-.certificates-section,
-.contact-section {
-  padding: 2rem;
-  min-height: 100vh;
+.home-section {
+    padding: 2rem;
+    min-height: 100vh;
 }
 
 .name {
-  @apply text-5xl font-bold;
+    @apply text-5xl font-bold;
 }
 
 .title {
-  @apply text-3xl mt-2;
+    @apply text-3xl mt-2;
 }
 
 .introduction {
-  @apply text-xl mt-4;
+    @apply text-xl mt-4;
 }
 
 .about-section h1,
 .projects-section h1,
 .certificates-section h1,
 .contact-section h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
 .about-section p,
 .projects-section p,
 .certificates-section p,
 .contact-section p {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
 }
 
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .project-item {
-  background-color: #fff;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  width: calc(33.333% - 2rem);
-  box-sizing: border-box;
+    background-color: #fff;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    width: calc(33.333% - 2rem);
+    box-sizing: border-box;
 }
 
 .project-item h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .project-item p {
-  font-size: 1rem;
+    font-size: 1rem;
 }
 
 .contact-form label {
-  @apply block mb-2;
+    @apply block mb-2;
 }
 
 .contact-form input,
 .contact-form textarea {
-  @apply w-full mb-4 p-2 rounded bg-dark-secondary text-dark-text border border-dark-hover;
+    @apply w-full mb-4 p-2 rounded bg-dark-secondary text-dark-text border border-dark-hover;
 }
 
 .contact-form button {
-  @apply bg-dark-accent text-dark-text px-4 py-2 rounded hover:bg-purple-700;
+    @apply bg-dark-accent text-dark-text px-4 py-2 rounded hover:bg-purple-700;
 }
 
 /* Remove other color-related styles */
