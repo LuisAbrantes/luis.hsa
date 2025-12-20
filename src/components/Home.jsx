@@ -1,5 +1,6 @@
-// filepath: /Users/luisabrantes/Documents/luis.hsa/src/components/Home.jsx
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { User, Briefcase, Award, Mail } from 'lucide-react';
 import meOne from '../assets/home/meOne.png';
 
 const timelineData = [
@@ -23,145 +24,155 @@ const timelineData = [
         description:
             'Completed an intensive programming challenge by coding every day from September 22, 2024 to January 16, 2025. This consistent practice strengthened my skills, expanded my portfolio, and demonstrated my dedication to continuous improvement in software development.'
     }
-    // Add more items as needed
+];
+
+const navigationCards = [
+    {
+        title: 'About',
+        path: '/about',
+        icon: User,
+        description: 'Learn more about me'
+    },
+    {
+        title: 'Projects',
+        path: '/projects',
+        icon: Briefcase,
+        description: 'See my work'
+    },
+    {
+        title: 'Academic Achievements',
+        path: '/achievements',
+        icon: Award,
+        description: 'My accomplishments'
+    },
+    {
+        title: 'Contact',
+        path: '/contact',
+        icon: Mail,
+        description: 'Get in touch'
+    }
 ];
 
 const Home = () => {
+    const navigate = useNavigate();
+
     return (
-        <div className="home-section bg-dark-primary text-dark-text flex flex-col items-center md:flex-row md:items-start">
-            <div className="profile-picture-container md:mr-8 mb-8 md:mb-0">
-                <img
-                    src={meOne}
-                    alt="Luis Henrique Abrantes at University of Pennsylvania"
-                    className="rounded-full w-60 h-60 object-cover object-top"
-                />
-            </div>
-            <div className="content-container flex-1">
-                <h1 className="text-4xl font-bold mb-4">
-                    HACK is all you need !!
-                </h1>
-                <h2 className="name text-2xl font-semibold">
-                    Luis Henrique Abrantes
-                </h2>
-                <h3 className="title text-xl text-gray-400">
-                    Christian & Tech Enthusiast
-                </h3>
+        <div className="home-section bg-dark-primary text-dark-text min-h-screen pt-24 pb-16 px-4 font-sans">
+            {/* Photo and Identity Section - Minimalist */}
+            <div className="max-w-3xl mx-auto text-center mb-24">
                 <motion.div
-                    className="portfolio-highlights bg-dark-secondary p-8 my-8 rounded-lg text-center shadow-xl hover:shadow-2xl transition-all duration-300"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
+                    className="profile-picture-container mb-10"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
                 >
-                    <h4 className="text-2xl font-bold mb-6 text-dark-accent">
-                        Highlights
-                    </h4>
-                    <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <motion.li
-                            className="bg-dark-primary p-4 rounded-lg hover:bg-dark-hover cursor-pointer"
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ type: 'spring', stiffness: 300 }}
-                        >
-                            Experience in hackathons and international projects
-                        </motion.li>
-                        <motion.li
-                            className="bg-dark-primary p-4 rounded-lg hover:bg-dark-hover cursor-pointer"
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ type: 'spring', stiffness: 300 }}
-                        >
-                            Creative approach to problem-solving
-                        </motion.li>
-                        <motion.li
-                            className="bg-dark-primary p-4 rounded-lg hover:bg-dark-hover cursor-pointer"
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ type: 'spring', stiffness: 300 }}
-                        >
-                            Passion for inspiring and sharing knowledge
-                        </motion.li>
-                    </ul>
+                    <img
+                        src={meOne}
+                        alt="Luis Henrique Abrantes"
+                        className="rounded-full w-48 h-48 object-cover object-top mx-auto shadow-lg border border-gray-700/50"
+                    />
                 </motion.div>
 
-                {/* Expanded multi-paragraph introduction */}
-                <div className="intro mt-4 text-lg leading-relaxed space-y-4">
-                    <p>
-                        I&apos;m Luis Henrique Abrantes, a high school senior
-                        enrolled in an integrated technical program at the
-                        Federal Institute of São Paulo (IFSP). With a passion
-                        for innovation and programming, I focus on creating
-                        scalable and efficient full-stack applications using
-                        React, Node.js, and Python. As the Founder and CEO of
-                        TutorTime, I&apos;ve led the development of an
-                        innovative platform that connects students with peer
-                        tutors and teachers, revolutionizing how academic
-                        support is organized in educational institutions.
-                    </p>
-                    <p>
-                        TutorTime represents my vision for making education more
-                        accessible and efficiently managed. Under my leadership,
-                        the platform has evolved from a concept to a
-                        comprehensive solution built with Supabase, React, and
-                        Vite. I oversee all aspects of development while
-                        maintaining the strategic direction, transforming
-                        TutorTime from a project into a potential startup
-                        venture with real-world applications for schools and
-                        universities.
-                    </p>
-                    <p>
-                        Driven by curiosity and a commitment to excellence, I
-                        approach new challenges with creativity and
-                        determination. My journey includes hackathons like
-                        PennApps XXV at the University of Pennsylvania, where I
-                        participated after successfully organizing a
-                        crowdfunding campaign to finance my first international
-                        trip. As President of the Coding Club and ARINTER
-                        Ambassador, I&apos;ve built leadership and
-                        organizational abilities while collaborating with a
-                        diverse tech community. My certifications in Artificial
-                        Intelligence, Linux Network Administration, and Database
-                        Management demonstrate my drive for continuous learning.
-                    </p>
-                    <p>
-                        My expertise ranges from frontend development to backend
-                        logic and database design. I&apos;ve explored astronomy
-                        through Space INPE, blending curiosity for the cosmos
-                        with the power of code. Beyond building software,
-                        I&apos;m passionate about exploring new cultures,
-                        brainstorming with fellow hackers, and pushing the
-                        boundaries of technology to create transformative
-                        solutions. I believe in leveraging programming to
-                        inspire others and bring innovative ideas to life.
-                    </p>
-                </div>
-
-                <div className="timeline-container mt-10 relative">
-                    <h2 className="text-3xl font-bold mb-6 text-center text-dark-text">
-                        My Journey
+                <motion.div
+                    className="identity-section space-y-4"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+                >
+                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
+                        Luis Henrique Abrantes
+                    </h1>
+                    <h2 className="text-xl md:text-2xl text-gray-400 font-light tracking-wide">
+                        Christian & Tech Enthusiast
                     </h2>
-                    <div className="timeline relative">
+                    <p className="text-lg text-gray-500 italic font-light mt-4">
+                        &quot;HACK is all you need !!&quot;
+                    </p>
+                </motion.div>
+            </div>
+
+            {/* Navigation Cards - Minimalist Outline Style */}
+            <div className="max-w-5xl mx-auto mb-32">
+                <motion.div
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                    {navigationCards.map(card => {
+                        const IconComponent = card.icon;
+                        return (
+                            <motion.div
+                                key={card.path}
+                                className="group cursor-pointer"
+                                whileHover={{ y: -5 }}
+                                onClick={() => navigate(card.path)}
+                            >
+                                <div className="flex flex-col items-center justify-center p-8 rounded-2xl border border-gray-800 bg-dark-secondary/30 hover:bg-dark-secondary/50 hover:border-gray-600 transition-all duration-300 h-full">
+                                    <div className="p-4 rounded-full bg-dark-primary mb-4 group-hover:bg-white/5 transition-colors duration-300">
+                                        <IconComponent
+                                            className="w-8 h-8 text-gray-300 group-hover:text-white transition-colors duration-300"
+                                            strokeWidth={1.5}
+                                        />
+                                    </div>
+                                    <h4 className="text-lg font-medium text-gray-200 group-hover:text-white transition-colors duration-300">
+                                        {card.title}
+                                    </h4>
+                                    <p className="text-sm text-gray-500 mt-2 text-center group-hover:text-gray-400 transition-colors duration-300">
+                                        {card.description}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        );
+                    })}
+                </motion.div>
+            </div>
+
+            {/* Timeline Section - Clean & Minimal */}
+            <div className="max-w-3xl mx-auto">
+                <motion.div
+                    className="timeline-container"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                >
+                    <h3 className="text-2xl font-semibold mb-16 text-center text-gray-200 tracking-wide uppercase">
+                        My Journey
+                    </h3>
+                    <div className="relative border-l border-gray-800 ml-4 md:ml-0 md:pl-0 md:border-none space-y-12">
                         {timelineData.map((item, index) => (
                             <motion.div
                                 key={index}
-                                className="timeline-item mb-8 flex flex-col items-center"
-                                initial={{ opacity: 0, y: 50 }}
+                                className="relative flex flex-col md:flex-row md:items-start gap-6 md:gap-10"
+                                initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
+                                viewport={{ once: true, margin: '-50px' }}
+                                transition={{ duration: 0.5 }}
                             >
-                                <div className="timeline-content bg-dark-secondary p-6 rounded-lg shadow-lg w-2/3 hover:bg-dark-hover transition-all duration-300">
-                                    <h4 className="text-xl font-semibold text-dark-text">
+                                {/* Year Marker */}
+                                <div className="md:w-32 flex-shrink-0 flex md:justify-end items-center md:pt-1">
+                                    <span className="text-lg font-mono text-gray-400 font-medium bg-dark-primary pr-4 z-10 relative">
                                         {item.year}
-                                    </h4>
-                                    <p className="text-lg text-dark-text">
+                                    </span>
+                                    {/* Dot for desktop */}
+                                    <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gray-700 rounded-full border-4 border-dark-primary"></div>
+                                </div>
+
+                                {/* Content */}
+                                <div className="flex-1 pb-8 md:pb-0 border-l border-gray-800 md:border-none pl-8 md:pl-0 -ml-[17px] md:ml-0">
+                                    {/* Dot for mobile */}
+                                    <div className="md:hidden absolute left-0 top-1 w-3 h-3 bg-gray-700 rounded-full border-4 border-dark-primary -translate-x-[5px]"></div>
+
+                                    <p className="text-gray-300 leading-relaxed text-base font-light">
                                         {item.description}
                                     </p>
                                 </div>
-                                <div className="timeline-circle bg-dark-accent h-6 w-6 rounded-full mt-4 border-2 border-dark-accent"></div>
-                                {index !== timelineData.length - 1 && (
-                                    <div className="timeline-line bg-dark-accent w-1 h-16"></div>
-                                )}
                             </motion.div>
                         ))}
+                        {/* Vertical Line for Desktop */}
+                        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-800 transform -translate-x-1/2 -z-10"></div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </div>
     );

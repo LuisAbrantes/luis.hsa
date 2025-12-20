@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
 import About from './components/About';
@@ -8,9 +8,12 @@ import Contact from './components/Contact';
 import NavBar from './components/NavBar';
 
 function App() {
+    const location = useLocation();
+    const isHomePage = location.pathname === '/';
+
     return (
         <div className="min-h-screen bg-dark-primary text-dark-text">
-            <NavBar />
+            {!isHomePage && <NavBar />}
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
