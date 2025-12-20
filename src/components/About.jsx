@@ -60,7 +60,7 @@ const About = () => {
     ];
 
     return (
-        <div className="about-section bg-dark-primary text-dark-text min-h-screen pt-24 pb-12 px-4 sm:px-8 font-sans">
+        <div className="about-section bg-dark-primary text-dark-text min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
             <div className="max-w-5xl mx-auto">
                 <div className="flex flex-col md:flex-row items-start gap-12">
                     {/* Profile Section */}

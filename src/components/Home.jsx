@@ -1,4 +1,3 @@
-// filepath: /Users/luisabrantes/Documents/luis.hsa/src/components/Home.jsx
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { User, Briefcase, Award, Mail } from 'lucide-react';
@@ -58,7 +57,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="home-section bg-dark-primary text-dark-text min-h-screen py-16 px-4 font-sans">
+        <div className="home-section bg-dark-primary text-dark-text min-h-screen pt-24 pb-16 px-4 font-sans">
             {/* Photo and Identity Section - Minimalist */}
             <div className="max-w-3xl mx-auto text-center mb-24">
                 <motion.div
@@ -87,7 +86,7 @@ const Home = () => {
                         Christian & Tech Enthusiast
                     </h2>
                     <p className="text-lg text-gray-500 italic font-light mt-4">
-                        "HACK is all you need !!"
+                        &quot;HACK is all you need !!&quot;
                     </p>
                 </motion.div>
             </div>

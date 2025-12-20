@@ -25,9 +25,9 @@ const NavBar = () => {
         }`;
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-dark-primary/80 backdrop-blur-md border-b border-gray-800">
+        <nav className="fixed top-0 left-0 w-full bg-dark-primary/80 backdrop-blur-md border-b border-gray-800/50 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="h-16 flex items-center justify-between">
+                <div className="flex items-center justify-between h-16">
                     <span className="text-white font-light tracking-wider text-lg">
                         Luis Henrique Abrantes
                     </span>

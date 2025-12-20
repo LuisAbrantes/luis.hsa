@@ -1,6 +1,18 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Award, Calendar, ExternalLink, X, BookOpen, Users, Code2, GraduationCap, Clock, FileText } from 'lucide-react';
+import { motion } from 'framer-motion';
+import {
+    Search,
+    Award,
+    Calendar,
+    ExternalLink,
+    X,
+    BookOpen,
+    Users,
+    Code2,
+    GraduationCap,
+    Clock,
+    FileText
+} from 'lucide-react';
 
 const certificatesData = [
     {
@@ -15,7 +27,8 @@ const certificatesData = [
     {
         id: 2,
         title: 'Introduction to Artificial Intelligence',
-        institution: 'Federal Institute of Science and Technology of São Paulo - IFSP',
+        institution:
+            'Federal Institute of Science and Technology of São Paulo - IFSP',
         date: '2024',
         type: 'courses',
         hours: 80,
@@ -36,7 +49,8 @@ const certificatesData = [
         institution: 'GitHub',
         date: '2025',
         type: 'extracurricular',
-        description: 'Committed to continuous learning through daily programming activities on GitHub, contributing to open-source projects and developing personal initiatives. This consistent engagement has allowed me to explore various technologies, solve real-world challenges, and grow as a programmer through collaboration with other developers.',
+        description:
+            'Committed to continuous learning through daily programming activities on GitHub, contributing to open-source projects and developing personal initiatives. This consistent engagement has allowed me to explore various technologies, solve real-world challenges, and grow as a programmer through collaboration with other developers.',
         image: 'https://miro.medium.com/v2/resize:fit:1400/0*TJvbdqOLs0vMhxQp'
     },
     {
@@ -45,13 +59,15 @@ const certificatesData = [
         institution: 'GitHub Community',
         date: '2024 2025',
         type: 'extracurricular',
-        description: 'Played an active role in the GitHub SJC Community, leading the ideation and implementation of programming projects and participating in workshops. Currently, I am preparing to expand this impact by hosting events for my school, combining community resources and partnerships with prominent education companies such as Alura and FIAP to inspire the next generation of programmers.',
+        description:
+            'Played an active role in the GitHub SJC Community, leading the ideation and implementation of programming projects and participating in workshops. Currently, I am preparing to expand this impact by hosting events for my school, combining community resources and partnerships with prominent education companies such as Alura and FIAP to inspire the next generation of programmers.',
         image: 'https://media.licdn.com/dms/image/v2/D4D0BAQGL5HVhqpRoFQ/img-crop_100/img-crop_100/0/1734304088175?e=1744243200&v=beta&t=Um4sC-DTQ_3AFoCyGy8sQRz4-HD7MiRsCyxp2wY04bg'
     },
     {
         id: 6,
         title: 'Linux Network Administration Fundamentals',
-        institution: 'Federal Institute of Science and Technology of São Paulo - IFSP',
+        institution:
+            'Federal Institute of Science and Technology of São Paulo - IFSP',
         date: '2022',
         type: 'courses',
         hours: 60,
@@ -69,7 +85,8 @@ const certificatesData = [
     {
         id: 8,
         title: 'Introduction to Databases and SQL',
-        institution: 'Federal Institute of Science and Technology of São Paulo - IFSP',
+        institution:
+            'Federal Institute of Science and Technology of São Paulo - IFSP',
         date: '2023',
         type: 'courses',
         hours: 36,
@@ -96,7 +113,8 @@ const certificatesData = [
     {
         id: 11,
         title: 'Introduction to Network Architecture and Protocols',
-        institution: 'Federal Institute of Science and Technology of São Paulo - IFSP',
+        institution:
+            'Federal Institute of Science and Technology of São Paulo - IFSP',
         date: '2022',
         type: 'courses',
         hours: 100,
@@ -105,10 +123,12 @@ const certificatesData = [
     {
         id: 12,
         title: 'Coorganized the 1st National English Language Olympiad - OBLI in my Campus',
-        institution: 'Institute of Federal Education, Science and Technology of São Paulo',
+        institution:
+            'Institute of Federal Education, Science and Technology of São Paulo',
         date: '2024',
         type: 'extracurricular',
-        description: 'Discovered and independently organized the OBLI event at IFSP, engaging over 300 community members, including students, teachers, and staff. Secured partnerships with institutions like Kumon and Yázigi to reward medalists and participants. Coordinated logistics, supported students with technical issues during the competition, and shared study methods. Over two years, this initiative celebrated approximately 50 medalists, significantly promoting academic excellence in the community.',
+        description:
+            'Discovered and independently organized the OBLI event at IFSP, engaging over 300 community members, including students, teachers, and staff. Secured partnerships with institutions like Kumon and Yázigi to reward medalists and participants. Coordinated logistics, supported students with technical issues during the competition, and shared study methods. Over two years, this initiative celebrated approximately 50 medalists, significantly promoting academic excellence in the community.',
         image: 'https://images.inc.com/uploaded_files/image/1920x1080/shutterstock_500593225_354026.jpg'
     },
     {
@@ -117,7 +137,8 @@ const certificatesData = [
         institution: 'The Dream School',
         date: '2024',
         type: 'extracurricular',
-        description: 'Selected as a representative of the students for The Dream School, where I actively participate in strategic discussions shaping the future of the largest exchange preparation institution in Latin America. Through these efforts, I contribute to improving classes and preparation systems, helping to recruit new students and ambassadors. This collective work has led to remarkable growth in enrollment, ambassador engagement, and overall institutional impact.',
+        description:
+            'Selected as a representative of the students for The Dream School, where I actively participate in strategic discussions shaping the future of the largest exchange preparation institution in Latin America. Through these efforts, I contribute to improving classes and preparation systems, helping to recruit new students and ambassadors. This collective work has led to remarkable growth in enrollment, ambassador engagement, and overall institutional impact.',
         image: 'https://thedream.com.br/wp-content/uploads/2020/11/Logo_TheDreamSchool.png'
     },
     {
@@ -126,7 +147,8 @@ const certificatesData = [
         institution: 'ARINTER IFSP',
         date: '2024 2025',
         type: 'extracurricular',
-        description: 'As an ARINTER ambassador, I work to promote fair and transparent international academic exchanges, focusing on opportunities for low-income students. Current projects include organizing roundtables with alumni to share experiences and another roundtable with international students, facilitating international video calls for English practice.',
+        description:
+            'As an ARINTER ambassador, I work to promote fair and transparent international academic exchanges, focusing on opportunities for low-income students. Current projects include organizing roundtables with alumni to share experiences and another roundtable with international students, facilitating international video calls for English practice.',
         image: 'https://itp.ifsp.edu.br/images/CTI/ARINTER.png'
     },
     {
@@ -135,7 +157,8 @@ const certificatesData = [
         institution: 'IFSP',
         date: '2024 2025',
         type: 'extracurricular',
-        description: 'Led the organization of programming events at IFSP, such as a marathon with 55 participants where I managed logistics, resolved technical issues, and secured sponsorships from companies like GitHub, Cebras, and Tune.AI. Inspired students to explore programming creatively, addressing complaints about monotonous classroom experiences. Currently, I am conceptualizing a week-long hackathon modeled on PennApps, aiming to create an engaging and impactful learning experience for the campus community.',
+        description:
+            'Led the organization of programming events at IFSP, such as a marathon with 55 participants where I managed logistics, resolved technical issues, and secured sponsorships from companies like GitHub, Cebras, and Tune.AI. Inspired students to explore programming creatively, addressing complaints about monotonous classroom experiences. Currently, I am conceptualizing a week-long hackathon modeled on PennApps, aiming to create an engaging and impactful learning experience for the campus community.',
         image: 'https://miro.medium.com/v2/resize:fit:1400/0*TJvbdqOLs0vMhxQp'
     },
     {
@@ -204,11 +227,13 @@ const certificatesData = [
     {
         id: 23,
         title: 'IFSP Entrance Exam - Top 10 Performance',
-        institution: 'Federal Institute of Science and Technology of São Paulo - IFSP',
+        institution:
+            'Federal Institute of Science and Technology of São Paulo - IFSP',
         date: '2021',
         type: 'honors',
         hours: 4,
-        description: 'Achieved a position between 6th and 10th place among prepared 181 candidates, being one of 40 approved students. This result demonstrated strong academic preparation and competitive performance in the entrance examination.',
+        description:
+            'Achieved a position between 6th and 10th place among prepared 181 candidates, being one of 40 approved students. This result demonstrated strong academic preparation and competitive performance in the entrance examination.',
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd2cuEoKZydmlYcod_8jkSEqpD86gnRuWVgA&s'
     },
     {
@@ -218,10 +243,12 @@ const certificatesData = [
         date: '2024',
         type: 'honors',
         hours: 8,
-        description: "Advanced to the second phase of the Brazilian Olympiad of Informatics (OBI), the most prestigious and difficult programming competition in Latin America, organized by UNICAMP. This highly competitive event evaluates programming skills, logical reasoning, and problem-solving abilities across three challenging phases. My achievement was featured in a news article by IFSP Jacareí campus, highlighting the accomplishment.\n\n🏆 Competition Performance (2 out of 3 stages completed):\n• First Phase: Scored 180/400 points (exactly meeting the 180-point cut-off)\n• Second Phase: Scored 300/400 points (cut-off was 400 points)\n\nThis performance demonstrates strong programming fundamentals and problem-solving skills in Latin America's most challenging and prestigious technical competition.",
+        description:
+            "Advanced to the second phase of the Brazilian Olympiad of Informatics (OBI), the most prestigious and difficult programming competition in Latin America, organized by UNICAMP. This highly competitive event evaluates programming skills, logical reasoning, and problem-solving abilities across three challenging phases. My achievement was featured in a news article by IFSP Jacareí campus, highlighting the accomplishment.\n\n🏆 Competition Performance (2 out of 3 stages completed):\n• First Phase: Scored 180/400 points (exactly meeting the 180-point cut-off)\n• Second Phase: Scored 300/400 points (cut-off was 400 points)\n\nThis performance demonstrates strong programming fundamentals and problem-solving skills in Latin America's most challenging and prestigious technical competition.",
         image: 'https://jcr.ifsp.edu.br/images/Image_2024-08-15_at_144156.jpeg',
         imagePosition: 'object-bottom',
-        newsArticle: 'https://jcr.ifsp.edu.br/index.php/ultimas-noticias/2381-alunos-do-curso-tecnico-em-informatica-do-campus-jacarei-sao-aprovados-para-a-segunda-fase-da-olimpiada-brasileira-de-informatica'
+        newsArticle:
+            'https://jcr.ifsp.edu.br/index.php/ultimas-noticias/2381-alunos-do-curso-tecnico-em-informatica-do-campus-jacarei-sao-aprovados-para-a-segunda-fase-da-olimpiada-brasileira-de-informatica'
     },
     {
         id: 25,
@@ -230,22 +257,30 @@ const certificatesData = [
         date: '2024',
         type: 'honors',
         hours: 8,
-        description: "Advanced to the second phase of the National Science Olympiad (ONC), the most competitive and prestigious science competition in Brazil, organized by the Federal Government through the Ministry of Science, Technology and Innovation (MCTI). This highly selective competition tests knowledge in various scientific fields including physics, chemistry, and biology across two rigorous phases. My achievement was recognized in a news article published by Instituto Federal de São Paulo - Jacareí campus.\n\n🏆 Competition Performance (2 out of 2 stages completed):\nSuccessfully completed both phases of Brazil's most prestigious science olympiad, demonstrating strong multidisciplinary scientific knowledge and analytical skills.",
+        description:
+            "Advanced to the second phase of the National Science Olympiad (ONC), the most competitive and prestigious science competition in Brazil, organized by the Federal Government through the Ministry of Science, Technology and Innovation (MCTI). This highly selective competition tests knowledge in various scientific fields including physics, chemistry, and biology across two rigorous phases. My achievement was recognized in a news article published by Instituto Federal de São Paulo - Jacareí campus.\n\n🏆 Competition Performance (2 out of 2 stages completed):\nSuccessfully completed both phases of Brazil's most prestigious science olympiad, demonstrating strong multidisciplinary scientific knowledge and analytical skills.",
         image: 'https://www.ifsp.edu.br/images/2022/10_Outubro/cartaz-onc-2022-noticia.jpg',
         imagePosition: 'object-bottom',
-        newsArticle: 'https://jcr.ifsp.edu.br/index.php/component/content/article/17-ultimas-noticias/2389-alunos-do-campus-jacarei-se-classificam-para-a-2-fase-da-olimpiada-nacional-de-ciencias'
+        newsArticle:
+            'https://jcr.ifsp.edu.br/index.php/component/content/article/17-ultimas-noticias/2389-alunos-do-campus-jacarei-se-classificam-para-a-2-fase-da-olimpiada-nacional-de-ciencias'
     }
 ];
 
 const CertificateCard = ({ certificate, onClick }) => {
-    const getIcon = (type) => {
+    const getIcon = type => {
         switch (type) {
-            case 'courses': return <BookOpen size={24} className="text-gray-400" />;
-            case 'honors': return <Award size={24} className="text-gray-400" />;
-            case 'extracurricular': return <Users size={24} className="text-gray-400" />;
-            case 'events': return <Calendar size={24} className="text-gray-400" />;
-            case 'hackathons': return <Code2 size={24} className="text-gray-400" />;
-            default: return <GraduationCap size={24} className="text-gray-400" />;
+            case 'courses':
+                return <BookOpen size={24} className="text-gray-400" />;
+            case 'honors':
+                return <Award size={24} className="text-gray-400" />;
+            case 'extracurricular':
+                return <Users size={24} className="text-gray-400" />;
+            case 'events':
+                return <Calendar size={24} className="text-gray-400" />;
+            case 'hackathons':
+                return <Code2 size={24} className="text-gray-400" />;
+            default:
+                return <GraduationCap size={24} className="text-gray-400" />;
         }
     };
 
@@ -260,10 +295,12 @@ const CertificateCard = ({ certificate, onClick }) => {
             <div className="flex items-start justify-between mb-6">
                 <div className="w-12 h-12 rounded-xl bg-white/5 p-2 border border-gray-800 group-hover:border-gray-600 transition-colors flex items-center justify-center overflow-hidden">
                     {certificate.image ? (
-                        <img 
-                            src={certificate.image} 
-                            alt={certificate.institution} 
-                            className={`w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity ${certificate.imagePosition || ''}`} 
+                        <img
+                            src={certificate.image}
+                            alt={certificate.institution}
+                            className={`w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity ${
+                                certificate.imagePosition || ''
+                            }`}
                         />
                     ) : (
                         getIcon(certificate.type)
@@ -284,7 +321,9 @@ const CertificateCard = ({ certificate, onClick }) => {
             <div className="mt-auto pt-4 border-t border-gray-800/50 flex justify-between items-center">
                 <span className="text-xs text-gray-500 font-light capitalize flex items-center gap-1">
                     {certificate.type === 'courses' && <BookOpen size={12} />}
-                    {certificate.type === 'extracurricular' && <Users size={12} />}
+                    {certificate.type === 'extracurricular' && (
+                        <Users size={12} />
+                    )}
                     {certificate.type === 'honors' && <Award size={12} />}
                     {certificate.type === 'events' && <Calendar size={12} />}
                     {certificate.type === 'hackathons' && <Code2 size={12} />}
@@ -301,19 +340,25 @@ const CertificateCard = ({ certificate, onClick }) => {
 };
 
 const CertificateModal = ({ certificate, onClose }) => {
-    const getIcon = (type) => {
+    const getIcon = type => {
         switch (type) {
-            case 'courses': return <BookOpen size={32} className="text-gray-400" />;
-            case 'honors': return <Award size={32} className="text-gray-400" />;
-            case 'extracurricular': return <Users size={32} className="text-gray-400" />;
-            case 'events': return <Calendar size={32} className="text-gray-400" />;
-            case 'hackathons': return <Code2 size={32} className="text-gray-400" />;
-            default: return <GraduationCap size={32} className="text-gray-400" />;
+            case 'courses':
+                return <BookOpen size={32} className="text-gray-400" />;
+            case 'honors':
+                return <Award size={32} className="text-gray-400" />;
+            case 'extracurricular':
+                return <Users size={32} className="text-gray-400" />;
+            case 'events':
+                return <Calendar size={32} className="text-gray-400" />;
+            case 'hackathons':
+                return <Code2 size={32} className="text-gray-400" />;
+            default:
+                return <GraduationCap size={32} className="text-gray-400" />;
         }
     };
 
     return (
-        <div 
+        <div
             className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
             onClick={onClose}
         >
@@ -328,10 +373,12 @@ const CertificateModal = ({ certificate, onClose }) => {
                         <div className="flex gap-4 w-full">
                             <div className="w-16 h-16 rounded-xl bg-white/5 p-3 border border-gray-800 flex items-center justify-center overflow-hidden shrink-0">
                                 {certificate.image ? (
-                                    <img 
-                                        src={certificate.image} 
-                                        alt={certificate.institution} 
-                                        className={`w-full h-full object-cover ${certificate.imagePosition || ''}`} 
+                                    <img
+                                        src={certificate.image}
+                                        alt={certificate.institution}
+                                        className={`w-full h-full object-cover ${
+                                            certificate.imagePosition || ''
+                                        }`}
                                     />
                                 ) : (
                                     getIcon(certificate.type)
@@ -342,11 +389,12 @@ const CertificateModal = ({ certificate, onClose }) => {
                                     {certificate.title}
                                 </h2>
                                 <p className="text-gray-400 font-light">
-                                    {certificate.institution} • {certificate.date}
+                                    {certificate.institution} •{' '}
+                                    {certificate.date}
                                 </p>
                             </div>
                         </div>
-                        <button 
+                        <button
                             onClick={onClose}
                             className="text-gray-500 hover:text-white transition-colors"
                         >
@@ -356,23 +404,35 @@ const CertificateModal = ({ certificate, onClose }) => {
 
                     <div className="space-y-6">
                         <div>
-                            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">Details</h3>
+                            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
+                                Details
+                            </h3>
                             <div className="grid grid-cols-2 gap-4 mb-4">
                                 <div className="bg-dark-secondary/30 border border-gray-800 rounded-xl p-3">
-                                    <span className="text-xs text-gray-500 block mb-1">Type</span>
-                                    <span className="text-white font-light capitalize">{certificate.type}</span>
+                                    <span className="text-xs text-gray-500 block mb-1">
+                                        Type
+                                    </span>
+                                    <span className="text-white font-light capitalize">
+                                        {certificate.type}
+                                    </span>
                                 </div>
                                 {certificate.hours && (
                                     <div className="bg-dark-secondary/30 border border-gray-800 rounded-xl p-3">
-                                        <span className="text-xs text-gray-500 block mb-1">Duration</span>
-                                        <span className="text-white font-light">{certificate.hours} hours</span>
+                                        <span className="text-xs text-gray-500 block mb-1">
+                                            Duration
+                                        </span>
+                                        <span className="text-white font-light">
+                                            {certificate.hours} hours
+                                        </span>
                                     </div>
                                 )}
                             </div>
-                            
+
                             {certificate.description && (
                                 <div className="mt-4">
-                                    <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">Description</h3>
+                                    <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
+                                        Description
+                                    </h3>
                                     <p className="text-gray-300 font-light leading-relaxed whitespace-pre-line">
                                         {certificate.description}
                                     </p>
@@ -419,10 +479,14 @@ const Certificates = () => {
     const [filter, setFilter] = useState('all');
 
     const filteredCertificates = certificatesData.filter(cert => {
-        const matchesSearch = cert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        const matchesSearch =
+            cert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             cert.institution.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            (cert.description && cert.description.toLowerCase().includes(searchTerm.toLowerCase()));
-        
+            (cert.description &&
+                cert.description
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase()));
+
         const matchesFilter = filter === 'all' || cert.type === filter;
 
         return matchesSearch && matchesFilter;
@@ -442,7 +506,8 @@ const Certificates = () => {
                         Academic Achievements
                     </h1>
                     <p className="text-gray-400 font-light max-w-2xl mx-auto mb-8">
-                        My qualifications, certifications, and extracurricular activities.
+                        My qualifications, certifications, and extracurricular
+                        activities.
                     </p>
 
                     <div className="relative max-w-md mx-auto mb-8">
@@ -450,10 +515,13 @@ const Certificates = () => {
                             type="text"
                             placeholder="Search achievements..."
                             value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onChange={e => setSearchTerm(e.target.value)}
                             className="w-full bg-transparent border border-gray-800 rounded-full py-3 pl-12 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-white focus:ring-0 transition-colors font-light"
                         />
-                        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
+                        <Search
+                            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"
+                            size={18}
+                        />
                     </div>
 
                     <div className="flex justify-center gap-3 flex-wrap">
@@ -485,7 +553,9 @@ const Certificates = () => {
 
                 {filteredCertificates.length === 0 && (
                     <div className="text-center py-12">
-                        <p className="text-gray-500 font-light">No achievements found matching your criteria.</p>
+                        <p className="text-gray-500 font-light">
+                            No achievements found matching your criteria.
+                        </p>
                     </div>
                 )}
 
