@@ -18,7 +18,10 @@ import {
     SquareCode,
     Brain,
     Terminal,
-    Mic
+    Mic,
+    MapPin,
+    MessageCircle,
+    Train
 } from 'lucide-react';
 import agrolearn from '../assets/projects/agrolearn.png';
 import quickreadme from '../assets/projects/quickreadme.png';
@@ -54,7 +57,10 @@ const techIcons = {
     'GPT-3.5 Turbo': <Brain size={14} className="inline-block text-current" />,
     Firestore: <Database size={14} className="inline-block text-current" />,
     'Murf.ai': <Mic size={14} className="inline-block text-current" />,
-    Llama: <Brain size={14} className="inline-block text-current" />
+    Llama: <Brain size={14} className="inline-block text-current" />,
+    WhatsApp: <MessageCircle size={14} className="inline-block text-current" />,
+    Maps: <MapPin size={14} className="inline-block text-current" />,
+    Railway: <Train size={14} className="inline-block text-current" />
 };
 
 const projectsData = [
@@ -109,6 +115,38 @@ const projectsData = [
             'Overcame challenges in installing Python packages and integrating pre-trained AI models',
             'Valuable learning about using API keys, handling real-time speech functions, and teamwork collaboration under pressure',
             'Future plans include expansion to more languages, summarization of long lectures, and reading charts/tables'
+        ]
+    },
+    {
+        id: 9,
+        title: 'Encantos do Forno',
+        shortDescription:
+            'A freelance full-stack restaurant management system built for a local artisan restaurant, featuring real-time queue management, digital menu, reservation booking, and a complete admin dashboard for operations.',
+        fullDescription:
+            "Encantos do Forno is a comprehensive restaurant management system I developed as a freelance project for a local artisan restaurant in Jacareí/SP, designed to bridge traditional hospitality with modern digital operations. For customers, the platform provides an intuitive landing page showcasing the restaurant's story and team, a digital menu with categorized products, a reservation booking system, and a real-time queue management feature allowing walk-in customers to join waitlists and track their position. The system also includes direct WhatsApp contact integration and embedded Google Maps for easy location access. For administrators and staff, the platform offers a complete management dashboard with authentication and role-based access. Admin features include full CRUD operations for products, orders, tables, reservations, and employees, real-time queue administration with customer notification capabilities, scheduling conflict prevention, and class/workshop management for bakery courses. Built with React, Vite, and Tailwind CSS, the system delivers a responsive experience across all devices and is deployed on Vercel with proper SPA routing configuration.",
+        image: '/path/to/encantos-do-forno-image.png',
+        thumbnail: '/path/to/encantos-do-forno-thumbnail.png',
+        technologies: [
+            'React',
+            'Tailwind CSS',
+            'JavaScript',
+            'Supabase',
+            'WhatsApp',
+            'Maps',
+            'Railway',
+            'Vercel'
+        ],
+        category: 'Web App',
+        github: 'https://github.com/LuisAbrantes/EncantosDoForno',
+        demo: 'https://encantos-do-forno.vercel.app/',
+        highlights: [
+            'Full-stack restaurant management system deployed for real commercial client in Jacareí/SP',
+            'Dual interface architecture: customer-facing landing page and authenticated admin dashboard with role-based access',
+            'Real-time queue management system enabling walk-in customers to join waitlists digitally and receive position updates',
+            'Comprehensive CRUD operations across multiple entities: products, orders, tables, employees, reservations, and classes',
+            'Responsive design ensuring seamless experience across desktop, tablet, and mobile devices for both customers and staff',
+            'Built with modern React patterns using Context API for state management and custom hooks for reusable logic',
+            'Production deployment on Vercel with proper routing configuration for single-page application behavior'
         ]
     },
     {

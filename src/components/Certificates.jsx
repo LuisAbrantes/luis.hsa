@@ -32,7 +32,7 @@ const certificatesData = [
         date: '2024',
         type: 'courses',
         hours: 80,
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmtStunAJeFhpcASYAIasKgfy7pYAnZJDgzQ&s'
+        image: 'https://cdn.sologo.ai/2025/0102/20250102113948245.png'
     },
     {
         id: 3,
