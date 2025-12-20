@@ -136,7 +136,7 @@ const Home = () => {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
                 >
-                    <h3 className="text-2xl font-semibold mb-16 text-center text-gray-200 tracking-wide uppercase text-sm">
+                    <h3 className="text-2xl font-semibold mb-16 text-center text-gray-200 tracking-wide uppercase">
                         My Journey
                     </h3>
                     <div className="relative border-l border-gray-800 ml-4 md:ml-0 md:pl-0 md:border-none space-y-12">
