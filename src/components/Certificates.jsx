@@ -86,6 +86,15 @@ const certificatesData = [
     },
     {
         id: 7,
+        title: 'Building a Brain in 10 Minutes',
+        institution: 'NVIDIA Deep Learning Institute (DLI)',
+        date: '2025',
+        type: 'courses',
+        hours: 0.5,
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlQViZDGRjjB1wdPX_77aBa8YBd40reXHvGg&s'
+    },
+    {
+        id: 8,
         title: 'Representative of the organizing committee for computer events at IFSP',
         institution: 'IFSP',
         date: '2024 2025',
@@ -95,7 +104,7 @@ const certificatesData = [
         image: 'https://miro.medium.com/v2/resize:fit:1400/0*TJvbdqOLs0vMhxQp'
     },
     {
-        id: 8,
+        id: 9,
         title: 'National English Language Olympiad - OBLI - Gold Medal',
         institution: 'Seleta Educação',
         date: '2025',
@@ -106,7 +115,7 @@ const certificatesData = [
             'Achieved Gold Medal performance (Top 2%) in the National English Language Olympiad, demonstrating exceptional English language proficiency and ranking among the top performers nationwide.'
     },
     {
-        id: 9,
+        id: 10,
         title: 'Coorganized the 1st National English Language Olympiad - OBLI in my Campus',
         institution:
             'Institute of Federal Education, Science and Technology of São Paulo',
@@ -117,7 +126,7 @@ const certificatesData = [
         image: 'https://images.inc.com/uploaded_files/image/1920x1080/shutterstock_500593225_354026.jpg'
     },
     {
-        id: 10,
+        id: 11,
         title: 'Class Leader',
         institution:
             'Federal Institute of Science and Technology of São Paulo - IFSP',
@@ -128,7 +137,7 @@ const certificatesData = [
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd2cuEoKZydmlYcod_8jkSEqpD86gnRuWVgA&s'
     },
     {
-        id: 11,
+        id: 12,
         title: 'Cosmology - Physics on Vacation - FIFE',
         institution: 'University of Campinas - UNICAMP',
         date: '2024',
@@ -139,7 +148,7 @@ const certificatesData = [
             'An intensive course on Cosmology where I explored fundamental concepts of the universe, including dark matter, black holes, and other related phenomena. This program provided deep insights into modern astrophysics and cosmological theories. With a highly competitive 5% acceptance rate, this program represents a significant academic achievement.'
     },
     {
-        id: 12,
+        id: 13,
         title: 'International Relations Consultancy (ARINTER) of IFSP Ambassador',
         institution: 'ARINTER IFSP',
         date: '2024 2025',
@@ -149,7 +158,7 @@ const certificatesData = [
         image: 'https://itp.ifsp.edu.br/images/CTI/ARINTER.png'
     },
     {
-        id: 13,
+        id: 14,
         title: 'Grand Prix SENAI Hackathon',
         institution: 'National Service for Industrial Learning - SENAI',
         date: '2024',
@@ -158,7 +167,7 @@ const certificatesData = [
         image: 'https://static.portaldaindustria.com.br/media/filer_public/15/bf/15bf07e0-a084-403d-bcc9-b206240d90f7/logo.png'
     },
     {
-        id: 14,
+        id: 15,
         title: 'ONC - Nacional Science Olympiad - 2 out of 2 stages',
         institution: 'Ministry of Science, Technology and Innovation (MCTI)',
         date: '2024',
@@ -172,7 +181,7 @@ const certificatesData = [
             'https://jcr.ifsp.edu.br/index.php/component/content/article/17-ultimas-noticias/2389-alunos-do-campus-jacarei-se-classificam-para-a-2-fase-da-olimpiada-nacional-de-ciencias'
     },
     {
-        id: 15,
+        id: 16,
         title: "TypeScript: The Complete Developer's Guide",
         institution: 'Stephen Grider - Udemy',
         date: '2025',
@@ -183,7 +192,7 @@ const certificatesData = [
             'Mastered TypeScript by learning popular design patterns and building complex projects. This comprehensive bestseller course covered advanced TypeScript concepts, integration with React and Express, and practical application of design patterns in real-world scenarios.'
     },
     {
-        id: 16,
+        id: 17,
         title: 'National English Language Olympiad - OBLI - Bronze Medal 1',
         institution: 'Seleta Educação',
         date: '2024.1',
@@ -194,7 +203,7 @@ const certificatesData = [
             'Achieved Bronze Medal performance (Top 8%) in the National English Language Olympiad, demonstrating strong English language proficiency.'
     },
     {
-        id: 17,
+        id: 18,
         title: 'National English Language Olympiad - OBLI - Bronze Medal 2',
         institution: 'Seleta Educação',
         date: '2024.2',
@@ -205,7 +214,7 @@ const certificatesData = [
             'Achieved Bronze Medal performance (Top 8%) in the National English Language Olympiad, demonstrating strong English language proficiency.'
     },
     {
-        id: 18,
+        id: 19,
         title: 'GitTogether SJC Community Member',
         institution: 'GitHub Community',
         date: '2024 2025',
@@ -215,7 +224,7 @@ const certificatesData = [
         image: 'https://images.icon-icons.com/3685/PNG/512/github_logo_icon_229278.png'
     },
     {
-        id: 19,
+        id: 20,
         title: 'Programming Every Day',
         institution: 'GitHub',
         date: '2025',
@@ -225,7 +234,7 @@ const certificatesData = [
         image: 'https://miro.medium.com/v2/resize:fit:1400/0*TJvbdqOLs0vMhxQp'
     },
     {
-        id: 20,
+        id: 21,
         title: 'IFSP Entrance Exam - Top 10 Performance',
         institution:
             'Federal Institute of Science and Technology of São Paulo - IFSP',
@@ -237,7 +246,7 @@ const certificatesData = [
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd2cuEoKZydmlYcod_8jkSEqpD86gnRuWVgA&s'
     },
     {
-        id: 21,
+        id: 22,
         title: 'Introduction to Network Architecture and Protocols',
         institution:
             'Federal Institute of Science and Technology of São Paulo - IFSP',
@@ -247,7 +256,7 @@ const certificatesData = [
         image: 'https://t.ctcdn.com.br/C3HzEgvL7HZKHPHr0UhHH7cYwvc=/i658265.png'
     },
     {
-        id: 22,
+        id: 23,
         title: 'Linux Network Administration Fundamentals',
         institution:
             'Federal Institute of Science and Technology of São Paulo - IFSP',
@@ -257,7 +266,7 @@ const certificatesData = [
         image: 'https://t2.tudocdn.net/606607?w=1920'
     },
     {
-        id: 23,
+        id: 24,
         title: 'Introduction to Databases and SQL',
         institution:
             'Federal Institute of Science and Technology of São Paulo - IFSP',
@@ -267,7 +276,7 @@ const certificatesData = [
         image: 'https://accutivesecurity.com/wp-content/uploads/2024/06/Data-Masking-for-MySQL-background.svg'
     },
     {
-        id: 24,
+        id: 25,
         title: 'The Dream School Ambassador',
         institution: 'The Dream School',
         date: '2024',
@@ -277,7 +286,7 @@ const certificatesData = [
         image: 'https://thedream.com.br/wp-content/uploads/2020/11/Logo_TheDreamSchool.png'
     },
     {
-        id: 25,
+        id: 26,
         title: 'Understanding Copilots - Workshop with Microsoft MVPs and GitHub Star',
         institution: 'GitHub Community - GitTogether SJC',
         date: '2024',
@@ -286,7 +295,7 @@ const certificatesData = [
         image: 'https://github.blog/wp-content/uploads/2024/10/copilot-square.png'
     },
     {
-        id: 26,
+        id: 27,
         title: 'Saint John\'s Summer-Academy Online - "The Odyssey" Session',
         institution: "Saint John's College",
         date: '2024',
@@ -295,7 +304,7 @@ const certificatesData = [
         image: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/St._John%27s_College.svg/1200px-St._John%27s_College.svg.png'
     },
     {
-        id: 27,
+        id: 28,
         title: '3rd out of 4 stages in the Brazilian National History Olympiad - ONHB',
         institution: 'University of Campinas - UNICAMP',
         date: '2023',
