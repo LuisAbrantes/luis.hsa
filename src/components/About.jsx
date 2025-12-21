@@ -207,7 +207,14 @@ const About = () => {
                                                 </td>
                                                 <td className="py-4 px-4">
                                                     <div className="flex flex-wrap gap-2">
-                                                        {['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Tailwind'].map(tech => (
+                                                        {[
+                                                            'HTML',
+                                                            'CSS',
+                                                            'JavaScript',
+                                                            'TypeScript',
+                                                            'React',
+                                                            'Tailwind'
+                                                        ].map(tech => (
                                                             <span
                                                                 key={tech}
                                                                 className="px-3 py-1 bg-dark-primary border border-gray-800 rounded-lg text-xs text-gray-300 font-light"
@@ -224,7 +231,14 @@ const About = () => {
                                                 </td>
                                                 <td className="py-4 px-4">
                                                     <div className="flex flex-wrap gap-2">
-                                                        {['Node.js', 'Python', 'FastAPI', 'SQL', 'Relational Databases', 'Supabase'].map(tech => (
+                                                        {[
+                                                            'Node.js',
+                                                            'Python',
+                                                            'FastAPI',
+                                                            'SQL',
+                                                            'Relational Databases',
+                                                            'Supabase'
+                                                        ].map(tech => (
                                                             <span
                                                                 key={tech}
                                                                 className="px-3 py-1 bg-dark-primary border border-gray-800 rounded-lg text-xs text-gray-300 font-light"
@@ -241,7 +255,14 @@ const About = () => {
                                                 </td>
                                                 <td className="py-4 px-4">
                                                     <div className="flex flex-wrap gap-2">
-                                                        {['Git/GitHub', 'GitHub Pages', 'Vercel', 'Railway', 'Render', 'Linux Terminal'].map(tech => (
+                                                        {[
+                                                            'Git/GitHub',
+                                                            'GitHub Pages',
+                                                            'Vercel',
+                                                            'Railway',
+                                                            'Render',
+                                                            'Linux Terminal'
+                                                        ].map(tech => (
                                                             <span
                                                                 key={tech}
                                                                 className="px-3 py-1 bg-dark-primary border border-gray-800 rounded-lg text-xs text-gray-300 font-light"
@@ -258,7 +279,12 @@ const About = () => {
                                                 </td>
                                                 <td className="py-4 px-4">
                                                     <div className="flex flex-wrap gap-2">
-                                                        {['JavaScript', 'TypeScript', 'Python', 'SQL'].map(lang => (
+                                                        {[
+                                                            'JavaScript',
+                                                            'TypeScript',
+                                                            'Python',
+                                                            'SQL'
+                                                        ].map(lang => (
                                                             <span
                                                                 key={lang}
                                                                 className="px-3 py-1 bg-dark-primary border border-gray-800 rounded-lg text-xs text-gray-300 font-light"
