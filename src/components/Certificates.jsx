@@ -72,6 +72,17 @@ const certificatesData = [
             "An advanced course on Quantum Computing taught directly by the leading department in the Southern Hemisphere, alongside the first quantum computer in the region. I learned fundamental quantum computing concepts and deepened my knowledge in superconducting qubit creation, including advanced concepts such as Josephson Junctions and quantum circuit design. I had the privilege of witnessing the creation of Latin America's second qubit, gaining hands-on experience with cutting-edge quantum technologies at one of the most prestigious quantum research facilities in South America."
     },
     {
+        id: 33,
+        title: "TypeScript: The Complete Developer's Guide",
+        institution: 'Stephen Grider - Udemy',
+        date: '2025',
+        type: 'courses',
+        hours: 27,
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png',
+        description:
+            'Mastered TypeScript by learning popular design patterns and building complex projects. This comprehensive bestseller course covered advanced TypeScript concepts, integration with React and Express, and practical application of design patterns in real-world scenarios.'
+    },
+    {
         id: 6,
         title: 'Programming Every Day',
         institution: 'GitHub',
