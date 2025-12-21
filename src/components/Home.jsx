@@ -17,12 +17,17 @@ const timelineData = [
     {
         year: '2024',
         description:
-            'Developed TutorTime, my first full stack application. Achieved a dream by participating in my first hackathon at an Ivy League, PennApps at UPenn, marking my first academic trip abroad. I successfully organized a fundraiser campaign to raise the necessary funds for this independent journey.'
+            'Developed TutorTime, my first full-stack application and Capstone Project for my Informatics Technician course (completed ahead of schedule in my junior year). Achieved a dream by participating in my first hackathon at an Ivy League, PennApps at UPenn, marking my first academic trip abroad. I successfully organized a fundraiser campaign to raise the necessary funds for this independent journey.'
     },
     {
         year: '2024-2025',
         description:
             'Completed an intensive programming challenge by coding every day from September 22, 2024 to January 16, 2025. This consistent practice strengthened my skills, expanded my portfolio, and demonstrated my dedication to continuous improvement in software development.'
+    },
+    {
+        year: '2025',
+        description:
+            'Deepened my skills on frontend and backend. Attempted to the Hackathon that changes my life - UCBerkey AI Hackathon, and since then, developing my skills on Applied AI, AI Agents, etc...'
     }
 ];
 
