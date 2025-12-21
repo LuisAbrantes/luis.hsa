@@ -159,7 +159,7 @@ const projectsData = [
         image: agrolearn,
         thumbnail: agrolearn,
         technologies: ['React', 'Vite', 'Tailwind CSS', 'Vercel'],
-        category: 'Web App',
+        category: 'Hackathon Project',
         github: 'https://github.com/LuisAbrantes/AgroLearn',
         demo: 'https://agrolearn.vercel.app/',
         highlights: [
