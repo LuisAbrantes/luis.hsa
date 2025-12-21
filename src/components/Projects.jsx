@@ -493,7 +493,7 @@ const Projects = () => {
             : projectsData.filter(p => p.category === filter);
 
     return (
-        <section className="min-h-screen bg-dark-primary pt-40 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
+        <section className="min-h-screen bg-black pt-40 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
             <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
