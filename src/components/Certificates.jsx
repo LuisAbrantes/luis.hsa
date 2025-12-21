@@ -97,7 +97,7 @@ const certificatesData = [
         id: 8,
         title: 'Getting Started with Machine Learning with PyTorch',
         institution: 'IBM Skills Network - Cognitive Class',
-        date: '2024',
+        date: '2025',
         type: 'courses',
         hours: 1,
         image: 'https://icon-icons.com/download-file?file=https%3A%2F%2Fimages.icon-icons.com%2F2699%2FPNG%2F256%2Fibm_logo_icon_169017.png&id=169017&pack_or_individual=pack'

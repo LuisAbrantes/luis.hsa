@@ -129,7 +129,8 @@ const Contact = () => {
                             </h3>
                             <p className="text-gray-400 font-light text-sm mb-4">
                                 Interested in a portfolio like this? I offer
-                                custom development services starting at $15.
+                                custom development services for Portfolio and
+                                Landing Pages for you or your business. Text me!
                             </p>
                             <ul className="space-y-2 mb-6">
                                 <li className="flex items-center gap-2 text-sm text-gray-500 font-light">
