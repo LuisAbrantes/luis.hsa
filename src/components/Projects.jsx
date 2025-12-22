@@ -23,7 +23,7 @@ import {
     MessageCircle,
     Train
 } from 'lucide-react';
-import agrolearn from '../assets/projects/agrolearn.png';
+import agrolearn from '../assets/projects/AgroLearn.png';
 import quickreadme from '../assets/projects/quickreadme.png';
 import elementaryschoolwebsite from '../assets/projects/elementaryschoolwebsite.png';
 import tutortime from '../assets/projects/tutortime.png';
@@ -31,6 +31,7 @@ import webdevclasses from '../assets/projects/webDevClasses.png';
 import historytestsite from '../assets/projects/historyTestStudyPortal.png';
 import speakScribeImage from '../assets/projects/speakScribe.png';
 import girlTalkAiImage from '../assets/projects/girlTalkAI.png';
+import encantosDoForno from '../assets/projects/encantosDoForno.png';
 
 const techIcons = {
     React: <Code2 size={14} className="inline-block text-current" />,
@@ -124,8 +125,8 @@ const projectsData = [
             'A freelance full-stack restaurant management system built for a local artisan restaurant, featuring real-time queue management, digital menu, reservation booking, and a complete admin dashboard for operations.',
         fullDescription:
             "Encantos do Forno is a comprehensive restaurant management system I developed as a freelance project for a local artisan restaurant in Jacareí/SP, designed to bridge traditional hospitality with modern digital operations. For customers, the platform provides an intuitive landing page showcasing the restaurant's story and team, a digital menu with categorized products, a reservation booking system, and a real-time queue management feature allowing walk-in customers to join waitlists and track their position. The system also includes direct WhatsApp contact integration and embedded Google Maps for easy location access. For administrators and staff, the platform offers a complete management dashboard with authentication and role-based access. Admin features include full CRUD operations for products, orders, tables, reservations, and employees, real-time queue administration with customer notification capabilities, scheduling conflict prevention, and class/workshop management for bakery courses. Built with React, Vite, and Tailwind CSS, the system delivers a responsive experience across all devices and is deployed on Vercel with proper SPA routing configuration.",
-        image: '/path/to/encantos-do-forno-image.png',
-        thumbnail: '/path/to/encantos-do-forno-thumbnail.png',
+        image: encantosDoForno,
+        thumbnail: encantosDoForno,
         technologies: [
             'React',
             'Tailwind CSS',
