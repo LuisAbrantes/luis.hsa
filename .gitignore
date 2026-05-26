@@ -7,10 +7,26 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependency directories
 node_modules
+
+# AI Agent Skills (npx skills)
+.agents/
+
+# Build outputs
 dist
 dist-ssr
+.vercel
+
+# Environment variables
+.env
+.env.local
+.env.*.local
 *.local
+
+# Linters and testing cache
+.eslintcache
+vite.config.js.timestamp-*
 
 # Editor directories and files
 .vscode/*

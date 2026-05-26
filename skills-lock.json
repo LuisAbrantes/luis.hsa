@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "backlink-analyzer": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "skillPath": "monitor/backlink-analyzer/SKILL.md",
+      "computedHash": "856f848b53af09acaefceab15d90f597e0a99f3f7e944af4426ca68739cfce84"
+    },
+    "seo-audit": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "skillPath": "skills/seo-audit/SKILL.md",
+      "computedHash": "f2dc52130189068981f21e1c0bdc4471ac7cd9b08d8a1320604411aa0f950385"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+# Permitir que todos os robôs tradicionais e robôs de IA indexem o site
+User-agent: *
+Allow: /
+
+# Garantir acesso explícito dos principais Crawlers de IA
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://LuisAbrantes.github.io/luis.hsa/sitemap.xml
