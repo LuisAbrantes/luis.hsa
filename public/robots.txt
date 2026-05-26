@@ -18,4 +18,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://LuisAbrantes.github.io/luis.hsa/sitemap.xml
+Sitemap: https://luisabrantes.dev/sitemap.xml
