@@ -1,63 +1,45 @@
 import { useState } from 'react';
 import { FaGraduationCap, FaTrophy, FaCode, FaUserAlt } from 'react-icons/fa';
-import { Cpu, Star } from 'lucide-react';
-import pullShark from '../assets/about/pullsharkbronze.png';
-import arcticVault from '../assets/about/articcodevault.png';
-import yolo from '../assets/about/yolo.png';
-import starTruck from '../assets/about/startruck.png';
-import quickdraw from '../assets/about/quickdraw.png';
+import Modal from '@/components/ui/Modal';
+import { badgeAchievements, highlightAchievements } from '@/data/achievements';
+import type { GithubAchievement } from '@/types';
+
+const techStack: { category: string; items: string[] }[] = [
+    {
+        category: 'Frontend',
+        items: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Tailwind']
+    },
+    {
+        category: 'Backend',
+        items: [
+            'Node.js',
+            'Python',
+            'FastAPI',
+            'SQL',
+            'Relational Databases',
+            'Supabase'
+        ]
+    },
+    {
+        category: 'Tools',
+        items: [
+            'Git/GitHub',
+            'GitHub Pages',
+            'Vercel',
+            'Railway',
+            'Render',
+            'Linux Terminal'
+        ]
+    },
+    {
+        category: 'Languages',
+        items: ['JavaScript', 'TypeScript', 'Python', 'SQL']
+    }
+];
 
 const About = () => {
-    const [selectedAchievement, setSelectedAchievement] = useState(null);
-
-    const achievements = [
-        {
-            id: 1,
-            name: 'Pull Shark',
-            image: pullShark,
-            description: 'Created numerous accepted pull requests'
-        },
-        {
-            id: 2,
-            name: 'Arctic Code Vault',
-            image: arcticVault,
-            description: 'Contributed code to the Arctic Code Vault'
-        },
-        {
-            id: 3,
-            name: 'YOLO',
-            image: yolo,
-            description: 'Merged without review'
-        },
-        {
-            id: 4,
-            name: 'Starstruck',
-            image: starTruck,
-            description: 'Created a repository that earned stars'
-        },
-        {
-            id: 7,
-            name: 'Quickdraw',
-            image: quickdraw,
-            description: 'Completed a pull request review in record time'
-        },
-        {
-            id: 5,
-            name: 'Developer Program Member',
-            icon: <Cpu className="w-6 h-6 text-gray-400" />,
-            description: 'Member of the GitHub Developer Program'
-        },
-        {
-            id: 6,
-            name: 'PRO',
-            icon: (
-                <div className="relative w-6 h-6 flex items-center justify-center">
-                    <Star className="w-6 h-6 text-gray-400" />
-                </div>
-            ),
-            description: 'GitHub PRO Member'
-        }
-    ];
+    const [selectedAchievement, setSelectedAchievement] =
+        useState<GithubAchievement | null>(null);
 
     return (
         <div className="about-section bg-black text-dark-text min-h-screen pt-40 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
@@ -78,7 +60,7 @@ const About = () => {
                         </h3>
 
                         <div className="achievements-grid flex flex-wrap justify-center md:justify-start gap-4 mb-8">
-                            {achievements.slice(0, 5).map(achievement => (
+                            {badgeAchievements.map(achievement => (
                                 <div
                                     key={achievement.id}
                                     className="group relative cursor-pointer"
@@ -98,7 +80,7 @@ const About = () => {
                         </div>
 
                         <div className="highlights-grid flex flex-col gap-3 w-full">
-                            {achievements.slice(5).map(achievement => (
+                            {highlightAchievements.map(achievement => (
                                 <div
                                     key={achievement.id}
                                     className="group cursor-pointer"
@@ -201,100 +183,32 @@ const About = () => {
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-gray-800">
-                                            <tr className="hover:bg-dark-primary/30 transition-colors">
-                                                <td className="py-4 px-4 text-sm text-gray-300 font-light">
-                                                    Frontend
-                                                </td>
-                                                <td className="py-4 px-4">
-                                                    <div className="flex flex-wrap gap-2">
-                                                        {[
-                                                            'HTML',
-                                                            'CSS',
-                                                            'JavaScript',
-                                                            'TypeScript',
-                                                            'React',
-                                                            'Tailwind'
-                                                        ].map(tech => (
-                                                            <span
-                                                                key={tech}
-                                                                className="px-3 py-1 bg-dark-primary border border-gray-800 rounded-lg text-xs text-gray-300 font-light"
-                                                            >
-                                                                {tech}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr className="hover:bg-dark-primary/30 transition-colors">
-                                                <td className="py-4 px-4 text-sm text-gray-300 font-light">
-                                                    Backend
-                                                </td>
-                                                <td className="py-4 px-4">
-                                                    <div className="flex flex-wrap gap-2">
-                                                        {[
-                                                            'Node.js',
-                                                            'Python',
-                                                            'FastAPI',
-                                                            'SQL',
-                                                            'Relational Databases',
-                                                            'Supabase'
-                                                        ].map(tech => (
-                                                            <span
-                                                                key={tech}
-                                                                className="px-3 py-1 bg-dark-primary border border-gray-800 rounded-lg text-xs text-gray-300 font-light"
-                                                            >
-                                                                {tech}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr className="hover:bg-dark-primary/30 transition-colors">
-                                                <td className="py-4 px-4 text-sm text-gray-300 font-light">
-                                                    Tools
-                                                </td>
-                                                <td className="py-4 px-4">
-                                                    <div className="flex flex-wrap gap-2">
-                                                        {[
-                                                            'Git/GitHub',
-                                                            'GitHub Pages',
-                                                            'Vercel',
-                                                            'Railway',
-                                                            'Render',
-                                                            'Linux Terminal'
-                                                        ].map(tech => (
-                                                            <span
-                                                                key={tech}
-                                                                className="px-3 py-1 bg-dark-primary border border-gray-800 rounded-lg text-xs text-gray-300 font-light"
-                                                            >
-                                                                {tech}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr className="hover:bg-dark-primary/30 transition-colors">
-                                                <td className="py-4 px-4 text-sm text-gray-300 font-light">
-                                                    Languages
-                                                </td>
-                                                <td className="py-4 px-4">
-                                                    <div className="flex flex-wrap gap-2">
-                                                        {[
-                                                            'JavaScript',
-                                                            'TypeScript',
-                                                            'Python',
-                                                            'SQL'
-                                                        ].map(lang => (
-                                                            <span
-                                                                key={lang}
-                                                                className="px-3 py-1 bg-dark-primary border border-gray-800 rounded-lg text-xs text-gray-300 font-light"
-                                                            >
-                                                                {lang}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            {techStack.map(row => (
+                                                <tr
+                                                    key={row.category}
+                                                    className="hover:bg-dark-primary/30 transition-colors"
+                                                >
+                                                    <td className="py-4 px-4 text-sm text-gray-300 font-light">
+                                                        {row.category}
+                                                    </td>
+                                                    <td className="py-4 px-4">
+                                                        <div className="flex flex-wrap gap-2">
+                                                            {row.items.map(
+                                                                tech => (
+                                                                    <span
+                                                                        key={
+                                                                            tech
+                                                                        }
+                                                                        className="px-3 py-1 bg-dark-primary border border-gray-800 rounded-lg text-xs text-gray-300 font-light"
+                                                                    >
+                                                                        {tech}
+                                                                    </span>
+                                                                )
+                                                            )}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            ))}
                                         </tbody>
                                     </table>
                                 </div>
@@ -368,16 +282,15 @@ const About = () => {
                 </div>
             </div>
 
-            {/* Minimalist Modal */}
-            {selectedAchievement && (
-                <div
-                    className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-                    onClick={() => setSelectedAchievement(null)}
-                >
-                    <div
-                        className="bg-dark-primary border border-gray-800 p-8 rounded-2xl w-full max-w-sm mx-4 shadow-2xl"
-                        onClick={e => e.stopPropagation()}
-                    >
+            {/* Achievement Modal */}
+            <Modal
+                isOpen={selectedAchievement !== null}
+                onClose={() => setSelectedAchievement(null)}
+                className="w-full max-w-sm p-8"
+                labelledBy="achievement-title"
+            >
+                {selectedAchievement && (
+                    <>
                         {selectedAchievement.image && (
                             <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-dark-secondary/50 flex items-center justify-center p-4">
                                 <img
@@ -387,7 +300,10 @@ const About = () => {
                                 />
                             </div>
                         )}
-                        <h3 className="text-xl font-medium text-white mb-3 text-center">
+                        <h3
+                            id="achievement-title"
+                            className="text-xl font-medium text-white mb-3 text-center"
+                        >
                             {selectedAchievement.name}
                         </h3>
                         <p className="mb-8 text-sm text-gray-400 text-center font-light leading-relaxed">
@@ -401,9 +317,9 @@ const About = () => {
                         >
                             View GitHub Profile
                         </a>
-                    </div>
-                </div>
-            )}
+                    </>
+                )}
+            </Modal>
         </div>
     );
 };

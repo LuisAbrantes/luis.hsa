@@ -1,23 +1,16 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { navLinks } from '@/data/navigation';
 
 const NavBar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    const navLinks = [
-        { to: '/', label: 'Home' },
-        { to: '/about', label: 'About' },
-        { to: '/projects', label: 'Projects' },
-        { to: '/achievements', label: 'Academic Achievements' },
-        { to: '/contact', label: 'Contact' }
-    ];
-
-    const navLinkClasses = ({ isActive }) =>
+    const navLinkClasses = ({ isActive }: { isActive: boolean }) =>
         `px-4 py-2 text-sm font-light tracking-wide transition-colors duration-300 ${
             isActive ? 'text-white' : 'text-gray-400 hover:text-white'
         }`;
 
-    const mobileNavLinkClasses = ({ isActive }) =>
+    const mobileNavLinkClasses = ({ isActive }: { isActive: boolean }) =>
         `block w-full text-left px-4 py-3 text-sm font-light tracking-wide transition-colors duration-300 border-l-2 ${
             isActive
                 ? 'border-white text-white bg-white/5'
@@ -34,8 +27,11 @@ const NavBar = () => {
 
                     {/* Hamburger Button */}
                     <button
+                        type="button"
+                        aria-label="Toggle navigation menu"
+                        aria-expanded={isMobileMenuOpen}
                         className="sm:hidden text-gray-400 hover:text-white transition-colors"
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        onClick={() => setIsMobileMenuOpen(open => !open)}
                     >
                         <svg
                             className="w-6 h-6"
@@ -65,10 +61,7 @@ const NavBar = () => {
                     <ul className="hidden sm:flex sm:space-x-8">
                         {navLinks.map(link => (
                             <li key={link.label}>
-                                <NavLink
-                                    to={link.to}
-                                    className={navLinkClasses}
-                                >
+                                <NavLink to={link.to} className={navLinkClasses}>
                                     {link.label}
                                 </NavLink>
                             </li>

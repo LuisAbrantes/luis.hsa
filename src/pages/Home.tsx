@@ -1,74 +1,15 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { User, Briefcase, Award, Mail } from 'lucide-react';
-import meOne from '../assets/home/meOne.png';
-
-const timelineData = [
-    {
-        year: '2016',
-        description:
-            'Started programming at the age of nine, creating small projects to solve problems and learn new skills.'
-    },
-    {
-        year: '2022',
-        description:
-            'Accepted into the most competitive and prestigious free high school program in Brazil, Federal Institute of Science and Technology, excelling in various subjects.'
-    },
-    {
-        year: '2024',
-        description:
-            'Developed TutorTime, my first full-stack application and Capstone Project for my Informatics Technician course (completed ahead of schedule in my junior year). Achieved a dream by participating in my first hackathon at an Ivy League, PennApps at UPenn, marking my first academic trip abroad. I successfully organized a fundraiser campaign to raise the necessary funds for this independent journey.'
-    },
-    {
-        year: '2024-2025',
-        description:
-            'Completed an intensive programming challenge by coding every day from September 22, 2024 to January 16, 2025. This consistent practice strengthened my skills, expanded my portfolio, and demonstrated my dedication to continuous improvement in software development.'
-    },
-    {
-        year: '2025',
-        description:
-            'Deepened my skills on frontend and backend. Attempted to the Hackathon that changes my life - UCBerkey AI Hackathon, and since then, developing my skills on Applied AI, AI Agents, etc...'
-    }
-];
-
-const navigationCards = [
-    {
-        title: 'About',
-        path: '/about',
-        icon: User,
-        description: 'Learn more about me'
-    },
-    {
-        title: 'Projects',
-        path: '/projects',
-        icon: Briefcase,
-        description: 'See my work'
-    },
-    {
-        title: 'Academic Achievements',
-        path: '/achievements',
-        icon: Award,
-        description: 'My accomplishments'
-    },
-    {
-        title: 'Contact',
-        path: '/contact',
-        icon: Mail,
-        description: 'Get in touch'
-    }
-];
+import { navCards } from '@/data/navigation';
+import { timeline } from '@/data/timeline';
+import { fadeInUp, staggerContainer, revealViewport } from '@/lib/motion';
+import meOne from '@/assets/home/meOne.png';
 
 const Home = () => {
     const navigate = useNavigate();
 
     return (
         <div className="home-section relative bg-black text-dark-text min-h-screen pt-24 pb-16 px-4 font-sans overflow-hidden">
-            {/* Background Effects - Gradient Descent Graph Style */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
-                {/* The Grid - Faded and Masked to look like a wireframe */}
-                {/* <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff12_1px,transparent_1px),linear-gradient(to_bottom,#ffffff12_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_40%,transparent_100%)]" /> */}
-            </div>
-
             {/* Content */}
             <div className="relative z-10">
                 {/* Photo and Identity Section - Minimalist */}
@@ -112,16 +53,17 @@ const Home = () => {
                 <div className="max-w-5xl mx-auto mb-32">
                     <motion.div
                         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
+                        variants={staggerContainer}
+                        initial="hidden"
+                        animate="visible"
                     >
-                        {navigationCards.map(card => {
+                        {navCards.map(card => {
                             const IconComponent = card.icon;
                             return (
                                 <motion.div
                                     key={card.path}
                                     className="group cursor-pointer"
+                                    variants={fadeInUp}
                                     whileHover={{ y: -5 }}
                                     onClick={() => navigate(card.path)}
                                 >
@@ -160,18 +102,18 @@ const Home = () => {
                             {/* Continuous Line */}
                             <div className="absolute left-4 md:left-[9rem] top-0 bottom-0 w-px bg-gray-800/50"></div>
 
-                            <div className="space-y-12">
-                                {timelineData.map((item, index) => (
+                            <motion.div
+                                className="space-y-12"
+                                variants={staggerContainer}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={revealViewport}
+                            >
+                                {timeline.map(item => (
                                     <motion.div
-                                        key={index}
+                                        key={item.year}
                                         className="relative flex flex-col md:flex-row md:items-start gap-2 md:gap-0"
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{
-                                            once: true,
-                                            margin: '-50px'
-                                        }}
-                                        transition={{ duration: 0.5 }}
+                                        variants={fadeInUp}
                                     >
                                         {/* Year Marker */}
                                         <div className="md:w-36 flex-shrink-0 md:text-right md:pr-8 pl-12 md:pl-0">
@@ -188,7 +130,7 @@ const Home = () => {
                                         </div>
                                     </motion.div>
                                 ))}
-                            </div>
+                            </motion.div>
                         </div>
                     </motion.div>
                 </div>

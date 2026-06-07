@@ -27,6 +27,10 @@ dist-ssr
 # Linters and testing cache
 .eslintcache
 vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# TypeScript incremental build info
+*.tsbuildinfo
 
 # Editor directories and files
 .vscode/*

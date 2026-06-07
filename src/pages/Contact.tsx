@@ -1,38 +1,37 @@
-import { useState } from 'react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import {
-    Github,
-    Instagram,
-    Mail,
-    Linkedin,
-    Send,
-    CheckCircle
-} from 'lucide-react';
+import { Send, CheckCircle } from 'lucide-react';
+import { socialLinks, CONTACT_EMAIL } from '@/data/socials';
+
+interface FormData {
+    name: string;
+    email: string;
+    message: string;
+}
 
 const Contact = () => {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<FormData>({
         name: '',
         email: '',
         message: ''
     });
     const [isLoading, setIsLoading] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState(null);
+    const [submitStatus, setSubmitStatus] = useState<'success' | null>(null);
 
-    const handleInputChange = e => {
+    const handleInputChange = (
+        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
+        setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = async e => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsLoading(true);
 
-        // Simulate form submission or use actual mailto
+        // Open the user's mail client with the message pre-filled.
         setTimeout(() => {
-            const mailtoUrl = `mailto:luis.hsa@gmail.com?subject=Portfolio Contact from ${
+            const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=Portfolio Contact from ${
                 formData.name
             }&body=${encodeURIComponent(
                 `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage: ${formData.message}`
@@ -46,29 +45,6 @@ const Contact = () => {
             setTimeout(() => setSubmitStatus(null), 5000);
         }, 1000);
     };
-
-    const socialLinks = [
-        {
-            icon: <Github size={20} />,
-            label: 'GitHub',
-            url: 'https://github.com/LuisAbrantes'
-        },
-        {
-            icon: <Instagram size={20} />,
-            label: 'Instagram',
-            url: 'https://instagram.com/luis.hsa'
-        },
-        {
-            icon: <Mail size={20} />,
-            label: 'Email',
-            url: 'mailto:luis.hsa@gmail.com'
-        },
-        {
-            icon: <Linkedin size={20} />,
-            label: 'LinkedIn',
-            url: 'https://www.linkedin.com/in/luishenriqueabrantes/'
-        }
-    ];
 
     return (
         <section className="min-h-screen bg-black pt-40 pb-20 px-4 sm:px-6 lg:px-8 font-sans flex flex-col justify-center">
@@ -106,9 +82,9 @@ const Contact = () => {
                             </p>
 
                             <div className="flex flex-wrap gap-4">
-                                {socialLinks.map((social, index) => (
+                                {socialLinks.map(social => (
                                     <a
-                                        key={index}
+                                        key={social.label}
                                         href={social.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -217,7 +193,7 @@ const Contact = () => {
                                     value={formData.message}
                                     onChange={handleInputChange}
                                     required
-                                    rows="4"
+                                    rows={4}
                                     className="w-full bg-dark-primary border border-gray-800 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-gray-600 transition-colors font-light resize-none"
                                     placeholder="Your message here..."
                                 />
