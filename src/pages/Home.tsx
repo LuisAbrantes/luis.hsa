@@ -1,9 +1,13 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { ExternalLink } from 'lucide-react';
 import { navCards } from '@/data/navigation';
 import { timeline } from '@/data/timeline';
 import { fadeInUp, staggerContainer, revealViewport } from '@/lib/motion';
 import meOne from '@/assets/home/meOne.png';
+
+// "Papers" is a separate hub on its own subdomain — the Home only links out.
+const PAPERS_URL = 'https://papers.luisabrantes.dev';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -134,6 +138,42 @@ const Home = () => {
                         </div>
                     </motion.div>
                 </div>
+
+                {/* Papers — a separate hub I'm building (links out to its own subdomain) */}
+                <motion.div
+                    className="max-w-3xl mx-auto mt-32"
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={revealViewport}
+                >
+                    <h3 className="text-2xl font-semibold mb-8 text-center text-gray-200 tracking-wide uppercase">
+                        Papers
+                    </h3>
+                    <div className="rounded-2xl border border-gray-800 bg-dark-secondary/30 p-8 text-center">
+                        <p className="text-gray-300 font-light leading-relaxed mb-3">
+                            <span className="text-white font-medium">Papers</span>{' '}
+                            is my technical blog and learning hub — where I
+                            document what I learn building with AI, agents, and
+                            developer tooling. It&apos;s an ongoing project of
+                            mine, published bilingually (PT/EN).
+                        </p>
+                        <p className="text-sm text-gray-500 font-light mb-6">
+                            It lives on its own space —{' '}
+                            <span className="text-gray-300 font-mono">
+                                papers.luisabrantes.dev
+                            </span>
+                        </p>
+                        <a
+                            href={PAPERS_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-medium hover:bg-gray-200 transition-colors text-sm"
+                        >
+                            Visit Papers <ExternalLink size={16} />
+                        </a>
+                    </div>
+                </motion.div>
             </div>
         </div>
     );

@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { FaGraduationCap, FaTrophy, FaCode, FaUserAlt } from 'react-icons/fa';
+import { Briefcase, ExternalLink } from 'lucide-react';
 import Modal from '@/components/ui/Modal';
 import { badgeAchievements, highlightAchievements } from '@/data/achievements';
+import { experiences } from '@/data/experience';
 import type { GithubAchievement } from '@/types';
 
 const techStack: { category: string; items: string[] }[] = [
@@ -103,6 +105,80 @@ const About = () => {
 
                     {/* Main Content Section */}
                     <div className="flex-1 w-full space-y-12">
+                        {/* Experience Section */}
+                        <div className="experience-section">
+                            <h2 className="text-2xl font-light text-white mb-6 flex items-center gap-3">
+                                <Briefcase
+                                    className="text-gray-400"
+                                    size={22}
+                                />
+                                Experience
+                            </h2>
+                            <div className="space-y-4">
+                                {experiences.map(exp => (
+                                    <div
+                                        key={`${exp.company}-${exp.role}`}
+                                        className="bg-dark-secondary/30 border border-gray-800 rounded-2xl p-6 hover:border-gray-700 transition-colors duration-300"
+                                    >
+                                        <div className="flex justify-between items-start gap-4 mb-3 flex-wrap">
+                                            <div>
+                                                <h3 className="text-xl font-medium text-white">
+                                                    {exp.role}
+                                                </h3>
+                                                <p className="text-sm text-gray-400 font-light">
+                                                    {exp.company}
+                                                    {exp.location &&
+                                                        ` • ${exp.location}`}
+                                                </p>
+                                            </div>
+                                            <div className="flex items-center gap-2 flex-shrink-0">
+                                                {exp.current && (
+                                                    <span className="text-xs font-medium text-green-400 border border-green-400/30 rounded-full px-2.5 py-0.5">
+                                                        Current
+                                                    </span>
+                                                )}
+                                                <span className="text-xs font-light text-gray-500 border border-gray-800 rounded-full px-3 py-1">
+                                                    {exp.period}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <p className="text-sm text-gray-400 font-light leading-relaxed">
+                                            {exp.description}
+                                        </p>
+                                        {exp.highlights &&
+                                            exp.highlights.length > 0 && (
+                                                <ul className="mt-4 space-y-2">
+                                                    {exp.highlights.map(
+                                                        highlight => (
+                                                            <li
+                                                                key={highlight}
+                                                                className="flex items-start gap-3 text-sm text-gray-500 font-light"
+                                                            >
+                                                                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-600 flex-shrink-0"></span>
+                                                                <span>
+                                                                    {highlight}
+                                                                </span>
+                                                            </li>
+                                                        )
+                                                    )}
+                                                </ul>
+                                            )}
+                                        {exp.url && (
+                                            <a
+                                                href={exp.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-1.5 mt-4 text-xs text-gray-400 hover:text-white transition-colors"
+                                            >
+                                                <ExternalLink size={13} />
+                                                {exp.company}
+                                            </a>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
                         {/* Academic Achievements Section */}
                         <div className="academic-section">
                             <h2 className="text-2xl font-light text-white mb-6 flex items-center gap-3">

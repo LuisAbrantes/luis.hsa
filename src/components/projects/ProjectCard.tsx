@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, ExternalLink } from 'lucide-react';
+import { Github, ExternalLink, Star } from 'lucide-react';
 import { techIcons } from '@/lib/techIcons';
 import { fadeInUp } from '@/lib/motion';
 import type { Project } from '@/types';
@@ -13,7 +13,11 @@ const ProjectCard = ({ project, onSelect }: ProjectCardProps) => (
     <motion.div
         variants={fadeInUp}
         whileHover={{ y: -5 }}
-        className="bg-dark-secondary/30 border border-gray-800 rounded-2xl overflow-hidden hover:border-gray-600 transition-all duration-300 group cursor-pointer"
+        className={`bg-dark-secondary/30 border rounded-2xl overflow-hidden transition-all duration-300 group cursor-pointer ${
+            project.featured
+                ? 'border-gray-600 hover:border-gray-500'
+                : 'border-gray-800 hover:border-gray-600'
+        }`}
         onClick={() => onSelect(project)}
     >
         <div className="relative aspect-video overflow-hidden">
@@ -23,6 +27,11 @@ const ProjectCard = ({ project, onSelect }: ProjectCardProps) => (
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
+            {project.featured && (
+                <span className="absolute top-3 left-3 flex items-center gap-1 text-xs font-medium text-white bg-black/60 backdrop-blur-sm border border-white/20 rounded-full px-2.5 py-1">
+                    <Star size={12} className="fill-white" /> Featured
+                </span>
+            )}
             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <span className="text-white font-light tracking-wide border border-white/30 px-4 py-2 rounded-full backdrop-blur-sm">
                     View Details
@@ -55,15 +64,17 @@ const ProjectCard = ({ project, onSelect }: ProjectCardProps) => (
             </div>
 
             <div className="flex gap-4 pt-2 border-t border-gray-800/50">
-                <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={e => e.stopPropagation()}
-                    className="flex items-center gap-2 text-xs text-gray-500 hover:text-white transition-colors"
-                >
-                    <Github size={14} /> Code
-                </a>
+                {project.github && (
+                    <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={e => e.stopPropagation()}
+                        className="flex items-center gap-2 text-xs text-gray-500 hover:text-white transition-colors"
+                    >
+                        <Github size={14} /> Code
+                    </a>
+                )}
                 {project.demo && (
                     <a
                         href={project.demo}

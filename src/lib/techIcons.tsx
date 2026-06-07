@@ -16,7 +16,16 @@ import {
     Mic,
     MessageCircle,
     MapPin,
-    Train
+    Train,
+    Rocket,
+    Workflow,
+    Table2,
+    LayoutDashboard,
+    Bot,
+    Sparkles,
+    Network,
+    Cog,
+    FileText
 } from 'lucide-react';
 
 const ICON_SIZE = 14;
@@ -47,5 +56,14 @@ export const techIcons: Record<string, ReactNode> = {
     Llama: <Brain size={ICON_SIZE} className={iconClass} />,
     WhatsApp: <MessageCircle size={ICON_SIZE} className={iconClass} />,
     Maps: <MapPin size={ICON_SIZE} className={iconClass} />,
-    Railway: <Train size={ICON_SIZE} className={iconClass} />
+    Railway: <Train size={ICON_SIZE} className={iconClass} />,
+    FastAPI: <Rocket size={ICON_SIZE} className={iconClass} />,
+    LangGraph: <Workflow size={ICON_SIZE} className={iconClass} />,
+    Pandas: <Table2 size={ICON_SIZE} className={iconClass} />,
+    Streamlit: <LayoutDashboard size={ICON_SIZE} className={iconClass} />,
+    'Claude Code': <Bot size={ICON_SIZE} className={iconClass} />,
+    AI: <Sparkles size={ICON_SIZE} className={iconClass} />,
+    'AI Agents': <Network size={ICON_SIZE} className={iconClass} />,
+    'GitHub Actions': <Cog size={ICON_SIZE} className={iconClass} />,
+    Markdown: <FileText size={ICON_SIZE} className={iconClass} />
 };
