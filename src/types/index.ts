@@ -13,15 +13,20 @@ export interface Project {
     thumbnail: string;
     technologies: string[];
     category: ProjectCategory;
-    github: string;
+    /** Public repo URL. Omit for private projects (e.g. linked only via demo). */
+    github?: string;
     demo?: string;
     devpost?: string;
     youtube?: string;
     slides?: string;
     highlights: string[];
+    /** When true, the project is surfaced in the Featured section. */
+    featured?: boolean;
 }
 
 export type ProjectCategory =
+    | 'AI Application'
+    | 'Automation'
     | 'Hackathon Project'
     | 'Web App'
     | 'Python Package'
@@ -81,4 +86,17 @@ export interface SocialLink {
     icon: ReactNode;
     label: string;
     url: string;
+}
+
+/** A professional experience entry shown on the About page. */
+export interface Experience {
+    role: string;
+    company: string;
+    period: string;
+    location?: string;
+    url?: string;
+    description: string;
+    highlights?: string[];
+    /** Marks an ongoing role (renders a "Current" badge). */
+    current?: boolean;
 }

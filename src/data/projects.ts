@@ -1,18 +1,50 @@
 import type { Project } from '@/types';
-import agrolearn from '@/assets/projects/AgroLearn.png';
 import quickreadme from '@/assets/projects/quickreadme.png';
-import elementaryschoolwebsite from '@/assets/projects/elementaryschoolwebsite.png';
 import tutortime from '@/assets/projects/tutortime.png';
 import webdevclasses from '@/assets/projects/webDevClasses.png';
 import historytestsite from '@/assets/projects/historyTestStudyPortal.png';
 import speakScribeImage from '@/assets/projects/speakScribe.png';
 import girlTalkAiImage from '@/assets/projects/girlTalkAI.png';
 import encantosDoForno from '@/assets/projects/encantosDoForno.png';
+// TODO: replace _placeholder.svg with real screenshots for the 4 new projects
+// (collegeListAI, brazilWildfire, activation-intelligence, cyberTeens).
+import placeholder from '@/assets/projects/_placeholder.svg';
 
+// Ordered by relevance. The first three (featured) are surfaced on top.
 export const projects: Project[] = [
+    {
+        id: 10,
+        title: 'College List AI',
+        featured: true,
+        shortDescription:
+            'An AI-powered college advisor that builds personalized college lists, categorizing schools into reach/target/safety and surfacing financial-aid insights — including support for international students.',
+        fullDescription:
+            "College List AI is a full-stack application that acts as an intelligent college advisor. Built with a FastAPI backend orchestrating LangGraph AI agents and a React + TypeScript frontend, it generates personalized university lists tailored to each student's profile. The system categorizes schools into reach, target, and safety tiers using an AI-driven admissions probability analysis (MatchScorer), and provides comprehensive financial-aid insights with specialized logic for international students. A major-segmented cache stores granular data per university department, combined with a hybrid search strategy that prefers cached data and falls back to real-time web discovery. The data layer runs on Supabase with SQLModel and Alembic migrations.",
+        image: placeholder,
+        thumbnail: placeholder,
+        technologies: [
+            'React',
+            'TypeScript',
+            'Tailwind CSS',
+            'FastAPI',
+            'LangGraph',
+            'Supabase'
+        ],
+        category: 'AI Application',
+        github: 'https://github.com/LuisAbrantes/collegeListAI',
+        demo: '',
+        highlights: [
+            'Full-stack AI application combining FastAPI + LangGraph agents with a React/TypeScript + shadcn/ui frontend',
+            'AI-driven admissions probability analysis (reach / target / safety categorization)',
+            'Specialized financial-fit logic with dedicated support for international students',
+            'Hybrid search: cache-first strategy with a real-time web-discovery failsafe',
+            'Major-segmented caching for granular, per-department university data'
+        ]
+    },
     {
         id: 8,
         title: 'GirlTalk AI',
+        featured: true,
         shortDescription:
             'AI-powered platform that generates personalized podcast clips to provide advice and support.',
         fullDescription: `Inspired by the need for a relatable female role model, GirlTalk AI was developed for the UC Berkeley AI Hackathon. It allows users to write their concerns into a chatbox and receive a personalized podcast clip from our AI host, Aisha. The platform leverages Llama API to generate personalized, empathetic text responses tailored to each user's specific situation, while Murf.ai API transforms these responses into humanized voice clips that make girls feel welcomed and supported. This creates a safe, supportive space for users to get advice tailored to their specific situations, moving beyond generalized online content. The platform also provides curated mental health resources and allows users to browse previously generated clips.`,
@@ -43,6 +75,7 @@ export const projects: Project[] = [
     {
         id: 1,
         title: 'SpeakScribe',
+        featured: true,
         shortDescription:
             'AI tool to assist students and educators, simplifying assignment creation and lecture summarization.',
         fullDescription: `SpeakScribe was developed at PennApps, the University of Pennsylvania's hackathon, with the goal of optimizing the learning and teaching process. For educators, the tool generates personalized assignments based on provided lesson plans, using GPT-3.5 Turbo to tailor activities to students' preferences and exporting them as PDFs. For students, with the teacher's permission, SpeakScribe records lectures, generates transcriptions, summaries, and key points, deepening their understanding of the content. The inspiration came from the need to process information more efficiently in the modern educational environment, especially with the growth of online learning. We wanted a solution that could convert speech to text and summarize visual data (like images into summaries, with future plans for charts) so students could focus on learning instead of manual note-taking. We used Python for the backend and React TypeScript for the frontend.`,
@@ -61,6 +94,84 @@ export const projects: Project[] = [
             'Overcame challenges in installing Python packages and integrating pre-trained AI models',
             'Valuable learning about using API keys, handling real-time speech functions, and teamwork collaboration under pressure',
             'Future plans include expansion to more languages, summarization of long lectures, and reading charts/tables'
+        ]
+    },
+    {
+        id: 14,
+        title: 'Harness Study',
+        shortDescription:
+            'Personal infrastructure for building vendor-agnostic AI "agent harnesses" — versioned context layers (profile + skills + memory + workflows) that turn a generic AI into a consistent, specialized assistant.',
+        fullDescription:
+            'Harness Study is a monorepo and ongoing research effort exploring "agent harnesses": vendor- and model-agnostic layers of structured context (profile + skills + memory + workflows) that turn a generic AI into a consistent, specialized assistant for a given domain. It hosts several harnesses (CS study, personal finance, and a harness-builder that scaffolds new ones via an interview flow) plus a library of reusable, shareable skills. This project reflects how I think about Applied AI — not just consuming models, but engineering the context that makes them reliable. I document what I learn in a public technical write-up.',
+        image: placeholder,
+        thumbnail: placeholder,
+        technologies: ['AI Agents', 'Markdown', 'Claude Code'],
+        category: 'AI Application',
+        // Private repo (has a privacy-guard) — linked to the public write-up only.
+        demo: 'https://papers.luisabrantes.dev/harness-study',
+        highlights: [
+            'Designed vendor/model-agnostic "agent harnesses": versioned context layers (profile + skills + memory + workflows)',
+            'Monorepo with multiple harnesses (CS study, finance) and a harness-builder that scaffolds new ones via interview',
+            'A library of reusable, shareable skills across harnesses',
+            'Reflects an engineering approach to Applied AI: building reliable context, not just prompts'
+        ]
+    },
+    {
+        id: 15,
+        title: 'Publishing Pipeline',
+        shortDescription:
+            'An automated content pipeline that takes a piece of writing from git push to a live, SEO-ready page — with zero manual steps.',
+        fullDescription:
+            'Publishing Pipeline is the automation behind my technical blog: a fully hands-off path from git push to a published, search-indexable page. On every push, a GitHub Actions CI runs a privacy-guard (failing the build if a forbidden term would leak), regenerates sitemap.xml and robots.txt for SEO, and Vercel deploys the result. Content is authored in Markdown and published bilingually (PT/EN). The goal was to remove every manual step between writing and publishing, so I can focus on the writing itself.',
+        image: placeholder,
+        thumbnail: placeholder,
+        technologies: ['GitHub Actions', 'Vercel', 'Markdown'],
+        category: 'Automation',
+        demo: 'https://papers.luisabrantes.dev/publishing-pipeline',
+        highlights: [
+            'Zero-touch path from git push to a live, SEO-ready page',
+            'GitHub Actions CI with a privacy-guard that blocks sensitive terms from leaking',
+            'Auto-generated SEO (sitemap.xml / robots.txt) on every deploy',
+            'Bilingual (PT/EN) Markdown content deployed on Vercel'
+        ]
+    },
+    {
+        id: 11,
+        title: 'brazilWildfire',
+        shortDescription:
+            'A Python data dashboard that collects and visualizes real Brazilian wildfire data — built while learning data analysis with Claude Code as an AI tutor.',
+        fullDescription:
+            'brazilWildfire is a data-analysis project that collects real wildfire (focos de queimada) data across Brazil — broken down by biome, state, and day — processes it with Pandas, and presents it through an interactive Streamlit dashboard. The pipeline separates concerns into fetching, processing, and visualizing the data. Beyond the technical build, this project is a showcase of AI-assisted learning: I used Claude Code as a data-analysis tutor and pair, learning the domain and the tooling as I built, which reflects how I approach Applied AI — using AI not just as a feature but as a force multiplier for my own growth.',
+        image: placeholder,
+        thumbnail: placeholder,
+        technologies: ['Python', 'Pandas', 'Streamlit', 'Claude Code'],
+        category: 'AI Application',
+        github: 'https://github.com/LuisAbrantes/brazilWildfire',
+        demo: '',
+        highlights: [
+            'End-to-end data pipeline: fetch → process (Pandas) → interactive Streamlit dashboard',
+            'Real Brazilian wildfire data segmented by biome, state, and day',
+            'Built with Claude Code as an AI data-analysis tutor — a concrete example of AI-assisted development and self-directed learning'
+        ]
+    },
+    {
+        id: 12,
+        title: 'Activation Intelligence',
+        shortDescription:
+            'A Customer Success & B2B sales tool that scores merchant activation on the AbacatePay platform and uses AI to draft personalized outreach emails.',
+        fullDescription:
+            'Activation Intelligence is a Customer Success and B2B sales tool built around the AbacatePay payment platform. Instead of having an analyst manually review a client\'s dashboard, the app pulls a merchant\'s real data, computes an Activation Score (0–100) based on feature usage (webhooks, checkouts, subscriptions), and then uses AI to analyze that data and write a personalized improvement email ready for the commercial team to send. It turns raw product-usage data into actionable, customer-specific outreach, bridging data analysis and sales enablement.',
+        image: placeholder,
+        thumbnail: placeholder,
+        technologies: ['React', 'Vite', 'Tailwind CSS', 'AI'],
+        category: 'AI Application',
+        github: 'https://github.com/LuisAbrantes/activation-intelligence',
+        demo: '',
+        highlights: [
+            'Computes a 0–100 Activation Score from real product-usage signals (webhooks, checkouts, subscriptions)',
+            'Uses AI to turn the score into a ready-to-send, personalized customer email',
+            'Bridges data analysis and B2B sales enablement (Customer Success use case)',
+            'Supports both live API keys and a mock mode for demos'
         ]
     },
     {
@@ -96,25 +207,6 @@ export const projects: Project[] = [
         ]
     },
     {
-        id: 2,
-        title: 'AgroLearn',
-        shortDescription:
-            'Distance learning platform for training agricultural machinery operators for the GP SENAI hackathon.',
-        fullDescription:
-            'AgroLearn is a distance learning platform designed to train agricultural machinery operators, created as part of the GP SENAI hackathon. The application is built using React and emphasizes modern web development practices to ensure a responsive and high-performance user experience. AgroLearn aims to provide an intuitive and efficient learning environment, offering various educational resources and tools specifically tailored for the agricultural sector. I used Vercel to deploy it.',
-        image: agrolearn,
-        thumbnail: agrolearn,
-        technologies: ['React', 'Vite', 'Tailwind CSS', 'Vercel'],
-        category: 'Hackathon Project',
-        github: 'https://github.com/LuisAbrantes/AgroLearn',
-        demo: 'https://agrolearn.vercel.app/',
-        highlights: [
-            'Implemented a comprehensive distance learning platform for agricultural machinery operators',
-            'Successfully developed and first deployed the application for the GP SENAI hackathon',
-            'Utilized React, Vite, and Tailwind CSS to create a responsive and high-performance user interface'
-        ]
-    },
-    {
         id: 3,
         title: 'QuickReadme',
         shortDescription:
@@ -128,48 +220,9 @@ export const projects: Project[] = [
         github: 'https://github.com/LuisAbrantes/QuickReadme',
         demo: '',
         highlights: [
-            'My current most starred project on GitHub',
-            'Overcame the technical and criative challenge of create my first usable Python package by my own.',
-            'My most starred project on GitHub, which earned me the StarTruck achievement.'
-        ]
-    },
-    {
-        id: 4,
-        title: 'TutorTime',
-        shortDescription:
-            'A comprehensive platform for organizing and managing tutoring sessions and office hours in educational institutions.',
-        fullDescription:
-            'TutorTime is an innovative platform designed to streamline the organization and promotion of tutoring sessions and office hours in schools. The system helps connect students with peer tutors and teachers, manage schedules, and track academic support activities. Built with a modern tech stack including Supabase, React, and Vite, this project is being developed with the potential to become a startup venture.',
-        image: tutortime,
-        thumbnail: tutortime,
-        technologies: ['Supabase', 'React', 'Vite'],
-        category: 'Web App',
-        github: 'https://github.com/LuisAbrantes/TutorTimeModel',
-        demo: '',
-        highlights: [
-            'Comprehensive scheduling system for tutoring sessions',
-            'Student-tutor matching algorithm',
-            'Real-time availability tracking',
-            'Potential startup project for 2024'
-        ]
-    },
-    {
-        id: 5,
-        title: 'Elementary School website',
-        shortDescription:
-            'A website I created at 13 to help organize exam schedules and study materials for my school.',
-        fullDescription:
-            "This is a website that I am very proud of because it was the first site I made using only HTML and CSS. When I was 13, my school was facing issues with exam organization, so I created a site with the exam calendar and their contents, followed by links to study materials. It was something that helped my class and increased everyone's productivity, including the teachers.",
-        image: elementaryschoolwebsite,
-        thumbnail: elementaryschoolwebsite,
-        technologies: ['HTML', 'CSS'],
-        category: 'Web App',
-        github: 'https://github.com/LuisAbrantes/MyElementarySchoolWebsite',
-        demo: 'https://luisabrantes.github.io/MyElementarySchoolWebsite/',
-        highlights: [
-            'My first website ever',
-            'Improved exam organization for my school',
-            'Increased productivity for students and teachers'
+            'My current most starred project on GitHub (21+ stars)',
+            'Overcame the technical and creative challenge of creating my first usable Python package on my own.',
+            'My most starred project on GitHub, which earned me the Starstruck achievement.'
         ]
     },
     {
@@ -193,6 +246,26 @@ export const projects: Project[] = [
         ]
     },
     {
+        id: 13,
+        title: 'cyberTeens',
+        shortDescription:
+            'A web app that trains teenagers to recognize digital scams, built for an IFSP university extension program.',
+        fullDescription:
+            'cyberTeens is a web-based training application designed to teach teenagers how to recognize and avoid digital scams. It was developed for the Extension discipline at the Federal Institute of São Paulo (IFSP), under Professor Ana Paula Shiguemori, as a group project. The platform uses interactive simulations to put young users in realistic scam scenarios, helping them build practical judgment about online threats in a safe environment. The project reflects a commitment to using technology for social good and digital literacy in the community.',
+        image: placeholder,
+        thumbnail: placeholder,
+        technologies: ['HTML', 'CSS', 'JavaScript'],
+        category: 'Community Project',
+        github: 'https://github.com/LuisAbrantes/cyberTeens',
+        demo: 'https://cyberteens.luisabrantes.dev',
+        highlights: [
+            'Built for a real IFSP university extension program focused on digital literacy',
+            'Interactive scam-simulation scenarios that teach teenagers to spot online threats',
+            'Collaborative project delivered with a multidisciplinary team',
+            'Deployed on a custom subdomain (cyberteens.luisabrantes.dev)'
+        ]
+    },
+    {
         id: 7,
         title: 'History Test Study Portal',
         shortDescription:
@@ -210,6 +283,26 @@ export const projects: Project[] = [
             'Developed AI-powered flashcards and quizzes based on actual exam content to maximize study effectiveness',
             'My first TypeScript project, built under pressure to help students meet an urgent deadline',
             'Achieved 100% success rate with all students passing their recovery exams after using the platform'
+        ]
+    },
+    {
+        id: 4,
+        title: 'TutorTime',
+        shortDescription:
+            'A comprehensive platform for organizing and managing tutoring sessions and office hours in educational institutions.',
+        fullDescription:
+            'TutorTime is an innovative platform designed to streamline the organization and promotion of tutoring sessions and office hours in schools. The system helps connect students with peer tutors and teachers, manage schedules, and track academic support activities. Built with a modern tech stack including Supabase, React, and Vite, this project was my Capstone Project for the Informatics Technician course and is being developed with the potential to become a startup venture.',
+        image: tutortime,
+        thumbnail: tutortime,
+        technologies: ['Supabase', 'React', 'Vite'],
+        category: 'Web App',
+        github: 'https://github.com/LuisAbrantes/TutorTimeModel',
+        demo: '',
+        highlights: [
+            'Capstone Project for the Informatics Technician course',
+            'Comprehensive scheduling system for tutoring sessions',
+            'Student-tutor matching and real-time availability tracking',
+            'Built with Supabase, React, and Vite as a potential startup venture'
         ]
     }
 ];

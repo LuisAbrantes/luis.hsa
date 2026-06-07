@@ -86,14 +86,16 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => (
                             <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
                                 Links
                             </h3>
-                            <a
-                                href={project.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white text-black font-medium hover:bg-gray-200 transition-colors"
-                            >
-                                <Github size={18} /> View Code
-                            </a>
+                            {project.github && (
+                                <a
+                                    href={project.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white text-black font-medium hover:bg-gray-200 transition-colors"
+                                >
+                                    <Github size={18} /> View Code
+                                </a>
+                            )}
                             {project.demo && (
                                 <a
                                     href={project.demo}
