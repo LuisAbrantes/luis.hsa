@@ -6,9 +6,12 @@ import historytestsite from '@/assets/projects/historyTestStudyPortal.png';
 import speakScribeImage from '@/assets/projects/speakScribe.png';
 import girlTalkAiImage from '@/assets/projects/girlTalkAI.png';
 import encantosDoForno from '@/assets/projects/encantosDoForno.png';
-// TODO: replace _placeholder.svg with real screenshots for the 4 new projects
-// (collegeListAI, brazilWildfire, activation-intelligence, cyberTeens).
-import placeholder from '@/assets/projects/_placeholder.svg';
+import collegeListAI from '@/assets/projects/collegeListAI.png';
+import harnessStudy from '@/assets/projects/harnessStudy.png';
+import publishingPipeline from '@/assets/projects/publishingPipeline.png';
+import brazilWildfire from '@/assets/projects/brazilWildfire.png';
+import activationIntelligence from '@/assets/projects/activationIntelligence.png';
+import cyberTeens from '@/assets/projects/cyberTeens.png';
 
 // Ordered by relevance. The first three (featured) are surfaced on top.
 export const projects: Project[] = [
@@ -20,8 +23,8 @@ export const projects: Project[] = [
             'An AI-powered college advisor that builds personalized college lists, categorizing schools into reach/target/safety and surfacing financial-aid insights — including support for international students.',
         fullDescription:
             "College List AI is a full-stack application that acts as an intelligent college advisor. Built with a FastAPI backend orchestrating LangGraph AI agents and a React + TypeScript frontend, it generates personalized university lists tailored to each student's profile. The system categorizes schools into reach, target, and safety tiers using an AI-driven admissions probability analysis (MatchScorer), and provides comprehensive financial-aid insights with specialized logic for international students. A major-segmented cache stores granular data per university department, combined with a hybrid search strategy that prefers cached data and falls back to real-time web discovery. The data layer runs on Supabase with SQLModel and Alembic migrations.",
-        image: placeholder,
-        thumbnail: placeholder,
+        image: collegeListAI,
+        thumbnail: collegeListAI,
         technologies: [
             'React',
             'TypeScript',
@@ -103,8 +106,8 @@ export const projects: Project[] = [
             'Personal infrastructure for building vendor-agnostic AI "agent harnesses" — versioned context layers (profile + skills + memory + workflows) that turn a generic AI into a consistent, specialized assistant.',
         fullDescription:
             'Harness Study is a monorepo and ongoing research effort exploring "agent harnesses": vendor- and model-agnostic layers of structured context (profile + skills + memory + workflows) that turn a generic AI into a consistent, specialized assistant for a given domain. It hosts several harnesses (CS study, personal finance, and a harness-builder that scaffolds new ones via an interview flow) plus a library of reusable, shareable skills. This project reflects how I think about Applied AI — not just consuming models, but engineering the context that makes them reliable. I document what I learn in a public technical write-up.',
-        image: placeholder,
-        thumbnail: placeholder,
+        image: harnessStudy,
+        thumbnail: harnessStudy,
         technologies: ['AI Agents', 'Markdown', 'Claude Code'],
         category: 'AI Application',
         // Private repo (has a privacy-guard) — linked to the public write-up only.
@@ -123,8 +126,8 @@ export const projects: Project[] = [
             'An automated content pipeline that takes a piece of writing from git push to a live, SEO-ready page — with zero manual steps.',
         fullDescription:
             'Publishing Pipeline is the automation behind my technical blog: a fully hands-off path from git push to a published, search-indexable page. On every push, a GitHub Actions CI runs a privacy-guard (failing the build if a forbidden term would leak), regenerates sitemap.xml and robots.txt for SEO, and Vercel deploys the result. Content is authored in Markdown and published bilingually (PT/EN). The goal was to remove every manual step between writing and publishing, so I can focus on the writing itself.',
-        image: placeholder,
-        thumbnail: placeholder,
+        image: publishingPipeline,
+        thumbnail: publishingPipeline,
         technologies: ['GitHub Actions', 'Vercel', 'Markdown'],
         category: 'Automation',
         demo: 'https://papers.luisabrantes.dev/publishing-pipeline',
@@ -142,8 +145,8 @@ export const projects: Project[] = [
             'A Python data dashboard that collects and visualizes real Brazilian wildfire data — built while learning data analysis with Claude Code as an AI tutor.',
         fullDescription:
             'brazilWildfire is a data-analysis project that collects real wildfire (focos de queimada) data across Brazil — broken down by biome, state, and day — processes it with Pandas, and presents it through an interactive Streamlit dashboard. The pipeline separates concerns into fetching, processing, and visualizing the data. Beyond the technical build, this project is a showcase of AI-assisted learning: I used Claude Code as a data-analysis tutor and pair, learning the domain and the tooling as I built, which reflects how I approach Applied AI — using AI not just as a feature but as a force multiplier for my own growth.',
-        image: placeholder,
-        thumbnail: placeholder,
+        image: brazilWildfire,
+        thumbnail: brazilWildfire,
         technologies: ['Python', 'Pandas', 'Streamlit', 'Claude Code'],
         category: 'AI Application',
         github: 'https://github.com/LuisAbrantes/brazilWildfire',
@@ -161,8 +164,8 @@ export const projects: Project[] = [
             'A Customer Success & B2B sales tool that scores merchant activation on the AbacatePay platform and uses AI to draft personalized outreach emails.',
         fullDescription:
             'Activation Intelligence is a Customer Success and B2B sales tool built around the AbacatePay payment platform. Instead of having an analyst manually review a client\'s dashboard, the app pulls a merchant\'s real data, computes an Activation Score (0–100) based on feature usage (webhooks, checkouts, subscriptions), and then uses AI to analyze that data and write a personalized improvement email ready for the commercial team to send. It turns raw product-usage data into actionable, customer-specific outreach, bridging data analysis and sales enablement.',
-        image: placeholder,
-        thumbnail: placeholder,
+        image: activationIntelligence,
+        thumbnail: activationIntelligence,
         technologies: ['React', 'Vite', 'Tailwind CSS', 'AI'],
         category: 'AI Application',
         github: 'https://github.com/LuisAbrantes/activation-intelligence',
@@ -252,8 +255,8 @@ export const projects: Project[] = [
             'A web app that trains teenagers to recognize digital scams, built for an IFSP university extension program.',
         fullDescription:
             'cyberTeens is a web-based training application designed to teach teenagers how to recognize and avoid digital scams. It was developed for the Extension discipline at the Federal Institute of São Paulo (IFSP), under Professor Ana Paula Shiguemori, as a group project. The platform uses interactive simulations to put young users in realistic scam scenarios, helping them build practical judgment about online threats in a safe environment. The project reflects a commitment to using technology for social good and digital literacy in the community.',
-        image: placeholder,
-        thumbnail: placeholder,
+        image: cyberTeens,
+        thumbnail: cyberTeens,
         technologies: ['HTML', 'CSS', 'JavaScript'],
         category: 'Community Project',
         github: 'https://github.com/LuisAbrantes/cyberTeens',
