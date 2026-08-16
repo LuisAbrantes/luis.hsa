@@ -142,43 +142,43 @@ const Home = () => {
     const textOpacity = useTransform(scrollYProgress, [0, 0.16], [1, 0]);
     const textY = useTransform(scrollYProgress, [0, 0.16], [0, -45]);
 
-    // DESKTOP DUAL-COLUMN QUEUES (>=640px)
+    // DESKTOP DUAL-COLUMN QUEUES (>=640px) - Full-Height Ascension
     // Desktop Q1: Google & UC Berkeley
-    const deskQ1Opacity = useTransform(scrollYProgress, [0, 0.24, 0.34], [1, 1, 0]);
-    const deskQ1Y = useTransform(scrollYProgress, [0, 0.34], [0, -420]);
+    const deskQ1Opacity = useTransform(scrollYProgress, [0, 0.26, 0.34], [1, 1, 0]);
+    const deskQ1Y = useTransform(scrollYProgress, [0, 0.34], [0, -780]);
 
     // Desktop Q2: UPenn & UNICAMP
-    const deskQ2Opacity = useTransform(scrollYProgress, [0.20, 0.32, 0.54, 0.62], [0, 1, 1, 0]);
-    const deskQ2Y = useTransform(scrollYProgress, [0.20, 0.36, 0.62], [280, 0, -420]);
+    const deskQ2Opacity = useTransform(scrollYProgress, [0.20, 0.30, 0.54, 0.62], [0, 1, 1, 0]);
+    const deskQ2Y = useTransform(scrollYProgress, [0.20, 0.36, 0.62], [320, 0, -780]);
 
     // Desktop Q3: IFSP & Hermes AI
-    const deskQ3Opacity = useTransform(scrollYProgress, [0.50, 0.62, 0.82, 0.88], [0, 1, 1, 0]);
-    const deskQ3Y = useTransform(scrollYProgress, [0.50, 0.66, 0.88], [280, 0, -420]);
+    const deskQ3Opacity = useTransform(scrollYProgress, [0.50, 0.60, 0.82, 0.88], [0, 1, 1, 0]);
+    const deskQ3Y = useTransform(scrollYProgress, [0.50, 0.66, 0.88], [320, 0, -780]);
 
-    // MOBILE SINGLE-COLUMN 6-STEP STREAM (<640px)
+    // MOBILE SINGLE-COLUMN 6-STEP STREAM (<640px) - Full-Height Ascension
     // Mob 1: Google (0% -> 18%)
-    const mob1Opacity = useTransform(scrollYProgress, [0, 0.12, 0.18], [1, 1, 0]);
-    const mob1Y = useTransform(scrollYProgress, [0, 0.18], [0, -220]);
+    const mob1Opacity = useTransform(scrollYProgress, [0, 0.13, 0.18], [1, 1, 0]);
+    const mob1Y = useTransform(scrollYProgress, [0, 0.18], [0, -560]);
 
     // Mob 2: UC Berkeley (15% -> 32%)
-    const mob2Opacity = useTransform(scrollYProgress, [0.14, 0.20, 0.28, 0.34], [0, 1, 1, 0]);
-    const mob2Y = useTransform(scrollYProgress, [0.14, 0.22, 0.34], [160, 0, -220]);
+    const mob2Opacity = useTransform(scrollYProgress, [0.14, 0.20, 0.29, 0.34], [0, 1, 1, 0]);
+    const mob2Y = useTransform(scrollYProgress, [0.14, 0.22, 0.34], [220, 0, -560]);
 
     // Mob 3: UPenn (30% -> 48%)
-    const mob3Opacity = useTransform(scrollYProgress, [0.30, 0.36, 0.44, 0.50], [0, 1, 1, 0]);
-    const mob3Y = useTransform(scrollYProgress, [0.30, 0.38, 0.50], [160, 0, -220]);
+    const mob3Opacity = useTransform(scrollYProgress, [0.30, 0.36, 0.45, 0.50], [0, 1, 1, 0]);
+    const mob3Y = useTransform(scrollYProgress, [0.30, 0.38, 0.50], [220, 0, -560]);
 
     // Mob 4: UNICAMP (46% -> 64%)
-    const mob4Opacity = useTransform(scrollYProgress, [0.46, 0.52, 0.60, 0.66], [0, 1, 1, 0]);
-    const mob4Y = useTransform(scrollYProgress, [0.46, 0.54, 0.66], [160, 0, -220]);
+    const mob4Opacity = useTransform(scrollYProgress, [0.46, 0.52, 0.61, 0.66], [0, 1, 1, 0]);
+    const mob4Y = useTransform(scrollYProgress, [0.46, 0.54, 0.66], [220, 0, -560]);
 
     // Mob 5: IFSP (62% -> 78%)
-    const mob5Opacity = useTransform(scrollYProgress, [0.62, 0.68, 0.74, 0.80], [0, 1, 1, 0]);
-    const mob5Y = useTransform(scrollYProgress, [0.62, 0.70, 0.80], [160, 0, -220]);
+    const mob5Opacity = useTransform(scrollYProgress, [0.62, 0.68, 0.75, 0.80], [0, 1, 1, 0]);
+    const mob5Y = useTransform(scrollYProgress, [0.62, 0.70, 0.80], [220, 0, -560]);
 
     // Mob 6: Applied AI Hermes (76% -> 90%)
     const mob6Opacity = useTransform(scrollYProgress, [0.76, 0.82, 0.88, 0.92], [0, 1, 1, 0]);
-    const mob6Y = useTransform(scrollYProgress, [0.76, 0.84, 0.92], [160, 0, -220]);
+    const mob6Y = useTransform(scrollYProgress, [0.76, 0.84, 0.92], [220, 0, -560]);
 
     // Overall Hero Pinned Stage Handoff (85% -> 98%)
     const stageFade = useTransform(scrollYProgress, [0.85, 0.98], [1, 0]);
