@@ -177,12 +177,12 @@ const Home = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#07080b] via-transparent to-black/60 pointer-events-none" />
                     <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40 pointer-events-none" />
 
-                    {/* Top Headline & Identity */}
+                    {/* Top Headline & Identity (Positioned with ample safe area below navbar) */}
                     <motion.div 
-                        className="absolute top-6 sm:top-8 md:top-10 inset-x-4 max-w-5xl mx-auto text-center pointer-events-none z-20 space-y-2 sm:space-y-2.5"
+                        className="absolute top-12 sm:top-14 md:top-16 inset-x-4 max-w-5xl mx-auto text-center pointer-events-none z-20 space-y-2 sm:space-y-2.5"
                         style={{ opacity: textOpacity, y: textY }}
                     >
-                        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-white/15 bg-black/60 backdrop-blur-md text-[10px] sm:text-xs font-mono text-zinc-300 shadow-xl">
+                        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-black/70 backdrop-blur-md text-[10px] sm:text-xs font-mono text-zinc-300 shadow-2xl">
                             <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse" />
                             <span>SOFTWARE & APPLIED AI ENGINEER</span>
                         </div>
