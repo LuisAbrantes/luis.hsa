@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ArrowUpRight, ExternalLink, ChevronDown, Sparkles } from 'lucide-react';
@@ -7,7 +7,6 @@ import { fadeInUp, staggerContainer, revealViewport } from '@/lib/motion';
 
 // "Papers" is a separate hub on its own subdomain — the Home only links out.
 const PAPERS_URL = 'https://papers.luisabrantes.dev';
-const TOTAL_FRAMES = 120;
 
 const editorialSections = [
     {
@@ -43,12 +42,13 @@ const editorialSections = [
 const Home = () => {
     const navigate = useNavigate();
     const scrollTrackRef = useRef<HTMLDivElement>(null);
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const imagesRef = useRef<HTMLImageElement[]>([]);
-    const lastRenderedIndexRef = useRef<number>(-1);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [videoDuration, setVideoDuration] = useState<number>(0);
 
     const basePath = import.meta.env.BASE_URL || '/';
     const cleanBasePath = basePath.endsWith('/') ? basePath : `${basePath}/`;
+    const videoSrc = `${cleanBasePath}assets/hero/video.mp4`;
+    const posterSrc = `${cleanBasePath}assets/hero/image.jpg`;
 
     // 250vh Scroll Runway for direct frame-by-frame scrub
     const { scrollYProgress } = useScroll({
@@ -56,100 +56,75 @@ const Home = () => {
         offset: ['start start', 'end start']
     });
 
-    // Helper: Draw image with cover object-fit on high-DPI canvas
-    const drawCover = useCallback((ctx: CanvasRenderingContext2D, img: HTMLImageElement, width: number, height: number) => {
-        if (!img || !img.complete || img.naturalWidth === 0) return;
-        const hRatio = width / img.naturalWidth;
-        const vRatio = height / img.naturalHeight;
-        const ratio = Math.max(hRatio, vRatio);
-        const centerShiftX = (width - img.naturalWidth * ratio) / 2;
-        const centerShiftY = (height - img.naturalHeight * ratio) / 2;
-        ctx.clearRect(0, 0, width, height);
-        ctx.drawImage(
-            img,
-            0,
-            0,
-            img.naturalWidth,
-            img.naturalHeight,
-            centerShiftX,
-            centerShiftY,
-            img.naturalWidth * ratio,
-            img.naturalHeight * ratio
-        );
-    }, []);
-
-    // Render specific frame index to canvas
-    const renderFrame = useCallback((frameIndex: number) => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
-
-        const img = imagesRef.current[frameIndex];
-        if (img && img.complete && img.naturalWidth > 0) {
-            lastRenderedIndexRef.current = frameIndex;
-            drawCover(ctx, img, canvas.width, canvas.height);
-        } else if (lastRenderedIndexRef.current >= 0) {
-            // Fallback to closest loaded frame
-            const fallbackImg = imagesRef.current[lastRenderedIndexRef.current];
-            if (fallbackImg) drawCover(ctx, fallbackImg, canvas.width, canvas.height);
-        }
-    }, [drawCover]);
-
-    // Canvas resize handler (high-DPI retina support)
+    // Handle video metadata and initialize scrubbing for mobile/desktop
     useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
+        const video = videoRef.current;
+        if (!video) return;
 
-        const handleResize = () => {
-            const rect = canvas.getBoundingClientRect();
-            const dpr = Math.min(window.devicePixelRatio || 1, 2);
-            canvas.width = rect.width * dpr;
-            canvas.height = rect.height * dpr;
-            renderFrame(lastRenderedIndexRef.current >= 0 ? lastRenderedIndexRef.current : 0);
+        // Force explicit video DOM attributes for mobile Safari / Chrome
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true;
+
+        const onLoadedMetadata = () => {
+            if (video.duration && !isNaN(video.duration)) {
+                setVideoDuration(video.duration);
+            }
         };
 
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, [renderFrame]);
-
-    // Preload all 120 WebP frames into memory
-    useEffect(() => {
-        const loadedImages: HTMLImageElement[] = [];
-
-        for (let i = 1; i <= TOTAL_FRAMES; i++) {
-            const img = new Image();
-            const paddedIndex = String(i).padStart(3, '0');
-            img.src = `${cleanBasePath}assets/hero/frames/frame_${paddedIndex}.webp`;
-
-            // Render first frame as soon as it arrives
-            if (i === 1) {
-                img.onload = () => {
-                    renderFrame(0);
-                };
+        // Prime video for mobile iOS/Android Safari on first user interaction or scroll
+        const primeMobileVideo = () => {
+            if (video && video.paused) {
+                video.play().then(() => {
+                    video.pause();
+                }).catch(() => {});
             }
-            loadedImages.push(img);
+        };
+
+        if (video.readyState >= 1) {
+            onLoadedMetadata();
+        } else {
+            video.addEventListener('loadedmetadata', onLoadedMetadata);
         }
 
-        imagesRef.current = loadedImages;
-    }, [cleanBasePath, renderFrame]);
+        window.addEventListener('touchstart', primeMobileVideo, { once: true, passive: true });
+        window.addEventListener('scroll', primeMobileVideo, { once: true, passive: true });
 
-    // Hardware-accelerated Scroll-Scrub listener (0ms latency, zero video decoding overhead)
+        return () => {
+            video.removeEventListener('loadedmetadata', onLoadedMetadata);
+            window.removeEventListener('touchstart', primeMobileVideo);
+            window.removeEventListener('scroll', primeMobileVideo);
+        };
+    }, []);
+
+    // Frame-by-frame Scroll Scrubbing Engine (requestAnimationFrame optimized with fastSeek support)
     useEffect(() => {
         let animationFrameId: number;
+        let lastTargetTime = 0;
 
         const unsubscribe = scrollYProgress.on('change', (progress) => {
-            const clampedProgress = Math.min(Math.max(progress / 0.85, 0), 1);
-            const targetFrameIndex = Math.min(
-                Math.floor(clampedProgress * (TOTAL_FRAMES - 1)),
-                TOTAL_FRAMES - 1
-            );
+            const video = videoRef.current;
+            if (!video || !videoDuration) return;
 
-            if (targetFrameIndex !== lastRenderedIndexRef.current) {
+            // Map progress (0 to 0.85) to full video duration
+            const clampedProgress = Math.min(Math.max(progress / 0.85, 0), 1);
+            const targetTime = clampedProgress * videoDuration;
+
+            if (Math.abs(targetTime - lastTargetTime) > 0.01) {
+                lastTargetTime = targetTime;
                 cancelAnimationFrame(animationFrameId);
                 animationFrameId = requestAnimationFrame(() => {
-                    renderFrame(targetFrameIndex);
+                    if (video && !video.seeking) {
+                        if ('fastSeek' in video) {
+                            try {
+                                (video as any).fastSeek(targetTime);
+                            } catch {
+                                (video as HTMLVideoElement).currentTime = targetTime;
+                            }
+                        } else {
+                            (video as HTMLVideoElement).currentTime = targetTime;
+                        }
+                    }
                 });
             }
         });
@@ -158,7 +133,7 @@ const Home = () => {
             unsubscribe();
             cancelAnimationFrame(animationFrameId);
         };
-    }, [scrollYProgress, renderFrame]);
+    }, [scrollYProgress, videoDuration]);
 
     // ========================================================
     // CHOREOGRAPHY & VERTICAL CONVEYOR QUEUES
@@ -213,7 +188,7 @@ const Home = () => {
         <div className="home-root relative bg-[#07080b] text-[#EDEDED] font-sans selection:bg-zinc-700 selection:text-white">
             
             {/* ========================================================
-                1. PINNED SCROLL-SCRUB HERO (Apple Canvas Frame Engine)
+                1. PINNED SCROLL-SCRUB HERO (100% Full-Bleed Video Engine)
                ======================================================== */}
             <div ref={scrollTrackRef} className="relative h-[250vh] w-full pt-16">
                 
@@ -223,11 +198,22 @@ const Home = () => {
                     style={{ opacity: stageFade, pointerEvents: stagePointerEvents as any }}
                 >
                     
-                    {/* Apple Canvas Frame Stream (120fps Hardware Accelerated) */}
+                    {/* Full-Bleed Scroll-Scrubbed Video Element with Poster Backup */}
                     <div className="absolute inset-0 w-full h-full bg-[#07080b]">
-                        <canvas
-                            ref={canvasRef}
-                            className="w-full h-full object-cover object-center block"
+                        <img
+                            src={posterSrc}
+                            alt="Luis Henrique Abrantes AI Studio"
+                            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+                        />
+                        <video
+                            ref={videoRef}
+                            src={videoSrc}
+                            poster={posterSrc}
+                            preload="auto"
+                            playsInline
+                            webkit-playsinline="true"
+                            muted
+                            className="relative w-full h-full object-cover object-center scale-[1.01]"
                         />
                     </div>
 
