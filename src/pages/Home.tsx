@@ -12,7 +12,7 @@ const PAPERS_URL = 'https://papers.luisabrantes.dev';
 const Home = () => {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
-    const currentLayout = searchParams.get('layout') || '1'; // Default: '1' (Manifesto & Genesis)
+    const currentLayout = searchParams.get('layout') || '3'; // Default to Layout 3 (Preferred)
 
     const scrollTrackRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -442,13 +442,123 @@ const Home = () => {
             <main className="relative z-30 bg-[#07080b] pt-12 pb-24 shadow-[0_-50px_80px_rgba(7,8,11,1)]">
                 
                 {/* ----------------------------------------------------
-                    MOCK 1: "MANIFESTO & GENESIS" (Asymmetric 2-Column Spread)
+                    LAYOUT 3: "WIDE SPOTLIGHT & METRICS" (Ampliado & Ultra Legível)
+                   ---------------------------------------------------- */}
+                {currentLayout === '3' && (
+                    <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+                            
+                            {/* Col 1: Portrait with Penn Engineering Banner */}
+                            <div className="md:col-span-4 rounded-2xl overflow-hidden border border-zinc-800/90 relative group bg-zinc-950 shadow-2xl">
+                                <img
+                                    src={meOne}
+                                    alt="Luis Henrique Abrantes at Penn Engineering"
+                                    className="w-full h-full min-h-[380px] object-cover object-top filter contrast-[105%] group-hover:scale-102 transition-transform duration-500"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none" />
+                                <div className="absolute bottom-5 left-5 right-5 space-y-1">
+                                    <span className="text-base font-semibold text-white tracking-tight block drop-shadow-md">
+                                        Luis Henrique Abrantes
+                                    </span>
+                                    <span className="text-xs font-mono text-zinc-300 flex items-center gap-1.5 drop-shadow">
+                                        <MapPin className="w-3.5 h-3.5 text-red-400" />
+                                        Penn Engineering • Philadelphia, PA
+                                    </span>
+                                </div>
+                            </div>
+
+                            {/* Col 2: Profile & Mission (Expanded Typography for Maximum Readability) */}
+                            <div className="md:col-span-5 flex flex-col justify-between py-2 space-y-6">
+                                <div className="space-y-4">
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                        <span className="text-xs sm:text-sm font-mono text-emerald-400 tracking-widest uppercase font-semibold">
+                                            01 // PROFILE & MISSION
+                                        </span>
+                                    </div>
+                                    
+                                    <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+                                        Software Engineer & Applied AI Developer
+                                    </h3>
+                                    
+                                    <p className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed">
+                                        Studying Computer Science at <strong className="text-white font-medium">IFSP</strong> and selected as a <strong className="text-white font-medium">Google Student Ambassador (2026)</strong>.
+                                    </p>
+
+                                    <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
+                                        Dedicated to designing autonomous agent frameworks, high-throughput developer tooling, and production architectures with exceptional user experience.
+                                    </p>
+                                </div>
+
+                                <div className="pt-4 border-t border-zinc-800/80 flex items-center gap-4 flex-wrap">
+                                    <button
+                                        onClick={() => navigate('/about')}
+                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm sm:text-base shadow-lg shadow-white/5"
+                                    >
+                                        <span>View Full Background</span>
+                                        <ArrowUpRight className="w-4 h-4" />
+                                    </button>
+                                    <button
+                                        onClick={() => navigate('/projects')}
+                                        className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-all text-sm sm:text-base"
+                                    >
+                                        <span>View Projects</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Col 3: Key Stats & Badges (Clear, Large, High-Contrast) */}
+                            <div className="md:col-span-3 flex flex-col justify-between p-6 sm:p-7 rounded-2xl border border-zinc-800/80 bg-zinc-950/60 shadow-xl space-y-6">
+                                <div>
+                                    <span className="text-xs font-mono text-zinc-400 uppercase tracking-widest block mb-4 font-semibold">
+                                        KEY CREDENTIALS
+                                    </span>
+                                    
+                                    <div className="space-y-5">
+                                        <div className="flex items-start gap-3">
+                                            <Award className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                                            <div>
+                                                <span className="text-sm sm:text-base text-white font-semibold block leading-tight">Google Ambassador</span>
+                                                <span className="text-xs font-mono text-zinc-400">2026 Global Cohort</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex items-start gap-3">
+                                            <Layers className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
+                                            <div>
+                                                <span className="text-sm sm:text-base text-white font-semibold block leading-tight">UC Berkeley AI</span>
+                                                <span className="text-xs font-mono text-zinc-400">Cal Hacks • San Francisco</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex items-start gap-3">
+                                            <MapPin className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
+                                            <div>
+                                                <span className="text-sm sm:text-base text-white font-semibold block leading-tight">PennApps XXV</span>
+                                                <span className="text-xs font-mono text-zinc-400">UPenn • Philadelphia</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="pt-4 border-t border-zinc-800/80">
+                                    <span className="text-[11px] font-mono text-zinc-500 block uppercase">EDUCATION // IFSP CS</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                )}
+
+
+                {/* ----------------------------------------------------
+                    LAYOUT 1: "MANIFESTO & GENESIS" (Asymmetric 2-Column Spread Ampliado)
                    ---------------------------------------------------- */}
                 {currentLayout === '1' && (
                     <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
                             
-                            {/* Left: Authentic Penn Photo with Film Border Treatment (No card box) */}
+                            {/* Left: Authentic Penn Photo */}
                             <motion.div 
                                 className="lg:col-span-5 relative group"
                                 variants={fadeInUp}
@@ -460,18 +570,16 @@ const Home = () => {
                                     <img
                                         src={meOne}
                                         alt="Luis Henrique Abrantes at Penn Engineering, University of Pennsylvania"
-                                        className="w-full h-auto object-cover object-top filter grayscale-[25%] contrast-[105%] group-hover:grayscale-0 transition-all duration-700"
+                                        className="w-full h-auto object-cover object-top filter contrast-[105%] group-hover:scale-102 transition-all duration-500"
                                     />
-                                    {/* Vignette Overlay */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                                     
-                                    {/* Location & Context Mono Tag */}
                                     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
-                                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 border border-white/20 text-[11px] font-mono text-zinc-200 backdrop-blur-md">
-                                            <MapPin className="w-3 h-3 text-red-400" />
+                                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 border border-white/20 text-xs font-mono text-zinc-200 backdrop-blur-md">
+                                            <MapPin className="w-3.5 h-3.5 text-red-400" />
                                             <span>UPENN • PHILADELPHIA, PA</span>
                                         </div>
-                                        <span className="text-[10px] font-mono text-zinc-400">PENNAPPS XXV</span>
+                                        <span className="text-xs font-mono text-zinc-400">PENNAPPS XXV</span>
                                     </div>
                                 </div>
                             </motion.div>
@@ -485,136 +593,39 @@ const Home = () => {
                                 viewport={revealViewport}
                             >
                                 <div>
-                                    <span className="text-xs font-mono text-emerald-400 tracking-widest uppercase block mb-2 font-semibold">
+                                    <span className="text-xs sm:text-sm font-mono text-emerald-400 tracking-widest uppercase block mb-2 font-semibold">
                                         01 // FOUNDATIONS & GENESIS
                                     </span>
-                                    <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
+                                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
                                         From IFSP to Global Hackathons & Applied AI Systems.
                                     </h2>
                                 </div>
 
-                                <div className="space-y-4 text-zinc-300 font-light text-base sm:text-lg leading-relaxed">
+                                <div className="space-y-4 text-zinc-300 font-light text-base sm:text-lg lg:text-xl leading-relaxed">
                                     <p>
                                         I am a Software Engineer and Applied AI developer based in São Paulo, Brazil. Currently studying Computer Science at <span className="text-white font-medium">Instituto Federal de São Paulo (IFSP)</span> and serving as a <span className="text-white font-medium">Google Student Ambassador (2026)</span>.
                                     </p>
-                                    <p className="text-zinc-400 text-sm sm:text-base">
+                                    <p className="text-zinc-400 text-sm sm:text-base lg:text-lg">
                                         My work spans autonomous AI agents, developer tooling harnesses, and production-grade software architectures. I believe that engineering depth and rapid iteration are the keys to building tools that expand human capability.
                                     </p>
                                 </div>
 
-                                <div className="pt-2 flex items-center gap-4 flex-wrap">
+                                <div className="pt-4 flex items-center gap-4 flex-wrap">
                                     <button
                                         onClick={() => navigate('/about')}
-                                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm shadow-md"
+                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm sm:text-base shadow-md"
                                     >
                                         <span>Read Full Story</span>
                                         <ArrowUpRight className="w-4 h-4" />
                                     </button>
                                     <button
                                         onClick={() => navigate('/projects')}
-                                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-all text-sm"
+                                        className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-all text-sm sm:text-base"
                                     >
                                         <span>Explore Projects</span>
                                     </button>
                                 </div>
                             </motion.div>
-
-                        </div>
-                    </section>
-                )}
-
-                {/* ----------------------------------------------------
-                    MOCK 2: "TIMELINE ORIGIN ANCHOR" (Embedded in 2024 Milestone)
-                   ---------------------------------------------------- */}
-                {currentLayout === '2' && (
-                    <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-                        <div className="text-center mb-12">
-                            <span className="text-xs font-mono text-zinc-500 tracking-widest uppercase block mb-2 font-semibold">
-                                PHILOSOPHY // 01
-                            </span>
-                            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-                                Building at the Frontier of Autonomous AI
-                            </h2>
-                            <p className="text-zinc-400 font-light text-base max-w-xl mx-auto mt-3">
-                                Crafting agent harnesses, high-performance developer tools, and intelligent applications.
-                            </p>
-                        </div>
-                    </section>
-                )}
-
-                {/* ----------------------------------------------------
-                    MOCK 3: "WIDE SPOTLIGHT & METRICS" (3-Column Layout)
-                   ---------------------------------------------------- */}
-                {currentLayout === '3' && (
-                    <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
-                            
-                            {/* Col 1: Portrait */}
-                            <div className="md:col-span-4 rounded-2xl overflow-hidden border border-zinc-800/90 relative group bg-zinc-950">
-                                <img
-                                    src={meOne}
-                                    alt="Luis Henrique Abrantes at Penn"
-                                    className="w-full h-full object-cover object-top"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                                <div className="absolute bottom-4 left-4 right-4">
-                                    <span className="text-xs font-mono text-zinc-300 block font-semibold">Luis Henrique Abrantes</span>
-                                    <span className="text-[10px] font-mono text-zinc-500">PennApps XXV • Philadelphia</span>
-                                </div>
-                            </div>
-
-                            {/* Col 2: Profile & Mission */}
-                            <div className="md:col-span-5 flex flex-col justify-between py-2 space-y-6">
-                                <div>
-                                    <span className="text-xs font-mono text-emerald-400 tracking-widest uppercase block mb-2">01 // IDENTITY</span>
-                                    <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                                        Software Engineer & Applied AI Researcher
-                                    </h3>
-                                    <p className="text-sm sm:text-base text-zinc-400 font-light mt-3 leading-relaxed">
-                                        Dedicated to building autonomous agent frameworks, scalable web applications, and developer ergonomics.
-                                    </p>
-                                </div>
-
-                                <div className="pt-4 border-t border-zinc-800">
-                                    <button
-                                        onClick={() => navigate('/about')}
-                                        className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-emerald-400 transition-colors"
-                                    >
-                                        <span>View Background & Education</span>
-                                        <ArrowUpRight className="w-4 h-4" />
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Col 3: Key Stats & Badges */}
-                            <div className="md:col-span-3 flex flex-col justify-between p-6 rounded-2xl border border-zinc-800/70 bg-zinc-950/40 space-y-4">
-                                <div>
-                                    <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider block mb-3">KEY CREDENTIALS</span>
-                                    <div className="space-y-3">
-                                        <div className="flex items-start gap-2.5">
-                                            <Award className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                                            <div>
-                                                <span className="text-xs text-white font-medium block">Google Ambassador</span>
-                                                <span className="text-[10px] font-mono text-zinc-500">2026 Global Cohort</span>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-start gap-2.5">
-                                            <Layers className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
-                                            <div>
-                                                <span className="text-xs text-white font-medium block">UC Berkeley Cal Hacks</span>
-                                                <span className="text-[10px] font-mono text-zinc-500">AI Hackathon SF</span>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-start gap-2.5">
-                                            <MapPin className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                                            <div>
-                                                <span className="text-xs text-white font-medium block">PennApps XXV</span>
-                                                <span className="text-[10px] font-mono text-zinc-500">UPenn Philadelphia</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                         </div>
                     </section>
@@ -633,8 +644,10 @@ const Home = () => {
                         transition={{ duration: 0.8 }}
                     >
                         <div className="text-center mb-16">
-                            <span className="text-xs font-mono text-zinc-500 tracking-widest uppercase block mb-2">TRAJECTORY</span>
-                            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-sans">
+                            <span className="text-xs sm:text-sm font-mono text-zinc-500 tracking-widest uppercase block mb-2 font-semibold">
+                                TRAJECTORY
+                            </span>
+                            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white font-sans">
                                 Milestones & Experience
                             </h3>
                         </div>
@@ -657,31 +670,16 @@ const Home = () => {
                                     >
                                         {/* Year Marker */}
                                         <div className="md:w-32 flex-shrink-0 md:text-right md:pr-8 pl-12 md:pl-0">
-                                            <span className="text-base font-mono text-zinc-400 font-medium block pt-1">
+                                            <span className="text-base sm:text-lg font-mono text-zinc-400 font-semibold block pt-1">
                                                 {item.year}
                                             </span>
                                         </div>
 
                                         {/* Timeline Content */}
                                         <div className="flex-1 pl-12 md:pl-8">
-                                            <p className="text-zinc-300 leading-relaxed text-sm sm:text-base font-light">
+                                            <p className="text-zinc-300 leading-relaxed text-sm sm:text-base lg:text-lg font-light">
                                                 {item.description}
                                             </p>
-
-                                            {/* In Mock 2: Render Photo Embedded beside 2024 UPenn milestone */}
-                                            {currentLayout === '2' && item.year === '2024' && (
-                                                <div className="mt-4 rounded-xl overflow-hidden border border-zinc-800 max-w-sm">
-                                                    <img
-                                                        src={meOne}
-                                                        alt="Luis at Penn Engineering"
-                                                        className="w-full h-48 object-cover object-top"
-                                                    />
-                                                    <div className="p-2.5 bg-zinc-950/80 border-t border-zinc-800 flex justify-between items-center text-[10px] font-mono text-zinc-400">
-                                                        <span>Penn Engineering Campus • 2024</span>
-                                                        <span className="text-emerald-400">Independent Fundraiser</span>
-                                                    </div>
-                                                </div>
-                                            )}
                                         </div>
                                     </motion.div>
                                 ))}
@@ -704,16 +702,16 @@ const Home = () => {
                     >
                         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
                             <div className="space-y-2 max-w-2xl">
-                                <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest font-semibold block">
+                                <span className="text-xs sm:text-sm font-mono text-zinc-500 uppercase tracking-widest font-semibold block">
                                     03 // RESEARCH & LEARNING HUB
                                 </span>
-                                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
                                     Papers by Luis Abrantes
                                 </h3>
-                                <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
+                                <p className="text-sm sm:text-base lg:text-lg text-zinc-300 font-light leading-relaxed">
                                     Technical essays, deep-dives into autonomous AI agents, developer tooling, and systems engineering. Published bilingually (PT/EN) on its own dedicated space.
                                 </p>
-                                <span className="text-xs font-mono text-zinc-500 block pt-1">
+                                <span className="text-xs sm:text-sm font-mono text-zinc-500 block pt-1">
                                     papers.luisabrantes.dev
                                 </span>
                             </div>
@@ -722,10 +720,10 @@ const Home = () => {
                                 href={PAPERS_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm whitespace-nowrap shadow-md shadow-white/5"
+                                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm sm:text-base whitespace-nowrap shadow-md shadow-white/5"
                             >
                                 <span>Visit Papers Hub</span>
-                                <ExternalLink size={15} />
+                                <ExternalLink size={16} />
                             </a>
                         </div>
                     </motion.div>
@@ -734,39 +732,28 @@ const Home = () => {
             </main>
 
             {/* ========================================================
-                FLOATING MOCK ARCHETYPE SWITCHER BAR
+                FINALIST SWITCHER BAR (Layout 3 vs Layout 1)
                ======================================================== */}
-            <div className="fixed bottom-5 inset-x-0 mx-auto w-fit z-50 flex items-center gap-1.5 p-1.5 rounded-full bg-black/90 backdrop-blur-2xl border border-white/20 shadow-2xl">
-                <span className="text-[10px] font-mono text-zinc-400 pl-3 pr-1 hidden sm:inline">MOCK:</span>
-                <button
-                    onClick={() => setSearchParams({ layout: '1' })}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all ${
-                        currentLayout === '1'
-                            ? 'bg-white text-black font-bold shadow-md'
-                            : 'text-zinc-400 hover:text-white'
-                    }`}
-                >
-                    1. Manifesto (Recomendado)
-                </button>
-                <button
-                    onClick={() => setSearchParams({ layout: '2' })}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all ${
-                        currentLayout === '2'
-                            ? 'bg-white text-black font-bold shadow-md'
-                            : 'text-zinc-400 hover:text-white'
-                    }`}
-                >
-                    2. Timeline Anchor
-                </button>
+            <div className="fixed bottom-5 inset-x-0 mx-auto w-fit z-50 flex items-center gap-2 p-1.5 rounded-full bg-black/90 backdrop-blur-2xl border border-white/20 shadow-2xl">
                 <button
                     onClick={() => setSearchParams({ layout: '3' })}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all ${
+                    className={`px-4 py-2 rounded-full text-xs sm:text-sm font-mono transition-all ${
                         currentLayout === '3'
                             ? 'bg-white text-black font-bold shadow-md'
                             : 'text-zinc-400 hover:text-white'
                     }`}
                 >
-                    3. Wide Spotlight
+                    3. Wide Spotlight (Ampliado) ⭐
+                </button>
+                <button
+                    onClick={() => setSearchParams({ layout: '1' })}
+                    className={`px-4 py-2 rounded-full text-xs sm:text-sm font-mono transition-all ${
+                        currentLayout === '1'
+                            ? 'bg-white text-black font-bold shadow-md'
+                            : 'text-zinc-400 hover:text-white'
+                    }`}
+                >
+                    1. Manifesto
                 </button>
             </div>
 
