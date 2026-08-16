@@ -28,7 +28,7 @@ const editorialSections = [
         title: 'Achievements',
         tag: 'GLOBAL HACKATHONS',
         path: '/achievements',
-        description: 'International recognition and presence at UC Berkeley AI Hackathon and UPenn PennApps.'
+        description: 'Google Student Ambassador 2026, UC Berkeley AI Hackathon, and UPenn PennApps.'
     },
     {
         index: '04',
@@ -108,11 +108,27 @@ const Home = () => {
         };
     }, [scrollYProgress, videoDuration]);
 
-    // Text & Overlay Choreography
-    const textOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0]);
-    const textY = useTransform(scrollYProgress, [0, 0.22], [0, -35]);
+    // ========================================================
+    // CHOREOGRAPHY & VERTICAL CONVEYOR QUEUE (FILA NO SCROLL AMPLIADA)
+    // ========================================================
+    // Main Title Overlay (0% -> 22%)
+    const textOpacity = useTransform(scrollYProgress, [0, 0.18], [1, 0]);
+    const textY = useTransform(scrollYProgress, [0, 0.18], [0, -55]);
 
-    const stageFade = useTransform(scrollYProgress, [0.82, 0.98], [1, 0]);
+    // QUEUE ITEM 1: Google & UC Berkeley (Starts active, ascends all the way up & exits near top)
+    const q1Opacity = useTransform(scrollYProgress, [0, 0.24, 0.34], [1, 1, 0]);
+    const q1Y = useTransform(scrollYProgress, [0, 0.34], [0, -420]);
+
+    // QUEUE ITEM 2: UPenn & UNICAMP (Enters from below +280px, ascends high to -420px)
+    const q2Opacity = useTransform(scrollYProgress, [0.20, 0.32, 0.54, 0.62], [0, 1, 1, 0]);
+    const q2Y = useTransform(scrollYProgress, [0.20, 0.36, 0.62], [280, 0, -420]);
+
+    // QUEUE ITEM 3: IFSP & Hermes AI (Enters from below +280px, ascends high to -420px)
+    const q3Opacity = useTransform(scrollYProgress, [0.50, 0.62, 0.82, 0.88], [0, 1, 1, 0]);
+    const q3Y = useTransform(scrollYProgress, [0.50, 0.66, 0.88], [280, 0, -420]);
+
+    // Overall Hero Pinned Stage Handoff (85% -> 98%)
+    const stageFade = useTransform(scrollYProgress, [0.85, 0.98], [1, 0]);
     const stagePointerEvents = useTransform(scrollYProgress, (v) => v > 0.9 ? 'none' : 'auto');
 
     return (
@@ -165,14 +181,205 @@ const Home = () => {
                         </p>
                     </motion.div>
 
-                    {/* Bottom Status & Scroll Cue */}
+
+                    {/* ========================================================
+                        LEFT FLANK: VERTICAL QUEUE (GRANDE ESCALA & ALTA SUBIDA)
+                       ======================================================== */}
+                    
+                    {/* Queue 1: Google Student Ambassador */}
                     <motion.div 
-                        className="absolute bottom-8 sm:bottom-10 inset-x-0 flex flex-col items-center justify-center gap-1.5 text-zinc-400 z-20 pointer-events-none"
+                        className="absolute bottom-20 sm:bottom-28 md:bottom-32 left-6 sm:left-12 md:left-16 z-20 pointer-events-none text-left"
+                        style={{ opacity: q1Opacity, y: q1Y }}
+                    >
+                        <div className="flex items-center gap-5 sm:gap-6">
+                            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
+                                <img
+                                    src={`${cleanBasePath}assets/logos/google.svg`}
+                                    alt="Google Logo"
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
+                            <div>
+                                <div className="flex items-center gap-2 mb-1.5">
+                                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                                    <span className="text-xs sm:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
+                                        AFFILIATION // 2026
+                                    </span>
+                                </div>
+                                <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight drop-shadow-xl">
+                                    Google Student Ambassador
+                                </h4>
+                                <p className="text-sm sm:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
+                                    Global Ambassador Cohort
+                                </p>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Queue 2: PennApps XXV */}
+                    <motion.div 
+                        className="absolute bottom-20 sm:bottom-28 md:bottom-32 left-6 sm:left-12 md:left-16 z-20 pointer-events-none text-left"
+                        style={{ opacity: q2Opacity, y: q2Y }}
+                    >
+                        <div className="flex items-center gap-5 sm:gap-6">
+                            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
+                                <img
+                                    src={`${cleanBasePath}assets/logos/upenn.svg`}
+                                    alt="UPenn Shield"
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
+                            <div>
+                                <div className="flex items-center gap-2 mb-1.5">
+                                    <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
+                                    <span className="text-xs sm:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
+                                        ENGINEERING // UPENN
+                                    </span>
+                                </div>
+                                <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight drop-shadow-xl">
+                                    PennApps XXV
+                                </h4>
+                                <p className="text-sm sm:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
+                                    University of Pennsylvania
+                                </p>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Queue 3: Instituto Federal (IFSP) */}
+                    <motion.div 
+                        className="absolute bottom-20 sm:bottom-28 md:bottom-32 left-6 sm:left-12 md:left-16 z-20 pointer-events-none text-left"
+                        style={{ opacity: q3Opacity, y: q3Y }}
+                    >
+                        <div className="flex items-center gap-5 sm:gap-6">
+                            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
+                                <img
+                                    src={`${cleanBasePath}assets/logos/ifsp.svg`}
+                                    alt="IFSP Logo"
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
+                            <div>
+                                <div className="flex items-center gap-2 mb-1.5">
+                                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                                    <span className="text-xs sm:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
+                                        ACADEMIA // LEADERSHIP
+                                    </span>
+                                </div>
+                                <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight drop-shadow-xl">
+                                    Instituto Federal (IFSP)
+                                </h4>
+                                <p className="text-sm sm:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
+                                    Computer Science & Community Lead
+                                </p>
+                            </div>
+                        </div>
+                    </motion.div>
+
+
+                    {/* ========================================================
+                        RIGHT FLANK: VERTICAL QUEUE (GRANDE ESCALA & ALTA SUBIDA)
+                       ======================================================== */}
+
+                    {/* Queue 1: UC Berkeley AI Hackathon */}
+                    <motion.div 
+                        className="absolute bottom-20 sm:bottom-28 md:bottom-32 right-6 sm:right-12 md:right-16 z-20 pointer-events-none text-right hidden sm:block"
+                        style={{ opacity: q1Opacity, y: q1Y }}
+                    >
+                        <div className="flex items-center justify-end gap-5 sm:gap-6">
+                            <div>
+                                <div className="flex items-center justify-end gap-2 mb-1.5">
+                                    <span className="text-xs sm:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
+                                        HACKATHON // BERKELEY
+                                    </span>
+                                    <span className="w-2.5 h-2.5 rounded-full bg-blue-400" />
+                                </div>
+                                <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight drop-shadow-xl">
+                                    UC Berkeley AI Hackathon
+                                </h4>
+                                <p className="text-sm sm:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
+                                    Cal Hacks • San Francisco
+                                </p>
+                            </div>
+                            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
+                                <img
+                                    src={`${cleanBasePath}assets/logos/berkeley.svg`}
+                                    alt="UC Berkeley Seal"
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Queue 2: UNICAMP Quantum Physics */}
+                    <motion.div 
+                        className="absolute bottom-20 sm:bottom-28 md:bottom-32 right-6 sm:right-12 md:right-16 z-20 pointer-events-none text-right hidden sm:block"
+                        style={{ opacity: q2Opacity, y: q2Y }}
+                    >
+                        <div className="flex items-center justify-end gap-5 sm:gap-6">
+                            <div>
+                                <div className="flex items-center justify-end gap-2 mb-1.5">
+                                    <span className="text-xs sm:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
+                                        QUANTUM LAB // FIFE
+                                    </span>
+                                    <span className="w-2.5 h-2.5 rounded-full bg-purple-400" />
+                                </div>
+                                <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight drop-shadow-xl">
+                                    UNICAMP Quantum Physics
+                                </h4>
+                                <p className="text-sm sm:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
+                                    Gleb Wataghin Physics Institute
+                                </p>
+                            </div>
+                            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
+                                <img
+                                    src={`${cleanBasePath}assets/logos/unicamp.png`}
+                                    alt="UNICAMP Logo"
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Queue 3: Applied AI & Harnesses (Hermes) */}
+                    <motion.div 
+                        className="absolute bottom-20 sm:bottom-28 md:bottom-32 right-6 sm:right-12 md:right-16 z-20 pointer-events-none text-right hidden sm:block"
+                        style={{ opacity: q3Opacity, y: q3Y }}
+                    >
+                        <div className="flex items-center justify-end gap-5 sm:gap-6">
+                            <div>
+                                <div className="flex items-center justify-end gap-2 mb-1.5">
+                                    <span className="text-xs sm:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
+                                        PRODUCTION SYSTEMS
+                                    </span>
+                                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                                </div>
+                                <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight drop-shadow-xl">
+                                    Applied AI & Harnesses
+                                </h4>
+                                <p className="text-sm sm:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
+                                    Autonomous Developer Tooling
+                                </p>
+                            </div>
+                            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
+                                <img
+                                    src={`${cleanBasePath}assets/logos/hermes.png`}
+                                    alt="Applied AI Hermes"
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
+                        </div>
+                    </motion.div>
+
+
+                    {/* Center Bottom Scroll Cue (Only visible at start) */}
+                    <motion.div 
+                        className="absolute bottom-6 sm:bottom-8 inset-x-0 flex flex-col items-center justify-center gap-1.5 text-zinc-400 z-20 pointer-events-none"
                         style={{ opacity: textOpacity }}
                     >
-                        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/50 border border-white/10 text-[11px] font-mono text-zinc-400 mb-1">
+                        <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/40 border border-white/10 text-[11px] font-mono text-zinc-400 mb-1 backdrop-blur-md">
                             <Sparkles className="w-3 h-3 text-zinc-400" />
-                            <span>SCROLL TO SCRUB MOTION</span>
+                            <span>SCROLL TO EXPLORE</span>
                         </div>
                         <ChevronDown className="w-4 h-4 animate-bounce text-zinc-400" />
                     </motion.div>
