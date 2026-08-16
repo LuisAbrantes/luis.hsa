@@ -1,46 +1,19 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { ArrowUpRight, ExternalLink, ChevronDown, Sparkles } from 'lucide-react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { ArrowUpRight, ExternalLink, ChevronDown, Sparkles, MapPin, Award, Layers } from 'lucide-react';
 import { timeline } from '@/data/timeline';
 import { fadeInUp, staggerContainer, revealViewport } from '@/lib/motion';
+import meOne from '@/assets/home/meOne.png';
 
 // "Papers" is a separate hub on its own subdomain — the Home only links out.
 const PAPERS_URL = 'https://papers.luisabrantes.dev';
 
-const editorialSections = [
-    {
-        index: '01',
-        title: 'About',
-        tag: 'FOUNDATIONS',
-        path: '/about',
-        description: 'Software engineering background, academic journey at IFSP, and philosophy on building autonomous AI systems.'
-    },
-    {
-        index: '02',
-        title: 'Projects',
-        tag: 'APPLIED AI & TOOLS',
-        path: '/projects',
-        description: 'TutorTime, agent harness architectures, and production-grade developer tooling.'
-    },
-    {
-        index: '03',
-        title: 'Achievements',
-        tag: 'GLOBAL HACKATHONS',
-        path: '/achievements',
-        description: 'Google Student Ambassador 2026, UC Berkeley AI Hackathon, and UPenn PennApps.'
-    },
-    {
-        index: '04',
-        title: 'Contact',
-        tag: 'COLLABORATION',
-        path: '/contact',
-        description: 'Open for high-impact projects, AI research engineering, and technical partnerships.'
-    }
-];
-
 const Home = () => {
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const currentLayout = searchParams.get('layout') || '1'; // Default: '1' (Manifesto & Genesis)
+
     const scrollTrackRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [videoDuration, setVideoDuration] = useState<number>(0);
@@ -61,7 +34,6 @@ const Home = () => {
         const video = videoRef.current;
         if (!video) return;
 
-        // Force explicit video DOM attributes for mobile Safari / Chrome
         video.muted = true;
         video.defaultMuted = true;
         video.playsInline = true;
@@ -72,7 +44,6 @@ const Home = () => {
             }
         };
 
-        // Prime video for mobile iOS/Android Safari on first user interaction or scroll
         const primeMobileVideo = () => {
             if (video && video.paused) {
                 video.play().then(() => {
@@ -106,7 +77,6 @@ const Home = () => {
             const video = videoRef.current;
             if (!video || !videoDuration) return;
 
-            // Map progress (0 to 0.85) to full video duration
             const clampedProgress = Math.min(Math.max(progress / 0.85, 0), 1);
             const targetTime = clampedProgress * videoDuration;
 
@@ -136,51 +106,41 @@ const Home = () => {
     }, [scrollYProgress, videoDuration]);
 
     // ========================================================
-    // CHOREOGRAPHY & VERTICAL CONVEYOR QUEUES
+    // CHOREOGRAPHY & VERTICAL CONVEYOR QUEUES (Full-Height Flight)
     // ========================================================
-    // Main Title Overlay (0% -> 20%)
     const textOpacity = useTransform(scrollYProgress, [0, 0.16], [1, 0]);
     const textY = useTransform(scrollYProgress, [0, 0.16], [0, -45]);
 
-    // DESKTOP DUAL-COLUMN QUEUES (>=640px) - Full-Height Ascension
-    // Desktop Q1: Google & UC Berkeley
+    // DESKTOP DUAL-COLUMN QUEUES (>=640px)
     const deskQ1Opacity = useTransform(scrollYProgress, [0, 0.26, 0.34], [1, 1, 0]);
     const deskQ1Y = useTransform(scrollYProgress, [0, 0.34], [0, -780]);
 
-    // Desktop Q2: UPenn & UNICAMP
     const deskQ2Opacity = useTransform(scrollYProgress, [0.20, 0.30, 0.54, 0.62], [0, 1, 1, 0]);
     const deskQ2Y = useTransform(scrollYProgress, [0.20, 0.36, 0.62], [320, 0, -780]);
 
-    // Desktop Q3: IFSP & Hermes AI
     const deskQ3Opacity = useTransform(scrollYProgress, [0.50, 0.60, 0.82, 0.88], [0, 1, 1, 0]);
     const deskQ3Y = useTransform(scrollYProgress, [0.50, 0.66, 0.88], [320, 0, -780]);
 
-    // MOBILE SINGLE-COLUMN 6-STEP STREAM (<640px) - Full-Height Ascension
-    // Mob 1: Google (0% -> 18%)
+    // MOBILE SINGLE-COLUMN 6-STEP STREAM (<640px)
     const mob1Opacity = useTransform(scrollYProgress, [0, 0.13, 0.18], [1, 1, 0]);
     const mob1Y = useTransform(scrollYProgress, [0, 0.18], [0, -560]);
 
-    // Mob 2: UC Berkeley (15% -> 32%)
     const mob2Opacity = useTransform(scrollYProgress, [0.14, 0.20, 0.29, 0.34], [0, 1, 1, 0]);
     const mob2Y = useTransform(scrollYProgress, [0.14, 0.22, 0.34], [220, 0, -560]);
 
-    // Mob 3: UPenn (30% -> 48%)
     const mob3Opacity = useTransform(scrollYProgress, [0.30, 0.36, 0.45, 0.50], [0, 1, 1, 0]);
     const mob3Y = useTransform(scrollYProgress, [0.30, 0.38, 0.50], [220, 0, -560]);
 
-    // Mob 4: UNICAMP (46% -> 64%)
     const mob4Opacity = useTransform(scrollYProgress, [0.46, 0.52, 0.61, 0.66], [0, 1, 1, 0]);
     const mob4Y = useTransform(scrollYProgress, [0.46, 0.54, 0.66], [220, 0, -560]);
 
-    // Mob 5: IFSP (62% -> 78%)
     const mob5Opacity = useTransform(scrollYProgress, [0.62, 0.68, 0.75, 0.80], [0, 1, 1, 0]);
     const mob5Y = useTransform(scrollYProgress, [0.62, 0.70, 0.80], [220, 0, -560]);
 
-    // Mob 6: Applied AI Hermes (76% -> 90%)
     const mob6Opacity = useTransform(scrollYProgress, [0.76, 0.82, 0.88, 0.92], [0, 1, 1, 0]);
     const mob6Y = useTransform(scrollYProgress, [0.76, 0.84, 0.92], [220, 0, -560]);
 
-    // Overall Hero Pinned Stage Handoff (85% -> 98%)
+    // Overall Hero Pinned Stage Handoff
     const stageFade = useTransform(scrollYProgress, [0.85, 0.98], [1, 0]);
     const stagePointerEvents = useTransform(scrollYProgress, (v) => v > 0.9 ? 'none' : 'auto');
 
@@ -192,13 +152,10 @@ const Home = () => {
                ======================================================== */}
             <div ref={scrollTrackRef} className="relative h-[250vh] w-full pt-16">
                 
-                {/* Pinned Viewport Stage - Perfectly flush right below the 16 (64px) Navbar */}
                 <motion.div 
                     className="sticky top-16 h-[calc(100dvh-4rem)] w-full overflow-hidden flex items-center justify-center bg-[#07080b]"
                     style={{ opacity: stageFade, pointerEvents: stagePointerEvents as any }}
                 >
-                    
-                    {/* Full-Bleed Scroll-Scrubbed Video Element with Poster Backup */}
                     <div className="absolute inset-0 w-full h-full bg-[#07080b]">
                         <img
                             src={posterSrc}
@@ -217,11 +174,10 @@ const Home = () => {
                         />
                     </div>
 
-                    {/* Cinematic Scrim Vignettes (Clean read on top & bottom) */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#07080b] via-transparent to-black/60 pointer-events-none" />
                     <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40 pointer-events-none" />
 
-                    {/* Top Headline & Identity Overlay (Positioned with safe space below navbar) */}
+                    {/* Top Headline & Identity */}
                     <motion.div 
                         className="absolute top-6 sm:top-8 md:top-10 inset-x-4 max-w-5xl mx-auto text-center pointer-events-none z-20 space-y-2 sm:space-y-2.5"
                         style={{ opacity: textOpacity, y: textY }}
@@ -240,12 +196,7 @@ const Home = () => {
                         </p>
                     </motion.div>
 
-
-                    {/* ========================================================
-                        DESKTOP / TABLET DUAL-COLUMN STREAM (>= 640px)
-                       ======================================================== */}
-                    
-                    {/* DESKTOP LEFT FLANK */}
+                    {/* DESKTOP STREAM */}
                     <div className="hidden sm:block">
                         {/* Desk L1: Google */}
                         <motion.div 
@@ -254,25 +205,15 @@ const Home = () => {
                         >
                             <div className="flex items-center gap-4 md:gap-6">
                                 <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
-                                    <img
-                                        src={`${cleanBasePath}assets/logos/google.svg`}
-                                        alt="Google Logo"
-                                        className="w-full h-full object-contain"
-                                    />
+                                    <img src={`${cleanBasePath}assets/logos/google.svg`} alt="Google Logo" className="w-full h-full object-contain" />
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2 mb-1.5">
                                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                                        <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
-                                            AFFILIATION // 2026
-                                        </span>
+                                        <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">AFFILIATION // 2026</span>
                                     </div>
-                                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">
-                                        Google Student Ambassador
-                                    </h4>
-                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
-                                        Global Ambassador Cohort
-                                    </p>
+                                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">Google Student Ambassador</h4>
+                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">Global Ambassador Cohort</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -284,25 +225,15 @@ const Home = () => {
                         >
                             <div className="flex items-center gap-4 md:gap-6">
                                 <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
-                                    <img
-                                        src={`${cleanBasePath}assets/logos/upenn.svg`}
-                                        alt="UPenn Shield"
-                                        className="w-full h-full object-contain"
-                                    />
+                                    <img src={`${cleanBasePath}assets/logos/upenn.svg`} alt="UPenn Shield" className="w-full h-full object-contain" />
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2 mb-1.5">
                                         <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
-                                        <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
-                                            ENGINEERING // UPENN
-                                        </span>
+                                        <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">ENGINEERING // UPENN</span>
                                     </div>
-                                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">
-                                        PennApps XXV
-                                    </h4>
-                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
-                                        University of Pennsylvania
-                                    </p>
+                                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">PennApps XXV</h4>
+                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">University of Pennsylvania</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -314,32 +245,19 @@ const Home = () => {
                         >
                             <div className="flex items-center gap-4 md:gap-6">
                                 <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
-                                    <img
-                                        src={`${cleanBasePath}assets/logos/ifsp.svg`}
-                                        alt="IFSP Logo"
-                                        className="w-full h-full object-contain"
-                                    />
+                                    <img src={`${cleanBasePath}assets/logos/ifsp.svg`} alt="IFSP Logo" className="w-full h-full object-contain" />
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2 mb-1.5">
                                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                                        <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
-                                            ACADEMIA // LEADERSHIP
-                                        </span>
+                                        <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">ACADEMIA // LEADERSHIP</span>
                                     </div>
-                                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">
-                                        Instituto Federal (IFSP)
-                                    </h4>
-                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
-                                        Computer Science & Community Lead
-                                    </p>
+                                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">Instituto Federal (IFSP)</h4>
+                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">Computer Science & Community Lead</p>
                                 </div>
                             </div>
                         </motion.div>
-                    </div>
 
-                    {/* DESKTOP RIGHT FLANK */}
-                    <div className="hidden sm:block">
                         {/* Desk R1: UC Berkeley */}
                         <motion.div 
                             className="absolute bottom-20 sm:bottom-28 md:bottom-32 right-6 sm:right-10 md:right-14 lg:right-16 z-20 pointer-events-none text-right sm:max-w-xs md:max-w-sm lg:max-w-md"
@@ -348,24 +266,14 @@ const Home = () => {
                             <div className="flex items-center justify-end gap-4 md:gap-6">
                                 <div>
                                     <div className="flex items-center justify-end gap-2 mb-1.5">
-                                        <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
-                                            HACKATHON // BERKELEY
-                                        </span>
+                                        <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">HACKATHON // BERKELEY</span>
                                         <span className="w-2.5 h-2.5 rounded-full bg-blue-400" />
                                     </div>
-                                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">
-                                        UC Berkeley AI Hackathon
-                                    </h4>
-                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
-                                        Cal Hacks • San Francisco
-                                    </p>
+                                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">UC Berkeley AI Hackathon</h4>
+                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">Cal Hacks • San Francisco</p>
                                 </div>
                                 <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
-                                    <img
-                                        src={`${cleanBasePath}assets/logos/berkeley.svg`}
-                                        alt="UC Berkeley Seal"
-                                        className="w-full h-full object-contain"
-                                    />
+                                    <img src={`${cleanBasePath}assets/logos/berkeley.svg`} alt="UC Berkeley Seal" className="w-full h-full object-contain" />
                                 </div>
                             </div>
                         </motion.div>
@@ -378,24 +286,14 @@ const Home = () => {
                             <div className="flex items-center justify-end gap-4 md:gap-6">
                                 <div>
                                     <div className="flex items-center justify-end gap-2 mb-1.5">
-                                        <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
-                                            QUANTUM LAB // FIFE
-                                        </span>
+                                        <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">QUANTUM LAB // FIFE</span>
                                         <span className="w-2.5 h-2.5 rounded-full bg-purple-400" />
                                     </div>
-                                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">
-                                        UNICAMP Quantum Physics
-                                    </h4>
-                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
-                                        Gleb Wataghin Physics Institute
-                                    </p>
+                                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">UNICAMP Quantum Physics</h4>
+                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">Gleb Wataghin Physics Institute</p>
                                 </div>
                                 <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
-                                    <img
-                                        src={`${cleanBasePath}assets/logos/unicamp.png`}
-                                        alt="UNICAMP Logo"
-                                        className="w-full h-full object-contain"
-                                    />
+                                    <img src={`${cleanBasePath}assets/logos/unicamp.png`} alt="UNICAMP Logo" className="w-full h-full object-contain" />
                                 </div>
                             </div>
                         </motion.div>
@@ -408,298 +306,319 @@ const Home = () => {
                             <div className="flex items-center justify-end gap-4 md:gap-6">
                                 <div>
                                     <div className="flex items-center justify-end gap-2 mb-1.5">
-                                        <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
-                                            PRODUCTION SYSTEMS
-                                        </span>
+                                        <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">PRODUCTION SYSTEMS</span>
                                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
                                     </div>
-                                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">
-                                        Applied AI & Harnesses
-                                    </h4>
-                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
-                                        Autonomous Developer Tooling
-                                    </p>
+                                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">Applied AI & Harnesses</h4>
+                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">Autonomous Developer Tooling</p>
                                 </div>
                                 <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
-                                    <img
-                                        src={`${cleanBasePath}assets/logos/hermes.png`}
-                                        alt="Applied AI Hermes"
-                                        className="w-full h-full object-contain"
-                                    />
+                                    <img src={`${cleanBasePath}assets/logos/hermes.png`} alt="Applied AI Hermes" className="w-full h-full object-contain" />
                                 </div>
                             </div>
                         </motion.div>
                     </div>
 
-
-                    {/* ========================================================
-                        MOBILE FULL 6-ITEM SINGLE-STREAM (< 640px)
-                       ======================================================== */}
+                    {/* MOBILE STREAM */}
                     <div className="block sm:hidden">
-                        
-                        {/* Mob 1: Google */}
-                        <motion.div 
-                            className="absolute bottom-16 left-4 right-4 z-20 pointer-events-none text-left"
-                            style={{ opacity: mob1Opacity, y: mob1Y }}
-                        >
+                        {/* Mob 1 */}
+                        <motion.div className="absolute bottom-16 left-4 right-4 z-20 pointer-events-none text-left" style={{ opacity: mob1Opacity, y: mob1Y }}>
                             <div className="flex items-center gap-3.5">
                                 <div className="w-14 h-14 flex items-center justify-center flex-shrink-0 drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)]">
-                                    <img
-                                        src={`${cleanBasePath}assets/logos/google.svg`}
-                                        alt="Google Logo"
-                                        className="w-full h-full object-contain"
-                                    />
+                                    <img src={`${cleanBasePath}assets/logos/google.svg`} alt="Google Logo" className="w-full h-full object-contain" />
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-1.5 mb-0.5">
                                         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">
-                                            AFFILIATION // 2026
-                                        </span>
+                                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">AFFILIATION // 2026</span>
                                     </div>
-                                    <h4 className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">
-                                        Google Student Ambassador
-                                    </h4>
-                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">
-                                        Global Ambassador Cohort
-                                    </p>
+                                    <h4 className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">Google Student Ambassador</h4>
+                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">Global Ambassador Cohort</p>
                                 </div>
                             </div>
                         </motion.div>
 
-                        {/* Mob 2: UC Berkeley */}
-                        <motion.div 
-                            className="absolute bottom-16 left-4 right-4 z-20 pointer-events-none text-left"
-                            style={{ opacity: mob2Opacity, y: mob2Y }}
-                        >
+                        {/* Mob 2 */}
+                        <motion.div className="absolute bottom-16 left-4 right-4 z-20 pointer-events-none text-left" style={{ opacity: mob2Opacity, y: mob2Y }}>
                             <div className="flex items-center gap-3.5">
                                 <div className="w-14 h-14 flex items-center justify-center flex-shrink-0 drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)]">
-                                    <img
-                                        src={`${cleanBasePath}assets/logos/berkeley.svg`}
-                                        alt="UC Berkeley Seal"
-                                        className="w-full h-full object-contain"
-                                    />
+                                    <img src={`${cleanBasePath}assets/logos/berkeley.svg`} alt="UC Berkeley Seal" className="w-full h-full object-contain" />
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-1.5 mb-0.5">
                                         <span className="w-2 h-2 rounded-full bg-blue-400" />
-                                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">
-                                            HACKATHON // BERKELEY
-                                        </span>
+                                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">HACKATHON // BERKELEY</span>
                                     </div>
-                                    <h4 className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">
-                                        UC Berkeley AI Hackathon
-                                    </h4>
-                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">
-                                        Cal Hacks • San Francisco
-                                    </p>
+                                    <h4 className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">UC Berkeley AI Hackathon</h4>
+                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">Cal Hacks • San Francisco</p>
                                 </div>
                             </div>
                         </motion.div>
 
-                        {/* Mob 3: UPenn */}
-                        <motion.div 
-                            className="absolute bottom-16 left-4 right-4 z-20 pointer-events-none text-left"
-                            style={{ opacity: mob3Opacity, y: mob3Y }}
-                        >
+                        {/* Mob 3 */}
+                        <motion.div className="absolute bottom-16 left-4 right-4 z-20 pointer-events-none text-left" style={{ opacity: mob3Opacity, y: mob3Y }}>
                             <div className="flex items-center gap-3.5">
                                 <div className="w-14 h-14 flex items-center justify-center flex-shrink-0 drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)]">
-                                    <img
-                                        src={`${cleanBasePath}assets/logos/upenn.svg`}
-                                        alt="UPenn Shield"
-                                        className="w-full h-full object-contain"
-                                    />
+                                    <img src={`${cleanBasePath}assets/logos/upenn.svg`} alt="UPenn Shield" className="w-full h-full object-contain" />
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-1.5 mb-0.5">
                                         <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">
-                                            ENGINEERING // UPENN
-                                        </span>
+                                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">ENGINEERING // UPENN</span>
                                     </div>
-                                    <h4 className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">
-                                        PennApps XXV
-                                    </h4>
-                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">
-                                        University of Pennsylvania
-                                    </p>
+                                    <h4 className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">PennApps XXV</h4>
+                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">University of Pennsylvania</p>
                                 </div>
                             </div>
                         </motion.div>
 
-                        {/* Mob 4: UNICAMP */}
-                        <motion.div 
-                            className="absolute bottom-16 left-4 right-4 z-20 pointer-events-none text-left"
-                            style={{ opacity: mob4Opacity, y: mob4Y }}
-                        >
+                        {/* Mob 4 */}
+                        <motion.div className="absolute bottom-16 left-4 right-4 z-20 pointer-events-none text-left" style={{ opacity: mob4Opacity, y: mob4Y }}>
                             <div className="flex items-center gap-3.5">
                                 <div className="w-14 h-14 flex items-center justify-center flex-shrink-0 drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)]">
-                                    <img
-                                        src={`${cleanBasePath}assets/logos/unicamp.png`}
-                                        alt="UNICAMP Logo"
-                                        className="w-full h-full object-contain"
-                                    />
+                                    <img src={`${cleanBasePath}assets/logos/unicamp.png`} alt="UNICAMP Logo" className="w-full h-full object-contain" />
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-1.5 mb-0.5">
                                         <span className="w-2 h-2 rounded-full bg-purple-400" />
-                                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">
-                                            QUANTUM LAB // FIFE
-                                        </span>
+                                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">QUANTUM LAB // FIFE</span>
                                     </div>
-                                    <h4 className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">
-                                        UNICAMP Quantum Physics
-                                    </h4>
-                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">
-                                        Gleb Wataghin Physics Institute
-                                    </p>
+                                    <h4 className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">UNICAMP Quantum Physics</h4>
+                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">Gleb Wataghin Physics Institute</p>
                                 </div>
                             </div>
                         </motion.div>
 
-                        {/* Mob 5: IFSP */}
-                        <motion.div 
-                            className="absolute bottom-16 left-4 right-4 z-20 pointer-events-none text-left"
-                            style={{ opacity: mob5Opacity, y: mob5Y }}
-                        >
+                        {/* Mob 5 */}
+                        <motion.div className="absolute bottom-16 left-4 right-4 z-20 pointer-events-none text-left" style={{ opacity: mob5Opacity, y: mob5Y }}>
                             <div className="flex items-center gap-3.5">
                                 <div className="w-14 h-14 flex items-center justify-center flex-shrink-0 drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)]">
-                                    <img
-                                        src={`${cleanBasePath}assets/logos/ifsp.svg`}
-                                        alt="IFSP Logo"
-                                        className="w-full h-full object-contain"
-                                    />
+                                    <img src={`${cleanBasePath}assets/logos/ifsp.svg`} alt="IFSP Logo" className="w-full h-full object-contain" />
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-1.5 mb-0.5">
                                         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">
-                                            ACADEMIA // LEADERSHIP
-                                        </span>
+                                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">ACADEMIA // LEADERSHIP</span>
                                     </div>
-                                    <h4 className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">
-                                        Instituto Federal (IFSP)
-                                    </h4>
-                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">
-                                        Computer Science & Community Lead
-                                    </p>
+                                    <h4 className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">Instituto Federal (IFSP)</h4>
+                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">Computer Science & Community Lead</p>
                                 </div>
                             </div>
                         </motion.div>
 
-                        {/* Mob 6: Applied AI Hermes */}
-                        <motion.div 
-                            className="absolute bottom-16 left-4 right-4 z-20 pointer-events-none text-left"
-                            style={{ opacity: mob6Opacity, y: mob6Y }}
-                        >
+                        {/* Mob 6 */}
+                        <motion.div className="absolute bottom-16 left-4 right-4 z-20 pointer-events-none text-left" style={{ opacity: mob6Opacity, y: mob6Y }}>
                             <div className="flex items-center gap-3.5">
                                 <div className="w-14 h-14 flex items-center justify-center flex-shrink-0 drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)]">
-                                    <img
-                                        src={`${cleanBasePath}assets/logos/hermes.png`}
-                                        alt="Applied AI Hermes"
-                                        className="w-full h-full object-contain"
-                                    />
+                                    <img src={`${cleanBasePath}assets/logos/hermes.png`} alt="Applied AI Hermes" className="w-full h-full object-contain" />
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-1.5 mb-0.5">
                                         <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">
-                                            PRODUCTION SYSTEMS
-                                        </span>
+                                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">PRODUCTION SYSTEMS</span>
                                     </div>
-                                    <h4 className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">
-                                        Applied AI & Harnesses
-                                    </h4>
-                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">
-                                        Autonomous Developer Tooling
-                                    </p>
+                                    <h4 className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">Applied AI & Harnesses</h4>
+                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">Autonomous Developer Tooling</p>
                                 </div>
                             </div>
                         </motion.div>
-
                     </div>
 
-
-                    {/* Center Bottom Scroll Cue (Only visible at start) */}
-                    <motion.div 
-                        className="absolute bottom-4 sm:bottom-8 inset-x-0 flex flex-col items-center justify-center gap-1 text-zinc-400 z-20 pointer-events-none"
-                        style={{ opacity: textOpacity }}
-                    >
+                    {/* Scroll Cue */}
+                    <motion.div className="absolute bottom-4 sm:bottom-8 inset-x-0 flex flex-col items-center justify-center gap-1 text-zinc-400 z-20 pointer-events-none" style={{ opacity: textOpacity }}>
                         <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/10 text-[10px] sm:text-[11px] font-mono text-zinc-400 backdrop-blur-md">
                             <Sparkles className="w-3 h-3 text-zinc-400" />
                             <span>SCROLL TO EXPLORE</span>
                         </div>
                         <ChevronDown className="w-4 h-4 animate-bounce text-zinc-400" />
                     </motion.div>
-
                 </motion.div>
             </div>
 
 
             {/* ========================================================
-                2. EDITORIAL DIRECTORY (Smooth handoff from Video flight)
+                2. MAIN CONTENT REGION (Rendered according to currentLayout)
                ======================================================== */}
             <main className="relative z-30 bg-[#07080b] pt-12 pb-24 shadow-[0_-50px_80px_rgba(7,8,11,1)]">
                 
-                <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-zinc-800/80 gap-4">
-                        <div>
-                            <span className="text-xs font-mono text-zinc-500 tracking-widest uppercase block mb-2">INDEX & DIRECTORY</span>
-                            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-sans">
-                                Selected Work & Foundations
-                            </h2>
-                        </div>
-                        <p className="text-xs sm:text-sm text-zinc-400 font-mono">
-                            4 SECTIONS • DIRECTORY
-                        </p>
-                    </div>
-
-                    <motion.div
-                        className="divide-y divide-zinc-800/80 border-y border-zinc-800/80"
-                        variants={staggerContainer}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={revealViewport}
-                    >
-                        {editorialSections.map((section) => (
-                            <motion.div
-                                key={section.path}
+                {/* ----------------------------------------------------
+                    MOCK 1: "MANIFESTO & GENESIS" (Asymmetric 2-Column Spread)
+                   ---------------------------------------------------- */}
+                {currentLayout === '1' && (
+                    <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+                            
+                            {/* Left: Authentic Penn Photo with Film Border Treatment (No card box) */}
+                            <motion.div 
+                                className="lg:col-span-5 relative group"
                                 variants={fadeInUp}
-                                onClick={() => navigate(section.path)}
-                                className="group cursor-pointer py-7 sm:py-9 transition-all duration-300 hover:px-4 rounded-xl hover:bg-zinc-900/40"
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={revealViewport}
                             >
-                                <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4">
-                                    {/* Left: Number + Title */}
-                                    <div className="flex items-baseline gap-6 sm:gap-8">
-                                        <span className="font-mono text-sm sm:text-base text-zinc-600 group-hover:text-zinc-300 transition-colors">
-                                            {section.index}
-                                        </span>
-                                        <div>
-                                            <div className="flex items-center gap-3">
-                                                <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white group-hover:text-white transition-colors">
-                                                    {section.title}
-                                                </h3>
-                                                <span className="text-[10px] font-mono px-2 py-0.5 rounded border border-zinc-800 bg-zinc-900 text-zinc-400 group-hover:border-zinc-700 transition-colors">
-                                                    {section.tag}
-                                                </span>
-                                            </div>
-                                            <p className="text-sm text-zinc-400 mt-2 max-w-xl font-light leading-relaxed group-hover:text-zinc-300 transition-colors">
-                                                {section.description}
-                                            </p>
+                                <div className="relative rounded-2xl overflow-hidden border border-zinc-800/90 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-zinc-950">
+                                    <img
+                                        src={meOne}
+                                        alt="Luis Henrique Abrantes at Penn Engineering, University of Pennsylvania"
+                                        className="w-full h-auto object-cover object-top filter grayscale-[25%] contrast-[105%] group-hover:grayscale-0 transition-all duration-700"
+                                    />
+                                    {/* Vignette Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                                    
+                                    {/* Location & Context Mono Tag */}
+                                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 border border-white/20 text-[11px] font-mono text-zinc-200 backdrop-blur-md">
+                                            <MapPin className="w-3 h-3 text-red-400" />
+                                            <span>UPENN • PHILADELPHIA, PA</span>
                                         </div>
-                                    </div>
-
-                                    {/* Right: Arrow Link Indicator */}
-                                    <div className="flex items-center gap-2 self-end md:self-center">
-                                        <div className="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-400 group-hover:border-zinc-600 group-hover:text-white group-hover:bg-zinc-800 transition-all">
-                                            <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                                        </div>
+                                        <span className="text-[10px] font-mono text-zinc-400">PENNAPPS XXV</span>
                                     </div>
                                 </div>
                             </motion.div>
-                        ))}
-                    </motion.div>
-                </section>
+
+                            {/* Right: Personal Manifesto & Engineering Focus */}
+                            <motion.div 
+                                className="lg:col-span-7 space-y-6"
+                                variants={fadeInUp}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={revealViewport}
+                            >
+                                <div>
+                                    <span className="text-xs font-mono text-emerald-400 tracking-widest uppercase block mb-2 font-semibold">
+                                        01 // FOUNDATIONS & GENESIS
+                                    </span>
+                                    <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
+                                        From IFSP to Global Hackathons & Applied AI Systems.
+                                    </h2>
+                                </div>
+
+                                <div className="space-y-4 text-zinc-300 font-light text-base sm:text-lg leading-relaxed">
+                                    <p>
+                                        I am a Software Engineer and Applied AI developer based in São Paulo, Brazil. Currently studying Computer Science at <span className="text-white font-medium">Instituto Federal de São Paulo (IFSP)</span> and serving as a <span className="text-white font-medium">Google Student Ambassador (2026)</span>.
+                                    </p>
+                                    <p className="text-zinc-400 text-sm sm:text-base">
+                                        My work spans autonomous AI agents, developer tooling harnesses, and production-grade software architectures. I believe that engineering depth and rapid iteration are the keys to building tools that expand human capability.
+                                    </p>
+                                </div>
+
+                                <div className="pt-2 flex items-center gap-4 flex-wrap">
+                                    <button
+                                        onClick={() => navigate('/about')}
+                                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm shadow-md"
+                                    >
+                                        <span>Read Full Story</span>
+                                        <ArrowUpRight className="w-4 h-4" />
+                                    </button>
+                                    <button
+                                        onClick={() => navigate('/projects')}
+                                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-all text-sm"
+                                    >
+                                        <span>Explore Projects</span>
+                                    </button>
+                                </div>
+                            </motion.div>
+
+                        </div>
+                    </section>
+                )}
+
+                {/* ----------------------------------------------------
+                    MOCK 2: "TIMELINE ORIGIN ANCHOR" (Embedded in 2024 Milestone)
+                   ---------------------------------------------------- */}
+                {currentLayout === '2' && (
+                    <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+                        <div className="text-center mb-12">
+                            <span className="text-xs font-mono text-zinc-500 tracking-widest uppercase block mb-2 font-semibold">
+                                PHILOSOPHY // 01
+                            </span>
+                            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+                                Building at the Frontier of Autonomous AI
+                            </h2>
+                            <p className="text-zinc-400 font-light text-base max-w-xl mx-auto mt-3">
+                                Crafting agent harnesses, high-performance developer tools, and intelligent applications.
+                            </p>
+                        </div>
+                    </section>
+                )}
+
+                {/* ----------------------------------------------------
+                    MOCK 3: "WIDE SPOTLIGHT & METRICS" (3-Column Layout)
+                   ---------------------------------------------------- */}
+                {currentLayout === '3' && (
+                    <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+                            
+                            {/* Col 1: Portrait */}
+                            <div className="md:col-span-4 rounded-2xl overflow-hidden border border-zinc-800/90 relative group bg-zinc-950">
+                                <img
+                                    src={meOne}
+                                    alt="Luis Henrique Abrantes at Penn"
+                                    className="w-full h-full object-cover object-top"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                                <div className="absolute bottom-4 left-4 right-4">
+                                    <span className="text-xs font-mono text-zinc-300 block font-semibold">Luis Henrique Abrantes</span>
+                                    <span className="text-[10px] font-mono text-zinc-500">PennApps XXV • Philadelphia</span>
+                                </div>
+                            </div>
+
+                            {/* Col 2: Profile & Mission */}
+                            <div className="md:col-span-5 flex flex-col justify-between py-2 space-y-6">
+                                <div>
+                                    <span className="text-xs font-mono text-emerald-400 tracking-widest uppercase block mb-2">01 // IDENTITY</span>
+                                    <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                                        Software Engineer & Applied AI Researcher
+                                    </h3>
+                                    <p className="text-sm sm:text-base text-zinc-400 font-light mt-3 leading-relaxed">
+                                        Dedicated to building autonomous agent frameworks, scalable web applications, and developer ergonomics.
+                                    </p>
+                                </div>
+
+                                <div className="pt-4 border-t border-zinc-800">
+                                    <button
+                                        onClick={() => navigate('/about')}
+                                        className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-emerald-400 transition-colors"
+                                    >
+                                        <span>View Background & Education</span>
+                                        <ArrowUpRight className="w-4 h-4" />
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Col 3: Key Stats & Badges */}
+                            <div className="md:col-span-3 flex flex-col justify-between p-6 rounded-2xl border border-zinc-800/70 bg-zinc-950/40 space-y-4">
+                                <div>
+                                    <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider block mb-3">KEY CREDENTIALS</span>
+                                    <div className="space-y-3">
+                                        <div className="flex items-start gap-2.5">
+                                            <Award className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                                            <div>
+                                                <span className="text-xs text-white font-medium block">Google Ambassador</span>
+                                                <span className="text-[10px] font-mono text-zinc-500">2026 Global Cohort</span>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-2.5">
+                                            <Layers className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                                            <div>
+                                                <span className="text-xs text-white font-medium block">UC Berkeley Cal Hacks</span>
+                                                <span className="text-[10px] font-mono text-zinc-500">AI Hackathon SF</span>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-2.5">
+                                            <MapPin className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                                            <div>
+                                                <span className="text-xs text-white font-medium block">PennApps XXV</span>
+                                                <span className="text-[10px] font-mono text-zinc-500">UPenn Philadelphia</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                )}
 
 
                 {/* ========================================================
@@ -721,7 +640,6 @@ const Home = () => {
                         </div>
 
                         <div className="relative">
-                            {/* Continuous Hairline Timeline */}
                             <div className="absolute left-4 md:left-[8.5rem] top-0 bottom-0 w-px bg-zinc-800/80" />
 
                             <motion.div
@@ -749,6 +667,21 @@ const Home = () => {
                                             <p className="text-zinc-300 leading-relaxed text-sm sm:text-base font-light">
                                                 {item.description}
                                             </p>
+
+                                            {/* In Mock 2: Render Photo Embedded beside 2024 UPenn milestone */}
+                                            {currentLayout === '2' && item.year === '2024' && (
+                                                <div className="mt-4 rounded-xl overflow-hidden border border-zinc-800 max-w-sm">
+                                                    <img
+                                                        src={meOne}
+                                                        alt="Luis at Penn Engineering"
+                                                        className="w-full h-48 object-cover object-top"
+                                                    />
+                                                    <div className="p-2.5 bg-zinc-950/80 border-t border-zinc-800 flex justify-between items-center text-[10px] font-mono text-zinc-400">
+                                                        <span>Penn Engineering Campus • 2024</span>
+                                                        <span className="text-emerald-400">Independent Fundraiser</span>
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
                                     </motion.div>
                                 ))}
@@ -759,26 +692,26 @@ const Home = () => {
 
 
                 {/* ========================================================
-                    4. PAPERS HUB (Technical Essays & Blog)
+                    4. PAPERS HUB (Open Typographic Editorial - 100% NO CARDS)
                    ======================================================== */}
-                <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-12 pb-28">
+                <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-12 pb-28">
                     <motion.div
-                        className="rounded-2xl border border-zinc-800/80 bg-zinc-950/60 backdrop-blur-md p-8 sm:p-12 relative overflow-hidden group hover:border-zinc-700 transition-all duration-300"
+                        className="border-t border-zinc-800/80 pt-10"
                         variants={fadeInUp}
                         initial="hidden"
                         whileInView="visible"
                         viewport={revealViewport}
                     >
-                        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-                            <div className="space-y-3 max-w-xl">
-                                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800 text-[11px] font-mono text-zinc-400">
-                                    <span>RESEARCH & LEARNING HUB</span>
-                                </div>
+                        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
+                            <div className="space-y-2 max-w-2xl">
+                                <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest font-semibold block">
+                                    03 // RESEARCH & LEARNING HUB
+                                </span>
                                 <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
                                     Papers by Luis Abrantes
                                 </h3>
-                                <p className="text-sm text-zinc-400 font-light leading-relaxed">
-                                    Technical essays, deep-dives into autonomous AI agents, developer tooling, and applied software engineering. Published bilingually (PT/EN).
+                                <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
+                                    Technical essays, deep-dives into autonomous AI agents, developer tooling, and systems engineering. Published bilingually (PT/EN) on its own dedicated space.
                                 </p>
                                 <span className="text-xs font-mono text-zinc-500 block pt-1">
                                     papers.luisabrantes.dev
@@ -789,16 +722,54 @@ const Home = () => {
                                 href={PAPERS_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all duration-200 text-sm whitespace-nowrap shadow-lg shadow-white/5"
+                                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm whitespace-nowrap shadow-md shadow-white/5"
                             >
-                                <span>Visit Papers</span>
-                                <ExternalLink size={16} />
+                                <span>Visit Papers Hub</span>
+                                <ExternalLink size={15} />
                             </a>
                         </div>
                     </motion.div>
                 </section>
 
             </main>
+
+            {/* ========================================================
+                FLOATING MOCK ARCHETYPE SWITCHER BAR
+               ======================================================== */}
+            <div className="fixed bottom-5 inset-x-0 mx-auto w-fit z-50 flex items-center gap-1.5 p-1.5 rounded-full bg-black/90 backdrop-blur-2xl border border-white/20 shadow-2xl">
+                <span className="text-[10px] font-mono text-zinc-400 pl-3 pr-1 hidden sm:inline">MOCK:</span>
+                <button
+                    onClick={() => setSearchParams({ layout: '1' })}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all ${
+                        currentLayout === '1'
+                            ? 'bg-white text-black font-bold shadow-md'
+                            : 'text-zinc-400 hover:text-white'
+                    }`}
+                >
+                    1. Manifesto (Recomendado)
+                </button>
+                <button
+                    onClick={() => setSearchParams({ layout: '2' })}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all ${
+                        currentLayout === '2'
+                            ? 'bg-white text-black font-bold shadow-md'
+                            : 'text-zinc-400 hover:text-white'
+                    }`}
+                >
+                    2. Timeline Anchor
+                </button>
+                <button
+                    onClick={() => setSearchParams({ layout: '3' })}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all ${
+                        currentLayout === '3'
+                            ? 'bg-white text-black font-bold shadow-md'
+                            : 'text-zinc-400 hover:text-white'
+                    }`}
+                >
+                    3. Wide Spotlight
+                </button>
+            </div>
+
         </div>
     );
 };
