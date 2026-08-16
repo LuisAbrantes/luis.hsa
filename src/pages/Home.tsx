@@ -121,11 +121,11 @@ const Home = () => {
             {/* ========================================================
                 1. PINNED SCROLL-SCRUB HERO (100% Full-Bleed Video Engine)
                ======================================================== */}
-            <div ref={scrollTrackRef} className="relative h-[250vh] w-full">
+            <div ref={scrollTrackRef} className="relative h-[250vh] w-full pt-16">
                 
-                {/* Pinned 100dvh Viewport Stage */}
+                {/* Pinned Viewport Stage - Perfectly flush right below the 16 (64px) Navbar */}
                 <motion.div 
-                    className="sticky top-0 h-dvh w-full overflow-hidden flex items-center justify-center bg-[#07080b]"
+                    className="sticky top-16 h-[calc(100dvh-4rem)] w-full overflow-hidden flex items-center justify-center bg-[#07080b]"
                     style={{ opacity: stageFade, pointerEvents: stagePointerEvents as any }}
                 >
                     
@@ -146,9 +146,9 @@ const Home = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#07080b] via-transparent to-black/60 pointer-events-none" />
                     <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40 pointer-events-none" />
 
-                    {/* Top Headline & Identity Overlay */}
+                    {/* Top Headline & Identity Overlay (Positioned with safe space below navbar) */}
                     <motion.div 
-                        className="absolute top-14 sm:top-20 inset-x-4 max-w-5xl mx-auto text-center pointer-events-none z-20 space-y-3"
+                        className="absolute top-6 sm:top-10 inset-x-4 max-w-5xl mx-auto text-center pointer-events-none z-20 space-y-2.5"
                         style={{ opacity: textOpacity, y: textY }}
                     >
                         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-black/60 backdrop-blur-md text-xs font-mono text-zinc-300 shadow-xl">
