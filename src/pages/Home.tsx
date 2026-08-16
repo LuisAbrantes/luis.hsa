@@ -164,35 +164,35 @@ const Home = () => {
 
                     {/* Top Headline & Identity Overlay (Positioned with safe space below navbar) */}
                     <motion.div 
-                        className="absolute top-6 sm:top-10 inset-x-4 max-w-5xl mx-auto text-center pointer-events-none z-20 space-y-2.5"
+                        className="absolute top-4 sm:top-8 md:top-10 inset-x-4 max-w-5xl mx-auto text-center pointer-events-none z-20 space-y-2 sm:space-y-2.5"
                         style={{ opacity: textOpacity, y: textY }}
                     >
-                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-black/60 backdrop-blur-md text-xs font-mono text-zinc-300 shadow-xl">
-                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-white/15 bg-black/60 backdrop-blur-md text-[10px] sm:text-xs font-mono text-zinc-300 shadow-xl">
+                            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse" />
                             <span>SOFTWARE & APPLIED AI ENGINEER</span>
                         </div>
 
-                        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl">
+                        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl">
                             Luis Henrique Abrantes
                         </h1>
 
-                        <p className="text-xs sm:text-base text-zinc-300 font-light max-w-lg mx-auto drop-shadow-lg leading-relaxed">
+                        <p className="text-xs sm:text-sm md:text-base text-zinc-300 font-light max-w-xs sm:max-w-md md:max-w-lg mx-auto drop-shadow-lg leading-relaxed">
                             Building intelligent systems, agent harnesses, and high-performance applications.
                         </p>
                     </motion.div>
 
 
                     {/* ========================================================
-                        LEFT FLANK: VERTICAL QUEUE (GRANDE ESCALA & ALTA SUBIDA)
+                        LEFT FLANK: VERTICAL QUEUE (100% RESPONSIVE STREAM)
                        ======================================================== */}
                     
                     {/* Queue 1: Google Student Ambassador */}
                     <motion.div 
-                        className="absolute bottom-20 sm:bottom-28 md:bottom-32 left-6 sm:left-12 md:left-16 z-20 pointer-events-none text-left"
+                        className="absolute bottom-16 sm:bottom-24 md:bottom-32 left-4 sm:left-8 md:left-12 lg:left-16 z-20 pointer-events-none text-left max-w-[calc(100vw-2rem)] sm:max-w-md"
                         style={{ opacity: q1Opacity, y: q1Y }}
                     >
-                        <div className="flex items-center gap-5 sm:gap-6">
-                            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
+                        <div className="flex items-center gap-3.5 sm:gap-5 md:gap-6">
+                            <div className="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
                                 <img
                                     src={`${cleanBasePath}assets/logos/google.svg`}
                                     alt="Google Logo"
@@ -200,16 +200,16 @@ const Home = () => {
                                 />
                             </div>
                             <div>
-                                <div className="flex items-center gap-2 mb-1.5">
-                                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                                    <span className="text-xs sm:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
+                                <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-1.5">
+                                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                                    <span className="text-[10px] sm:text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
                                         AFFILIATION // 2026
                                     </span>
                                 </div>
-                                <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight drop-shadow-xl">
+                                <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">
                                     Google Student Ambassador
                                 </h4>
-                                <p className="text-sm sm:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
+                                <p className="text-xs sm:text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
                                     Global Ambassador Cohort
                                 </p>
                             </div>
@@ -218,11 +218,11 @@ const Home = () => {
 
                     {/* Queue 2: PennApps XXV */}
                     <motion.div 
-                        className="absolute bottom-20 sm:bottom-28 md:bottom-32 left-6 sm:left-12 md:left-16 z-20 pointer-events-none text-left"
+                        className="absolute bottom-16 sm:bottom-24 md:bottom-32 left-4 sm:left-8 md:left-12 lg:left-16 z-20 pointer-events-none text-left max-w-[calc(100vw-2rem)] sm:max-w-md"
                         style={{ opacity: q2Opacity, y: q2Y }}
                     >
-                        <div className="flex items-center gap-5 sm:gap-6">
-                            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
+                        <div className="flex items-center gap-3.5 sm:gap-5 md:gap-6">
+                            <div className="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
                                 <img
                                     src={`${cleanBasePath}assets/logos/upenn.svg`}
                                     alt="UPenn Shield"
@@ -230,16 +230,16 @@ const Home = () => {
                                 />
                             </div>
                             <div>
-                                <div className="flex items-center gap-2 mb-1.5">
-                                    <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
-                                    <span className="text-xs sm:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
+                                <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-1.5">
+                                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-cyan-400 animate-pulse" />
+                                    <span className="text-[10px] sm:text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
                                         ENGINEERING // UPENN
                                     </span>
                                 </div>
-                                <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight drop-shadow-xl">
+                                <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">
                                     PennApps XXV
                                 </h4>
-                                <p className="text-sm sm:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
+                                <p className="text-xs sm:text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
                                     University of Pennsylvania
                                 </p>
                             </div>
@@ -248,11 +248,11 @@ const Home = () => {
 
                     {/* Queue 3: Instituto Federal (IFSP) */}
                     <motion.div 
-                        className="absolute bottom-20 sm:bottom-28 md:bottom-32 left-6 sm:left-12 md:left-16 z-20 pointer-events-none text-left"
+                        className="absolute bottom-16 sm:bottom-24 md:bottom-32 left-4 sm:left-8 md:left-12 lg:left-16 z-20 pointer-events-none text-left max-w-[calc(100vw-2rem)] sm:max-w-md"
                         style={{ opacity: q3Opacity, y: q3Y }}
                     >
-                        <div className="flex items-center gap-5 sm:gap-6">
-                            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
+                        <div className="flex items-center gap-3.5 sm:gap-5 md:gap-6">
+                            <div className="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
                                 <img
                                     src={`${cleanBasePath}assets/logos/ifsp.svg`}
                                     alt="IFSP Logo"
@@ -260,16 +260,16 @@ const Home = () => {
                                 />
                             </div>
                             <div>
-                                <div className="flex items-center gap-2 mb-1.5">
-                                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                                    <span className="text-xs sm:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
+                                <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-1.5">
+                                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                                    <span className="text-[10px] sm:text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
                                         ACADEMIA // LEADERSHIP
                                     </span>
                                 </div>
-                                <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight drop-shadow-xl">
+                                <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">
                                     Instituto Federal (IFSP)
                                 </h4>
-                                <p className="text-sm sm:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
+                                <p className="text-xs sm:text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
                                     Computer Science & Community Lead
                                 </p>
                             </div>
@@ -278,30 +278,30 @@ const Home = () => {
 
 
                     {/* ========================================================
-                        RIGHT FLANK: VERTICAL QUEUE (GRANDE ESCALA & ALTA SUBIDA)
+                        RIGHT FLANK: VERTICAL QUEUE (100% RESPONSIVE STREAM)
                        ======================================================== */}
 
                     {/* Queue 1: UC Berkeley AI Hackathon */}
                     <motion.div 
-                        className="absolute bottom-20 sm:bottom-28 md:bottom-32 right-6 sm:right-12 md:right-16 z-20 pointer-events-none text-right hidden sm:block"
+                        className="absolute bottom-16 sm:bottom-24 md:bottom-32 right-4 sm:right-8 md:right-12 lg:right-16 z-20 pointer-events-none text-right hidden sm:block sm:max-w-md"
                         style={{ opacity: q1Opacity, y: q1Y }}
                     >
-                        <div className="flex items-center justify-end gap-5 sm:gap-6">
+                        <div className="flex items-center justify-end gap-3.5 sm:gap-5 md:gap-6">
                             <div>
-                                <div className="flex items-center justify-end gap-2 mb-1.5">
-                                    <span className="text-xs sm:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
+                                <div className="flex items-center justify-end gap-1.5 sm:gap-2 mb-1 sm:mb-1.5">
+                                    <span className="text-[10px] sm:text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
                                         HACKATHON // BERKELEY
                                     </span>
-                                    <span className="w-2.5 h-2.5 rounded-full bg-blue-400" />
+                                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-blue-400" />
                                 </div>
-                                <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight drop-shadow-xl">
+                                <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">
                                     UC Berkeley AI Hackathon
                                 </h4>
-                                <p className="text-sm sm:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
+                                <p className="text-xs sm:text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
                                     Cal Hacks • San Francisco
                                 </p>
                             </div>
-                            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
+                            <div className="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
                                 <img
                                     src={`${cleanBasePath}assets/logos/berkeley.svg`}
                                     alt="UC Berkeley Seal"
@@ -313,25 +313,25 @@ const Home = () => {
 
                     {/* Queue 2: UNICAMP Quantum Physics */}
                     <motion.div 
-                        className="absolute bottom-20 sm:bottom-28 md:bottom-32 right-6 sm:right-12 md:right-16 z-20 pointer-events-none text-right hidden sm:block"
+                        className="absolute bottom-16 sm:bottom-24 md:bottom-32 right-4 sm:right-8 md:right-12 lg:right-16 z-20 pointer-events-none text-right hidden sm:block sm:max-w-md"
                         style={{ opacity: q2Opacity, y: q2Y }}
                     >
-                        <div className="flex items-center justify-end gap-5 sm:gap-6">
+                        <div className="flex items-center justify-end gap-3.5 sm:gap-5 md:gap-6">
                             <div>
-                                <div className="flex items-center justify-end gap-2 mb-1.5">
-                                    <span className="text-xs sm:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
+                                <div className="flex items-center justify-end gap-1.5 sm:gap-2 mb-1 sm:mb-1.5">
+                                    <span className="text-[10px] sm:text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
                                         QUANTUM LAB // FIFE
                                     </span>
-                                    <span className="w-2.5 h-2.5 rounded-full bg-purple-400" />
+                                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-purple-400" />
                                 </div>
-                                <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight drop-shadow-xl">
+                                <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">
                                     UNICAMP Quantum Physics
                                 </h4>
-                                <p className="text-sm sm:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
+                                <p className="text-xs sm:text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
                                     Gleb Wataghin Physics Institute
                                 </p>
                             </div>
-                            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
+                            <div className="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
                                 <img
                                     src={`${cleanBasePath}assets/logos/unicamp.png`}
                                     alt="UNICAMP Logo"
@@ -343,25 +343,25 @@ const Home = () => {
 
                     {/* Queue 3: Applied AI & Harnesses (Hermes) */}
                     <motion.div 
-                        className="absolute bottom-20 sm:bottom-28 md:bottom-32 right-6 sm:right-12 md:right-16 z-20 pointer-events-none text-right hidden sm:block"
+                        className="absolute bottom-16 sm:bottom-24 md:bottom-32 right-4 sm:right-8 md:right-12 lg:right-16 z-20 pointer-events-none text-right hidden sm:block sm:max-w-md"
                         style={{ opacity: q3Opacity, y: q3Y }}
                     >
-                        <div className="flex items-center justify-end gap-5 sm:gap-6">
+                        <div className="flex items-center justify-end gap-3.5 sm:gap-5 md:gap-6">
                             <div>
-                                <div className="flex items-center justify-end gap-2 mb-1.5">
-                                    <span className="text-xs sm:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
+                                <div className="flex items-center justify-end gap-1.5 sm:gap-2 mb-1 sm:mb-1.5">
+                                    <span className="text-[10px] sm:text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">
                                         PRODUCTION SYSTEMS
                                     </span>
-                                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400" />
                                 </div>
-                                <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight drop-shadow-xl">
+                                <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">
                                     Applied AI & Harnesses
                                 </h4>
-                                <p className="text-sm sm:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
+                                <p className="text-xs sm:text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">
                                     Autonomous Developer Tooling
                                 </p>
                             </div>
-                            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
+                            <div className="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
                                 <img
                                     src={`${cleanBasePath}assets/logos/hermes.png`}
                                     alt="Applied AI Hermes"
