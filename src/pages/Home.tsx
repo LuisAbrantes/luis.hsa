@@ -476,11 +476,11 @@ const Home = () => {
                                 </h3>
                                 
                                 <p className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed">
-                                    Specializing in <strong className="text-white font-semibold">Agent Harness Engineering</strong>, <strong className="text-white font-semibold">LLM Agents</strong>, and <strong className="text-white font-semibold">production RAG systems</strong>. Computer Science researcher at <strong className="text-white font-medium">IFSP</strong> and <strong className="text-white font-medium">Google Student Ambassador (2026)</strong>.
+                                    Specializing in <strong className="text-white font-semibold">Agent Harness Engineering</strong>, <strong className="text-white font-semibold">LLM Agents</strong>, and <strong className="text-white font-semibold">production RAG systems</strong>. Computer Science at <strong className="text-white font-medium">IFSP</strong> and <strong className="text-white font-medium">Google Student Ambassador (2026)</strong>.
                                 </p>
 
                                 <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
-                                    Architecting multi-agent orchestrations, context evaluation loops, and high-performance developer tooling that turn foundation models into reliable, autonomous software.
+                                    Focused on building multi-agent orchestrations, context evaluation loops, and high-performance developer tooling that turn AI models into reliable, production-grade applications.
                                 </p>
                             </div>
 
@@ -627,7 +627,7 @@ const Home = () => {
                         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
                             <div className="space-y-2 max-w-2xl">
                                 <span className="text-xs sm:text-sm font-mono text-zinc-500 uppercase tracking-widest font-semibold block">
-                                    03 // RESEARCH & LEARNING HUB
+                                    03 // TECHNICAL ESSAYS & PAPERS
                                 </span>
                                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
                                     Papers by Luis Abrantes
