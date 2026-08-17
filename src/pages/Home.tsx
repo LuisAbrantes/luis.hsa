@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { ArrowUpRight, ExternalLink, ChevronDown, Sparkles, MapPin, Award, Layers } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { ArrowUpRight, ExternalLink, ChevronDown, Sparkles, MapPin, Award, Layers, GraduationCap } from 'lucide-react';
 import { timeline } from '@/data/timeline';
 import { fadeInUp, staggerContainer, revealViewport } from '@/lib/motion';
 import meOne from '@/assets/home/meOne.png';
@@ -11,9 +11,6 @@ const PAPERS_URL = 'https://papers.luisabrantes.dev';
 
 const Home = () => {
     const navigate = useNavigate();
-    const [searchParams, setSearchParams] = useSearchParams();
-    const currentLayout = searchParams.get('layout') || '3'; // Default to Layout 3 (Preferred)
-
     const scrollTrackRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [videoDuration, setVideoDuration] = useState<number>(0);
@@ -437,199 +434,126 @@ const Home = () => {
 
 
             {/* ========================================================
-                2. MAIN CONTENT REGION (Rendered according to currentLayout)
+                2. MAIN CONTENT REGION (Wide Spotlight & Metrics)
                ======================================================== */}
             <main className="relative z-30 bg-[#07080b] pt-12 pb-24 shadow-[0_-50px_80px_rgba(7,8,11,1)]">
                 
-                {/* ----------------------------------------------------
-                    LAYOUT 3: "WIDE SPOTLIGHT & METRICS" (Ampliado & Ultra Legível)
-                   ---------------------------------------------------- */}
-                {currentLayout === '3' && (
-                    <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-stretch">
-                            
-                            {/* Col 1: Portrait with Penn Engineering Banner */}
-                            <div className="md:col-span-4 rounded-2xl overflow-hidden border border-zinc-800/90 relative group bg-zinc-950 shadow-2xl">
-                                <img
-                                    src={meOne}
-                                    alt="Luis Henrique Abrantes at Penn Engineering"
-                                    className="w-full h-full min-h-[380px] object-cover object-top filter contrast-[105%] group-hover:scale-102 transition-transform duration-500"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none" />
-                                <div className="absolute bottom-5 left-5 right-5 space-y-1">
-                                    <span className="text-base font-semibold text-white tracking-tight block drop-shadow-md">
-                                        Luis Henrique Abrantes
-                                    </span>
-                                    <span className="text-xs font-mono text-zinc-300 flex items-center gap-1.5 drop-shadow">
-                                        <MapPin className="w-3.5 h-3.5 text-red-400" />
-                                        Penn Engineering • Philadelphia, PA
+                {/* WIDE SPOTLIGHT & KEY CREDENTIALS */}
+                <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+                        
+                        {/* Col 1: Portrait with Penn Engineering Banner */}
+                        <div className="md:col-span-4 rounded-2xl overflow-hidden border border-zinc-800/90 relative group bg-zinc-950 shadow-2xl">
+                            <img
+                                src={meOne}
+                                alt="Luis Henrique Abrantes at Penn Engineering"
+                                className="w-full h-full min-h-[380px] object-cover object-top filter contrast-[105%] group-hover:scale-102 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none" />
+                            <div className="absolute bottom-5 left-5 right-5 space-y-1">
+                                <span className="text-base font-semibold text-white tracking-tight block drop-shadow-md">
+                                    Luis Henrique Abrantes
+                                </span>
+                                <span className="text-xs font-mono text-zinc-300 flex items-center gap-1.5 drop-shadow">
+                                    <MapPin className="w-3.5 h-3.5 text-red-400" />
+                                    Penn Engineering • Philadelphia, PA
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Col 2: Profile & Mission (Keywords: Agent Harness Engineering, LLM Agents, RAG) */}
+                        <div className="md:col-span-5 flex flex-col justify-between py-2 space-y-6">
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                    <span className="text-xs sm:text-sm font-mono text-emerald-400 tracking-widest uppercase font-semibold">
+                                        01 // PROFILE & MISSION
                                     </span>
                                 </div>
+                                
+                                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+                                    Software Engineer & Applied AI Developer
+                                </h3>
+                                
+                                <p className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed">
+                                    Specializing in <strong className="text-white font-semibold">Agent Harness Engineering</strong>, <strong className="text-white font-semibold">LLM Agents</strong>, and <strong className="text-white font-semibold">production RAG systems</strong>. Computer Science researcher at <strong className="text-white font-medium">IFSP</strong> and <strong className="text-white font-medium">Google Student Ambassador (2026)</strong>.
+                                </p>
+
+                                <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
+                                    Architecting multi-agent orchestrations, context evaluation loops, and high-performance developer tooling that turn foundation models into reliable, autonomous software.
+                                </p>
                             </div>
 
-                            {/* Col 2: Profile & Mission (Expanded Typography for Maximum Readability) */}
-                            <div className="md:col-span-5 flex flex-col justify-between py-2 space-y-6">
+                            <div className="pt-4 border-t border-zinc-800/80 flex items-center gap-4 flex-wrap">
+                                <button
+                                    onClick={() => navigate('/about')}
+                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm sm:text-base shadow-lg shadow-white/5"
+                                >
+                                    <span>View Full Background</span>
+                                    <ArrowUpRight className="w-4 h-4" />
+                                </button>
+                                <button
+                                    onClick={() => navigate('/projects')}
+                                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-all text-sm sm:text-base"
+                                >
+                                    <span>View Projects</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Col 3: Key Stats & Badges (Clear, Large, High-Contrast with IFSP 8-Year Merit Highlight) */}
+                        <div className="md:col-span-3 flex flex-col justify-between p-6 sm:p-7 rounded-2xl border border-zinc-800/80 bg-zinc-950/60 shadow-xl space-y-6">
+                            <div>
+                                <span className="text-xs font-mono text-zinc-400 uppercase tracking-widest block mb-4 font-semibold">
+                                    KEY CREDENTIALS
+                                </span>
+                                
                                 <div className="space-y-4">
-                                    <div className="flex items-center gap-2">
-                                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                        <span className="text-xs sm:text-sm font-mono text-emerald-400 tracking-widest uppercase font-semibold">
-                                            01 // PROFILE & MISSION
-                                        </span>
+                                    {/* Google Ambassador */}
+                                    <div className="flex items-start gap-3">
+                                        <Award className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                                        <div>
+                                            <span className="text-sm sm:text-base text-white font-semibold block leading-tight">Google Ambassador</span>
+                                            <span className="text-xs font-mono text-zinc-400">2026 Global Cohort</span>
+                                        </div>
+                                    </div>
+
+                                    {/* IFSP 8-Year Merit Funded */}
+                                    <div className="flex items-start gap-3">
+                                        <GraduationCap className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                                        <div>
+                                            <span className="text-sm sm:text-base text-white font-semibold block leading-tight">IFSP • 8-Yr Tech & CS</span>
+                                            <span className="text-xs font-mono text-zinc-400">100% Merit-Funded • B.S. + Tech</span>
+                                        </div>
                                     </div>
                                     
-                                    <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
-                                        Software Engineer & Applied AI Developer
-                                    </h3>
+                                    {/* UC Berkeley */}
+                                    <div className="flex items-start gap-3">
+                                        <Layers className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
+                                        <div>
+                                            <span className="text-sm sm:text-base text-white font-semibold block leading-tight">UC Berkeley AI</span>
+                                            <span className="text-xs font-mono text-zinc-400">Cal Hacks • San Francisco</span>
+                                        </div>
+                                    </div>
                                     
-                                    <p className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed">
-                                        Studying Computer Science at <strong className="text-white font-medium">IFSP</strong> and selected as a <strong className="text-white font-medium">Google Student Ambassador (2026)</strong>.
-                                    </p>
-
-                                    <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
-                                        Dedicated to designing autonomous agent frameworks, high-throughput developer tooling, and production architectures with exceptional user experience.
-                                    </p>
-                                </div>
-
-                                <div className="pt-4 border-t border-zinc-800/80 flex items-center gap-4 flex-wrap">
-                                    <button
-                                        onClick={() => navigate('/about')}
-                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm sm:text-base shadow-lg shadow-white/5"
-                                    >
-                                        <span>View Full Background</span>
-                                        <ArrowUpRight className="w-4 h-4" />
-                                    </button>
-                                    <button
-                                        onClick={() => navigate('/projects')}
-                                        className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-all text-sm sm:text-base"
-                                    >
-                                        <span>View Projects</span>
-                                    </button>
+                                    {/* PennApps UPenn */}
+                                    <div className="flex items-start gap-3">
+                                        <MapPin className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
+                                        <div>
+                                            <span className="text-sm sm:text-base text-white font-semibold block leading-tight">PennApps XXV</span>
+                                            <span className="text-xs font-mono text-zinc-400">UPenn • Philadelphia</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            {/* Col 3: Key Stats & Badges (Clear, Large, High-Contrast) */}
-                            <div className="md:col-span-3 flex flex-col justify-between p-6 sm:p-7 rounded-2xl border border-zinc-800/80 bg-zinc-950/60 shadow-xl space-y-6">
-                                <div>
-                                    <span className="text-xs font-mono text-zinc-400 uppercase tracking-widest block mb-4 font-semibold">
-                                        KEY CREDENTIALS
-                                    </span>
-                                    
-                                    <div className="space-y-5">
-                                        <div className="flex items-start gap-3">
-                                            <Award className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                                            <div>
-                                                <span className="text-sm sm:text-base text-white font-semibold block leading-tight">Google Ambassador</span>
-                                                <span className="text-xs font-mono text-zinc-400">2026 Global Cohort</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="flex items-start gap-3">
-                                            <Layers className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
-                                            <div>
-                                                <span className="text-sm sm:text-base text-white font-semibold block leading-tight">UC Berkeley AI</span>
-                                                <span className="text-xs font-mono text-zinc-400">Cal Hacks • San Francisco</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="flex items-start gap-3">
-                                            <MapPin className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
-                                            <div>
-                                                <span className="text-sm sm:text-base text-white font-semibold block leading-tight">PennApps XXV</span>
-                                                <span className="text-xs font-mono text-zinc-400">UPenn • Philadelphia</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="pt-4 border-t border-zinc-800/80">
-                                    <span className="text-[11px] font-mono text-zinc-500 block uppercase">EDUCATION // IFSP CS</span>
-                                </div>
+                            <div className="pt-4 border-t border-zinc-800/80">
+                                <span className="text-[11px] font-mono text-zinc-500 block uppercase">ACADEMIA // PUBLIC MERIT</span>
                             </div>
-
                         </div>
-                    </section>
-                )}
 
-
-                {/* ----------------------------------------------------
-                    LAYOUT 1: "MANIFESTO & GENESIS" (Asymmetric 2-Column Spread Ampliado)
-                   ---------------------------------------------------- */}
-                {currentLayout === '1' && (
-                    <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-                            
-                            {/* Left: Authentic Penn Photo */}
-                            <motion.div 
-                                className="lg:col-span-5 relative group"
-                                variants={fadeInUp}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={revealViewport}
-                            >
-                                <div className="relative rounded-2xl overflow-hidden border border-zinc-800/90 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-zinc-950">
-                                    <img
-                                        src={meOne}
-                                        alt="Luis Henrique Abrantes at Penn Engineering, University of Pennsylvania"
-                                        className="w-full h-auto object-cover object-top filter contrast-[105%] group-hover:scale-102 transition-all duration-500"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                                    
-                                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
-                                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 border border-white/20 text-xs font-mono text-zinc-200 backdrop-blur-md">
-                                            <MapPin className="w-3.5 h-3.5 text-red-400" />
-                                            <span>UPENN • PHILADELPHIA, PA</span>
-                                        </div>
-                                        <span className="text-xs font-mono text-zinc-400">PENNAPPS XXV</span>
-                                    </div>
-                                </div>
-                            </motion.div>
-
-                            {/* Right: Personal Manifesto & Engineering Focus */}
-                            <motion.div 
-                                className="lg:col-span-7 space-y-6"
-                                variants={fadeInUp}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={revealViewport}
-                            >
-                                <div>
-                                    <span className="text-xs sm:text-sm font-mono text-emerald-400 tracking-widest uppercase block mb-2 font-semibold">
-                                        01 // FOUNDATIONS & GENESIS
-                                    </span>
-                                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-                                        From IFSP to Global Hackathons & Applied AI Systems.
-                                    </h2>
-                                </div>
-
-                                <div className="space-y-4 text-zinc-300 font-light text-base sm:text-lg lg:text-xl leading-relaxed">
-                                    <p>
-                                        I am a Software Engineer and Applied AI developer based in São Paulo, Brazil. Currently studying Computer Science at <span className="text-white font-medium">Instituto Federal de São Paulo (IFSP)</span> and serving as a <span className="text-white font-medium">Google Student Ambassador (2026)</span>.
-                                    </p>
-                                    <p className="text-zinc-400 text-sm sm:text-base lg:text-lg">
-                                        My work spans autonomous AI agents, developer tooling harnesses, and production-grade software architectures. I believe that engineering depth and rapid iteration are the keys to building tools that expand human capability.
-                                    </p>
-                                </div>
-
-                                <div className="pt-4 flex items-center gap-4 flex-wrap">
-                                    <button
-                                        onClick={() => navigate('/about')}
-                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm sm:text-base shadow-md"
-                                    >
-                                        <span>Read Full Story</span>
-                                        <ArrowUpRight className="w-4 h-4" />
-                                    </button>
-                                    <button
-                                        onClick={() => navigate('/projects')}
-                                        className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-all text-sm sm:text-base"
-                                    >
-                                        <span>Explore Projects</span>
-                                    </button>
-                                </div>
-                            </motion.div>
-
-                        </div>
-                    </section>
-                )}
+                    </div>
+                </section>
 
 
                 {/* ========================================================
@@ -730,32 +654,6 @@ const Home = () => {
                 </section>
 
             </main>
-
-            {/* ========================================================
-                FINALIST SWITCHER BAR (Layout 3 vs Layout 1)
-               ======================================================== */}
-            <div className="fixed bottom-5 inset-x-0 mx-auto w-fit z-50 flex items-center gap-2 p-1.5 rounded-full bg-black/90 backdrop-blur-2xl border border-white/20 shadow-2xl">
-                <button
-                    onClick={() => setSearchParams({ layout: '3' })}
-                    className={`px-4 py-2 rounded-full text-xs sm:text-sm font-mono transition-all ${
-                        currentLayout === '3'
-                            ? 'bg-white text-black font-bold shadow-md'
-                            : 'text-zinc-400 hover:text-white'
-                    }`}
-                >
-                    3. Wide Spotlight (Ampliado) ⭐
-                </button>
-                <button
-                    onClick={() => setSearchParams({ layout: '1' })}
-                    className={`px-4 py-2 rounded-full text-xs sm:text-sm font-mono transition-all ${
-                        currentLayout === '1'
-                            ? 'bg-white text-black font-bold shadow-md'
-                            : 'text-zinc-400 hover:text-white'
-                    }`}
-                >
-                    1. Manifesto
-                </button>
-            </div>
 
         </div>
     );
