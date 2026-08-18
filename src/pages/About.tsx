@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { FaGraduationCap } from 'react-icons/fa';
 import { Briefcase, ExternalLink, ArrowUpRight, Sparkles } from 'lucide-react';
 import Modal from '@/components/ui/Modal';
@@ -9,6 +9,9 @@ import type { GithubAchievement } from '@/types';
 
 const About = () => {
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const gpaStyle = searchParams.get('gpaStyle') || '1'; // '1' (Editorial Lockup), '2' (Dual Stat Cards), '3' (Terminal Spec Line)
+
     const [selectedAchievement, setSelectedAchievement] =
         useState<GithubAchievement | null>(null);
 
@@ -190,7 +193,9 @@ const About = () => {
                         </section>
 
 
-                        {/* 3. Academic Profile & 8-Year Public Merit (Structured in Topics with GPAs) */}
+                        {/* ========================================================
+                            3. ACADEMIC PROFILE & GPAs (3 High-Craft Styles)
+                           ======================================================== */}
                         <section className="border-t border-zinc-800/80 pt-12 space-y-8">
                             <div className="flex items-center gap-2">
                                 <FaGraduationCap className="w-5 h-5 text-amber-400" />
@@ -199,49 +204,155 @@ const About = () => {
                                 </h2>
                             </div>
 
-                            <div className="space-y-8">
-                                {/* IFSP Computer Science B.S. (4 Years) */}
-                                <div className="space-y-2">
-                                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                                        <h3 className="text-lg sm:text-xl font-semibold text-white">
-                                            B.S. in Computer Science (4-Year Degree)
-                                        </h3>
-                                        <div className="flex items-center gap-3">
-                                            <span className="text-xs sm:text-sm font-mono text-emerald-400 font-semibold px-2.5 py-0.5 rounded-full border border-emerald-400/20 bg-emerald-400/10">
-                                                Current GPA: 8.92
+                            {/* ----------------------------------------------------
+                                STYLE 1: EDITORIAL METRIC LOCKUP (Linear/Vercel)
+                               ---------------------------------------------------- */}
+                            {gpaStyle === '1' && (
+                                <div className="space-y-6">
+                                    
+                                    {/* Item 1: Computer Science */}
+                                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-8 pb-6 border-b border-zinc-900">
+                                        {/* Stat Callout */}
+                                        <div className="flex sm:flex-col items-baseline sm:items-center justify-center p-3 sm:p-4 rounded-2xl bg-zinc-950 border border-zinc-800/90 shadow-xl min-w-[120px] text-center shrink-0">
+                                            <span className="text-2xl sm:text-3xl font-mono font-bold text-emerald-400 tracking-tight">
+                                                8.92
                                             </span>
-                                            <span className="text-xs sm:text-sm font-mono text-zinc-500">2026 – Present</span>
+                                            <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider pl-2 sm:pl-0 sm:pt-0.5">
+                                                CURRENT GPA
+                                            </span>
+                                        </div>
+                                        {/* Context */}
+                                        <div className="space-y-1">
+                                            <div className="flex items-center gap-3 flex-wrap">
+                                                <h3 className="text-lg sm:text-xl font-bold text-white">
+                                                    B.S. in Computer Science (4-Year Degree)
+                                                </h3>
+                                                <span className="text-xs font-mono text-zinc-500">2026 – Present</span>
+                                            </div>
+                                            <p className="text-sm sm:text-base text-zinc-400 font-light">
+                                                Instituto Federal de São Paulo (IFSP) • Public Federal Network
+                                            </p>
+                                            <p className="text-xs sm:text-sm text-zinc-500 font-light">
+                                                • Admitted via highly competitive selective entrance exam (Vestibular). 100% tuition-free public education.
+                                            </p>
                                         </div>
                                     </div>
-                                    <p className="text-sm sm:text-base text-zinc-400 font-light">
-                                        Instituto Federal de São Paulo (IFSP) • Public Federal Network
-                                    </p>
-                                    <p className="text-xs sm:text-sm text-zinc-500 font-light">
-                                        • Admitted via highly competitive public entrance exam (Vestibular). Full government-funded tuition.
-                                    </p>
-                                </div>
 
-                                {/* IFSP Integrated Technical High School in Informatics (4 Years) */}
-                                <div className="space-y-2">
-                                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                                        <h3 className="text-lg sm:text-xl font-semibold text-white">
-                                            Integrated Technical High School in Informatics (4-Year Program)
-                                        </h3>
-                                        <div className="flex items-center gap-3">
-                                            <span className="text-xs sm:text-sm font-mono text-zinc-300 font-medium px-2.5 py-0.5 rounded-full border border-zinc-700 bg-zinc-800/60">
-                                                Graduation GPA: 8.34
+                                    {/* Item 2: Informatics Technician */}
+                                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-8 pt-2">
+                                        {/* Stat Callout */}
+                                        <div className="flex sm:flex-col items-baseline sm:items-center justify-center p-3 sm:p-4 rounded-2xl bg-zinc-950 border border-zinc-800/90 shadow-xl min-w-[120px] text-center shrink-0">
+                                            <span className="text-2xl sm:text-3xl font-mono font-bold text-zinc-200 tracking-tight">
+                                                8.34
                                             </span>
-                                            <span className="text-xs sm:text-sm font-mono text-zinc-500">2022 – 2024</span>
+                                            <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider pl-2 sm:pl-0 sm:pt-0.5">
+                                                GRADUATION GPA
+                                            </span>
+                                        </div>
+                                        {/* Context */}
+                                        <div className="space-y-1">
+                                            <div className="flex items-center gap-3 flex-wrap">
+                                                <h3 className="text-lg sm:text-xl font-bold text-white">
+                                                    Integrated Technical High School in Informatics (4-Year Program)
+                                                </h3>
+                                                <span className="text-xs font-mono text-zinc-500">2022 – 2024</span>
+                                            </div>
+                                            <p className="text-sm sm:text-base text-zinc-400 font-light">
+                                                Instituto Federal de São Paulo (IFSP) • Jacareí Campus
+                                            </p>
+                                            <p className="text-xs sm:text-sm text-zinc-500 font-light">
+                                                • Completed Capstone Project (TutorTime full-stack platform) ahead of schedule during junior year.
+                                            </p>
                                         </div>
                                     </div>
-                                    <p className="text-sm sm:text-base text-zinc-400 font-light">
-                                        Instituto Federal de São Paulo (IFSP) • Jacareí Campus
-                                    </p>
-                                    <p className="text-xs sm:text-sm text-zinc-500 font-light">
-                                        • Completed Capstone Project (TutorTime full-stack platform) ahead of schedule during junior year.
-                                    </p>
+
                                 </div>
-                            </div>
+                            )}
+
+                            {/* ----------------------------------------------------
+                                STYLE 2: DUAL STAT CARDS (Apple Tech Specs)
+                               ---------------------------------------------------- */}
+                            {gpaStyle === '2' && (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    {/* Card 1: CS */}
+                                    <div className="p-6 rounded-2xl border border-zinc-800/90 bg-zinc-950/60 shadow-xl space-y-4">
+                                        <div className="flex justify-between items-start">
+                                            <div>
+                                                <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest font-semibold block">
+                                                    CURRENT DEGREE • GPA
+                                                </span>
+                                                <span className="text-4xl font-mono font-bold text-emerald-400 tracking-tight block mt-1">
+                                                    8.92
+                                                </span>
+                                            </div>
+                                            <span className="text-xs font-mono text-zinc-500">2026 – PRES</span>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-base font-bold text-white">B.S. in Computer Science</h4>
+                                            <p className="text-xs text-zinc-400 font-light mt-1">Instituto Federal de São Paulo (IFSP)</p>
+                                            <p className="text-xs text-zinc-500 font-light mt-1">• 4-year undergraduate degree, 100% government-funded merit admission.</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Card 2: Tech High School */}
+                                    <div className="p-6 rounded-2xl border border-zinc-800/90 bg-zinc-950/60 shadow-xl space-y-4">
+                                        <div className="flex justify-between items-start">
+                                            <div>
+                                                <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-semibold block">
+                                                    GRADUATION GPA
+                                                </span>
+                                                <span className="text-4xl font-mono font-bold text-zinc-200 tracking-tight block mt-1">
+                                                    8.34
+                                                </span>
+                                            </div>
+                                            <span className="text-xs font-mono text-zinc-500">2022 – 2024</span>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-base font-bold text-white">Informatics Technician</h4>
+                                            <p className="text-xs text-zinc-400 font-light mt-1">Instituto Federal de São Paulo (IFSP)</p>
+                                            <p className="text-xs text-zinc-500 font-light mt-1">• 4-year integrated program, completed Capstone Project ahead of schedule.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* ----------------------------------------------------
+                                STYLE 3: TERMINAL SPEC LINE (Open Minimalist)
+                               ---------------------------------------------------- */}
+                            {gpaStyle === '3' && (
+                                <div className="space-y-8 font-mono">
+                                    <div className="space-y-1.5 pb-6 border-b border-zinc-900">
+                                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                            <span className="text-base font-bold text-white">
+                                                IFSP // B.S. IN COMPUTER SCIENCE (4-YR)
+                                            </span>
+                                            <span className="text-sm font-semibold text-emerald-400">
+                                                GPA 8.92 [CURRENT]
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-zinc-400 font-sans font-light">
+                                            <span>Instituto Federal de São Paulo • Competitive Public Admission</span>
+                                            <span className="font-mono text-zinc-500">2026 – PRESENT</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-1.5">
+                                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                            <span className="text-base font-bold text-white">
+                                                IFSP // INFORMATICS TECHNICIAN (4-YR)
+                                            </span>
+                                            <span className="text-sm font-semibold text-zinc-300">
+                                                GPA 8.34 [GRADUATED]
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-zinc-400 font-sans font-light">
+                                            <span>Instituto Federal de São Paulo • Capstone Project Finished in Jr. Year</span>
+                                            <span className="font-mono text-zinc-500">2022 – 2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
                         </section>
 
 
@@ -284,6 +395,43 @@ const About = () => {
                     </main>
 
                 </div>
+            </div>
+
+            {/* ========================================================
+                FLOATING PROTOTYPE SWITCHER (GPA Styles)
+               ======================================================== */}
+            <div className="fixed bottom-5 inset-x-0 mx-auto w-fit z-50 flex items-center gap-2 p-1.5 rounded-full bg-black/90 backdrop-blur-2xl border border-white/20 shadow-2xl">
+                <span className="text-[10px] font-mono text-zinc-400 pl-3 pr-1 hidden sm:inline">GPA STYLE:</span>
+                <button
+                    onClick={() => setSearchParams({ gpaStyle: '1' })}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all ${
+                        gpaStyle === '1'
+                            ? 'bg-white text-black font-bold shadow-md'
+                            : 'text-zinc-400 hover:text-white'
+                    }`}
+                >
+                    1. Metric Lockup (Recomendado) ⭐
+                </button>
+                <button
+                    onClick={() => setSearchParams({ gpaStyle: '2' })}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all ${
+                        gpaStyle === '2'
+                            ? 'bg-white text-black font-bold shadow-md'
+                            : 'text-zinc-400 hover:text-white'
+                    }`}
+                >
+                    2. Dual Cards
+                </button>
+                <button
+                    onClick={() => setSearchParams({ gpaStyle: '3' })}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all ${
+                        gpaStyle === '3'
+                            ? 'bg-white text-black font-bold shadow-md'
+                            : 'text-zinc-400 hover:text-white'
+                    }`}
+                >
+                    3. Terminal Spec
+                </button>
             </div>
 
             {/* Achievement Modal */}
