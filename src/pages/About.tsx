@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Briefcase, ExternalLink, ArrowUpRight } from 'lucide-react';
+import { Briefcase, ExternalLink, ArrowUpRight, Sparkles } from 'lucide-react';
 import Modal from '@/components/ui/Modal';
 import { badgeAchievements, highlightAchievements } from '@/data/achievements';
 import { experiences } from '@/data/experience';
@@ -101,7 +101,7 @@ const About = () => {
 
 
                     {/* ========================================================
-                        RIGHT COLUMN: ABOUT BIO & PROFESSIONAL EXPERIENCE
+                        RIGHT COLUMN: ABOUT BIO, EXPERIENCE & PRINCIPLES
                        ======================================================== */}
                     <main className="flex-1 w-full space-y-16">
                         
@@ -185,6 +185,43 @@ const About = () => {
                                         )}
                                     </div>
                                 ))}
+                            </div>
+                        </section>
+
+
+                        {/* 3. Engineering Principles (Restored & Clean) */}
+                        <section className="border-t border-zinc-800/80 pt-12 space-y-8">
+                            <div className="flex items-center gap-2">
+                                <Sparkles className="w-5 h-5 text-cyan-400" />
+                                <h2 className="text-xs sm:text-sm font-mono text-zinc-400 uppercase tracking-widest font-semibold">
+                                    ENGINEERING PRINCIPLES
+                                </h2>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                                <div className="space-y-2">
+                                    <span className="text-xs font-mono text-emerald-400 font-semibold block">HARNESSES & TOOLS</span>
+                                    <h3 className="text-base font-semibold text-white">Harnesses Over Raw Prompts</h3>
+                                    <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                                        Reliable autonomous systems depend on tight feedback loops, structured tool schemas, and verifiable guardrails.
+                                    </p>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <span className="text-xs font-mono text-blue-400 font-semibold block">ARCHITECTURAL DEPTH</span>
+                                    <h3 className="text-base font-semibold text-white">Systems Under Load</h3>
+                                    <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                                        Designing backend services and agent orchestrations that scale reliably with predictable latency and clean telemetry.
+                                    </p>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <span className="text-xs font-mono text-purple-400 font-semibold block">HIGH CRAFT & UX</span>
+                                    <h3 className="text-base font-semibold text-white">Precision & Ergonomics</h3>
+                                    <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                                        The best developer tools and AI interfaces feel invisible, intuitive, and blisteringly fast.
+                                    </p>
+                                </div>
                             </div>
                         </section>
 
