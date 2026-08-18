@@ -106,7 +106,7 @@ const About = () => {
                        ======================================================== */}
                     <main className="flex-1 w-full space-y-16">
                         
-                        {/* 1. Origin & Core Identity (With Bold Highlights and Father Mentorship) */}
+                        {/* 1. Origin & Core Identity (Natural, Human Voice) */}
                         <section className="space-y-4">
                             <div className="inline-flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -121,7 +121,7 @@ const About = () => {
 
                             <div className="space-y-4 text-base sm:text-lg text-zinc-300 font-light leading-relaxed pt-2">
                                 <p>
-                                    I started programming at age nine, guided by curiosity and mentored by my father, who is also a software engineer. Over the past decade, that early foundation grew through an <strong className="text-white font-semibold">8-year merit-funded technical education</strong> at Instituto Federal de São Paulo (IFSP) and hands-on production engineering into a specialized focus on <strong className="text-white font-semibold">Agent Harness Engineering</strong>, <strong className="text-white font-semibold">LLM Agents</strong>, and <strong className="text-white font-semibold">production software systems</strong>.
+                                    I started programming at age nine, guided by curiosity and mentored by my father, who is also a software engineer. Over the past decade, that early foundation grew through an <strong className="text-white font-semibold">8-year merit-funded technical education</strong> at Instituto Federal de São Paulo (IFSP) and practical production work into a focused dedication to <strong className="text-white font-semibold">Agent Harness Engineering</strong>, <strong className="text-white font-semibold">LLM Agents</strong>, and <strong className="text-white font-semibold">robust software architectures</strong>.
                                 </p>
                             </div>
 
@@ -226,7 +226,7 @@ const About = () => {
                                             Instituto Federal de São Paulo (IFSP) • Public Federal Network
                                         </p>
                                         <p className="text-xs sm:text-sm text-zinc-400/90 font-light leading-relaxed">
-                                            • Modern curriculum focused on Machine Learning, Deep Learning, Applied AI, and Computer Vision, designed for 21st-century industry demands.
+                                            • Comprehensive program combining core computer science foundations with specialized coursework in Machine Learning, Deep Learning, and Computer Vision.
                                         </p>
                                     </div>
                                 </div>
@@ -254,7 +254,7 @@ const About = () => {
                                             Instituto Federal de São Paulo (IFSP) • Jacareí Campus
                                         </p>
                                         <p className="text-xs sm:text-sm text-zinc-400/90 font-light leading-relaxed">
-                                            • Completed Capstone Project (TutorTime full-stack platform) ahead of schedule during junior year.
+                                            • Integrated technical program in software development and computing fundamentals. Completed the TutorTime capstone platform ahead of schedule during junior year.
                                         </p>
                                     </div>
                                 </div>
