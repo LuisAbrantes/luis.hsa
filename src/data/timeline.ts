@@ -24,6 +24,11 @@ export const timeline: TimelineEntry[] = [
     {
         year: '2025',
         description:
-            'Deepened my skills on frontend and backend. Attempted to the Hackathon that changes my life - UCBerkey AI Hackathon, and since then, developing my skills on Applied AI, AI Agents, etc...'
+            'Deepened full-stack engineering and competed in the UC Berkeley AI Hackathon (Cal Hacks) in San Francisco—a pivotal experience that shifted my core focus toward Applied AI and autonomous agents.'
+    },
+    {
+        year: '2026',
+        description:
+            'Admitted into the Computer Science B.S. program at Instituto Federal de São Paulo (IFSP) through public merit. Concurrently completed an internship at Kaffa Tech, building tools for their AI Agent Hub, implementing automated skill generation for agents, and resolving platform-level bugs.'
     }
 ];
