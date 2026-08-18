@@ -6,35 +6,40 @@ const NavBar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const navLinkClasses = ({ isActive }: { isActive: boolean }) =>
-        `px-4 py-2 text-sm font-light tracking-wide transition-colors duration-300 ${
-            isActive ? 'text-white' : 'text-gray-400 hover:text-white'
+        `px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-200 ${
+            isActive
+                ? 'text-white bg-white/10 border border-white/15'
+                : 'text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent'
         }`;
 
     const mobileNavLinkClasses = ({ isActive }: { isActive: boolean }) =>
-        `block w-full text-left px-4 py-3 text-sm font-light tracking-wide transition-colors duration-300 border-l-2 ${
+        `block w-full text-left px-4 py-3 text-sm font-medium tracking-wide transition-all duration-200 border-l-2 ${
             isActive
-                ? 'border-white text-white bg-white/5'
-                : 'border-transparent text-gray-400 hover:text-white hover:bg-white/5'
+                ? 'border-white text-white bg-white/10'
+                : 'border-transparent text-zinc-400 hover:text-white hover:bg-white/5'
         }`;
 
     return (
-        <nav className="fixed top-0 left-0 w-full bg-black/60 backdrop-blur-md border-b border-gray-800/50 z-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="fixed top-0 left-0 w-full bg-[#07080b]/70 backdrop-blur-xl border-b border-white/5 z-50 transition-all duration-300">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6">
                 <div className="flex items-center justify-between h-16">
-                    <span className="text-white font-light tracking-wider text-lg">
-                        Luis Henrique Abrantes
-                    </span>
+                    <NavLink to="/" className="flex items-center gap-2.5 group">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 group-hover:shadow-[0_0_8px_#34d399] transition-all" />
+                        <span className="text-white font-semibold tracking-tight text-sm sm:text-base font-sans">
+                            Luis Henrique Abrantes
+                        </span>
+                    </NavLink>
 
                     {/* Hamburger Button */}
                     <button
                         type="button"
                         aria-label="Toggle navigation menu"
                         aria-expanded={isMobileMenuOpen}
-                        className="sm:hidden text-gray-400 hover:text-white transition-colors"
+                        className="sm:hidden p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
                         onClick={() => setIsMobileMenuOpen(open => !open)}
                     >
                         <svg
-                            className="w-6 h-6"
+                            className="w-5 h-5"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -58,7 +63,7 @@ const NavBar = () => {
                     </button>
 
                     {/* Desktop Menu */}
-                    <ul className="hidden sm:flex sm:space-x-8">
+                    <ul className="hidden sm:flex sm:items-center sm:space-x-2">
                         {navLinks.map(link => (
                             <li key={link.label}>
                                 <NavLink to={link.to} className={navLinkClasses}>
@@ -71,8 +76,8 @@ const NavBar = () => {
 
                 {/* Mobile Menu */}
                 {isMobileMenuOpen && (
-                    <div className="sm:hidden border-t border-gray-800">
-                        <ul className="flex flex-col py-2">
+                    <div className="sm:hidden border-t border-white/5 bg-[#07080b]/95 backdrop-blur-2xl rounded-b-2xl pb-3 pt-1">
+                        <ul className="flex flex-col space-y-1">
                             {navLinks.map(link => (
                                 <li key={link.label}>
                                     <NavLink

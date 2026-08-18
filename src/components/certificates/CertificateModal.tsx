@@ -24,7 +24,7 @@ const CertificateModal = ({ certificate, onClose }: CertificateModalProps) => (
                                 <img
                                     src={certificate.image}
                                     alt={certificate.institution}
-                                    className={`w-full h-full object-cover ${
+                                    className={`w-full h-full object-contain p-1 ${
                                         certificate.imagePosition || ''
                                     }`}
                                 />

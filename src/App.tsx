@@ -46,7 +46,6 @@ const metaMap: Record<string, PageMeta> = {
 
 function App() {
     const location = useLocation();
-    const isHomePage = location.pathname === '/';
 
     useEffect(() => {
         // Scroll page to top on route change.
@@ -68,7 +67,7 @@ function App() {
 
     return (
         <div className="min-h-screen bg-dark-primary text-dark-text">
-            {!isHomePage && <NavBar />}
+            <NavBar />
             <AnimatePresence mode="wait">
                 <Routes location={location} key={location.pathname}>
                     <Route

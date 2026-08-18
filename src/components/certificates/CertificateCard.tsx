@@ -23,7 +23,7 @@ const CertificateCard = ({ certificate, onSelect }: CertificateCardProps) => (
                         src={certificate.image}
                         alt={certificate.institution}
                         loading="lazy"
-                        className={`w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity ${
+                        className={`w-full h-full object-contain p-0.5 opacity-90 group-hover:opacity-100 transition-opacity ${
                             certificate.imagePosition || ''
                         }`}
                     />

@@ -2,17 +2,18 @@ import type { Experience } from '@/types';
 
 export const experiences: Experience[] = [
     {
-        role: 'Product Intern',
-        company: 'Kaffa Tech (Codex Utilities)',
-        period: 'Jun 2026 – Present',
-        location: 'São José dos Campos, SP · Brazil',
+        role: 'AI & Software Engineering Intern',
+        company: 'Kaffa Tech',
+        period: 'Jun 2026 – Aug 2026 · 3 mos',
+        location: 'São José dos Campos, SP, Brazil',
         url: 'https://kaffa.tech',
-        current: true,
+        current: false,
         description:
-            'Joined the product team of Kaffa Tech, a company building technology for the utilities sector (electricity and water) focused on operational efficiency and regulatory compliance. The company recently launched Insights by Kaffa, an agentic-AI platform that analyzes public energy-sector data (ANEEL / BDGD) through natural language.',
+            'Worked on Kaffa’s AI Agent platform, a system enabling clients to build and deploy custom AI agents. Developed tools for agent integrations, implemented on-demand skill generation during agent setup, and fixed bugs to improve platform reliability.',
         highlights: [
-            'Product team of a utilities-tech company serving electricity & water distributors across Brazil',
-            'Working close to an AI-driven product (agentic analysis of public regulatory and energy data)'
+            'Built new tools and integrations for agents operating on the platform',
+            'Implemented an on-demand skill generation feature requested during agent setup',
+            'Debugged and fixed issues across agent execution workflows'
         ]
     }
 ];

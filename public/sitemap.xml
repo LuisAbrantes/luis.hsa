@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://luisabrantes.dev/</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://luisabrantes.dev/me.png</image:loc>
+      <image:title>Luis Henrique Abrantes Portfolio</image:title>
+      <image:caption>Software Engineer and Applied AI Developer</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://luisabrantes.dev/about</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://luisabrantes.dev/projects</loc>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://luisabrantes.dev/projects</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://luisabrantes.dev/achievements</loc>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://luisabrantes.dev/contact</loc>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
 </urlset>

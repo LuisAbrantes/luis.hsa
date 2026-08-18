@@ -1,87 +1,84 @@
 import { useState } from 'react';
-import { FaGraduationCap, FaTrophy, FaCode, FaUserAlt } from 'react-icons/fa';
-import { Briefcase, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { FaGraduationCap } from 'react-icons/fa';
+import { Briefcase, ExternalLink, ArrowUpRight } from 'lucide-react';
 import Modal from '@/components/ui/Modal';
 import { badgeAchievements, highlightAchievements } from '@/data/achievements';
 import { experiences } from '@/data/experience';
 import type { GithubAchievement } from '@/types';
-
-const techStack: { category: string; items: string[] }[] = [
-    {
-        category: 'Frontend',
-        items: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Tailwind']
-    },
-    {
-        category: 'Backend',
-        items: [
-            'Node.js',
-            'Python',
-            'FastAPI',
-            'SQL',
-            'Relational Databases',
-            'Supabase'
-        ]
-    },
-    {
-        category: 'Tools',
-        items: [
-            'Git/GitHub',
-            'GitHub Pages',
-            'Vercel',
-            'Railway',
-            'Render',
-            'Linux Terminal'
-        ]
-    },
-    {
-        category: 'Languages',
-        items: ['JavaScript', 'TypeScript', 'Python', 'SQL']
-    }
-];
 
 const About = () => {
     const [selectedAchievement, setSelectedAchievement] =
         useState<GithubAchievement | null>(null);
 
     return (
-        <div className="about-section bg-black text-dark-text min-h-screen pt-40 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
-            <div className="max-w-5xl mx-auto">
-                <div className="flex flex-col md:flex-row items-start gap-12">
-                    {/* Profile Section */}
-                    <div className="profile-section w-full md:w-1/3 flex flex-col items-center md:items-start">
-                        <div className="relative mb-8">
-                            <img
-                                src="https://avatars.githubusercontent.com/u/24616338?v=4"
-                                alt="Profile"
-                                className="rounded-full shadow-lg w-40 h-40 object-cover border border-gray-700/50"
-                            />
+        <div className="about-root bg-[#07080b] text-[#EDEDED] min-h-screen pt-28 sm:pt-36 pb-28 px-4 sm:px-6 lg:px-8 font-sans selection:bg-zinc-700 selection:text-white">
+            <div className="max-w-6xl mx-auto">
+                <div className="flex flex-col md:flex-row items-start gap-12 lg:gap-16">
+                    
+                    {/* ========================================================
+                        LEFT COLUMN: GITHUB IDENTITY & ACHIEVEMENTS SIDEBAR
+                       ======================================================== */}
+                    <aside className="w-full md:w-64 lg:w-72 flex-shrink-0 flex flex-col items-center md:items-start space-y-6">
+                        
+                        {/* Circular Avatar at GitHub HQ */}
+                        <div className="relative group">
+                            <div className="w-44 h-44 sm:w-48 sm:h-48 rounded-full overflow-hidden border-2 border-zinc-800 shadow-2xl bg-zinc-950 group-hover:border-zinc-600 transition-all duration-300">
+                                <img
+                                    src="https://avatars.githubusercontent.com/u/24616338?v=4"
+                                    alt="Luis Henrique Abrantes at GitHub"
+                                    draggable={false}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none pointer-events-none"
+                                />
+                            </div>
                         </div>
 
-                        <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4 w-full text-center md:text-left">
-                            GitHub Achievements
-                        </h3>
+                        {/* Name & Handle */}
+                        <div className="text-center md:text-left space-y-0.5">
+                            <h2 className="text-xl font-bold text-white tracking-tight">
+                                Luis Henrique Abrantes
+                            </h2>
+                            <a
+                                href="https://github.com/LuisAbrantes"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm font-mono text-zinc-400 hover:text-white transition-colors inline-flex items-center gap-1"
+                            >
+                                <span>@LuisAbrantes</span>
+                                <ExternalLink size={12} />
+                            </a>
+                        </div>
 
-                        <div className="achievements-grid flex flex-wrap justify-center md:justify-start gap-4 mb-8">
-                            {badgeAchievements.map(achievement => (
-                                <div
-                                    key={achievement.id}
-                                    className="group relative cursor-pointer"
-                                    onClick={() =>
-                                        setSelectedAchievement(achievement)
-                                    }
-                                >
-                                    <div className="w-12 h-12 rounded-full bg-dark-secondary/30 border border-gray-800 flex items-center justify-center transition-all duration-300 group-hover:border-gray-600 group-hover:bg-dark-secondary/50">
-                                        <img
-                                            src={achievement.image}
-                                            alt={achievement.name}
-                                            className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
-                                        />
+                        {/* GitHub Achievements Badges */}
+                        <div className="w-full space-y-3 pt-2">
+                            <h3 className="text-xs font-mono text-zinc-400 uppercase tracking-widest text-center md:text-left font-semibold">
+                                GITHUB ACHIEVEMENTS
+                            </h3>
+
+                            <div className="flex flex-wrap justify-center md:justify-start gap-3">
+                                {badgeAchievements.map(achievement => (
+                                    <div
+                                        key={achievement.id}
+                                        className="group relative cursor-pointer"
+                                        onClick={() =>
+                                            setSelectedAchievement(achievement)
+                                        }
+                                    >
+                                        <div className="w-11 h-11 rounded-full bg-zinc-950 border border-zinc-800 flex items-center justify-center transition-all duration-300 group-hover:border-zinc-500 group-hover:bg-zinc-900 group-hover:scale-110 shadow-lg">
+                                            <img
+                                                src={achievement.image}
+                                                alt={achievement.name}
+                                                draggable={false}
+                                                className="w-7 h-7 object-contain opacity-85 group-hover:opacity-100 transition-opacity select-none pointer-events-none"
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
 
-                        <div className="highlights-grid flex flex-col gap-3 w-full">
+                        {/* Highlight Badges */}
+                        <div className="flex flex-col gap-2.5 w-full pt-1">
                             {highlightAchievements.map(achievement => (
                                 <div
                                     key={achievement.id}
@@ -90,271 +87,184 @@ const About = () => {
                                         setSelectedAchievement(achievement)
                                     }
                                 >
-                                    <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-dark-secondary/30 border border-gray-800 transition-all duration-300 hover:border-gray-600 hover:bg-dark-secondary/50">
-                                        <div className="text-gray-400 group-hover:text-white transition-colors">
+                                    <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-zinc-950/80 border border-zinc-800/90 transition-all duration-300 hover:border-zinc-600 hover:bg-zinc-900">
+                                        <div className="text-zinc-400 group-hover:text-white transition-colors">
                                             {achievement.icon}
                                         </div>
-                                        <span className="font-light text-sm text-gray-300 group-hover:text-white transition-colors">
+                                        <span className="font-medium text-xs sm:text-sm text-zinc-300 group-hover:text-white transition-colors">
                                             {achievement.name}
                                         </span>
                                     </div>
                                 </div>
                             ))}
                         </div>
-                    </div>
 
-                    {/* Main Content Section */}
-                    <div className="flex-1 w-full space-y-12">
-                        {/* Experience Section */}
-                        <div className="experience-section">
-                            <h2 className="text-2xl font-light text-white mb-6 flex items-center gap-3">
-                                <Briefcase
-                                    className="text-gray-400"
-                                    size={22}
-                                />
-                                Experience
-                            </h2>
-                            <div className="space-y-4">
+                    </aside>
+
+
+                    {/* ========================================================
+                        RIGHT COLUMN: ABOUT BIO, EXPERIENCE & ACADEMIC PROFILE
+                       ======================================================== */}
+                    <main className="flex-1 w-full space-y-16">
+                        
+                        {/* 1. Origin & Core Identity (Natural, Human Voice) */}
+                        <section className="space-y-4">
+                            <div className="inline-flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                <span className="text-xs sm:text-sm font-mono text-emerald-400 tracking-widest uppercase font-semibold">
+                                    ABOUT & PHILOSOPHY
+                                </span>
+                            </div>
+
+                            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+                                Software Engineer focused on Agent Harnesses & Applied AI.
+                            </h1>
+
+                            <div className="space-y-4 text-base sm:text-lg text-zinc-300 font-light leading-relaxed pt-2">
+                                <p>
+                                    I started programming at age nine, guided by curiosity and mentored by my father, who is also a software engineer. Over the past decade, that early foundation grew through an <strong className="text-white font-semibold">8-year merit-funded technical education</strong> at Instituto Federal de São Paulo (IFSP) and practical production work into a focused dedication to <strong className="text-white font-semibold">Agent Harness Engineering</strong>, <strong className="text-white font-semibold">LLM Agents</strong>, and <strong className="text-white font-semibold">robust software architectures</strong>.
+                                </p>
+                            </div>
+
+                            <div className="pt-2 flex items-center gap-4 flex-wrap">
+                                <Link
+                                    to="/projects"
+                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm sm:text-base shadow-md"
+                                >
+                                    <span>Explore Projects</span>
+                                    <ArrowUpRight className="w-4 h-4" />
+                                </Link>
+                                <Link
+                                    to="/achievements"
+                                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-all text-sm sm:text-base"
+                                >
+                                    <span>View Honors & Certificates</span>
+                                </Link>
+                            </div>
+                        </section>
+
+
+                        {/* 2. Professional Experience (Card-Free Editorial Spread) */}
+                        <section className="border-t border-zinc-800/80 pt-12 space-y-8">
+                            <div className="flex items-center gap-2">
+                                <Briefcase className="w-5 h-5 text-emerald-400" />
+                                <h2 className="text-xs sm:text-sm font-mono text-zinc-400 uppercase tracking-widest font-semibold">
+                                    WORK EXPERIENCE
+                                </h2>
+                            </div>
+
+                            <div className="space-y-10">
                                 {experiences.map(exp => (
-                                    <div
-                                        key={`${exp.company}-${exp.role}`}
-                                        className="bg-dark-secondary/30 border border-gray-800 rounded-2xl p-6 hover:border-gray-700 transition-colors duration-300"
-                                    >
-                                        <div className="flex justify-between items-start gap-4 mb-3 flex-wrap">
+                                    <div key={`${exp.company}-${exp.role}`} className="space-y-4">
+                                        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-4">
                                             <div>
-                                                <h3 className="text-xl font-medium text-white">
+                                                <h3 className="text-2xl font-bold text-white tracking-tight">
                                                     {exp.role}
                                                 </h3>
-                                                <p className="text-sm text-gray-400 font-light">
-                                                    {exp.company}
-                                                    {exp.location &&
-                                                        ` • ${exp.location}`}
+                                                <p className="text-base text-zinc-400 font-light">
+                                                    <strong className="text-white font-medium">{exp.company}</strong>
+                                                    {exp.location && ` • ${exp.location}`}
                                                 </p>
                                             </div>
-                                            <div className="flex items-center gap-2 flex-shrink-0">
-                                                {exp.current && (
-                                                    <span className="text-xs font-medium text-green-400 border border-green-400/30 rounded-full px-2.5 py-0.5">
-                                                        Current
-                                                    </span>
-                                                )}
-                                                <span className="text-xs font-light text-gray-500 border border-gray-800 rounded-full px-3 py-1">
-                                                    {exp.period}
-                                                </span>
-                                            </div>
+                                            <span className="text-xs sm:text-sm font-mono text-zinc-500 whitespace-nowrap">
+                                                {exp.period}
+                                            </span>
                                         </div>
-                                        <p className="text-sm text-gray-400 font-light leading-relaxed">
+
+                                        <p className="text-sm sm:text-base text-zinc-300 font-light leading-relaxed max-w-3xl">
                                             {exp.description}
                                         </p>
-                                        {exp.highlights &&
-                                            exp.highlights.length > 0 && (
-                                                <ul className="mt-4 space-y-2">
-                                                    {exp.highlights.map(
-                                                        highlight => (
-                                                            <li
-                                                                key={highlight}
-                                                                className="flex items-start gap-3 text-sm text-gray-500 font-light"
-                                                            >
-                                                                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-600 flex-shrink-0"></span>
-                                                                <span>
-                                                                    {highlight}
-                                                                </span>
-                                                            </li>
-                                                        )
-                                                    )}
-                                                </ul>
-                                            )}
-                                        {exp.url && (
-                                            <a
-                                                href={exp.url}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-1.5 mt-4 text-xs text-gray-400 hover:text-white transition-colors"
-                                            >
-                                                <ExternalLink size={13} />
-                                                {exp.company}
-                                            </a>
+
+                                        {exp.highlights && exp.highlights.length > 0 && (
+                                            <ul className="space-y-2 pt-1 max-w-3xl">
+                                                {exp.highlights.map(highlight => (
+                                                    <li key={highlight} className="flex items-start gap-3 text-sm text-zinc-400 font-light">
+                                                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" />
+                                                        <span>{highlight}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         )}
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                        </section>
 
-                        {/* Academic Achievements Section */}
-                        <div className="academic-section">
-                            <h2 className="text-2xl font-light text-white mb-6 flex items-center gap-3">
-                                <FaGraduationCap
-                                    className="text-gray-400"
-                                    size={24}
-                                />
-                                Academic Profile
-                            </h2>
-                            <div className="bg-dark-secondary/30 border border-gray-800 rounded-2xl p-6 hover:border-gray-700 transition-colors duration-300">
-                                <div className="flex flex-col sm:flex-row items-start gap-6 mb-8">
-                                    <div className="p-3 bg-dark-primary rounded-xl border border-gray-800">
-                                        <FaTrophy className="text-gray-300 text-xl" />
+
+                        {/* ========================================================
+                            3. ACADEMIC PROFILE & GPAs (Editorial Metric Lockup)
+                           ======================================================== */}
+                        <section className="border-t border-zinc-800/80 pt-12 space-y-8">
+                            <div className="flex items-center gap-2">
+                                <FaGraduationCap className="w-5 h-5 text-amber-400" />
+                                <h2 className="text-xs sm:text-sm font-mono text-zinc-400 uppercase tracking-widest font-semibold">
+                                    ACADEMIC PROFILE & 8-YEAR PUBLIC MERIT
+                                </h2>
+                            </div>
+
+                            <div className="space-y-6">
+                                
+                                {/* Item 1: Computer Science */}
+                                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-8 pb-6 border-b border-zinc-900">
+                                    {/* Stat Callout */}
+                                    <div className="flex sm:flex-col items-baseline sm:items-center justify-center p-3 sm:p-4 rounded-2xl bg-zinc-950 border border-zinc-800/90 shadow-xl min-w-[120px] text-center shrink-0">
+                                        <span className="text-2xl sm:text-3xl font-mono font-bold text-emerald-400 tracking-tight">
+                                            8.92
+                                        </span>
+                                        <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider pl-2 sm:pl-0 sm:pt-0.5">
+                                            CURRENT GPA
+                                        </span>
                                     </div>
-                                    <div>
-                                        <h3 className="text-xl font-medium text-white mb-2">
-                                            Instituto Federal de São Paulo
-                                            (IFSP)
-                                        </h3>
-                                        <p className="text-sm text-gray-400 font-light mb-4">
-                                            Brazil&apos;s Top Technical
-                                            Education Institutions
+                                    {/* Context */}
+                                    <div className="space-y-1.5">
+                                        <div className="flex items-center gap-3 flex-wrap">
+                                            <h3 className="text-lg sm:text-xl font-bold text-white">
+                                                B.S. in Computer Science (4-Year Degree)
+                                            </h3>
+                                            <span className="text-xs font-mono text-zinc-500">2026 – Present</span>
+                                        </div>
+                                        <p className="text-sm sm:text-base text-zinc-400 font-light">
+                                            Instituto Federal de São Paulo (IFSP) • Public Federal Network
                                         </p>
-                                        <ul className="space-y-2 text-sm text-gray-500 font-light">
-                                            <li>
-                                                • Excellence in Technical and
-                                                Academic Education
-                                            </li>
-                                            <li>
-                                                • Recognized for Innovation and
-                                                Research
-                                            </li>
-                                            <li>
-                                                • Strong Industry Partnerships
-                                            </li>
-                                        </ul>
+                                        <p className="text-xs sm:text-sm text-zinc-400/90 font-light leading-relaxed">
+                                            • Comprehensive program combining core computer science foundations with specialized coursework in Machine Learning, Deep Learning, and Computer Vision.
+                                        </p>
                                     </div>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="bg-dark-primary/50 border border-gray-800 p-4 rounded-xl text-center">
-                                        <div className="text-2xl font-light text-white mb-1">
+                                {/* Item 2: Informatics Technician */}
+                                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-8 pt-2">
+                                    {/* Stat Callout */}
+                                    <div className="flex sm:flex-col items-baseline sm:items-center justify-center p-3 sm:p-4 rounded-2xl bg-zinc-950 border border-zinc-800/90 shadow-xl min-w-[120px] text-center shrink-0">
+                                        <span className="text-2xl sm:text-3xl font-mono font-bold text-zinc-200 tracking-tight">
                                             8.34
-                                        </div>
-                                        <div className="text-xs text-gray-500 uppercase tracking-wider">
-                                            GPA
-                                        </div>
+                                        </span>
+                                        <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider pl-2 sm:pl-0 sm:pt-0.5">
+                                            GRADUATION GPA
+                                        </span>
                                     </div>
-                                    <div className="bg-dark-primary/50 border border-gray-800 p-4 rounded-xl text-center">
-                                        <div className="text-2xl font-light text-white mb-1">
-                                            X
+                                    {/* Context */}
+                                    <div className="space-y-1.5">
+                                        <div className="flex items-center gap-3 flex-wrap">
+                                            <h3 className="text-lg sm:text-xl font-bold text-white">
+                                                Integrated Technical High School in Informatics (4-Year Program)
+                                            </h3>
+                                            <span className="text-xs font-mono text-zinc-500">2022 – 2024</span>
                                         </div>
-                                        <div className="text-xs text-gray-500 uppercase tracking-wider">
-                                            SAT Score
-                                        </div>
+                                        <p className="text-sm sm:text-base text-zinc-400 font-light">
+                                            Instituto Federal de São Paulo (IFSP) • Jacareí Campus
+                                        </p>
+                                        <p className="text-xs sm:text-sm text-zinc-400/90 font-light leading-relaxed">
+                                            • Integrated technical program in software development and computing fundamentals. Completed the TutorTime capstone platform ahead of schedule during junior year.
+                                        </p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        {/* Tech Stack Section */}
-                        <div className="skills-section">
-                            <h2 className="text-2xl font-light text-white mb-6 flex items-center gap-3">
-                                <FaCode className="text-gray-400" size={24} />
-                                Tech Stack
-                            </h2>
-                            <div className="bg-dark-secondary/30 border border-gray-800 rounded-2xl p-6 hover:border-gray-700 transition-colors duration-300">
-                                <div className="overflow-x-auto">
-                                    <table className="w-full">
-                                        <thead>
-                                            <tr className="border-b border-gray-800">
-                                                <th className="text-left py-3 px-4 text-sm font-medium text-gray-400 uppercase tracking-wider">
-                                                    Category
-                                                </th>
-                                                <th className="text-left py-3 px-4 text-sm font-medium text-gray-400 uppercase tracking-wider">
-                                                    Technologies
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-gray-800">
-                                            {techStack.map(row => (
-                                                <tr
-                                                    key={row.category}
-                                                    className="hover:bg-dark-primary/30 transition-colors"
-                                                >
-                                                    <td className="py-4 px-4 text-sm text-gray-300 font-light">
-                                                        {row.category}
-                                                    </td>
-                                                    <td className="py-4 px-4">
-                                                        <div className="flex flex-wrap gap-2">
-                                                            {row.items.map(
-                                                                tech => (
-                                                                    <span
-                                                                        key={
-                                                                            tech
-                                                                        }
-                                                                        className="px-3 py-1 bg-dark-primary border border-gray-800 rounded-lg text-xs text-gray-300 font-light"
-                                                                    >
-                                                                        {tech}
-                                                                    </span>
-                                                                )
-                                                            )}
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
                             </div>
-                        </div>
+                        </section>
 
-                        {/* About Me Section */}
-                        <div className="about-me-section">
-                            <h2 className="text-2xl font-light text-white mb-6 flex items-center gap-3">
-                                <FaUserAlt
-                                    className="text-gray-400"
-                                    size={20}
-                                />
-                                About Me
-                            </h2>
-                            <div className="bg-dark-secondary/30 border border-gray-800 rounded-2xl p-8 hover:border-gray-700 transition-colors duration-300">
-                                <div className="space-y-6 text-gray-300 font-light leading-relaxed">
-                                    <p>
-                                        <strong className="text-white font-medium">
-                                            True innovation happens outside our
-                                            comfort zone – and that’s exactly
-                                            where I choose to be.
-                                        </strong>{' '}
-                                        My greatest dream is to one day
-                                        establish a church that goes beyond a
-                                        place of worship, serving as a hub where
-                                        children and young people can learn
-                                        programming from an early age,
-                                        developing both technical skills and
-                                        character.
-                                    </p>
-                                    <p>
-                                        Dedicating myself every day to studying
-                                        and improving my skills, even in the
-                                        face of daily challenges and problems, I
-                                        maintain a routine of constant growth.
-                                        Demonstrating discipline and
-                                        consistency, I approach learning as an
-                                        uninterrupted process, regardless of
-                                        circumstances. Facing the rapid changes
-                                        in technology, I adapt to new
-                                        advancements with creativity and
-                                        determination. Through practical
-                                        projects—such as creating
-                                        community-oriented applications or
-                                        group-based learning activities—I
-                                        demonstrate that programming is not just
-                                        about writing code but about building
-                                        solutions that merge innovation,
-                                        empathy, and collaboration.
-                                    </p>
-                                    <p>
-                                        With my skills, certifications, and
-                                        passion for learning, I aim to present
-                                        myself as someone committed to growth
-                                        and to one day fulfilling this dream of
-                                        inspiring and transforming lives. I
-                                        believe that the knowledge I acquire
-                                        will be essential to generate a positive
-                                        impact on the people around me and those
-                                        who, for some reason, come into contact
-                                        with me or something I create. And it is
-                                        in this spirit of faith, innovation, and
-                                        dedication that I continue to seek
-                                        opportunities to learn and share.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </main>
+
                 </div>
             </div>
 
@@ -362,34 +272,35 @@ const About = () => {
             <Modal
                 isOpen={selectedAchievement !== null}
                 onClose={() => setSelectedAchievement(null)}
-                className="w-full max-w-sm p-8"
+                className="w-full max-w-sm p-8 bg-zinc-950 border border-zinc-800 rounded-2xl"
                 labelledBy="achievement-title"
             >
                 {selectedAchievement && (
                     <>
                         {selectedAchievement.image && (
-                            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-dark-secondary/50 flex items-center justify-center p-4">
+                            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center p-4">
                                 <img
                                     src={selectedAchievement.image}
                                     alt={selectedAchievement.name}
-                                    className="w-full h-full object-contain"
+                                    draggable={false}
+                                    className="w-full h-full object-contain select-none pointer-events-none"
                                 />
                             </div>
                         )}
                         <h3
                             id="achievement-title"
-                            className="text-xl font-medium text-white mb-3 text-center"
+                            className="text-xl font-semibold text-white mb-3 text-center"
                         >
                             {selectedAchievement.name}
                         </h3>
-                        <p className="mb-8 text-sm text-gray-400 text-center font-light leading-relaxed">
+                        <p className="mb-8 text-sm text-zinc-400 text-center font-light leading-relaxed">
                             {selectedAchievement.description}
                         </p>
                         <a
                             href="https://github.com/LuisAbrantes"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block w-full text-center py-3 px-4 rounded-xl bg-white text-black font-medium hover:bg-gray-200 transition-colors text-sm"
+                            className="block w-full text-center py-3 px-4 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-colors text-sm"
                         >
                             View GitHub Profile
                         </a>

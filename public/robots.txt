@@ -1,21 +1,47 @@
-# Permitir que todos os robôs tradicionais e robôs de IA indexem o site
+# Allow all standard search engines
 User-agent: *
 Allow: /
 
-# Garantir acesso explícito dos principais Crawlers de IA
+# OpenAI Crawlers (SearchGPT & GPTBot)
 User-agent: GPTBot
 Allow: /
-
 User-agent: ChatGPT-User
 Allow: /
-
-User-agent: ClaudeBot
+User-agent: OAI-SearchBot
 Allow: /
 
+# Anthropic Crawlers (Claude)
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity AI Search Crawler
 User-agent: PerplexityBot
 Allow: /
 
+# Google Gemini & Extended Crawlers
 User-agent: Google-Extended
+Allow: /
+User-agent: Googlebot
+Allow: /
+
+# Common Crawl (Foundation training corpus for global LLMs)
+User-agent: CCBot
+Allow: /
+
+# Cohere, Apple, Meta & Amazon AI Crawlers
+User-agent: Cohere-ai
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: Meta-ExternalAgent
+Allow: /
+User-agent: Bytespider
+Allow: /
+User-agent: Amazonbot
 Allow: /
 
 Sitemap: https://luisabrantes.dev/sitemap.xml

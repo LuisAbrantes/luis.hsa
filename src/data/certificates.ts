@@ -3,6 +3,16 @@ import JECETImage from '@/assets/academicAchievements/JECET.jpg';
 
 export const certificates: Certificate[] = [
     {
+        id: 0,
+        title: 'Google Student Ambassador 2026',
+        institution: 'Google',
+        date: '2026',
+        type: 'honors',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg',
+        description:
+            'Selected as a Google Student Ambassador for the 2026 global cohort. Acting as a campus lead and liaison between Google and the academic community, driving AI technology adoption, developer workshops, and student initiatives.'
+    },
+    {
         id: 1,
         title: 'UC Berkeley AI Hackathon',
         institution: 'University of California Berkeley - Cal Hacks',
