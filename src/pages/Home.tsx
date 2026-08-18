@@ -447,7 +447,8 @@ const Home = () => {
                             <img
                                 src={meOne}
                                 alt="Luis Henrique Abrantes at Penn Engineering"
-                                className="w-full h-full min-h-[380px] object-cover object-top filter contrast-[105%] group-hover:scale-102 transition-transform duration-500"
+                                draggable={false}
+                                className="w-full h-full min-h-[380px] object-cover object-top filter contrast-[105%] group-hover:scale-102 transition-transform duration-500 select-none pointer-events-none"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none" />
                             <div className="absolute bottom-5 left-5 right-5 space-y-1">

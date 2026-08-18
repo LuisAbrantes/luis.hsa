@@ -28,7 +28,8 @@ const About = () => {
                                 <img
                                     src="https://avatars.githubusercontent.com/u/24616338?v=4"
                                     alt="Luis Henrique Abrantes at GitHub"
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    draggable={false}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none pointer-events-none"
                                 />
                             </div>
                         </div>
@@ -68,7 +69,8 @@ const About = () => {
                                             <img
                                                 src={achievement.image}
                                                 alt={achievement.name}
-                                                className="w-7 h-7 object-contain opacity-85 group-hover:opacity-100 transition-opacity"
+                                                draggable={false}
+                                                className="w-7 h-7 object-contain opacity-85 group-hover:opacity-100 transition-opacity select-none pointer-events-none"
                                             />
                                         </div>
                                     </div>
@@ -281,7 +283,8 @@ const About = () => {
                                 <img
                                     src={selectedAchievement.image}
                                     alt={selectedAchievement.name}
-                                    className="w-full h-full object-contain"
+                                    draggable={false}
+                                    className="w-full h-full object-contain select-none pointer-events-none"
                                 />
                             </div>
                         )}
