@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaGraduationCap } from 'react-icons/fa';
 import { Briefcase, ExternalLink, ArrowUpRight } from 'lucide-react';
 import Modal from '@/components/ui/Modal';
 import { badgeAchievements, highlightAchievements } from '@/data/achievements';
@@ -102,11 +101,11 @@ const About = () => {
 
 
                     {/* ========================================================
-                        RIGHT COLUMN: ABOUT BIO, EXPERIENCE & EDUCATION
+                        RIGHT COLUMN: ABOUT BIO & PROFESSIONAL EXPERIENCE
                        ======================================================== */}
                     <main className="flex-1 w-full space-y-16">
                         
-                        {/* 1. Origin & Core Identity (Crisp Single Paragraph) */}
+                        {/* 1. Origin & Core Identity (Featuring Father's Mentorship & Curiosity) */}
                         <section className="space-y-4">
                             <div className="inline-flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -121,7 +120,7 @@ const About = () => {
 
                             <div className="space-y-4 text-base sm:text-lg text-zinc-300 font-light leading-relaxed pt-2">
                                 <p>
-                                    I started programming at age nine, driven by curiosity to build software that solves concrete problems. Over the past decade, that initial spark evolved through an <strong className="text-white font-medium">8-year merit-funded technical education</strong> at Instituto Federal de São Paulo (IFSP) and hands-on production engineering into a specialized focus on autonomous AI agents, tool harnesses, and reliable software architectures.
+                                    I started programming at age nine, guided by curiosity and mentored by my father, who is also a software engineer. Over the past decade, that early foundation evolved through hands-on development and production engineering into a specialized focus on autonomous AI agents, tool harnesses, and reliable software architectures.
                                 </p>
                             </div>
 
@@ -186,67 +185,6 @@ const About = () => {
                                         )}
                                     </div>
                                 ))}
-                            </div>
-                        </section>
-
-
-                        {/* 3. Education & Academic Merit */}
-                        <section className="border-t border-zinc-800/80 pt-12 space-y-8">
-                            <div className="flex items-center gap-2">
-                                <FaGraduationCap className="w-5 h-5 text-amber-400" />
-                                <h2 className="text-xs sm:text-sm font-mono text-zinc-400 uppercase tracking-widest font-semibold">
-                                    EDUCATION & PUBLIC MERIT
-                                </h2>
-                            </div>
-
-                            <div className="space-y-8">
-                                {/* IFSP Computer Science */}
-                                <div className="space-y-1">
-                                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                                        <h3 className="text-lg sm:text-xl font-semibold text-white">
-                                            B.S. in Computer Science
-                                        </h3>
-                                        <span className="text-xs sm:text-sm font-mono text-zinc-500">2026 – Present</span>
-                                    </div>
-                                    <p className="text-sm sm:text-base text-zinc-400 font-light">
-                                        Instituto Federal de São Paulo (IFSP) • Public Federal Network
-                                    </p>
-                                    <p className="text-xs sm:text-sm text-zinc-500 font-light pt-0.5">
-                                        Admitted via competitive public entrance exam. 100% government-funded tuition.
-                                    </p>
-                                </div>
-
-                                {/* IFSP Tech High School */}
-                                <div className="space-y-1">
-                                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                                        <h3 className="text-lg sm:text-xl font-semibold text-white">
-                                            Integrated Technical High School in Informatics
-                                        </h3>
-                                        <span className="text-xs sm:text-sm font-mono text-zinc-500">2022 – 2024</span>
-                                    </div>
-                                    <p className="text-sm sm:text-base text-zinc-400 font-light">
-                                        Instituto Federal de São Paulo (IFSP) • Jacareí Campus
-                                    </p>
-                                    <p className="text-xs sm:text-sm text-zinc-500 font-light pt-0.5">
-                                        Completed Capstone Project (TutorTime full-stack platform) ahead of schedule in junior year.
-                                    </p>
-                                </div>
-
-                                {/* UNICAMP FIFE */}
-                                <div className="space-y-1">
-                                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                                        <h3 className="text-lg sm:text-xl font-semibold text-white">
-                                            UNICAMP Quantum & Physics Camps (FIFE - Física nas Férias)
-                                        </h3>
-                                        <span className="text-xs sm:text-sm font-mono text-zinc-500">2024, 2025</span>
-                                    </div>
-                                    <p className="text-sm sm:text-base text-zinc-400 font-light">
-                                        Gleb Wataghin Physics Institute (IFGW) • University of Campinas
-                                    </p>
-                                    <p className="text-xs sm:text-sm text-zinc-500 font-light pt-0.5">
-                                        Intensive academic immersion cohorts covering Theoretical Cosmology (2024) and Quantum Computing (2025).
-                                    </p>
-                                </div>
                             </div>
                         </section>
 
