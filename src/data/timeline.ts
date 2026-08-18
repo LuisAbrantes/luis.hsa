@@ -17,14 +17,9 @@ export const timeline: TimelineEntry[] = [
             'Developed TutorTime, my first full-stack application and Capstone Project for my Informatics Technician course (completed ahead of schedule in my junior year). Achieved a dream by participating in my first hackathon at an Ivy League, PennApps at UPenn, marking my first academic trip abroad. I successfully organized a fundraiser campaign to raise the necessary funds for this independent journey.'
     },
     {
-        year: '2024-2025',
-        description:
-            'Completed an intensive programming challenge by coding every day from September 22, 2024 to January 16, 2025. This consistent practice strengthened my skills, expanded my portfolio, and demonstrated my dedication to continuous improvement in software development.'
-    },
-    {
         year: '2025',
         description:
-            'Deepened full-stack engineering and competed in the UC Berkeley AI Hackathon (Cal Hacks) in San Francisco—a pivotal experience that shifted my core focus toward Applied AI and autonomous agents.'
+            'Deepened full-stack engineering and competed in the UC Berkeley AI Hackathon (Cal Hacks) in San Francisco, a pivotal experience that shifted my core focus toward Applied AI and autonomous agents.'
     },
     {
         year: '2026',
