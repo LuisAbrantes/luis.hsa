@@ -467,7 +467,7 @@ const Home = () => {
                                 <div className="flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                                     <span className="text-xs sm:text-sm font-mono text-emerald-400 tracking-widest uppercase font-semibold">
-                                        01 // PROFILE & MISSION
+                                        PROFILE & MISSION
                                     </span>
                                 </div>
                                 
@@ -627,7 +627,7 @@ const Home = () => {
                         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
                             <div className="space-y-2 max-w-2xl">
                                 <span className="text-xs sm:text-sm font-mono text-zinc-500 uppercase tracking-widest font-semibold block">
-                                    03 // TECHNICAL ESSAYS & PAPERS
+                                    TECHNICAL ESSAYS & PAPERS
                                 </span>
                                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
                                     Papers by Luis Abrantes
