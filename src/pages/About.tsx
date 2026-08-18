@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaGraduationCap } from 'react-icons/fa';
 import { Briefcase, ExternalLink, ArrowUpRight } from 'lucide-react';
 import Modal from '@/components/ui/Modal';
@@ -8,7 +8,6 @@ import { experiences } from '@/data/experience';
 import type { GithubAchievement } from '@/types';
 
 const About = () => {
-    const navigate = useNavigate();
     const [selectedAchievement, setSelectedAchievement] =
         useState<GithubAchievement | null>(null);
 
@@ -128,19 +127,19 @@ const About = () => {
                             </div>
 
                             <div className="pt-2 flex items-center gap-4 flex-wrap">
-                                <button
-                                    onClick={() => navigate('/projects')}
+                                <Link
+                                    to="/projects"
                                     className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm sm:text-base shadow-md"
                                 >
                                     <span>Explore Projects</span>
                                     <ArrowUpRight className="w-4 h-4" />
-                                </button>
-                                <button
-                                    onClick={() => navigate('/achievements')}
+                                </Link>
+                                <Link
+                                    to="/achievements"
                                     className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-all text-sm sm:text-base"
                                 >
                                     <span>View Honors & Certificates</span>
-                                </button>
+                                </Link>
                             </div>
                         </section>
 

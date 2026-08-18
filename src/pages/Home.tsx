@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight, ExternalLink, ChevronDown, Sparkles, MapPin, Award, Layers, GraduationCap } from 'lucide-react';
 import { timeline } from '@/data/timeline';
 import { fadeInUp, staggerContainer, revealViewport } from '@/lib/motion';
@@ -10,7 +10,6 @@ import meOne from '@/assets/home/meOne.png';
 const PAPERS_URL = 'https://papers.luisabrantes.dev';
 
 const Home = () => {
-    const navigate = useNavigate();
     const scrollTrackRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [videoDuration, setVideoDuration] = useState<number>(0);
@@ -486,19 +485,19 @@ const Home = () => {
                             </div>
 
                             <div className="pt-4 border-t border-zinc-800/80 flex items-center gap-4 flex-wrap">
-                                <button
-                                    onClick={() => navigate('/about')}
+                                <Link
+                                    to="/about"
                                     className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm sm:text-base shadow-lg shadow-white/5"
                                 >
                                     <span>View Full Background</span>
                                     <ArrowUpRight className="w-4 h-4" />
-                                </button>
-                                <button
-                                    onClick={() => navigate('/projects')}
+                                </Link>
+                                <Link
+                                    to="/projects"
                                     className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-all text-sm sm:text-base"
                                 >
                                     <span>View Projects</span>
-                                </button>
+                                </Link>
                             </div>
                         </div>
 
