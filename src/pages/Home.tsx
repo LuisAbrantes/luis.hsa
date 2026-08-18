@@ -286,7 +286,7 @@ const Home = () => {
                                         <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">QUANTUM & ASTRO // IFGW</span>
                                         <span className="w-2.5 h-2.5 rounded-full bg-purple-400" />
                                     </div>
-                                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">UNICAMP Quantum & Physics</h4>
+                                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">UNICAMP Quantum & Physics Camps</h4>
                                     <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">Gleb Wataghin Physics Institute</p>
                                 </div>
                                 <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
@@ -380,7 +380,7 @@ const Home = () => {
                                         <span className="w-2 h-2 rounded-full bg-purple-400" />
                                         <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">QUANTUM & ASTRO // IFGW</span>
                                     </div>
-                                    <h4 className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">UNICAMP Quantum & Physics</h4>
+                                    <h4 className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">UNICAMP Quantum & Physics Camps</h4>
                                     <p className="text-xs font-mono text-zinc-300 drop-shadow-md">Gleb Wataghin Physics Institute</p>
                                 </div>
                             </div>
