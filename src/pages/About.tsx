@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaGraduationCap } from 'react-icons/fa';
 import { Briefcase, ExternalLink, ArrowUpRight, Sparkles } from 'lucide-react';
 import Modal from '@/components/ui/Modal';
 import { badgeAchievements, highlightAchievements } from '@/data/achievements';
@@ -101,11 +102,11 @@ const About = () => {
 
 
                     {/* ========================================================
-                        RIGHT COLUMN: ABOUT BIO, EXPERIENCE & PRINCIPLES
+                        RIGHT COLUMN: ABOUT BIO, EXPERIENCE, ACADEMIC & PRINCIPLES
                        ======================================================== */}
                     <main className="flex-1 w-full space-y-16">
                         
-                        {/* 1. Origin & Core Identity (Featuring Father's Mentorship & Curiosity) */}
+                        {/* 1. Origin & Core Identity (With Bold Highlights and Father Mentorship) */}
                         <section className="space-y-4">
                             <div className="inline-flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -120,7 +121,7 @@ const About = () => {
 
                             <div className="space-y-4 text-base sm:text-lg text-zinc-300 font-light leading-relaxed pt-2">
                                 <p>
-                                    I started programming at age nine, guided by curiosity and mentored by my father, who is also a software engineer. Over the past decade, that early foundation evolved through hands-on development and production engineering into a specialized focus on autonomous AI agents, tool harnesses, and reliable software architectures.
+                                    I started programming at age nine, guided by curiosity and mentored by my father, who is also a software engineer. Over the past decade, that early foundation grew through an <strong className="text-white font-semibold">8-year merit-funded technical education</strong> at Instituto Federal de São Paulo (IFSP) and hands-on production engineering into a specialized focus on <strong className="text-white font-semibold">Agent Harness Engineering</strong>, <strong className="text-white font-semibold">LLM Agents</strong>, and <strong className="text-white font-semibold">production software systems</strong>.
                                 </p>
                             </div>
 
@@ -189,7 +190,62 @@ const About = () => {
                         </section>
 
 
-                        {/* 3. Engineering Principles (Restored & Clean) */}
+                        {/* 3. Academic Profile & 8-Year Public Merit (Structured in Topics with GPAs) */}
+                        <section className="border-t border-zinc-800/80 pt-12 space-y-8">
+                            <div className="flex items-center gap-2">
+                                <FaGraduationCap className="w-5 h-5 text-amber-400" />
+                                <h2 className="text-xs sm:text-sm font-mono text-zinc-400 uppercase tracking-widest font-semibold">
+                                    ACADEMIC PROFILE & 8-YEAR PUBLIC MERIT
+                                </h2>
+                            </div>
+
+                            <div className="space-y-8">
+                                {/* IFSP Computer Science B.S. (4 Years) */}
+                                <div className="space-y-2">
+                                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                                        <h3 className="text-lg sm:text-xl font-semibold text-white">
+                                            B.S. in Computer Science (4-Year Degree)
+                                        </h3>
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-xs sm:text-sm font-mono text-emerald-400 font-semibold px-2.5 py-0.5 rounded-full border border-emerald-400/20 bg-emerald-400/10">
+                                                Current GPA: 8.92
+                                            </span>
+                                            <span className="text-xs sm:text-sm font-mono text-zinc-500">2026 – Present</span>
+                                        </div>
+                                    </div>
+                                    <p className="text-sm sm:text-base text-zinc-400 font-light">
+                                        Instituto Federal de São Paulo (IFSP) • Public Federal Network
+                                    </p>
+                                    <p className="text-xs sm:text-sm text-zinc-500 font-light">
+                                        • Admitted via highly competitive public entrance exam (Vestibular). Full government-funded tuition.
+                                    </p>
+                                </div>
+
+                                {/* IFSP Integrated Technical High School in Informatics (4 Years) */}
+                                <div className="space-y-2">
+                                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                                        <h3 className="text-lg sm:text-xl font-semibold text-white">
+                                            Integrated Technical High School in Informatics (4-Year Program)
+                                        </h3>
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-xs sm:text-sm font-mono text-zinc-300 font-medium px-2.5 py-0.5 rounded-full border border-zinc-700 bg-zinc-800/60">
+                                                Graduation GPA: 8.34
+                                            </span>
+                                            <span className="text-xs sm:text-sm font-mono text-zinc-500">2022 – 2024</span>
+                                        </div>
+                                    </div>
+                                    <p className="text-sm sm:text-base text-zinc-400 font-light">
+                                        Instituto Federal de São Paulo (IFSP) • Jacareí Campus
+                                    </p>
+                                    <p className="text-xs sm:text-sm text-zinc-500 font-light">
+                                        • Completed Capstone Project (TutorTime full-stack platform) ahead of schedule during junior year.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+
+
+                        {/* 4. Engineering Principles */}
                         <section className="border-t border-zinc-800/80 pt-12 space-y-8">
                             <div className="flex items-center gap-2">
                                 <Sparkles className="w-5 h-5 text-cyan-400" />
