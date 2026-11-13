@@ -488,6 +488,8 @@ const Home = () => {
                                 src={portrait}
                                 width={780}
                                 height={1040}
+                                loading="lazy"
+                                decoding="async"
                                 alt="Luis Henrique Abrantes at Penn Engineering"
                                 draggable={false}
                                 className="w-full h-full min-h-[380px] object-cover object-top filter contrast-[105%] group-hover:scale-102 transition-transform duration-500 select-none pointer-events-none"
