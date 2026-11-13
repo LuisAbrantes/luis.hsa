@@ -1,11 +1,27 @@
 import { useState } from 'react';
+import type { MetaFunction } from 'react-router';
 import { motion } from 'framer-motion';
 import { Search } from 'lucide-react';
 import CertificateCard from '@/components/certificates/CertificateCard';
 import CertificateModal from '@/components/certificates/CertificateModal';
 import { certificates } from '@/data/certificates';
 import { staggerContainer, revealViewport } from '@/lib/motion';
+import { breadcrumbNode, pageMeta, webPageNode } from '@/lib/seo';
 import type { Certificate } from '@/types';
+
+const TITLE = 'Honors, Hackathons & Certificates | Luis Henrique Abrantes';
+
+export const meta: MetaFunction = () =>
+    pageMeta({
+        title: TITLE,
+        description:
+            'Honors and certificates of Luis Henrique Abrantes: Google Student Ambassador 2026, UC Berkeley AI Hackathon, PennApps XXV, OBI, UNICAMP FIFE and more.',
+        path: '/achievements',
+        jsonLd: [
+            webPageNode('CollectionPage', '/achievements', TITLE),
+            breadcrumbNode([{ name: 'Achievements', path: '/achievements' }])
+        ]
+    });
 
 const categories = ['all', ...new Set(certificates.map(c => c.type))];
 

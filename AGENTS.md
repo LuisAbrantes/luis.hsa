@@ -7,7 +7,7 @@
 
 ## 1. Identity, Career Positioning & Core Truths
 
-- **Full Name:** Luis Henrique Abrantes (Aliases: *Luis Abrantes*, *luis.hsa*)
+- **Full Name:** Luis Henrique Abrantes (Aliases: *Luis Abrantes*, *luis.hsa*). Legal name: *Luis Henrique dos Santos Abrantes* (never "Silva").
 - **Core Title:** Software Engineer & Applied AI Developer
 - **Specialization:** **Agent Harness Engineering**, **Autonomous LLM Agents**, **Retrieval-Augmented Generation (RAG)**, and **Production Full-Stack Systems**.
 - **🚨 CRITICAL RULE:** **NEVER label Luis as a "computer science researcher" or "academic researcher".** He is an active software engineer building production systems, developer tooling, and applied AI applications for industry roles.
@@ -37,43 +37,55 @@
 - **Non-Draggable Images:** All images across the portfolio MUST have drag and accidental selection disabled:
   - CSS: `img { -webkit-user-drag: none; user-select: none; }` in `src/index.css`.
   - React/HTML: `draggable={false}` and `className="select-none pointer-events-none"` (or `pointer-events-auto` on clickable interactive badges).
-- **Crawlable Internal Navigation:** Always use semantic React Router `<Link to="...">` components instead of `<button onClick={() => navigate(...)}>` on CTA buttons so search engine crawlers can traverse internal routes.
+- **Crawlable Internal Navigation:** Always use semantic React Router `<Link to="...">` components (imported from `react-router`) instead of `<button onClick={() => navigate(...)}>` or clickable `<div>`s, so crawlers and keyboard users can traverse internal routes. Project cards link to `/projects/<slug>`.
 
 ---
 
-## 3. SEO & GEO / DEO / LLMO Architecture (Search & AI Engine Optimization)
+## 3. SEO & GEO Architecture (Search & AI Engine Optimization)
 
-The portfolio is architected for dual-engine discovery:
-1. **Traditional Search Engines (Google, Bing, DuckDuckGo):** Ranked for queries like `Luis Henrique Abrantes`, `Luis Abrantes`, and `luis.hsa`.
-2. **Generative Engines (ChatGPT / SearchGPT, Perplexity AI, Google Gemini, Claude):** Optimized for zero-shot RAG scraping, entity citations, and authoritative question-answering.
+The portfolio is built for two kinds of readers:
+1. **Search engines (Google, Bing, DuckDuckGo):** ranked for queries like `Luis Henrique Abrantes`, `Luis Abrantes`, and qualified variants (`software engineer`, `IFSP`, `Google Student Ambassador`).
+2. **Generative engines (ChatGPT Search, Perplexity, Gemini, Claude):** their crawlers do not run JavaScript, so every URL must already contain its real content as HTML.
 
-### 3.1 JSON-LD Structured Data Schema (`index.html`)
-The `<script type="application/ld+json">` inside `index.html` uses an enterprise-grade `@graph` array linking:
+### 3.1 Static Pre-rendering (the core rule)
+The site runs on **React Router framework mode** with `ssr: false` and `prerender` (`react-router.config.ts`). At build time every route is rendered to its own HTML file in `build/client/`:
+- `/`, `/about`, `/projects`, `/achievements`, `/contact`
+- one page per project: `/projects/<slug>` (slugs come from `src/data/projects.ts`)
+
+There is **no `index.html` and no hand-written fallback**. The HTML crawlers read is produced by the same React components visitors see. Never reintroduce a static copy of the content.
+
+Key files:
+- `src/root.tsx`: document shell (`<html>`, `<head>`, nav, page transition).
+- `src/routes.ts`: route table.
+- `src/pages/*.tsx`: route modules. **Each one must export `meta`** built with `pageMeta()`.
+- `src/pages/sitemap.ts`: generates `/sitemap.xml` at build time.
+- `scripts/postbuild.mjs`: fails the build if any page lacks a title, description or unique canonical, or is missing from the sitemap. It also publishes the SPA fallback as `404.html`.
+
+### 3.2 Per-page Metadata and JSON-LD (`src/lib/seo.ts`)
+`pageMeta({ title, description, path, jsonLd })` returns the page's `<title>`, meta description, canonical, Open Graph/Twitter tags and one JSON-LD `@graph`. Every page's graph contains:
 - `WebSite` (`https://luisabrantes.dev/#website`)
-- `ProfilePage` (`https://luisabrantes.dev/#profilepage`)
-- `Person` (`https://luisabrantes.dev/#person`) with complete `sameAs` authority links (GitHub, LinkedIn, Devpost, Papers subdomain, IFSP press).
-- `ItemList` (`https://luisabrantes.dev/#projects`) cataloging key applications (*College List AI*, *GirlTalk AI*, *SpeakScribe*, *Harness Study*, *TutorTime*).
-- `hasOccupation`, `alumniOf`, `affiliation` (Google), and `award` arrays.
+- `Person` (`https://luisabrantes.dev/#person`) with `sameAs` (identity profiles only: GitHub, LinkedIn, Devpost profile, Instagram), `alumniOf`, `memberOf` (Google Student Ambassador), `award`, `knowsAbout`
+- page-specific nodes: `ProfilePage` (home), `AboutPage`, `CollectionPage` + `ItemList` (projects), `SoftwareSourceCode`/`CreativeWork` (project pages), `ContactPage`, plus `BreadcrumbList`
 
-> ⚠️ **AGENT MANDATE:** Whenever a new project, experience, or major credential is added to the codebase, the JSON-LD `@graph` in `index.html` MUST be updated simultaneously.
+Identity facts (name, aliases, profiles, awards, default social image) live in **`src/data/site.ts`**.
 
-### 3.2 Static Fallback Content (`<div id="root">` in `index.html`)
-Because AI scrapers (like `GPTBot` and `PerplexityBot`) and shallow crawlers often do not execute full JavaScript bundles, `index.html` contains a **complete semantic HTML5 fallback inside `<div id="root">`**:
-- Includes an exhaustive **FAQ section** in natural language Q&A pairs.
-- Includes executive summary, work experience, milestones, projects, and skills table.
-- When React mounts in the browser, `main.tsx` dynamically replaces this fallback with the client-side SPA.
+> ⚠️ **AGENT MANDATE:** When a project, experience, or credential changes, edit `src/data/*` only (`projects.ts`, `experience.ts`, `certificates.ts`, `timeline.ts`, `site.ts`). Metadata, JSON-LD, the sitemap and the pre-rendered HTML are regenerated from that data on build. A new project needs a `slug` and a screenshot registered in `src/data/projectImages.ts`. A new route needs a `meta` export and an entry in `src/routes.ts`.
+
+Writing rules for metadata: all metadata is in **English** (the site language), titles around 60 characters, descriptions under 160, no keyword stuffing, no `meta keywords`, no content written "for AI agents".
 
 ### 3.3 AI Bot Permissions (`public/robots.txt`)
 `public/robots.txt` explicitly authorizes:
-- `OAI-SearchBot`, `GPTBot`, `ChatGPT-User` (OpenAI / SearchGPT)
+- `OAI-SearchBot`, `GPTBot`, `ChatGPT-User` (OpenAI)
 - `ClaudeBot`, `anthropic-ai`, `Claude-Web` (Anthropic)
 - `PerplexityBot` (Perplexity AI)
 - `Google-Extended`, `Googlebot` (Google Gemini & Search)
-- `CCBot` (Common Crawl foundation corpus)
+- `CCBot` (Common Crawl)
 - `Cohere-ai`, `Applebot-Extended`, `Meta-ExternalAgent`, `Bytespider`, `Amazonbot`
 
-### 3.4 Sitemap (`public/sitemap.xml`)
-Contains all 5 core routes (`/`, `/about`, `/projects`, `/achievements`, `/contact`) with `lastmod`, priorities, and image schema tags (`xmlns:image`).
+### 3.4 Static Assets
+- Files in `public/static/` (hero video/poster, logos) and `public/images/` are served as-is. Do **not** put anything in `public/assets/`: that path is reserved for hashed build output, which is cached as immutable.
+- Social card: `public/og.jpg` (1200x630). Person image: `public/images/luis-henrique-abrantes.jpg` (800x800). Keep images small: nothing above ~300 KB.
+- Fonts (Geist, Geist Mono) are self-hosted from `src/assets/fonts/`.
 
 ---
 
@@ -85,9 +97,11 @@ Before committing or deploying ANY changes, agents MUST execute:
 # 1. Typecheck (Must pass with 0 errors)
 npm run typecheck
 
-# 2. Production Build (Must bundle successfully with Vite)
+# 2. Production Build (pre-renders every route, then runs the SEO checks in scripts/postbuild.mjs)
 npm run build
 ```
+
+After a build, spot-check the generated HTML in `build/client/` (for example `build/client/about/index.html`): the page's real text, its own `<title>` and its own canonical must be in the file.
 
 ### External Validation Checks:
 1. **Google Rich Results Test:** [https://search.google.com/test/rich-results](https://search.google.com/test/rich-results)
@@ -98,7 +112,8 @@ npm run build
 
 ## 5. Deployment Workflow
 
-- **Primary Production Host:** **Vercel** (`https://luisabrantes.dev/`)
+- **Production Host:** **Vercel** (`https://luisabrantes.dev/`), static output only.
 - **Trigger:** Automated on `git push origin main`.
-- **SPA Routing Configuration:** `vercel.json` rewrites all requests to `/index.html`.
-- **Secondary Host (GitHub Pages):** Deployable via `npm run deploy` (`gh-pages` branch).
+- **Configuration (`vercel.json`):** build command `npm run build`, output directory `build/client`. There is **no catch-all rewrite**: each route is a real file, and unknown URLs get `404.html` with a 404 status.
+- **Redirects:** `www.luisabrantes.dev` to the apex domain, trailing slashes removed.
+- **Caching:** `/assets/*` (hashed) is immutable for a year; `/static/*` and `/images/*` for a day.

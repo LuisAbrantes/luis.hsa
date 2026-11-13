@@ -13,7 +13,15 @@ const CertificateCard = ({ certificate, onSelect }: CertificateCardProps) => (
     <motion.div
         variants={fadeInUp}
         whileHover={{ y: -5 }}
+        role="button"
+        tabIndex={0}
         onClick={() => onSelect(certificate)}
+        onKeyDown={event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                onSelect(certificate);
+            }
+        }}
         className="bg-dark-secondary/30 border border-gray-800 rounded-2xl p-6 cursor-pointer hover:border-gray-600 transition-all duration-300 group h-full flex flex-col"
     >
         <div className="flex items-start justify-between mb-6">

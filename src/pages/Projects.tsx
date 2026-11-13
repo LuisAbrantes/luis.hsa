@@ -1,19 +1,38 @@
 import { useState } from 'react';
+import type { MetaFunction } from 'react-router';
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import ProjectCard from '@/components/projects/ProjectCard';
-import ProjectModal from '@/components/projects/ProjectModal';
 import { projects } from '@/data/projects';
 import { staggerContainer, revealViewport } from '@/lib/motion';
-import type { Project } from '@/types';
+import {
+    breadcrumbNode,
+    pageMeta,
+    projectListNode,
+    webPageNode
+} from '@/lib/seo';
+
+const TITLE = 'Projects in Applied AI & Full-Stack | Luis Henrique Abrantes';
+
+export const meta: MetaFunction = () =>
+    pageMeta({
+        title: TITLE,
+        description:
+            'Projects by Luis Henrique Abrantes: LangGraph multi-agent apps, hackathon builds from UC Berkeley and UPenn, agent harness tooling and full-stack products.',
+        path: '/projects',
+        jsonLd: [
+            webPageNode('CollectionPage', '/projects', TITLE, {
+                mainEntity: { '@id': 'https://luisabrantes.dev/projects#list' }
+            }),
+            projectListNode(),
+            breadcrumbNode([{ name: 'Projects', path: '/projects' }])
+        ]
+    });
 
 const featuredProjects = projects.filter(p => p.featured);
 const categories = ['all', ...new Set(projects.map(p => p.category))];
 
 const Projects = () => {
-    const [selectedProject, setSelectedProject] = useState<Project | null>(
-        null
-    );
     const [filter, setFilter] = useState('all');
 
     const isAll = filter === 'all';
@@ -57,7 +76,6 @@ const Projects = () => {
                                 <ProjectCard
                                     key={project.id}
                                     project={project}
-                                    onSelect={setSelectedProject}
                                 />
                             ))}
                         </motion.div>
@@ -100,15 +118,9 @@ const Projects = () => {
                         <ProjectCard
                             key={project.id}
                             project={project}
-                            onSelect={setSelectedProject}
                         />
                     ))}
                 </motion.div>
-
-                <ProjectModal
-                    project={selectedProject}
-                    onClose={() => setSelectedProject(null)}
-                />
             </div>
         </section>
     );

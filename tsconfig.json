@@ -25,7 +25,15 @@
         /* Path alias (resolved relative to this file, no baseUrl needed) */
         "paths": {
             "@/*": ["./src/*"]
-        }
+        },
+
+        /* React Router generated route types (npm run typecheck runs typegen) */
+        "rootDirs": [".", "./.react-router/types"]
     },
-    "include": ["src", "vite.config.ts"]
+    "include": [
+        "src",
+        "vite.config.ts",
+        "react-router.config.ts",
+        ".react-router/types/**/*"
+    ]
 }

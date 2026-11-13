@@ -1,8 +1,27 @@
-# React + Vite
+# luisabrantes.dev
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio of Luis Henrique Abrantes, Software Engineer & Applied AI Developer.
 
-Currently, two official plugins are available:
+Live at [luisabrantes.dev](https://luisabrantes.dev/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
+
+React 18, React Router 7 (framework mode, statically pre-rendered), TypeScript, Vite, Tailwind CSS and Framer Motion. Deployed on Vercel as static files.
+
+## Commands
+
+```bash
+npm install
+npm run dev        # local development
+npm run typecheck  # route typegen + tsc
+npm run build      # pre-render every route to build/client and run SEO checks
+```
+
+## Structure
+
+- `src/data/`: all content (projects, experience, certificates, identity facts).
+- `src/pages/`: one route module per page, each exporting its own `meta`.
+- `src/lib/seo.ts`: per-page metadata and JSON-LD, generated from the data.
+- `src/root.tsx`, `src/routes.ts`, `react-router.config.ts`: app shell, routes and pre-render list.
+
+See [`AGENTS.md`](./AGENTS.md) for the architecture and SEO rules.

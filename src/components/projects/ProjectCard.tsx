@@ -1,31 +1,37 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router';
 import { Github, ExternalLink, Star } from 'lucide-react';
 import { techIcons } from '@/lib/techIcons';
 import { fadeInUp } from '@/lib/motion';
+import { projectImages } from '@/data/projectImages';
 import type { Project } from '@/types';
 
 interface ProjectCardProps {
     project: Project;
-    onSelect: (project: Project) => void;
 }
 
-const ProjectCard = ({ project, onSelect }: ProjectCardProps) => (
-    <motion.div
+/**
+ * Project teaser. The title is a real link to the project's own page and is
+ * stretched over the whole card (`after:absolute after:inset-0`), so the card
+ * is clickable, keyboard-focusable and crawlable without nesting anchors.
+ */
+const ProjectCard = ({ project }: ProjectCardProps) => (
+    <motion.article
         variants={fadeInUp}
         whileHover={{ y: -5 }}
-        className={`bg-dark-secondary/30 border rounded-2xl overflow-hidden transition-all duration-300 group cursor-pointer ${
+        className={`relative bg-dark-secondary/30 border rounded-2xl overflow-hidden transition-all duration-300 group cursor-pointer ${
             project.featured
                 ? 'border-gray-600 hover:border-gray-500'
                 : 'border-gray-800 hover:border-gray-600'
         }`}
-        onClick={() => onSelect(project)}
     >
         <div className="relative aspect-video overflow-hidden">
             <img
-                src={project.thumbnail}
-                alt={project.title}
+                src={projectImages[project.slug]}
+                alt={`${project.title} screenshot`}
                 loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                draggable={false}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 select-none pointer-events-none"
             />
             {project.featured && (
                 <span className="absolute top-3 left-3 flex items-center gap-1 text-xs font-medium text-white bg-black/60 backdrop-blur-sm border border-white/20 rounded-full px-2.5 py-1">
@@ -41,7 +47,12 @@ const ProjectCard = ({ project, onSelect }: ProjectCardProps) => (
 
         <div className="p-6">
             <h3 className="text-xl font-medium text-white mb-2">
-                {project.title}
+                <Link
+                    to={`/projects/${project.slug}`}
+                    className="outline-none after:absolute after:inset-0 after:rounded-2xl focus-visible:after:ring-2 focus-visible:after:ring-white/70"
+                >
+                    {project.title}
+                </Link>
             </h3>
             <p className="text-gray-400 text-sm font-light mb-4 line-clamp-2">
                 {project.shortDescription}
@@ -63,13 +74,13 @@ const ProjectCard = ({ project, onSelect }: ProjectCardProps) => (
                 )}
             </div>
 
-            <div className="flex gap-4 pt-2 border-t border-gray-800/50">
+            {/* Above the stretched link so these stay independently clickable. */}
+            <div className="relative z-10 flex gap-4 pt-2 border-t border-gray-800/50">
                 {project.github && (
                     <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={e => e.stopPropagation()}
                         className="flex items-center gap-2 text-xs text-gray-500 hover:text-white transition-colors"
                     >
                         <Github size={14} /> Code
@@ -80,7 +91,6 @@ const ProjectCard = ({ project, onSelect }: ProjectCardProps) => (
                         href={project.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={e => e.stopPropagation()}
                         className="flex items-center gap-2 text-xs text-gray-500 hover:text-white transition-colors"
                     >
                         <ExternalLink size={14} /> Demo
@@ -88,7 +98,7 @@ const ProjectCard = ({ project, onSelect }: ProjectCardProps) => (
                 )}
             </div>
         </div>
-    </motion.div>
+    </motion.article>
 );
 
 export default ProjectCard;

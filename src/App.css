@@ -1,4 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap');
+/* Geist is self-hosted (variable fonts, SIL OFL) to avoid a third-party request. */
+@font-face {
+    font-family: 'Geist';
+    src: url('./assets/fonts/Geist-Variable.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geist Mono';
+    src: url('./assets/fonts/GeistMono-Variable.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
 
 /* Remove all background-color properties and update text colors to use CSS variables */
 :root {
@@ -6,13 +21,14 @@
     --dark-muted: #9ca3af;
 }
 
-/* NavBar styles */
-nav {
+/* NavBar styles. :where() keeps the original element-level specificity while
+   limiting these rules to the top bar, so other <nav> elements are unaffected. */
+nav:where(.site-nav) {
     background-color: #333;
     padding: 1rem;
 }
 
-nav ul {
+nav:where(.site-nav) ul {
     display: flex;
     justify-content: space-around;
     list-style: none;
@@ -20,11 +36,11 @@ nav ul {
     margin: 0;
 }
 
-nav ul li {
+nav:where(.site-nav) ul li {
     margin: 0 1rem;
 }
 
-nav ul li button {
+nav:where(.site-nav) ul li button {
     background: none;
     border: none;
     color: white;
@@ -32,7 +48,7 @@ nav ul li button {
     cursor: pointer;
 }
 
-nav ul li button:hover {
+nav:where(.site-nav) ul li button:hover {
     text-decoration: underline;
 }
 

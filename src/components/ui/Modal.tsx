@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -19,6 +19,10 @@ interface ModalProps {
  */
 const Modal = ({ isOpen, onClose, children, className = '', labelledBy }: ModalProps) => {
     const panelRef = useRef<HTMLDivElement>(null);
+    // Portals need `document`, which is absent during static pre-rendering.
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => setIsMounted(true), []);
 
     // Close on Escape.
     useEffect(() => {
@@ -42,6 +46,8 @@ const Modal = ({ isOpen, onClose, children, className = '', labelledBy }: ModalP
             previouslyFocused?.focus?.();
         };
     }, [isOpen]);
+
+    if (!isMounted) return null;
 
     return createPortal(
         <AnimatePresence>
