@@ -93,14 +93,15 @@ const Home = () => {
                 cancelAnimationFrame(animationFrameId);
                 animationFrameId = requestAnimationFrame(() => {
                     if (video && !video.seeking) {
-                        if ('fastSeek' in video) {
+                        // fastSeek is not available in every browser.
+                        if (typeof video.fastSeek === 'function') {
                             try {
-                                (video as any).fastSeek(targetTime);
+                                video.fastSeek(targetTime);
                             } catch {
-                                (video as HTMLVideoElement).currentTime = targetTime;
+                                video.currentTime = targetTime;
                             }
                         } else {
-                            (video as HTMLVideoElement).currentTime = targetTime;
+                            video.currentTime = targetTime;
                         }
                     }
                 });
@@ -150,7 +151,10 @@ const Home = () => {
 
     // Overall Hero Pinned Stage Handoff
     const stageFade = useTransform(scrollYProgress, [0.85, 0.98], [1, 0]);
-    const stagePointerEvents = useTransform(scrollYProgress, (v) => v > 0.9 ? 'none' : 'auto');
+    const stagePointerEvents = useTransform(
+        scrollYProgress,
+        (v): 'none' | 'auto' => (v > 0.9 ? 'none' : 'auto')
+    );
 
     return (
         <div className="home-root relative bg-[#07080b] text-[#EDEDED] font-sans selection:bg-zinc-700 selection:text-white">
@@ -162,7 +166,7 @@ const Home = () => {
                 
                 <motion.div 
                     className="sticky top-16 h-[calc(100dvh-4rem)] w-full overflow-hidden flex items-center justify-center bg-[#07080b]"
-                    style={{ opacity: stageFade, pointerEvents: stagePointerEvents as any }}
+                    style={{ opacity: stageFade, pointerEvents: stagePointerEvents }}
                 >
                     <div className="absolute inset-0 w-full h-full bg-[#07080b]">
                         <img
@@ -176,7 +180,8 @@ const Home = () => {
                             poster={posterSrc}
                             preload="auto"
                             playsInline
-                            webkit-playsinline="true"
+                            // Legacy iOS Safari attribute; not part of React's DOM typings.
+                            {...{ 'webkit-playsinline': 'true' }}
                             muted
                             className="relative w-full h-full object-cover object-center scale-[1.01]"
                         />
