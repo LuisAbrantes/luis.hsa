@@ -26,7 +26,11 @@ export const meta: MetaFunction = () =>
 const Home = () => {
     const scrollTrackRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
+    const posterRef = useRef<HTMLImageElement>(null);
     const [videoDuration, setVideoDuration] = useState<number>(0);
+    // The 5 MB video only starts downloading once the poster has loaded, so it
+    // does not compete with the page's largest paint for bandwidth.
+    const [posterLoaded, setPosterLoaded] = useState(false);
 
     const videoSrc = '/static/hero/video.mp4';
     const posterSrc = '/static/hero/image.webp';
@@ -36,6 +40,21 @@ const Home = () => {
         target: scrollTrackRef,
         offset: ['start start', 'end start']
     });
+
+    useEffect(() => {
+        const poster = posterRef.current;
+        if (!poster || poster.complete) {
+            setPosterLoaded(true);
+            return;
+        }
+        const release = () => setPosterLoaded(true);
+        poster.addEventListener('load', release, { once: true });
+        poster.addEventListener('error', release, { once: true });
+        return () => {
+            poster.removeEventListener('load', release);
+            poster.removeEventListener('error', release);
+        };
+    }, []);
 
     // Handle video metadata and initialize scrubbing for mobile/desktop
     useEffect(() => {
@@ -170,6 +189,7 @@ const Home = () => {
                 >
                     <div className="absolute inset-0 w-full h-full bg-[#07080b]">
                         <img
+                            ref={posterRef}
                             src={posterSrc}
                             alt="Luis Henrique Abrantes AI Studio"
                             // Largest paint on the page: fetch it ahead of the
@@ -180,7 +200,7 @@ const Home = () => {
                         />
                         <video
                             ref={videoRef}
-                            src={videoSrc}
+                            src={posterLoaded ? videoSrc : undefined}
                             poster={posterSrc}
                             preload="auto"
                             playsInline
