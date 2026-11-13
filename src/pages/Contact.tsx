@@ -1,7 +1,23 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react';
+import type { MetaFunction } from 'react-router';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle } from 'lucide-react';
 import { socialLinks, CONTACT_EMAIL } from '@/data/socials';
+import { breadcrumbNode, pageMeta, webPageNode } from '@/lib/seo';
+
+const TITLE = 'Contact | Luis Henrique Abrantes';
+
+export const meta: MetaFunction = () =>
+    pageMeta({
+        title: TITLE,
+        description:
+            'Get in touch with Luis Henrique Abrantes for software engineering and applied AI roles, collaborations or projects. Email, LinkedIn and GitHub.',
+        path: '/contact',
+        jsonLd: [
+            webPageNode('ContactPage', '/contact', TITLE),
+            breadcrumbNode([{ name: 'Contact', path: '/contact' }])
+        ]
+    });
 
 interface FormData {
     name: string;

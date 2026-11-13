@@ -6,7 +6,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default tseslint.config(
-    { ignores: ['dist'] },
+    { ignores: ['dist', 'build', '.react-router'] },
     {
         extends: [js.configs.recommended, ...tseslint.configs.recommended],
         files: ['**/*.{ts,tsx}'],
@@ -31,7 +31,18 @@ export default tseslint.config(
             'react/jsx-no-target-blank': 'off',
             'react-refresh/only-export-components': [
                 'warn',
-                { allowConstantExport: true }
+                {
+                    allowConstantExport: true,
+                    // React Router route-module exports.
+                    allowExportNames: [
+                        'meta',
+                        'links',
+                        'loader',
+                        'Layout',
+                        'HydrateFallback',
+                        'ErrorBoundary'
+                    ]
+                }
             ]
         }
     }

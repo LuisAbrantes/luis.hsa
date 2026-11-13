@@ -1,16 +1,18 @@
 import type { ReactNode } from 'react';
 import type { LucideIcon } from 'lucide-react';
 
-/** A portfolio project shown on the /projects page. */
+/** A portfolio project shown on /projects and on its own /projects/<slug> page. */
 export interface Project {
     id: number;
+    /** URL segment for the project's own page: /projects/<slug>. */
+    slug: string;
     title: string;
     shortDescription: string;
     fullDescription: string;
-    /** Imported asset URL used in the modal hero. */
-    image: string;
-    /** Imported asset URL used in the card thumbnail. */
-    thumbnail: string;
+    /** Where/why it was built (event, client, program). Shown under the title. */
+    context?: string;
+    /** True when built with a team, so the page credits it as a team project. */
+    team?: boolean;
     technologies: string[];
     category: ProjectCategory;
     /** Public repo URL. Omit for private projects (e.g. linked only via demo). */

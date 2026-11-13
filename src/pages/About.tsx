@@ -1,11 +1,28 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
+import type { MetaFunction } from 'react-router';
 import { FaGraduationCap } from 'react-icons/fa';
 import { Briefcase, ExternalLink, ArrowUpRight } from 'lucide-react';
 import Modal from '@/components/ui/Modal';
 import { badgeAchievements, highlightAchievements } from '@/data/achievements';
 import { experiences } from '@/data/experience';
+import { breadcrumbNode, pageMeta, webPageNode } from '@/lib/seo';
 import type { GithubAchievement } from '@/types';
+
+const TITLE = 'About Luis Henrique Abrantes | Software Engineer & Applied AI';
+
+export const meta: MetaFunction = () =>
+    pageMeta({
+        title: TITLE,
+        description:
+            'Background of Luis Henrique Abrantes: coding since age nine, AI and software engineering intern at Kaffa Tech, Computer Science at IFSP, focused on agent harnesses.',
+        path: '/about',
+        ogType: 'profile',
+        jsonLd: [
+            webPageNode('AboutPage', '/about', TITLE),
+            breadcrumbNode([{ name: 'About', path: '/about' }])
+        ]
+    });
 
 const About = () => {
     const [selectedAchievement, setSelectedAchievement] =
@@ -27,6 +44,8 @@ const About = () => {
                                 <img
                                     src="https://avatars.githubusercontent.com/u/24616338?v=4"
                                     alt="Luis Henrique Abrantes at GitHub"
+                                    width={192}
+                                    height={192}
                                     draggable={false}
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none pointer-events-none"
                                 />
@@ -35,9 +54,9 @@ const About = () => {
 
                         {/* Name & Handle */}
                         <div className="text-center md:text-left space-y-0.5">
-                            <h2 className="text-xl font-bold text-white tracking-tight">
+                            <p className="text-xl font-bold text-white tracking-tight">
                                 Luis Henrique Abrantes
-                            </h2>
+                            </p>
                             <a
                                 href="https://github.com/LuisAbrantes"
                                 target="_blank"
@@ -51,14 +70,16 @@ const About = () => {
 
                         {/* GitHub Achievements Badges */}
                         <div className="w-full space-y-3 pt-2">
-                            <h3 className="text-xs font-mono text-zinc-400 uppercase tracking-widest text-center md:text-left font-semibold">
+                            <h2 className="text-xs font-mono text-zinc-400 uppercase tracking-widest text-center md:text-left font-semibold">
                                 GITHUB ACHIEVEMENTS
-                            </h3>
+                            </h2>
 
                             <div className="flex flex-wrap justify-center md:justify-start gap-3">
                                 {badgeAchievements.map(achievement => (
-                                    <div
+                                    <button
+                                        type="button"
                                         key={achievement.id}
+                                        aria-label={`${achievement.name}: view details`}
                                         className="group relative cursor-pointer"
                                         onClick={() =>
                                             setSelectedAchievement(achievement)
@@ -72,7 +93,7 @@ const About = () => {
                                                 className="w-7 h-7 object-contain opacity-85 group-hover:opacity-100 transition-opacity select-none pointer-events-none"
                                             />
                                         </div>
-                                    </div>
+                                    </button>
                                 ))}
                             </div>
                         </div>
@@ -80,9 +101,10 @@ const About = () => {
                         {/* Highlight Badges */}
                         <div className="flex flex-col gap-2.5 w-full pt-1">
                             {highlightAchievements.map(achievement => (
-                                <div
+                                <button
+                                    type="button"
                                     key={achievement.id}
-                                    className="group cursor-pointer"
+                                    className="group cursor-pointer text-left"
                                     onClick={() =>
                                         setSelectedAchievement(achievement)
                                     }
@@ -95,7 +117,7 @@ const About = () => {
                                             {achievement.name}
                                         </span>
                                     </div>
-                                </div>
+                                </button>
                             ))}
                         </div>
 

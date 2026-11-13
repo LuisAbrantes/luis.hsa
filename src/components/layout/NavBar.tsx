@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 import { navLinks } from '@/data/navigation';
 
 const NavBar = () => {
@@ -20,7 +20,7 @@ const NavBar = () => {
         }`;
 
     return (
-        <nav className="fixed top-0 left-0 w-full bg-[#07080b]/70 backdrop-blur-xl border-b border-white/5 z-50 transition-all duration-300">
+        <nav aria-label="Primary" className="site-nav fixed top-0 left-0 w-full bg-[#07080b]/70 backdrop-blur-xl border-b border-white/5 z-50 transition-all duration-300">
             <div className="max-w-6xl mx-auto px-4 sm:px-6">
                 <div className="flex items-center justify-between h-16">
                     <NavLink to="/" className="flex items-center gap-2.5 group">
