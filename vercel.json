@@ -6,9 +6,9 @@
     "trailingSlash": false,
     "redirects": [
         {
-            "source": "/:path*",
+            "source": "/(.*)",
             "has": [{ "type": "host", "value": "www.luisabrantes.dev" }],
-            "destination": "https://luisabrantes.dev/:path*",
+            "destination": "https://luisabrantes.dev/$1",
             "permanent": true
         },
         {
