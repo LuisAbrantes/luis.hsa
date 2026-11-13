@@ -29,7 +29,7 @@ const Home = () => {
     const [videoDuration, setVideoDuration] = useState<number>(0);
 
     const videoSrc = '/static/hero/video.mp4';
-    const posterSrc = '/static/hero/image.jpg';
+    const posterSrc = '/static/hero/image.webp';
 
     // 250vh Scroll Runway for direct frame-by-frame scrub
     const { scrollYProgress } = useScroll({
@@ -172,6 +172,10 @@ const Home = () => {
                         <img
                             src={posterSrc}
                             alt="Luis Henrique Abrantes AI Studio"
+                            // Largest paint on the page: fetch it ahead of the
+                            // hero video. Lowercase because React 18 does not
+                            // know the camelCase prop.
+                            {...{ fetchpriority: 'high' }}
                             className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
                         />
                         <video
