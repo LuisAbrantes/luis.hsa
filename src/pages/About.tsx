@@ -42,7 +42,7 @@ const About = () => {
                         <div className="relative group">
                             <div className="w-44 h-44 sm:w-48 sm:h-48 rounded-full overflow-hidden border-2 border-zinc-800 shadow-2xl bg-zinc-950 group-hover:border-zinc-600 transition-all duration-300">
                                 <img
-                                    src="https://avatars.githubusercontent.com/u/24616338?v=4"
+                                    src="/images/luis-abrantes-github-avatar.jpg"
                                     alt="Luis Henrique Abrantes at GitHub"
                                     width={192}
                                     height={192}

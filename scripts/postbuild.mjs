@@ -3,10 +3,12 @@
 // 1. Guards the SEO contract: every pre-rendered page must ship its own
 //    <title>, meta description and canonical URL. A route that forgets its
 //    `meta` export fails the build instead of silently shipping a bare page.
+//    Images must be local files that exist: a remote or mistyped logo fails
+//    the build instead of rendering as a broken image months later.
 // 2. Publishes React Router's SPA fallback as `404.html`. The static host then
 //    answers unknown URLs with a real 404 status while the client router still
 //    renders the in-app not-found page.
-import { readdir, readFile, rename, rm } from 'node:fs/promises';
+import { access, readdir, readFile, rename, rm } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 
 const out = join(process.cwd(), 'build', 'client');
@@ -42,6 +44,13 @@ for (const page of pages) {
     if (!canonical) fail(`${name} has no canonical URL`);
     if (canonicals.has(canonical)) fail(`${name} repeats canonical ${canonical}`);
     canonicals.add(canonical);
+
+    for (const [, src] of html.matchAll(/<img[^>]+src="([^"]+)"/g)) {
+        if (!src.startsWith('/')) fail(`${name} loads a remote image: ${src}`);
+        await access(join(out, decodeURI(src))).catch(() =>
+            fail(`${name} references a missing image: ${src}`)
+        );
+    }
 }
 
 const sitemap = await readFile(join(out, 'sitemap.xml'), 'utf8').catch(() =>
@@ -57,5 +66,5 @@ await rename(join(out, '__spa-fallback.html'), join(out, '404.html'));
 await rm(join(out, 'sitemap.xml.data'), { force: true });
 
 console.log(
-    `postbuild: ${pages.length} pages verified (title, description, unique canonical, sitemap entry); wrote 404.html`
+    `postbuild: ${pages.length} pages verified (title, description, unique canonical, sitemap entry, local images); wrote 404.html`
 );

@@ -42,7 +42,7 @@ export interface Certificate {
     date: string;
     type: CertificateType;
     hours?: number;
-    /** Logo/image URL (local asset or remote). */
+    /** Logo path: a file under `public/static/` or an imported asset. Never a remote URL. */
     image?: string;
     /** Optional Tailwind object-position class, e.g. "object-bottom". */
     imagePosition?: string;

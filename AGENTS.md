@@ -83,7 +83,8 @@ Writing rules for metadata: all metadata is in **English** (the site language), 
 - `Cohere-ai`, `Applebot-Extended`, `Meta-ExternalAgent`, `Bytespider`, `Amazonbot`
 
 ### 3.4 Static Assets
-- Files in `public/static/` (hero video/poster, logos) and `public/images/` are served as-is. Do **not** put anything in `public/assets/`: that path is reserved for hashed build output, which is cached as immutable.
+- Files in `public/static/` (hero video/poster, `logos/`, `certificates/`) and `public/images/` are served as-is. Do **not** put anything in `public/assets/`: that path is reserved for hashed build output, which is cached as immutable.
+- Every `<img>` must point at a local file. Certificate logos live in `public/static/certificates/` (256px max); the build fails on a remote or missing image.
 - Social card: `public/og.jpg` (1200x630). Person image: `public/images/luis-henrique-abrantes.jpg` (800x800). Keep images small: nothing above ~300 KB.
 - Fonts (Geist, Geist Mono) are self-hosted from `src/assets/fonts/`.
 
