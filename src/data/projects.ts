@@ -42,7 +42,7 @@ export const projects: Project[] = [
         featured: true,
         shortDescription:
             'AI-powered platform that generates personalized podcast clips to provide advice and support.',
-        fullDescription: `Inspired by the need for a relatable female role model, GirlTalk AI was developed for the UC Berkeley AI Hackathon. It allows users to write their concerns into a chatbox and receive a personalized podcast clip from our AI host, Aisha. The platform leverages Llama API to generate personalized, empathetic text responses tailored to each user's specific situation, while Murf.ai API transforms these responses into humanized voice clips that make girls feel welcomed and supported. This creates a safe, supportive space for users to get advice tailored to their specific situations, moving beyond generalized online content. The platform also provides curated mental health resources and allows users to browse previously generated clips.`,
+        fullDescription: `Inspired by the need for a relatable female role model, GirlTalk AI was developed for the UC Berkeley AI Hackathon. It allows users to write their concerns into a chatbox and receive a personalized podcast clip from our AI host, Aisha. The platform leverages the Hyperbolic API to generate personalized, empathetic text responses tailored to each user's specific situation, while Murf.ai API transforms these responses into humanized voice clips that make girls feel welcomed and supported. This creates a safe, supportive space for users to get advice tailored to their specific situations, moving beyond generalized online content. The platform also provides curated mental health resources and allows users to browse previously generated clips.`,
         technologies: [
             'React',
             'TypeScript',
@@ -51,7 +51,7 @@ export const projects: Project[] = [
             'Firestore',
             'Express.js',
             'Murf.ai',
-            'Llama'
+            'Hyperbolic API'
         ],
         category: 'Hackathon Project',
         github: 'https://github.com/cicadaenjoyer/Girl-Talk-AI',
@@ -59,7 +59,7 @@ export const projects: Project[] = [
         highlights: [
             "Developed at the world's largest AI hackathon, hosted by UC Berkeley.",
             'Created a safe space for women to receive personalized, empathetic AI-generated advice.',
-            "Integrated Llama API for generating personalized text responses tailored to each user's specific concerns.",
+            "Integrated the Hyperbolic API for generating personalized text responses tailored to each user's specific concerns.",
             'Utilized Murf.ai API to create humanized voice clips that make girls feel welcomed and supported.',
             'Engineered thoughtful and age-appropriate AI responses for sensitive topics.',
             'Utilized Firestore for data storage and built a modern frontend with React and TypeScript.'

@@ -53,7 +53,7 @@ export const techIcons: Record<string, ReactNode> = {
     'GPT-3.5 Turbo': <Brain size={ICON_SIZE} className={iconClass} />,
     Firestore: <Database size={ICON_SIZE} className={iconClass} />,
     'Murf.ai': <Mic size={ICON_SIZE} className={iconClass} />,
-    Llama: <Brain size={ICON_SIZE} className={iconClass} />,
+    'Hyperbolic API': <Brain size={ICON_SIZE} className={iconClass} />,
     WhatsApp: <MessageCircle size={ICON_SIZE} className={iconClass} />,
     Maps: <MapPin size={ICON_SIZE} className={iconClass} />,
     Railway: <Train size={ICON_SIZE} className={iconClass} />,
