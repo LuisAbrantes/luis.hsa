@@ -54,6 +54,8 @@ export const PERSON = {
 } as const;
 
 export const PAPERS_URL = 'https://papers.luisabrantes.dev';
+/** English index of the papers hub. This site is in English, so links go here. */
+export const PAPERS_EN_URL = `${PAPERS_URL}/en`;
 
 /** Default social card (1200x630), served from /public. */
 export const DEFAULT_OG_IMAGE = {

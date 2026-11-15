@@ -6,7 +6,7 @@ import { ArrowUpRight, ExternalLink, ChevronDown, Sparkles, MapPin, Award, Layer
 import { timeline } from '@/data/timeline';
 import { fadeInUp, staggerContainer, revealViewport } from '@/lib/motion';
 import portrait from '@/assets/home/luis-penn-engineering.jpg';
-import { PAPERS_URL, PERSON } from '@/data/site';
+import { PAPERS_EN_URL, PERSON } from '@/data/site';
 import { pageMeta, papersNode, profilePageNode } from '@/lib/seo';
 
 // "Papers" is a separate hub on its own subdomain — the Home only links out.
@@ -686,7 +686,7 @@ const Home = () => {
                             </div>
 
                             <a
-                                href={PAPERS_URL}
+                                href={PAPERS_EN_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm sm:text-base whitespace-nowrap shadow-md shadow-white/5"

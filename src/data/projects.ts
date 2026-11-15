@@ -101,7 +101,7 @@ export const projects: Project[] = [
         technologies: ['AI Agents', 'Markdown', 'Claude Code'],
         category: 'AI Application',
         // Private repo (has a privacy-guard) — linked to the public write-up only.
-        demo: 'https://papers.luisabrantes.dev/harness-study',
+        demo: 'https://papers.luisabrantes.dev/en/harness-study',
         highlights: [
             'Designed vendor/model-agnostic "agent harnesses": versioned context layers (profile + skills + memory + workflows)',
             'Monorepo with multiple harnesses (CS study, finance) and a harness-builder that scaffolds new ones via interview',
@@ -119,7 +119,7 @@ export const projects: Project[] = [
             'Publishing Pipeline is the automation behind my technical blog: a fully hands-off path from git push to a published, search-indexable page. On every push, a GitHub Actions CI runs a privacy-guard (failing the build if a forbidden term would leak), regenerates sitemap.xml and robots.txt for SEO, and Vercel deploys the result. Content is authored in Markdown and published bilingually (PT/EN). The goal was to remove every manual step between writing and publishing, so I can focus on the writing itself.',
         technologies: ['GitHub Actions', 'Vercel', 'Markdown'],
         category: 'Automation',
-        demo: 'https://papers.luisabrantes.dev/publishing-pipeline',
+        demo: 'https://papers.luisabrantes.dev/en/publishing-pipeline',
         highlights: [
             'Zero-touch path from git push to a live, SEO-ready page',
             'GitHub Actions CI with a privacy-guard that blocks sensitive terms from leaking',
