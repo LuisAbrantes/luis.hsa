@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import { navLinks } from '@/data/navigation';
 import { socialLinks } from '@/data/socials';
-import { PAPERS_URL, PERSON } from '@/data/site';
+import { PAPERS_EN_URL, PERSON } from '@/data/site';
 
 /**
  * Site footer: internal links for crawlability plus `rel="me"` profile links,
@@ -36,7 +36,7 @@ const Footer = () => (
                     ))}
                     <li>
                         <a
-                            href={PAPERS_URL}
+                            href={PAPERS_EN_URL}
                             className="text-zinc-400 hover:text-white transition-colors"
                         >
                             Papers
