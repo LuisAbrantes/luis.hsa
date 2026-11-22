@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import type { LucideIcon } from 'lucide-react';
 
 /** A portfolio project shown on /projects and on its own /projects/<slug> page. */
 export interface Project {
@@ -7,12 +6,21 @@ export interface Project {
     /** URL segment for the project's own page: /projects/<slug>. */
     slug: string;
     title: string;
+    /** One or two sentences for lists, meta descriptions and structured data. */
     shortDescription: string;
+    /** Body of the project page. A blank line starts a new paragraph. */
     fullDescription: string;
     /** Where/why it was built (event, client, program). Shown under the title. */
     context?: string;
     /** True when built with a team, so the page credits it as a team project. */
     team?: boolean;
+    /**
+     * What Luis did on a team project. Only what the repository history
+     * supports; leave it out when the history does not show a clear part.
+     */
+    role?: string;
+    /** When it was built, from the repository history, e.g. "2025". */
+    year: string;
     technologies: string[];
     category: ProjectCategory;
     /** Public repo URL. Omit for private projects (e.g. linked only via demo). */
@@ -32,43 +40,36 @@ export type ProjectCategory =
     | 'Hackathon Project'
     | 'Web App'
     | 'Python Package'
+    | 'Data Project'
     | 'Community Project';
 
-/** Certificate / academic achievement shown on the /achievements page. */
+/** An honor, activity or course shown on the /achievements page. */
 export interface Certificate {
-    id: number;
+    /** Stable key, also used as the anchor id on the page. */
+    id: string;
     title: string;
-    institution: string;
+    organization: string;
+    /** Display date: a year or a range, e.g. "2025" or "2024–2025". */
     date: string;
-    type: CertificateType;
-    hours?: number;
-    /** Logo path: a file under `public/static/` or an imported asset. Never a remote URL. */
-    image?: string;
-    /** Optional Tailwind object-position class, e.g. "object-bottom". */
-    imagePosition?: string;
+    group: CertificateGroup;
     description?: string;
-    newsArticle?: string;
-    pdfPath?: string;
+    hours?: number;
+    /** Logo under `public/static/`. Only the selected honors show one. */
+    logo?: string;
+    /** Supporting page: an internal route (starts with "/") or an external URL. */
+    link?: { href: string; label: string };
 }
 
-export type CertificateType =
-    | 'courses'
-    | 'honors'
-    | 'extracurricular'
-    | 'events'
-    | 'hackathons';
+/** Sections of the /achievements page, in display order. */
+export type CertificateGroup =
+    | 'selected'
+    | 'leadership'
+    | 'competitions'
+    | 'courses';
 
 /** An entry in the Home page journey timeline. */
 export interface TimelineEntry {
     year: string;
-    description: string;
-}
-
-/** A navigation card on the Home page. */
-export interface NavCard {
-    title: string;
-    path: string;
-    icon: LucideIcon;
     description: string;
 }
 
@@ -101,4 +102,21 @@ export interface Experience {
     highlights?: string[];
     /** Marks an ongoing role (renders a "Current" badge). */
     current?: boolean;
+}
+
+/** A degree or diploma shown on the About page. */
+export interface Education {
+    degree: string;
+    school: string;
+    period: string;
+    gpa: string;
+    /** Says which grade it is and on what scale. */
+    gpaLabel: string;
+    notes: string[];
+}
+
+/** A group of technologies shown on the About page. */
+export interface SkillGroup {
+    title: string;
+    items: string[];
 }

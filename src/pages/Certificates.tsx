@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { Link } from 'react-router';
 import type { MetaFunction } from 'react-router';
-import { motion } from 'framer-motion';
-import { Search } from 'lucide-react';
-import CertificateCard from '@/components/certificates/CertificateCard';
-import CertificateModal from '@/components/certificates/CertificateModal';
-import { certificates } from '@/data/certificates';
-import { staggerContainer, revealViewport } from '@/lib/motion';
+import { ArrowUpRight } from 'lucide-react';
+import Eyebrow from '@/components/ui/Eyebrow';
+import Page from '@/components/layout/Page';
+import PageHeader from '@/components/ui/PageHeader';
+import {
+    certificateGroups,
+    certificates,
+    certificatesIn
+} from '@/data/certificates';
+import { SITE_URL } from '@/data/site';
 import { breadcrumbNode, pageMeta, webPageNode } from '@/lib/seo';
 import type { Certificate } from '@/types';
 
@@ -18,111 +22,173 @@ export const meta: MetaFunction = () =>
             'Honors and certificates of Luis Henrique Abrantes: Google Student Ambassador 2026, UC Berkeley AI Hackathon, PennApps XXV, OBI, UNICAMP FIFE and more.',
         path: '/achievements',
         jsonLd: [
-            webPageNode('CollectionPage', '/achievements', TITLE),
-            breadcrumbNode([{ name: 'Achievements', path: '/achievements' }])
+            webPageNode('CollectionPage', '/achievements', TITLE, {
+                mainEntity: { '@id': `${SITE_URL}/achievements#list` }
+            }),
+            {
+                '@type': 'ItemList',
+                '@id': `${SITE_URL}/achievements#list`,
+                name: 'Honors, activities and courses',
+                numberOfItems: certificates.length,
+                itemListElement: certificates.map((item, index) => ({
+                    '@type': 'ListItem',
+                    position: index + 1,
+                    name: `${item.title}, ${item.organization} (${item.date})`,
+                    url: `${SITE_URL}/achievements#${item.id}`
+                }))
+            },
+            breadcrumbNode([{ name: 'Honors', path: '/achievements' }])
         ]
     });
 
-const categories = ['all', ...new Set(certificates.map(c => c.type))];
+const hoursLabel = (hours: number) => `${hours} ${hours === 1 ? 'hour' : 'hours'}`;
 
-const Certificates = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [selectedCertificate, setSelectedCertificate] =
-        useState<Certificate | null>(null);
-    const [filter, setFilter] = useState('all');
+/** Internal routes use the client router; everything else opens in a new tab. */
+const SupportingLink = ({ link }: { link: NonNullable<Certificate['link']> }) => {
+    const className =
+        'inline-flex items-center gap-1 text-sm text-zinc-300 underline underline-offset-4 decoration-zinc-700 hover:text-white hover:decoration-white transition-colors';
 
-    const filteredCertificates = certificates.filter(cert => {
-        const term = searchTerm.toLowerCase();
-        const matchesSearch =
-            cert.title.toLowerCase().includes(term) ||
-            cert.institution.toLowerCase().includes(term) ||
-            (cert.description?.toLowerCase().includes(term) ?? false);
-
-        const matchesFilter = filter === 'all' || cert.type === filter;
-
-        return matchesSearch && matchesFilter;
-    });
-
-    return (
-        <section className="min-h-screen bg-black pt-40 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
-            <div className="max-w-7xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-center mb-12"
-                >
-                    <h1 className="text-4xl font-light text-white mb-4 tracking-tight">
-                        Academic Achievements
-                    </h1>
-                    <p className="text-gray-400 font-light max-w-2xl mx-auto mb-8">
-                        My qualifications, certifications, and extracurricular
-                        activities.
-                    </p>
-
-                    <div className="relative max-w-md mx-auto mb-8">
-                        <input
-                            type="text"
-                            placeholder="Search achievements..."
-                            value={searchTerm}
-                            onChange={e => setSearchTerm(e.target.value)}
-                            className="w-full bg-transparent border border-gray-800 rounded-full py-3 pl-12 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-white focus:ring-0 transition-colors font-light"
-                        />
-                        <Search
-                            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"
-                            size={18}
-                        />
-                    </div>
-
-                    <div className="flex justify-center gap-3 flex-wrap">
-                        {categories.map(category => (
-                            <button
-                                key={category}
-                                type="button"
-                                onClick={() => setFilter(category)}
-                                className={`px-5 py-2 rounded-full text-sm font-light transition-all duration-300 border capitalize ${
-                                    filter === category
-                                        ? 'bg-white text-black border-white'
-                                        : 'bg-transparent text-gray-400 border-gray-800 hover:border-gray-600 hover:text-white'
-                                }`}
-                            >
-                                {category}
-                            </button>
-                        ))}
-                    </div>
-                </motion.div>
-
-                <motion.div
-                    key={`${filter}-${searchTerm}`}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                    variants={staggerContainer}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={revealViewport}
-                >
-                    {filteredCertificates.map(cert => (
-                        <CertificateCard
-                            key={cert.id}
-                            certificate={cert}
-                            onSelect={setSelectedCertificate}
-                        />
-                    ))}
-                </motion.div>
-
-                {filteredCertificates.length === 0 && (
-                    <div className="text-center py-12">
-                        <p className="text-gray-500 font-light">
-                            No achievements found matching your criteria.
-                        </p>
-                    </div>
-                )}
-
-                <CertificateModal
-                    certificate={selectedCertificate}
-                    onClose={() => setSelectedCertificate(null)}
-                />
-            </div>
-        </section>
+    return link.href.startsWith('/') ? (
+        <Link to={link.href} className={className}>
+            {link.label}
+            <ArrowUpRight size={14} aria-hidden="true" />
+        </Link>
+    ) : (
+        <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={className}
+        >
+            {link.label}
+            <ArrowUpRight size={14} aria-hidden="true" />
+        </a>
     );
 };
+
+/** A selected honor: large title, logo, full description. */
+const SelectedHonor = ({ item }: { item: Certificate }) => (
+    <li
+        id={item.id}
+        className="scroll-mt-24 grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-3 py-8 sm:py-10 border-t border-zinc-800/80"
+    >
+        <p className="md:col-span-2 text-sm font-mono text-zinc-500 md:pt-1.5">
+            {item.date}
+        </p>
+        <div className="md:col-span-10 flex items-start gap-5">
+            <div className="flex-1 space-y-2.5">
+                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
+                    {item.title}
+                </h3>
+                <p className="text-sm sm:text-base text-zinc-400 font-light">
+                    {item.organization}
+                </p>
+                {item.description && (
+                    <p className="text-sm sm:text-base text-zinc-300 font-light leading-relaxed max-w-2xl">
+                        {item.description}
+                    </p>
+                )}
+                {item.link && <SupportingLink link={item.link} />}
+            </div>
+            {item.logo && (
+                <img
+                    src={item.logo}
+                    alt=""
+                    width={56}
+                    height={56}
+                    loading="lazy"
+                    draggable={false}
+                    className="hidden sm:block w-12 h-12 lg:w-14 lg:h-14 object-contain flex-shrink-0 opacity-90 select-none pointer-events-none"
+                />
+            )}
+        </div>
+    </li>
+);
+
+/** A regular entry: one line of title, one of context, optional note. */
+const HonorRow = ({ item }: { item: Certificate }) => (
+    <li
+        id={item.id}
+        className="scroll-mt-24 grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-1.5 py-5 border-t border-zinc-900"
+    >
+        <p className="md:col-span-2 text-sm font-mono text-zinc-500 md:pt-0.5">
+            {item.date}
+        </p>
+        <div className="md:col-span-10 space-y-1.5">
+            <h3 className="text-base sm:text-lg font-semibold text-white tracking-tight leading-snug">
+                {item.title}
+            </h3>
+            <p className="text-sm text-zinc-400 font-light">
+                {item.organization}
+                {item.hours !== undefined && ` · ${hoursLabel(item.hours)}`}
+            </p>
+            {item.description && (
+                <p className="text-sm text-zinc-300 font-light leading-relaxed max-w-2xl">
+                    {item.description}
+                </p>
+            )}
+            {item.link && <SupportingLink link={item.link} />}
+        </div>
+    </li>
+);
+
+const Certificates = () => (
+    <Page>
+            <PageHeader
+                eyebrow="Honors"
+                title="Honors, hackathons and certificates"
+            >
+                <p>
+                    The results I would put first, followed by the
+                    leadership, competitions and coursework behind them.
+                </p>
+            </PageHeader>
+
+            <nav
+                aria-label="Sections"
+                className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm font-mono text-zinc-300"
+            >
+                {certificateGroups.map(group => (
+                    <a
+                        key={group.id}
+                        href={`#${group.id}`}
+                        className="underline underline-offset-4 decoration-zinc-700 hover:text-white hover:decoration-white transition-colors"
+                    >
+                        {group.title}
+                        <span className="text-zinc-500">
+                            {' '}
+                            {certificatesIn(group.id).length}
+                        </span>
+                    </a>
+                ))}
+            </nav>
+
+            {certificateGroups.map(group => (
+                <section
+                    key={group.id}
+                    id={group.id}
+                    aria-labelledby={`${group.id}-title`}
+                    className="scroll-mt-24 mt-16 sm:mt-20"
+                >
+                    <Eyebrow
+                        as="h2"
+                        tone={group.id === 'selected' ? 'accent' : 'muted'}
+                        className="mb-6"
+                    >
+                        <span id={`${group.id}-title`}>{group.title}</span>
+                    </Eyebrow>
+                    <ul>
+                        {certificatesIn(group.id).map(item =>
+                            group.id === 'selected' ? (
+                                <SelectedHonor key={item.id} item={item} />
+                            ) : (
+                                <HonorRow key={item.id} item={item} />
+                            )
+                        )}
+                    </ul>
+                </section>
+            ))}
+    </Page>
+);
 
 export default Certificates;

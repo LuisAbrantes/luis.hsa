@@ -14,7 +14,7 @@ const Footer = () => (
                 <p className="text-sm sm:text-base font-semibold text-white tracking-tight">
                     {PERSON.name}
                 </p>
-                <p className="text-xs font-mono text-zinc-500">
+                <p className="text-xs font-mono text-zinc-500 sm:whitespace-nowrap">
                     {PERSON.jobTitle}
                 </p>
             </div>

@@ -7,6 +7,8 @@ export default [
     route('projects/:slug', 'pages/ProjectDetail.tsx'),
     route('achievements', 'pages/Certificates.tsx'),
     route('contact', 'pages/Contact.tsx'),
+    route('resume', 'pages/Resume.tsx'),
     route('sitemap.xml', 'pages/sitemap.ts'),
+    route('llms.txt', 'pages/llms.ts'),
     route('*', 'pages/NotFound.tsx')
 ] satisfies RouteConfig;

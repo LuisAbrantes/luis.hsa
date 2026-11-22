@@ -62,8 +62,14 @@ for (const canonical of canonicals) {
 }
 
 await rename(join(out, '__spa-fallback.html'), join(out, '404.html'));
-// Loader payload for the sitemap route; nothing ever requests it.
+// Loader payloads for the text routes; nothing ever requests them.
 await rm(join(out, 'sitemap.xml.data'), { force: true });
+await rm(join(out, 'llms.txt.data'), { force: true });
+await access(join(out, 'llms.txt')).catch(() => fail('llms.txt was not generated'));
+// The résumé PDF is committed in public/ (see scripts/build-resume.mjs).
+await access(join(out, 'luis-henrique-abrantes-resume.pdf')).catch(() =>
+    fail('public/luis-henrique-abrantes-resume.pdf is missing; run `npm run resume`')
+);
 
 console.log(
     `postbuild: ${pages.length} pages verified (title, description, unique canonical, sitemap entry, local images); wrote 404.html`

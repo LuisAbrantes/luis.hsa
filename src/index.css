@@ -15,3 +15,193 @@ img {
     -ms-user-select: none;
     pointer-events: auto;
 }
+
+/* Page background, so overscroll and short pages never flash a lighter tone. */
+html {
+    background-color: #07080b;
+    color-scheme: dark;
+}
+
+/* Keyboard focus: one visible ring everywhere, none for mouse clicks. */
+:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.75);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* First tab stop on every page; visible only while focused. */
+.skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    padding: 0.625rem 1rem;
+    border-radius: 0.75rem;
+    background: #fff;
+    color: #000;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+    transform: translateY(0);
+}
+
+/* Respect the system "reduce motion" setting for CSS-driven animation. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ── Résumé (/resume) ──────────────────────────────────────────────────
+   A white sheet on screen; the whole page in print. Sizes are in points so
+   the PDF generated from this page fits one US Letter page. */
+.resume-sheet {
+    padding: 0.45in 0.55in 0.3in;
+    font-size: 8.6pt;
+    line-height: 1.31;
+    color: #18181b;
+}
+
+.resume-sheet a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.resume-name {
+    font-size: 20pt;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.resume-title {
+    font-size: 11pt;
+    font-weight: 500;
+    margin-top: 2pt;
+}
+
+.resume-contacts {
+    margin-top: 3pt;
+    font-size: 8.6pt;
+    color: #3f3f46;
+}
+
+.resume-section-title {
+    margin-top: 7pt;
+    margin-bottom: 3pt;
+    padding-bottom: 2pt;
+    border-bottom: 0.75pt solid #d4d4d8;
+    font-family: 'Geist Mono', monospace;
+    font-size: 8pt;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #52525b;
+}
+
+.resume-entry + .resume-entry {
+    margin-top: 5pt;
+}
+
+.resume-entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12pt;
+}
+
+.resume-entry-head h3 {
+    font-size: 9.6pt;
+    font-weight: 600;
+}
+
+.resume-entry-head span {
+    flex-shrink: 0;
+    font-family: 'Geist Mono', monospace;
+    font-size: 8.4pt;
+    color: #52525b;
+}
+
+.resume-muted {
+    font-size: 8.5pt;
+    color: #52525b;
+}
+
+.resume-sheet ul {
+    margin-top: 1.5pt;
+    padding-left: 11pt;
+    list-style: disc;
+}
+
+.resume-sheet li + li {
+    margin-top: 0.5pt;
+}
+
+.resume-skills > div {
+    display: flex;
+    gap: 8pt;
+}
+
+.resume-skills dt {
+    flex: 0 0 1.25in;
+    font-weight: 600;
+}
+
+@media (max-width: 640px) {
+    .resume-sheet {
+        padding: 1.25rem;
+    }
+
+    .resume-entry-head {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .resume-skills > div {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+@page {
+    size: letter;
+    margin: 0;
+}
+
+@media print {
+    html,
+    body,
+    .site-shell,
+    .resume-root {
+        background: #fff !important;
+    }
+
+    .site-shell {
+        min-height: 0 !important;
+    }
+
+    .site-nav,
+    .skip-link,
+    footer,
+    .resume-toolbar {
+        display: none !important;
+    }
+
+    .resume-root {
+        min-height: 0 !important;
+        padding: 0 !important;
+    }
+
+    .resume-sheet {
+        max-width: none !important;
+        border-radius: 0;
+    }
+}

@@ -11,10 +11,10 @@ import {
     Youtube
 } from 'lucide-react';
 import NotFoundContent from '@/components/layout/NotFoundContent';
+import Page from '@/components/layout/Page';
 import { getProject, projects } from '@/data/projects';
-import { projectImages } from '@/data/projectImages';
+import { projectScreenshots, projectShareImage } from '@/data/projectImages';
 import { PERSON } from '@/data/site';
-import { techIcons } from '@/lib/techIcons';
 import { breadcrumbNode, pageMeta, projectNode, truncate } from '@/lib/seo';
 import type { Project } from '@/types';
 
@@ -31,14 +31,14 @@ export const meta: MetaFunction = ({ params, location }) => {
     }
 
     const path = `/projects/${project.slug}`;
-    const image = projectImages[project.slug];
+    const image = projectShareImage(project.slug);
 
     return pageMeta({
         title: `${project.title} | ${project.category} by ${PERSON.name}`,
         description: truncate(project.shortDescription),
         path,
         ogType: 'article',
-        image: { path: image, alt: `${project.title} screenshot` },
+        image: { path: image, alt: `${project.title} cover` },
         jsonLd: [
             projectNode(project, image),
             breadcrumbNode([
@@ -82,10 +82,10 @@ const ProjectDetail = () => {
     const next = projects[index + 1];
     const links = projectLinks(project);
     const [primaryLink, ...otherLinks] = links;
+    const screenshot = projectScreenshots[project.slug];
 
     return (
-        <article className="bg-[#07080b] text-[#EDEDED] min-h-screen pt-28 sm:pt-36 pb-24 px-4 sm:px-6 lg:px-8 font-sans selection:bg-zinc-700 selection:text-white">
-            <div className="max-w-5xl mx-auto">
+        <Page as="article">
                 <nav
                     aria-label="Breadcrumb"
                     className="text-xs sm:text-sm font-mono text-zinc-500"
@@ -157,23 +157,51 @@ const ProjectDetail = () => {
                     )}
                 </header>
 
-                <figure className="mt-12 aspect-video overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-950">
-                    <img
-                        src={projectImages[project.slug]}
-                        alt={`${project.title} screenshot`}
-                        draggable={false}
-                        className="w-full h-full object-cover select-none pointer-events-none"
-                    />
-                </figure>
+                {/* Only a real capture of the product is shown. A project
+                    without one stays text-first; its cover art is used for
+                    link previews only. */}
+                {screenshot && (
+                    <figure className="mt-12 space-y-3 max-w-5xl">
+                        <div className="overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-950">
+                            <img
+                                src={screenshot.src}
+                                alt={screenshot.alt}
+                                width={screenshot.width}
+                                height={screenshot.height}
+                                draggable={false}
+                                className="w-full h-auto select-none pointer-events-none"
+                            />
+                        </div>
+                        <figcaption className="text-xs sm:text-sm font-mono text-zinc-500">
+                            {screenshot.caption}
+                        </figcaption>
+                    </figure>
+                )}
 
                 <div className="mt-14 border-t border-zinc-800/80 pt-12 grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16">
                     <div className="md:col-span-8 space-y-12">
                         <section className="space-y-4">
                             <h2 className={sectionLabel}>Overview</h2>
-                            <p className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed">
-                                {project.fullDescription}
-                            </p>
+                            {project.fullDescription
+                                .split('\n\n')
+                                .map(paragraph => (
+                                    <p
+                                        key={paragraph}
+                                        className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed"
+                                    >
+                                        {paragraph}
+                                    </p>
+                                ))}
                         </section>
+
+                        {project.role && (
+                            <section className="space-y-4">
+                                <h2 className={sectionLabel}>My part</h2>
+                                <p className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed">
+                                    {project.role}
+                                </p>
+                            </section>
+                        )}
 
                         <section className="space-y-4">
                             <h2 className={sectionLabel}>Key highlights</h2>
@@ -198,13 +226,19 @@ const ProjectDetail = () => {
                                 {project.technologies.map(tech => (
                                     <li
                                         key={tech}
-                                        className="flex items-center gap-2.5 text-sm text-zinc-300 font-light"
+                                        className="text-sm text-zinc-300 font-light"
                                     >
-                                        {techIcons[tech]}
-                                        <span>{tech}</span>
+                                        {tech}
                                     </li>
                                 ))}
                             </ul>
+                        </section>
+
+                        <section className="space-y-4">
+                            <h2 className={sectionLabel}>Year</h2>
+                            <p className="text-sm text-zinc-300 font-light">
+                                {project.year}
+                            </p>
                         </section>
 
                         <section className="space-y-4">
@@ -275,8 +309,7 @@ const ProjectDetail = () => {
                         </Link>
                     )}
                 </nav>
-            </div>
-        </article>
+        </Page>
     );
 };
 

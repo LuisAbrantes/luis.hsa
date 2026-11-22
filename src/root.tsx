@@ -10,7 +10,7 @@ import {
     useRouteError
 } from 'react-router';
 import type { LinksFunction, MetaFunction } from 'react-router';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, MotionConfig } from 'framer-motion';
 import './index.css';
 import './App.css';
 import NavBar from '@/components/layout/NavBar';
@@ -72,9 +72,12 @@ export function Layout({ children }: { children: ReactNode }) {
 }
 
 const Shell = ({ children }: { children: ReactNode }) => (
-    <div className="min-h-screen bg-dark-primary text-dark-text">
+    <div className="site-shell min-h-screen bg-[#07080b] text-[#EDEDED]">
+        <a href="#content" className="skip-link">
+            Skip to content
+        </a>
         <NavBar />
-        {children}
+        <div id="content">{children}</div>
     </div>
 );
 
@@ -83,15 +86,20 @@ export default function App() {
     const outlet = useOutlet();
 
     return (
-        <Shell>
-            {/* initial={false}: the first paint is the pre-rendered HTML, so the
-                enter animation only plays on client-side navigations. */}
-            <AnimatePresence mode="wait" initial={false}>
-                <PageTransition key={location.pathname}>
-                    {outlet}
-                </PageTransition>
-            </AnimatePresence>
-        </Shell>
+        // reducedMotion="user": visitors who ask their system for less motion
+        // get opacity changes without the movement.
+        <MotionConfig reducedMotion="user">
+            <Shell>
+                {/* initial={false}: the first paint is the pre-rendered HTML,
+                    so the enter animation only plays on client-side
+                    navigations. */}
+                <AnimatePresence mode="wait" initial={false}>
+                    <PageTransition key={location.pathname}>
+                        {outlet}
+                    </PageTransition>
+                </AnimatePresence>
+            </Shell>
+        </MotionConfig>
     );
 }
 

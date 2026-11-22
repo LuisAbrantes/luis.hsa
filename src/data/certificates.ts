@@ -1,320 +1,291 @@
-import type { Certificate } from '@/types';
-import JECETImage from '@/assets/academicAchievements/JECET.jpg';
+import type { Certificate, CertificateGroup } from '@/types';
 
+/**
+ * Honors, activities and courses for the /achievements page.
+ *
+ * Writing rules: state what happened, with the numbers that exist. No
+ * superlatives about the organizer, and nothing a reader could not check.
+ */
 export const certificates: Certificate[] = [
+    // ── Selected honors ────────────────────────────────────────────────
     {
-        id: 0,
-        title: 'Google Student Ambassador 2026',
-        institution: 'Google',
+        id: 'google-student-ambassador',
+        title: 'Google Student Ambassador',
+        organization: 'Google',
         date: '2026',
-        type: 'honors',
-        image: '/static/logos/google.svg',
+        group: 'selected',
+        logo: '/static/logos/google.svg',
         description:
-            'Selected as a Google Student Ambassador for the 2026 global cohort. Acting as a campus lead and liaison between Google and the academic community, driving AI technology adoption, developer workshops, and student initiatives.'
+            'Selected for the 2026 global cohort. The role is campus lead and liaison between Google and the student community, promoting AI tools through developer workshops and student initiatives.'
     },
     {
-        id: 1,
+        id: 'uc-berkeley-ai-hackathon',
         title: 'UC Berkeley AI Hackathon',
-        institution: 'University of California Berkeley - Cal Hacks',
+        organization: 'Cal Hacks, University of California, Berkeley',
         date: '2025',
-        type: 'hackathons',
+        group: 'selected',
         hours: 40,
-        image: '/static/logos/berkeley.svg',
+        logo: '/static/logos/berkeley.svg',
         description:
-            'Competed with an international team in the biggest AI hackathon, among 1,300+ hackers tackling real-world challenges over 2 days. Strengthened problem-solving skills and collaboration while developing AI-based solutions for real use cases.'
+            'Built GirlTalk AI with an international team of four on the UC Berkeley campus, among more than 1,000 participants over two days.',
+        link: { href: '/projects/girltalk-ai', label: 'GirlTalk AI project' }
     },
     {
-        id: 2,
-        title: 'PennApps XXV - Hackathon',
-        institution: 'University of Pennsylvania - Penn Engineering',
+        id: 'pennapps-xxv',
+        title: 'PennApps XXV',
+        organization: 'Penn Engineering, University of Pennsylvania',
         date: '2024',
-        type: 'hackathons',
+        group: 'selected',
         hours: 60,
-        image: '/static/certificates/pennapps-xxv.png',
+        logo: '/static/logos/upenn.svg',
         description:
-            'Participated in the largest student-run hackathon, among 360+ hackers solving real-world challenges over 3 days. Improved teamwork, rapid prototyping and pitching of software solutions to judges and peers.'
+            'Built SpeakScribe with a team in Philadelphia, among more than 360 participants over three days. It was my first academic trip abroad, paid for with a fundraiser I organized.',
+        link: { href: '/projects/speakscribe', label: 'SpeakScribe project' }
     },
     {
-        id: 3,
-        title: 'Introduction to Artificial Intelligence',
-        institution:
-            'Federal Institute of Science and Technology of São Paulo - IFSP',
+        id: 'obi',
+        title: 'Brazilian Olympiad in Informatics (OBI), second phase',
+        organization: 'Organized by the University of Campinas (UNICAMP)',
         date: '2024',
-        type: 'courses',
-        hours: 80,
-        image: '/static/certificates/openai.jpg'
+        group: 'selected',
+        logo: '/static/logos/unicamp.png',
+        description:
+            "Qualified for the second of three phases of Brazil's national programming olympiad.",
+        link: {
+            href: 'https://jcr.ifsp.edu.br/index.php/ultimas-noticias/2381-alunos-do-curso-tecnico-em-informatica-do-campus-jacarei-sao-aprovados-para-a-segunda-fase-da-olimpiada-brasileira-de-informatica',
+            label: 'IFSP news coverage (Portuguese)'
+        }
     },
     {
-        id: 4,
-        title: 'Quantum Computing - Physics on Vacation - FIFE',
-        institution:
-            'Physics of Quantum Devices Lab - Gleb Wataghin Physics Institute - University of Campinas - UNICAMP',
+        id: 'unicamp-fife-quantum-computing',
+        title: 'Quantum Computing, Física nas Férias (FIFE)',
+        organization:
+            'Physics of Quantum Devices Lab, Gleb Wataghin Physics Institute, UNICAMP',
         date: '2025',
-        type: 'courses',
+        group: 'selected',
         hours: 47,
-        image: '/static/certificates/fisica-de-ferias-unicamp.png',
+        logo: '/static/logos/unicamp.png',
         description:
-            "An advanced course on Quantum Computing taught directly by the leading department in the Southern Hemisphere, alongside the first quantum computer in the region. I learned fundamental quantum computing concepts and deepened my knowledge in superconducting qubit creation, including advanced concepts such as Josephson Junctions and quantum circuit design. I had the privilege of witnessing the creation of Latin America's second qubit, gaining hands-on experience with cutting-edge quantum technologies at one of the most prestigious quantum research facilities in South America. With a highly competitive 5% acceptance rate, this program represents a significant academic achievement."
+            'A 47-hour program on quantum computing fundamentals and superconducting qubits, including Josephson junctions and quantum circuit design. About 5% of applicants were accepted. I had attended the cosmology edition the year before.'
     },
     {
-        id: 5,
-        title: 'Speaker: Hackathons and the Path to American Universities',
-        institution: 'IFSP & JECET Congress',
-        date: '2024 2025',
-        type: 'honors',
-        description:
-            'Invited speaker (3 times) presenting "Hackathons e o caminho para universidades americanas" to Brazilian technical and undergraduate students at public schools. Delivered presentations at the JECET Congress (Jornada de Ensino, Ciência, Extensão e Tecnologia) and other venues, reaching 100+ attendees. The presentation covers practical guidance on applying to foreign universities, participating in international hackathons, and building a strong academic profile through LinkedIn optimization, GitHub portfolio development, essay writing, and personal branding strategies. This initiative helps democratize access to international educational opportunities and inspires students to pursue global academic experiences.',
-        image: JECETImage
-    },
-    {
-        id: 6,
-        title: 'OBI - Olimpiada Brasileira de Informatica - 2 out of 3 stages',
-        institution: 'University of Campinas - UNICAMP',
-        date: '2024',
-        type: 'honors',
-        hours: 8,
-        description:
-            "Advanced to the second phase of the Brazilian Olympiad of Informatics (OBI), the most prestigious and difficult programming competition in Latin America, organized by UNICAMP. This highly competitive event evaluates programming skills, logical reasoning, and problem-solving abilities across three challenging phases. My achievement was featured in a news article by IFSP Jacareí campus, highlighting the accomplishment.\n\n🏆 Competition Performance (2 out of 3 stages completed):\n• First Phase: Scored 180/400 points (exactly meeting the 180-point cut-off)\n• Second Phase: Scored 300/400 points (cut-off was 400 points)\n\nThis performance demonstrates strong programming fundamentals and problem-solving skills in Latin America's most challenging and prestigious technical competition.",
-        image: '/static/certificates/obi-ifsp.jpg',
-        imagePosition: 'object-bottom',
-        newsArticle:
-            'https://jcr.ifsp.edu.br/index.php/ultimas-noticias/2381-alunos-do-curso-tecnico-em-informatica-do-campus-jacarei-sao-aprovados-para-a-segunda-fase-da-olimpiada-brasileira-de-informatica'
-    },
-    {
-        id: 7,
-        title: 'Building a Brain in 10 Minutes',
-        institution: 'NVIDIA Deep Learning Institute (DLI)',
+        id: 'obli-gold',
+        title: 'National English Language Olympiad (OBLI), gold medal',
+        organization: 'Seleta Educação',
         date: '2025',
-        type: 'courses',
-        hours: 0.5,
-        image: '/static/certificates/nvidia.jpg'
-    },
-    {
-        id: 8,
-        title: 'Getting Started with Machine Learning with PyTorch',
-        institution: 'IBM Skills Network - Cognitive Class',
-        date: '2025',
-        type: 'courses',
-        hours: 1,
-        image: '/static/certificates/ibm.png'
-    },
-    {
-        id: 9,
-        title: 'Representative of the organizing committee for computer events at IFSP',
-        institution: 'IFSP',
-        date: '2024 2025',
-        type: 'extracurricular',
+        group: 'selected',
         description:
-            'Led the organization of programming events at IFSP, such as a marathon with 55 participants where I managed logistics, resolved technical issues, and secured sponsorships from companies like GitHub, Cebras, and Tune.AI. Inspired students to explore programming creatively, addressing complaints about monotonous classroom experiences. Currently, I am conceptualizing a week-long hackathon modeled on PennApps, aiming to create an engaging and impactful learning experience for the campus community.',
-        image: '/static/logos/ifsp.svg'
+            'Gold medal, top 2% nationally. Before that, two bronze medals in the 2024 editions (top 8%).'
     },
     {
-        id: 10,
-        title: 'National English Language Olympiad - OBLI - Gold Medal',
-        institution: 'Seleta Educação',
-        date: '2025',
-        type: 'honors',
-        hours: 3,
-        image: '/static/certificates/obli.png',
+        id: 'speaker-hackathons-us-universities',
+        title: 'Invited speaker, three times',
+        organization: 'JECET Congress and IFSP',
+        date: '2024–2025',
+        group: 'selected',
+        logo: '/static/logos/ifsp.svg',
         description:
-            'Achieved Gold Medal performance (Top 2%) in the National English Language Olympiad, demonstrating exceptional English language proficiency and ranking among the top performers nationwide.'
+            'Gave the talk "Hackathons and the path to American universities" to more than 100 technical and undergraduate students at public schools, including at the JECET Congress. It covers applying to universities abroad, joining international hackathons, and building a public profile on GitHub and LinkedIn.'
+    },
+
+    // ── Leadership and community ───────────────────────────────────────
+    {
+        id: 'ifsp-programming-events',
+        title: 'Organizing committee for programming events',
+        organization: 'IFSP',
+        date: '2024–2025',
+        group: 'leadership',
+        description:
+            'Led the organization of campus programming events, including a marathon with 55 participants: logistics, technical support, and sponsorships from companies including GitHub and Tune.AI.'
     },
     {
-        id: 11,
-        title: 'Coorganized the 1st National English Language Olympiad - OBLI in my Campus',
-        institution:
-            'Institute of Federal Education, Science and Technology of São Paulo',
+        id: 'obli-campus-organizer',
+        title: 'Brought the English Olympiad (OBLI) to my campus',
+        organization: 'IFSP',
         date: '2024',
-        type: 'extracurricular',
+        group: 'leadership',
         description:
-            'Discovered and independently organized the OBLI event at IFSP, engaging over 300 community members, including students, teachers, and staff. Secured partnerships with institutions like Kumon and Yázigi to reward medalists and participants. Coordinated logistics, supported students with technical issues during the competition, and shared study methods. Over two years, this initiative celebrated approximately 50 medalists, significantly promoting academic excellence in the community.',
-        image: '/static/certificates/obli.png'
+            'Discovered the olympiad and co-organized its first edition on campus: more than 300 students, teachers and staff took part, and Kumon and Yázigi provided prizes. Over two years, about 50 participants earned medals.'
     },
     {
-        id: 12,
-        title: 'Class Leader',
-        institution:
-            'Federal Institute of Science and Technology of São Paulo - IFSP',
-        date: '2020 2022 2023 2024 2025',
-        type: 'honors',
+        id: 'class-leader',
+        title: 'Class leader, five school years',
+        organization: 'IFSP and my previous school',
+        date: '2020–2025',
+        group: 'leadership',
         description:
-            'Elected as class leader with 80%+ votes in 2020 and 2022, achieving 100% vote confidence up to the 12th grade. This consistent leadership recognition reflects strong peer trust, communication skills, and ability to represent and advocate for classmates throughout my academic journey.',
-        image: '/static/certificates/ifsp-wordmark.png'
+            'Elected by classmates in 2020 and every year from 2022 to 2025, with between 80% and 100% of the vote.'
     },
     {
-        id: 13,
-        title: 'Cosmology - Physics on Vacation - FIFE',
-        institution: 'University of Campinas - UNICAMP',
+        id: 'arinter-ambassador',
+        title: 'International Relations Office (ARINTER) ambassador',
+        organization: 'IFSP',
+        date: '2024–2025',
+        group: 'leadership',
+        description:
+            'Work on fair access to international academic exchange for low-income students: roundtables with alumni and international students, and video calls for English practice.'
+    },
+    {
+        id: 'the-dream-school-ambassador',
+        title: 'Student ambassador',
+        organization: 'The Dream School',
         date: '2024',
-        type: 'courses',
-        hours: 47,
-        image: '/static/certificates/fisica-de-ferias-unicamp.png',
+        group: 'leadership',
         description:
-            'An intensive course on Cosmology where I explored fundamental concepts of the universe, including dark matter, black holes, and other related phenomena. This program provided deep insights into modern astrophysics and cosmological theories. With a highly competitive 5% acceptance rate, this program represents a significant academic achievement.'
+            'Represented students at a preparation program for studying abroad: joined discussions on its classes and preparation system, and helped recruit students and ambassadors.'
     },
     {
-        id: 14,
-        title: 'International Relations Consultancy (ARINTER) of IFSP Ambassador',
-        institution: 'ARINTER IFSP',
-        date: '2024 2025',
-        type: 'extracurricular',
+        id: 'gittogether-sjc',
+        title: 'GitTogether SJC community member',
+        organization: 'GitHub community, São José dos Campos',
+        date: '2024–2025',
+        group: 'leadership',
         description:
-            'As an ARINTER ambassador, I work to promote fair and transparent international academic exchanges, focusing on opportunities for low-income students. Current projects include organizing roundtables with alumni to share experiences and another roundtable with international students, facilitating international video calls for English practice.',
-        image: '/static/certificates/arinter-ifsp.jpg'
+            'Took part in workshops and community programming projects with the local GitHub community.'
+    },
+
+    // ── Competitions and exams ─────────────────────────────────────────
+    {
+        id: 'onc',
+        title: 'National Science Olympiad (ONC)',
+        organization: 'Ministry of Science, Technology and Innovation (MCTI)',
+        date: '2024',
+        group: 'competitions',
+        description: 'Qualified for the second and final phase.',
+        link: {
+            href: 'https://jcr.ifsp.edu.br/index.php/component/content/article/17-ultimas-noticias/2389-alunos-do-campus-jacarei-se-classificam-para-a-2-fase-da-olimpiada-nacional-de-ciencias',
+            label: 'IFSP news coverage (Portuguese)'
+        }
     },
     {
-        id: 15,
+        id: 'senai-grand-prix',
         title: 'Grand Prix SENAI Hackathon',
-        institution: 'National Service for Industrial Learning - SENAI',
+        organization: 'National Service for Industrial Learning (SENAI)',
         date: '2024',
-        type: 'hackathons',
-        hours: 40,
-        image: '/static/certificates/senai-grand-prix.png'
+        group: 'competitions',
+        hours: 40
     },
     {
-        id: 16,
-        title: 'ONC - Nacional Science Olympiad - 2 out of 2 stages',
-        institution: 'Ministry of Science, Technology and Innovation (MCTI)',
-        date: '2024',
-        type: 'honors',
-        hours: 8,
-        description:
-            "Advanced to the second phase of the National Science Olympiad (ONC), the most competitive and prestigious science competition in Brazil, organized by the Federal Government through the Ministry of Science, Technology and Innovation (MCTI). This highly selective competition tests knowledge in various scientific fields including physics, chemistry, and biology across two rigorous phases. My achievement was recognized in a news article published by Instituto Federal de São Paulo - Jacareí campus.\n\n🏆 Competition Performance (2 out of 2 stages completed):\nSuccessfully completed both phases of Brazil's most prestigious science olympiad, demonstrating strong multidisciplinary scientific knowledge and analytical skills.",
-        image: '/static/certificates/onc.jpg',
-        imagePosition: 'object-bottom',
-        newsArticle:
-            'https://jcr.ifsp.edu.br/index.php/component/content/article/17-ultimas-noticias/2389-alunos-do-campus-jacarei-se-classificam-para-a-2-fase-da-olimpiada-nacional-de-ciencias'
+        id: 'onhb',
+        title: 'Brazilian National History Olympiad (ONHB)',
+        organization: 'Organized by the University of Campinas (UNICAMP)',
+        date: '2023',
+        group: 'competitions',
+        description: 'Reached the third of four phases.'
     },
     {
-        id: 17,
-        title: "TypeScript: The Complete Developer's Guide",
-        institution: 'Stephen Grider - Udemy',
-        date: '2025',
-        type: 'courses',
-        hours: 27,
-        image: '/static/certificates/typescript.svg',
-        description:
-            'Mastered TypeScript by learning popular design patterns and building complex projects. This comprehensive bestseller course covered advanced TypeScript concepts, integration with React and Express, and practical application of design patterns in real-world scenarios.'
-    },
-    {
-        id: 18,
-        title: 'National English Language Olympiad - OBLI - Bronze Medal 1',
-        institution: 'Seleta Educação',
-        date: '2024.1',
-        type: 'honors',
-        hours: 3,
-        image: '/static/certificates/obli.png',
-        description:
-            'Achieved Bronze Medal performance (Top 8%) in the National English Language Olympiad, demonstrating strong English language proficiency.'
-    },
-    {
-        id: 19,
-        title: 'National English Language Olympiad - OBLI - Bronze Medal 2',
-        institution: 'Seleta Educação',
-        date: '2024.2',
-        type: 'honors',
-        hours: 3,
-        image: '/static/certificates/obli.png',
-        description:
-            'Achieved Bronze Medal performance (Top 8%) in the National English Language Olympiad, demonstrating strong English language proficiency.'
-    },
-    {
-        id: 20,
-        title: 'GitTogether SJC Community Member',
-        institution: 'GitHub Community',
-        date: '2024 2025',
-        type: 'extracurricular',
-        description:
-            'Played an active role in the GitHub SJC Community, leading the ideation and implementation of programming projects and participating in workshops. Currently, I am preparing to expand this impact by hosting events for my school, combining community resources and partnerships with prominent education companies such as Alura and FIAP to inspire the next generation of programmers.',
-        image: '/static/certificates/github.png'
-    },
-    {
-        id: 21,
-        title: 'Programming Every Day',
-        institution: 'GitHub',
-        date: '2025',
-        type: 'extracurricular',
-        description:
-            'Committed to continuous learning through daily programming activities on GitHub, contributing to open-source projects and developing personal initiatives. This consistent engagement has allowed me to explore various technologies, solve real-world challenges, and grow as a programmer through collaboration with other developers.',
-        image: '/static/certificates/github.png'
-    },
-    {
-        id: 22,
-        title: 'IFSP Entrance Exam - Top 10 Performance',
-        institution:
-            'Federal Institute of Science and Technology of São Paulo - IFSP',
+        id: 'ifsp-entrance-exam',
+        title: 'IFSP entrance exam',
+        organization: 'IFSP',
         date: '2021',
-        type: 'honors',
-        hours: 4,
+        group: 'competitions',
         description:
-            'Achieved a position between 6th and 10th place among prepared 181 candidates, being one of 40 approved students. This result demonstrated strong academic preparation and competitive performance in the entrance examination.',
-        image: '/static/certificates/ifsp-wordmark.png'
+            'Placed between 6th and 10th among 181 candidates for 40 seats.'
+    },
+
+    // ── Courses and certificates ───────────────────────────────────────
+    {
+        id: 'ifsp-intro-ai',
+        title: 'Introduction to Artificial Intelligence',
+        organization: 'IFSP',
+        date: '2024',
+        group: 'courses',
+        hours: 80
     },
     {
-        id: 23,
+        id: 'unicamp-fife-cosmology',
+        title: 'Cosmology, Física nas Férias (FIFE)',
+        organization: 'Gleb Wataghin Physics Institute, UNICAMP',
+        date: '2024',
+        group: 'courses',
+        hours: 47
+    },
+    {
+        id: 'typescript-complete-guide',
+        title: "TypeScript: The Complete Developer's Guide",
+        organization: 'Udemy (Stephen Grider)',
+        date: '2025',
+        group: 'courses',
+        hours: 27
+    },
+    {
+        id: 'ifsp-networks',
         title: 'Introduction to Network Architecture and Protocols',
-        institution:
-            'Federal Institute of Science and Technology of São Paulo - IFSP',
+        organization: 'IFSP',
         date: '2022',
-        type: 'courses',
-        hours: 100,
-        image: '/static/certificates/cisco.png'
+        group: 'courses',
+        hours: 100
     },
     {
-        id: 24,
+        id: 'ifsp-linux-networks',
         title: 'Linux Network Administration Fundamentals',
-        institution:
-            'Federal Institute of Science and Technology of São Paulo - IFSP',
+        organization: 'IFSP',
         date: '2022',
-        type: 'courses',
-        hours: 60,
-        image: '/static/certificates/linux.jpg'
+        group: 'courses',
+        hours: 60
     },
     {
-        id: 25,
+        id: 'ifsp-databases-sql',
         title: 'Introduction to Databases and SQL',
-        institution:
-            'Federal Institute of Science and Technology of São Paulo - IFSP',
+        organization: 'IFSP',
         date: '2023',
-        type: 'courses',
-        hours: 36,
-        image: '/static/certificates/mysql.svg'
+        group: 'courses',
+        hours: 36
     },
     {
-        id: 26,
-        title: 'The Dream School Ambassador',
-        institution: 'The Dream School',
+        id: 'st-johns-summer-academy',
+        title: 'Summer Academy Online, "The Odyssey" session',
+        organization: "St. John's College",
         date: '2024',
-        type: 'extracurricular',
-        description:
-            'Selected as a representative of the students for The Dream School, where I actively participate in strategic discussions shaping the future of the largest exchange preparation institution in Latin America. Through these efforts, I contribute to improving classes and preparation systems, helping to recruit new students and ambassadors. This collective work has led to remarkable growth in enrollment, ambassador engagement, and overall institutional impact.',
-        image: '/static/certificates/the-dream-school.png'
+        group: 'courses',
+        hours: 8
     },
     {
-        id: 27,
-        title: 'Understanding Copilots - Workshop with Microsoft MVPs and GitHub Star',
-        institution: 'GitHub Community - GitTogether SJC',
+        id: 'understanding-copilots',
+        title: 'Understanding Copilots, workshop with Microsoft MVPs and a GitHub Star',
+        organization: 'GitTogether SJC',
         date: '2024',
-        type: 'events',
-        hours: 3,
-        image: '/static/certificates/github-copilot.png'
+        group: 'courses',
+        hours: 3
     },
     {
-        id: 28,
-        title: 'Saint John\'s Summer-Academy Online - "The Odyssey" Session',
-        institution: "Saint John's College",
-        date: '2024',
-        type: 'courses',
-        hours: 8,
-        image: '/static/certificates/st-johns-college.svg'
+        id: 'ibm-pytorch',
+        title: 'Getting Started with Machine Learning with PyTorch',
+        organization: 'IBM Skills Network',
+        date: '2025',
+        group: 'courses',
+        hours: 1
     },
     {
-        id: 29,
-        title: '3rd out of 4 stages in the Brazilian National History Olympiad - ONHB',
-        institution: 'University of Campinas - UNICAMP',
-        date: '2023',
-        type: 'honors',
-        hours: 24,
-        image: '/static/logos/unicamp.png'
+        id: 'nvidia-building-a-brain',
+        title: 'Building a Brain in 10 Minutes',
+        organization: 'NVIDIA Deep Learning Institute',
+        date: '2025',
+        group: 'courses',
+        hours: 0.5
     }
 ];
+
+/** Section titles for the /achievements page, in display order. */
+export const certificateGroups: { id: CertificateGroup; title: string }[] = [
+    { id: 'selected', title: 'Selected honors' },
+    { id: 'leadership', title: 'Leadership and community' },
+    { id: 'competitions', title: 'Competitions and exams' },
+    { id: 'courses', title: 'Courses and certificates' }
+];
+
+/** First and last year in a display date such as "2024–2025". */
+const yearSpan = (date: string): [number, number] => {
+    const years = (date.match(/\d{4}/g) ?? ['0']).map(Number);
+    return [years[0], years[years.length - 1]];
+};
+
+/** One section's entries, newest first, so the order never depends on the file. */
+export const certificatesIn = (group: CertificateGroup): Certificate[] =>
+    certificates
+        .filter(item => item.group === group)
+        .sort((a, b) => {
+            const [aStart, aEnd] = yearSpan(a.date);
+            const [bStart, bEnd] = yearSpan(b.date);
+            return bEnd - aEnd || bStart - aStart;
+        });

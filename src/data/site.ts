@@ -15,7 +15,10 @@ export const PERSON = {
     ],
     jobTitle: 'Software Engineer & Applied AI Developer',
     description:
-        'Software engineer specializing in agent harness engineering, autonomous LLM agents, RAG systems and production full-stack systems. Google Student Ambassador (2026) and Computer Science student at Instituto Federal de São Paulo (IFSP).',
+        'Software engineer building LLM agents, agent harnesses and full-stack products. Former AI and software engineering intern at Kaffa Tech, Google Student Ambassador (2026) and Computer Science student at Instituto Federal de São Paulo (IFSP).',
+    /** First-person summary shown on the home page. */
+    statement:
+        'I build LLM agents and the full-stack products around them, and I write about agent harness engineering: the structured context that makes an agent reliable.',
     email: 'luis.hsa@gmail.com',
     /** Square portrait served from /public. */
     image: '/images/luis-henrique-abrantes.jpg',
@@ -28,9 +31,8 @@ export const PERSON = {
     ],
     knowsAbout: [
         'Agent Harness Engineering',
-        'Autonomous AI Agents',
-        'LLM Orchestration',
-        'Retrieval-Augmented Generation (RAG)',
+        'LLM Agents',
+        'LLM Tool Calling',
         'Context Engineering',
         'Full-Stack Web Development',
         'TypeScript',
@@ -46,12 +48,55 @@ export const PERSON = {
         'Google Student Ambassador (2026 Global Cohort)',
         'UC Berkeley AI Hackathon (Cal Hacks) 2025 participant, built GirlTalk AI',
         'PennApps XXV (University of Pennsylvania) 2024 participant, built SpeakScribe',
-        'Brazilian Olympiad of Informatics (OBI) 2024, advanced through 2 of 3 national phases',
+        'Brazilian Olympiad in Informatics (OBI) 2024, qualified for the second of three phases',
         'UNICAMP FIFE (Física nas Férias) selection: Quantum Computing (2025) and Theoretical Cosmology (2024)',
-        'National English Language Olympiad (OBLI) gold medal',
-        'Invited speaker (3 times) at the JECET Congress, IFSP'
+        'National English Language Olympiad (OBLI) 2025, gold medal',
+        'Invited speaker, three talks including the JECET Congress at IFSP'
     ]
 } as const;
+
+/**
+ * What Luis is looking for and where he is. Shown on Home, About and Contact.
+ * Keep it to what he has stated himself.
+ */
+export const AVAILABILITY = {
+    /** One full sentence, for leads and meta copy. */
+    summary:
+        'Open to internships and junior roles in software engineering and applied AI.',
+    roles: 'Internships and junior roles in software engineering and applied AI',
+    location: 'Brazil (UTC-3)',
+    relocation: 'Open to relocating to the San Francisco Bay Area',
+    languages: 'English and Portuguese'
+} as const;
+
+/** The short list a visitor should see first. Shown on the home page. */
+export const CREDENTIALS = [
+    { title: 'Google Student Ambassador', detail: '2026 global cohort' },
+    {
+        title: 'Kaffa Tech',
+        detail: 'AI & software engineering intern, 2026'
+    },
+    {
+        title: 'UC Berkeley AI Hackathon',
+        detail: 'Cal Hacks, Berkeley, CA, 2025'
+    },
+    { title: 'PennApps XXV', detail: 'University of Pennsylvania, 2024' },
+    {
+        title: 'Computer Science student',
+        detail: 'B.S. at IFSP since 2026, GPA 8.92 out of 10'
+    }
+] as const;
+
+/** One-page résumé. The PDF is generated from the /resume page (`npm run resume`). */
+export const RESUME_PDF = '/luis-henrique-abrantes-resume.pdf';
+
+/** Projects listed on the résumé, in order. Slugs from `projects.ts`. */
+export const RESUME_PROJECTS = [
+    'college-list-ai',
+    'encantos-do-forno',
+    'girltalk-ai',
+    'harness-study'
+] as const;
 
 export const PAPERS_URL = 'https://papers.luisabrantes.dev';
 /** English index of the papers hub. This site is in English, so links go here. */
