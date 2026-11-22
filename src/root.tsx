@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { MouseEvent, ReactNode } from 'react';
 import {
     Links,
     Meta,
@@ -71,13 +71,27 @@ export function Layout({ children }: { children: ReactNode }) {
     );
 }
 
+/**
+ * Moves keyboard focus and the viewport to the page content. Done by hand
+ * instead of relying on the "#content" hash, because on a hash change the
+ * router restores a scroll position saved earlier in the same tab.
+ */
+const skipToContent = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    const content = document.getElementById('content');
+    content?.scrollIntoView();
+    content?.focus({ preventScroll: true });
+};
+
 const Shell = ({ children }: { children: ReactNode }) => (
     <div className="site-shell min-h-screen bg-[#07080b] text-[#EDEDED]">
-        <a href="#content" className="skip-link">
+        <a href="#content" onClick={skipToContent} className="skip-link">
             Skip to content
         </a>
         <NavBar />
-        <div id="content">{children}</div>
+        <div id="content" tabIndex={-1} className="outline-none">
+            {children}
+        </div>
     </div>
 );
 

@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, type MouseEvent } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router';
 import type { MetaFunction } from 'react-router';
@@ -151,6 +151,14 @@ const Home = () => {
     // ========================================================
     const textOpacity = useTransform(scrollYProgress, [0, 0.16], [1, 0]);
     const textY = useTransform(scrollYProgress, [0, 0.16], [0, -45]);
+
+    // Jump past the intro. Scrolling is done here instead of leaving it to the
+    // "#main" hash: on a hash change the router restores the scroll position
+    // it saved earlier in the same tab, which can land back inside the intro.
+    const skipIntro = (event: MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+        document.getElementById('main')?.scrollIntoView();
+    };
 
     // The intro links stop taking clicks once the intro has faded out.
     const introPointerEvents = useTransform(
@@ -505,6 +513,7 @@ const Home = () => {
                     <div className="absolute bottom-3 sm:bottom-6 inset-x-0 flex justify-center z-30">
                         <a
                             href="#main"
+                            onClick={skipIntro}
                             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/15 text-[10px] sm:text-[11px] font-mono text-zinc-300 backdrop-blur-md hover:text-white hover:border-white/40 transition-colors"
                         >
                             <span>SCROLL, OR SKIP THE INTRO</span>
@@ -545,7 +554,7 @@ const Home = () => {
                                 </span>
                                 <span className="text-xs font-mono text-zinc-300 flex items-center gap-1.5 drop-shadow">
                                     <MapPin className="w-3.5 h-3.5 text-zinc-300" aria-hidden="true" />
-                                    At Penn Engineering for PennApps XXV, 2024
+                                    Penn Engineering, Philadelphia, PA
                                 </span>
                             </div>
                         </div>
