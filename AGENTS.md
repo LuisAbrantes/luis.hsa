@@ -10,13 +10,13 @@
 - **Full Name:** Luis Henrique Abrantes (Aliases: *Luis Abrantes*, *luis.hsa*). Legal name: *Luis Henrique dos Santos Abrantes* (never "Silva").
 - **Core Title:** Software Engineer & Applied AI Developer
 - **Specialization:** **LLM agents with tool calling**, **agent harness engineering** and **full-stack products**. Only claim what the public repositories or the internship description back: no "production RAG", "multi-agent orchestration" or "evaluation loops" unless a project on the site shows it.
-- **Looking for:** internships and junior roles in software engineering and applied AI. Based in Brazil (UTC-3), open to relocating to the San Francisco Bay Area. Say nothing about visas, work authorization or graduation dates.
+- **Looking for:** internships and junior roles in software engineering and applied AI. Based in Brazil (UTC-3). Do not publish where he would like to work or relocate to: his longer-term goals are context for shaping the site, not copy. Say nothing about visas, work authorization or graduation dates.
 - **🚨 CRITICAL RULE:** **NEVER label Luis as a "computer science researcher" or "academic researcher".** He is an active software engineer building production systems, developer tooling, and applied AI applications for industry roles.
 
 ### Key Biographical Facts:
 1. **Origin:** Started programming at age nine, guided by curiosity and mentored by his father (who is also a software engineer).
 2. **Education at IFSP** (a tuition-free federal institute with admission by competitive public exam; describe it that way, since "merit-funded" and "8-year" confuse readers outside Brazil):
-   - **B.S. in Computer Science (4-Year Degree · 2026 – Present):** Current GPA: **8.92 out of 10** • Instituto Federal de São Paulo (IFSP).
+   - **B.S. in Computer Science (4-Year Degree · 2026 – Present):** Current GPA: **8.72 out of 10** • Instituto Federal de São Paulo (IFSP).
    - **Technical High School Diploma in Informatics (4-Year Program · 2022 – 2024):** Final GPA: **8.34 out of 10** • Admitted in the top 10 of 181 candidates for 40 seats • Completed the capstone project (*TutorTime*) ahead of schedule during junior year.
 3. **Key Honors & Hackathons:**
    - **Google Student Ambassador (2026 Global Cohort)**
@@ -25,7 +25,7 @@
    - **UNICAMP Quantum & Physics Camps (FIFE - Física nas Férias):** Intensive cohorts in Theoretical Cosmology (2024) and Quantum Computing (2025) at Gleb Wataghin Physics Institute (IFGW).
    - **Brazilian Olympiad in Informatics (OBI 2024):** Qualified for the second of three phases.
 4. **Professional Experience:**
-   - **Kaffa Tech (Jun 2026 – Aug 2026 · 3 mos):** AI & Software Engineering Intern. Built tools and integrations for the AI agent platform, implemented on-demand skill generation during agent setup, and debugged agent execution workflows.
+   - **Kaffa Tech (Jun 2026 – Aug 2026 · 3 mos):** Software Engineer Intern, AI team. Built tools and integrations for the AI agent platform, implemented on-demand skill generation during agent setup, and debugged agent execution workflows.
 5. **Technical Papers & Writing:**
    - Published at **[https://papers.luisabrantes.dev](https://papers.luisabrantes.dev)** (standalone subdomain).
 

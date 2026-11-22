@@ -336,7 +336,7 @@ const Home = () => {
                                         <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">ACADEMIA // LEADERSHIP</span>
                                     </div>
                                     <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">Instituto Federal (IFSP)</p>
-                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">Computer Science & Community Lead</p>
+                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">B.S. Computer Science student</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -484,7 +484,7 @@ const Home = () => {
                                         <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">ACADEMIA // LEADERSHIP</span>
                                     </div>
                                     <p className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">Instituto Federal (IFSP)</p>
-                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">Computer Science & Community Lead</p>
+                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">B.S. Computer Science student</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -554,7 +554,7 @@ const Home = () => {
                                 </span>
                                 <span className="text-xs font-mono text-zinc-300 flex items-center gap-1.5 drop-shadow">
                                     <MapPin className="w-3.5 h-3.5 text-zinc-300" aria-hidden="true" />
-                                    Penn Engineering, Philadelphia, PA
+                                    PennApps XXV · Penn Engineering, Philadelphia, 2024
                                 </span>
                             </div>
                         </div>
@@ -573,7 +573,7 @@ const Home = () => {
                                 </p>
 
                                 <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
-                                    {AVAILABILITY.summary} Based in {AVAILABILITY.location}. {AVAILABILITY.relocation}.
+                                    {AVAILABILITY.summary} Based in {AVAILABILITY.location}.
                                 </p>
                             </div>
 
