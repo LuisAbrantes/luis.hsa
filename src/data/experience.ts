@@ -9,10 +9,10 @@ export const experiences: Experience[] = [
         url: 'https://kaffa.tech',
         current: false,
         description:
-            'Worked on Kaffa’s AI Agent platform, a system enabling clients to build and deploy custom AI agents. Developed tools for agent integrations, implemented on-demand skill generation during agent setup, and fixed bugs to improve platform reliability.',
+            'Worked on Kaffa’s AI agent platform, where clients build and deploy their own AI agents.',
         highlights: [
-            'Built new tools and integrations for agents operating on the platform',
-            'Implemented an on-demand skill generation feature requested during agent setup',
+            'Built new tools and integrations for the agents that run on the platform',
+            'Implemented on-demand skill generation during agent setup',
             'Debugged and fixed issues across agent execution workflows'
         ]
     }

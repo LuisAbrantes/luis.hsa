@@ -82,7 +82,7 @@ const personNode = (): JsonLd => ({
         '@type': 'Occupation',
         name: 'Software Engineer',
         description:
-            'Builds agent harnesses, multi-agent systems, evaluation loops and full-stack applications with React, TypeScript, Python and FastAPI.'
+            'Builds LLM agents with tool calling, agent harnesses and full-stack applications with React, TypeScript, Python and FastAPI.'
     },
     knowsAbout: [...PERSON.knowsAbout],
     award: [...PERSON.awards],
@@ -110,7 +110,7 @@ export const breadcrumbNode = (
 
 /** Generic page node (WebPage or a subtype) linked to the site and person. */
 export const webPageNode = (
-    type: 'ProfilePage' | 'AboutPage' | 'CollectionPage' | 'ContactPage',
+    type: 'ProfilePage' | 'AboutPage' | 'CollectionPage' | 'ContactPage' | 'WebPage',
     path: string,
     name: string,
     extra: JsonLd = {}
@@ -166,6 +166,7 @@ export const projectNode = (project: Project, image?: string): JsonLd => {
         ...(links.length > 0 && { sameAs: links }),
         keywords: project.technologies.join(', '),
         genre: project.category,
+        dateCreated: project.year.slice(0, 4),
         // Team projects credit Luis as a contributor rather than sole author.
         [project.team ? 'contributor' : 'author']: { '@id': PERSON_ID },
         mainEntityOfPage: absoluteUrl(projectPath(project))

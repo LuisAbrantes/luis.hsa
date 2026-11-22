@@ -15,11 +15,12 @@ npm install
 npm run dev        # local development
 npm run typecheck  # route typegen + tsc
 npm run build      # pre-render every route to build/client and run SEO checks
+npm run resume     # print /resume to public/luis-henrique-abrantes-resume.pdf (needs local Chrome)
 ```
 
 ## Structure
 
-- `src/data/`: all content (projects, experience, certificates, identity facts).
+- `src/data/`: all content (projects, experience, education, skills, honors, identity facts).
 - `src/pages/`: one route module per page, each exporting its own `meta`.
 - `src/lib/seo.ts`: per-page metadata and JSON-LD, generated from the data.
 - `src/root.tsx`, `src/routes.ts`, `react-router.config.ts`: app shell, routes and pre-render list.

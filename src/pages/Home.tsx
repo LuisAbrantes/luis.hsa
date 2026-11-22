@@ -2,11 +2,22 @@ import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router';
 import type { MetaFunction } from 'react-router';
-import { ArrowUpRight, ExternalLink, ChevronDown, Sparkles, MapPin, Award, Layers, GraduationCap } from 'lucide-react';
+import { ArrowUpRight, ChevronDown, MapPin } from 'lucide-react';
+import Eyebrow from '@/components/ui/Eyebrow';
+import ProjectRow from '@/components/projects/ProjectRow';
+import { experiences } from '@/data/experience';
+import { papers } from '@/data/papers';
+import { projects } from '@/data/projects';
 import { timeline } from '@/data/timeline';
+import { CONTACT_EMAIL } from '@/data/socials';
 import { fadeInUp, staggerContainer, revealViewport } from '@/lib/motion';
 import portrait from '@/assets/home/luis-penn-engineering.jpg';
-import { PAPERS_EN_URL, PERSON } from '@/data/site';
+import {
+    AVAILABILITY,
+    CREDENTIALS,
+    PAPERS_EN_URL,
+    PERSON
+} from '@/data/site';
 import { pageMeta, papersNode, profilePageNode } from '@/lib/seo';
 
 // "Papers" is a separate hub on its own subdomain — the Home only links out.
@@ -22,6 +33,8 @@ export const meta: MetaFunction = () =>
         ogType: 'profile',
         jsonLd: [profilePageNode(TITLE), papersNode()]
     });
+
+const featuredProjects = projects.filter(project => project.featured);
 
 const Home = () => {
     const scrollTrackRef = useRef<HTMLDivElement>(null);
@@ -139,6 +152,12 @@ const Home = () => {
     const textOpacity = useTransform(scrollYProgress, [0, 0.16], [1, 0]);
     const textY = useTransform(scrollYProgress, [0, 0.16], [0, -45]);
 
+    // The intro links stop taking clicks once the intro has faded out.
+    const introPointerEvents = useTransform(
+        scrollYProgress,
+        (v): 'none' | 'auto' => (v > 0.12 ? 'none' : 'auto')
+    );
+
     // DESKTOP DUAL-COLUMN QUEUES (>=640px)
     const deskQ1Opacity = useTransform(scrollYProgress, [0, 0.26, 0.34], [1, 1, 0]);
     const deskQ1Y = useTransform(scrollYProgress, [0, 0.34], [0, -780]);
@@ -191,7 +210,7 @@ const Home = () => {
                         <img
                             ref={posterRef}
                             src={posterSrc}
-                            alt="Luis Henrique Abrantes AI Studio"
+                            alt="3D illustration of Luis Henrique Abrantes working at a laptop"
                             // Largest paint on the page: fetch it ahead of the
                             // hero video. Lowercase because React 18 does not
                             // know the camelCase prop.
@@ -221,16 +240,35 @@ const Home = () => {
                     >
                         <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-black/70 backdrop-blur-md text-[10px] sm:text-xs font-mono text-zinc-300 shadow-2xl">
                             <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse" />
-                            <span>SOFTWARE & APPLIED AI ENGINEER</span>
+                            <span>SOFTWARE ENGINEER & APPLIED AI DEVELOPER</span>
                         </div>
 
                         <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl">
                             Luis Henrique Abrantes
                         </h1>
 
-                        <p className="text-xs sm:text-sm md:text-base text-zinc-300 font-light max-w-xs sm:max-w-md md:max-w-lg mx-auto drop-shadow-lg leading-relaxed">
-                            Building intelligent systems, agent harnesses, and high-performance applications.
+                        <p className="text-xs sm:text-sm md:text-base text-zinc-200 font-light max-w-xs sm:max-w-md md:max-w-lg mx-auto drop-shadow-lg leading-relaxed text-balance">
+                            I build LLM agents and the full-stack products around them.
                         </p>
+
+                        <motion.div
+                            className="flex items-center justify-center gap-2.5 pt-2"
+                            style={{ pointerEvents: introPointerEvents }}
+                        >
+                            <Link
+                                to="/projects"
+                                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-black text-xs sm:text-sm font-semibold hover:bg-zinc-200 transition-colors shadow-2xl"
+                            >
+                                <span>View projects</span>
+                                <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                            </Link>
+                            <Link
+                                to="/contact"
+                                className="inline-flex items-center px-4 py-2 rounded-full border border-white/20 bg-black/60 backdrop-blur-md text-zinc-100 text-xs sm:text-sm font-medium hover:border-white/50 transition-colors shadow-2xl"
+                            >
+                                Get in touch
+                            </Link>
+                        </motion.div>
                     </motion.div>
 
                     {/* DESKTOP STREAM */}
@@ -307,7 +345,7 @@ const Home = () => {
                                         <span className="w-2.5 h-2.5 rounded-full bg-blue-400" />
                                     </div>
                                     <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">UC Berkeley AI Hackathon</p>
-                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">Cal Hacks • San Francisco</p>
+                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">Cal Hacks • Berkeley, CA</p>
                                 </div>
                                 <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
                                     <img src="/static/logos/berkeley.svg" alt="UC Berkeley Seal" className="w-full h-full object-contain" />
@@ -343,11 +381,11 @@ const Home = () => {
                             <div className="flex items-center justify-end gap-4 md:gap-6">
                                 <div>
                                     <div className="flex items-center justify-end gap-2 mb-1.5">
-                                        <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">PRODUCTION SYSTEMS</span>
+                                        <span className="text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase font-semibold">APPLIED AI // AGENTS</span>
                                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
                                     </div>
                                     <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-xl leading-tight">Applied AI & Harnesses</p>
-                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">Autonomous Developer Tooling</p>
+                                    <p className="text-sm md:text-base font-mono text-zinc-300 drop-shadow-md mt-0.5">Agent Harness Engineering</p>
                                 </div>
                                 <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center flex-shrink-0 drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
                                     <img src="/static/logos/hermes.png" alt="Applied AI Hermes" className="w-full h-full object-contain" />
@@ -387,7 +425,7 @@ const Home = () => {
                                         <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">HACKATHON // BERKELEY</span>
                                     </div>
                                     <p className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">UC Berkeley AI Hackathon</p>
-                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">Cal Hacks • San Francisco</p>
+                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">Cal Hacks • Berkeley, CA</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -452,23 +490,27 @@ const Home = () => {
                                 <div>
                                     <div className="flex items-center gap-1.5 mb-0.5">
                                         <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">PRODUCTION SYSTEMS</span>
+                                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold">APPLIED AI // AGENTS</span>
                                     </div>
                                     <p className="text-lg font-bold text-white tracking-tight leading-tight drop-shadow-lg">Applied AI & Harnesses</p>
-                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">Autonomous Developer Tooling</p>
+                                    <p className="text-xs font-mono text-zinc-300 drop-shadow-md">Agent Harness Engineering</p>
                                 </div>
                             </div>
                         </motion.div>
                     </div>
 
-                    {/* Scroll Cue */}
-                    <motion.div className="absolute bottom-4 sm:bottom-8 inset-x-0 flex flex-col items-center justify-center gap-1 text-zinc-400 z-20 pointer-events-none" style={{ opacity: textOpacity }}>
-                        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/10 text-[10px] sm:text-[11px] font-mono text-zinc-400 backdrop-blur-md">
-                            <Sparkles className="w-3 h-3 text-zinc-400" />
-                            <span>SCROLL TO EXPLORE</span>
-                        </div>
-                        <ChevronDown className="w-4 h-4 animate-bounce text-zinc-400" />
-                    </motion.div>
+                    {/* Scroll cue. It is also a link that skips the intro, and
+                        it stays in place for the whole pinned stage so there is
+                        always a way past the animation. */}
+                    <div className="absolute bottom-3 sm:bottom-6 inset-x-0 flex justify-center z-30">
+                        <a
+                            href="#main"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/15 text-[10px] sm:text-[11px] font-mono text-zinc-300 backdrop-blur-md hover:text-white hover:border-white/40 transition-colors"
+                        >
+                            <span>SCROLL, OR SKIP THE INTRO</span>
+                            <ChevronDown className="w-3.5 h-3.5" aria-hidden="true" />
+                        </a>
+                    </div>
                 </motion.div>
             </div>
 
@@ -476,14 +518,16 @@ const Home = () => {
             {/* ========================================================
                 2. MAIN CONTENT REGION (Wide Spotlight & Metrics)
                ======================================================== */}
-            <main className="relative z-30 bg-[#07080b] pt-12 pb-24 shadow-[0_-50px_80px_rgba(7,8,11,1)]">
-                
-                {/* WIDE SPOTLIGHT & KEY CREDENTIALS */}
-                <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-stretch">
-                        
-                        {/* Col 1: Portrait with Penn Engineering Banner */}
-                        <div className="md:col-span-4 rounded-2xl overflow-hidden border border-zinc-800/90 relative group bg-zinc-950 shadow-2xl">
+            <main id="main" className="relative z-30 scroll-mt-16 bg-[#07080b] pt-12 pb-8 shadow-[0_-50px_80px_rgba(7,8,11,1)]">
+
+                {/* ========================================================
+                    PROFILE: who, what, and what he is looking for
+                   ======================================================== */}
+                <section aria-labelledby="profile-title" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 items-stretch">
+
+                        {/* Portrait */}
+                        <div className="md:col-span-5 lg:col-span-4 rounded-2xl overflow-hidden border border-zinc-800/90 relative bg-zinc-950">
                             <img
                                 src={portrait}
                                 width={780}
@@ -492,109 +536,78 @@ const Home = () => {
                                 decoding="async"
                                 alt="Luis Henrique Abrantes at Penn Engineering"
                                 draggable={false}
-                                className="w-full h-full min-h-[380px] object-cover object-top filter contrast-[105%] group-hover:scale-102 transition-transform duration-500 select-none pointer-events-none"
+                                className="w-full h-full min-h-[380px] object-cover object-top select-none pointer-events-none"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none" />
                             <div className="absolute bottom-5 left-5 right-5 space-y-1">
                                 <span className="text-base font-semibold text-white tracking-tight block drop-shadow-md">
-                                    Luis Henrique Abrantes
+                                    {PERSON.name}
                                 </span>
                                 <span className="text-xs font-mono text-zinc-300 flex items-center gap-1.5 drop-shadow">
-                                    <MapPin className="w-3.5 h-3.5 text-red-400" />
-                                    Penn Engineering • Philadelphia, PA
+                                    <MapPin className="w-3.5 h-3.5 text-zinc-300" aria-hidden="true" />
+                                    At Penn Engineering for PennApps XXV, 2024
                                 </span>
                             </div>
                         </div>
 
-                        {/* Col 2: Profile & Mission (Keywords: Agent Harness Engineering, LLM Agents, RAG) */}
-                        <div className="md:col-span-5 flex flex-col justify-between py-2 space-y-6">
-                            <div className="space-y-4">
-                                <div className="flex items-center gap-2">
-                                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                    <span className="text-xs sm:text-sm font-mono text-emerald-400 tracking-widest uppercase font-semibold">
-                                        PROFILE & MISSION
-                                    </span>
-                                </div>
-                                
-                                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
-                                    Software Engineer & Applied AI Developer
+                        {/* Statement */}
+                        <div className="md:col-span-7 lg:col-span-5 flex flex-col justify-between gap-8 py-1">
+                            <div className="space-y-5">
+                                <Eyebrow>Profile</Eyebrow>
+
+                                <h2 id="profile-title" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.08]">
+                                    {PERSON.jobTitle}
                                 </h2>
-                                
+
                                 <p className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed">
-                                    Specializing in <strong className="text-white font-semibold">Agent Harness Engineering</strong>, <strong className="text-white font-semibold">LLM Agents</strong>, and <strong className="text-white font-semibold">production RAG systems</strong>. Computer Science at <strong className="text-white font-medium">IFSP</strong> and <strong className="text-white font-medium">Google Student Ambassador (2026)</strong>.
+                                    {PERSON.statement}
                                 </p>
 
                                 <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
-                                    Focused on building multi-agent orchestrations, context evaluation loops, and high-performance developer tooling that turn AI models into reliable, production-grade applications.
+                                    {AVAILABILITY.summary} Based in {AVAILABILITY.location}. {AVAILABILITY.relocation}.
                                 </p>
                             </div>
 
-                            <div className="pt-4 border-t border-zinc-800/80 flex items-center gap-4 flex-wrap">
-                                <Link
-                                    to="/about"
-                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm sm:text-base shadow-lg shadow-white/5"
-                                >
-                                    <span>View Full Background</span>
-                                    <ArrowUpRight className="w-4 h-4" />
-                                </Link>
+                            <div className="pt-6 border-t border-zinc-800/80 flex items-center gap-3 flex-wrap">
                                 <Link
                                     to="/projects"
-                                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-all text-sm sm:text-base"
+                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-colors text-sm sm:text-base"
                                 >
-                                    <span>View Projects</span>
+                                    <span>View projects</span>
+                                    <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                                 </Link>
+                                <Link
+                                    to="/resume"
+                                    className="inline-flex items-center px-5 py-3 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-colors text-sm sm:text-base"
+                                >
+                                    Résumé
+                                </Link>
+                                <a
+                                    href={`mailto:${CONTACT_EMAIL}`}
+                                    className="hidden sm:inline-flex items-center px-5 py-3 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-colors text-sm sm:text-base"
+                                >
+                                    Email me
+                                </a>
                             </div>
                         </div>
 
-                        {/* Col 3: Key Stats & Badges (Clear, Large, High-Contrast with IFSP 8-Year Merit Highlight) */}
-                        <div className="md:col-span-3 flex flex-col justify-between p-6 sm:p-7 rounded-2xl border border-zinc-800/80 bg-zinc-950/60 shadow-xl space-y-6">
-                            <div>
-                                <span className="text-xs font-mono text-zinc-400 uppercase tracking-widest block mb-4 font-semibold">
-                                    KEY CREDENTIALS
-                                </span>
-                                
-                                <div className="space-y-4">
-                                    {/* Google Ambassador */}
-                                    <div className="flex items-start gap-3">
-                                        <Award className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                                        <div>
-                                            <span className="text-sm sm:text-base text-white font-semibold block leading-tight">Google Ambassador</span>
-                                            <span className="text-xs font-mono text-zinc-400">2026 Global Cohort</span>
-                                        </div>
-                                    </div>
-
-                                    {/* IFSP 8-Year Merit Funded */}
-                                    <div className="flex items-start gap-3">
-                                        <GraduationCap className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                                        <div>
-                                            <span className="text-sm sm:text-base text-white font-semibold block leading-tight">IFSP • 8-Yr Tech & CS</span>
-                                            <span className="text-xs font-mono text-zinc-400">100% Merit-Funded • B.S. + Tech</span>
-                                        </div>
-                                    </div>
-                                    
-                                    {/* UC Berkeley */}
-                                    <div className="flex items-start gap-3">
-                                        <Layers className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
-                                        <div>
-                                            <span className="text-sm sm:text-base text-white font-semibold block leading-tight">UC Berkeley AI</span>
-                                            <span className="text-xs font-mono text-zinc-400">Cal Hacks • San Francisco</span>
-                                        </div>
-                                    </div>
-                                    
-                                    {/* PennApps UPenn */}
-                                    <div className="flex items-start gap-3">
-                                        <MapPin className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
-                                        <div>
-                                            <span className="text-sm sm:text-base text-white font-semibold block leading-tight">PennApps XXV</span>
-                                            <span className="text-xs font-mono text-zinc-400">UPenn • Philadelphia</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="pt-4 border-t border-zinc-800/80">
-                                <span className="text-[11px] font-mono text-zinc-500 block uppercase">ACADEMIA // PUBLIC MERIT</span>
-                            </div>
+                        {/* At a glance */}
+                        <div className="md:col-span-12 lg:col-span-3 lg:border-l lg:border-zinc-800/80 lg:pl-10 py-1">
+                            <Eyebrow as="h3" tone="muted" className="mb-6">
+                                At a glance
+                            </Eyebrow>
+                            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 gap-x-8 gap-y-5">
+                                {CREDENTIALS.map(item => (
+                                    <li key={item.title} className="space-y-0.5">
+                                        <span className="text-sm sm:text-base text-white font-semibold block leading-snug">
+                                            {item.title}
+                                        </span>
+                                        <span className="text-xs font-mono text-zinc-400 block leading-relaxed">
+                                            {item.detail}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
 
                     </div>
@@ -602,100 +615,226 @@ const Home = () => {
 
 
                 {/* ========================================================
-                    3. MY JOURNEY (TIMELINE)
+                    SELECTED WORK: the featured projects, linked to their pages
                    ======================================================== */}
-                <section className="max-w-4xl mx-auto px-4 sm:px-6 py-20">
-                    <motion.div
-                        className="timeline-container"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={revealViewport}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <div className="text-center mb-16">
-                            <span className="text-xs sm:text-sm font-mono text-zinc-500 tracking-widest uppercase block mb-2 font-semibold">
-                                TRAJECTORY
-                            </span>
-                            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white font-sans">
-                                Milestones & Experience
+                <section aria-labelledby="work-title" className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="flex flex-wrap items-end justify-between gap-4 pb-8">
+                        <div className="space-y-3">
+                            <Eyebrow>Selected work</Eyebrow>
+                            <h2 id="work-title" className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+                                Projects
                             </h2>
                         </div>
+                        <Link
+                            to="/projects"
+                            className="inline-flex items-center gap-1.5 text-sm font-mono text-zinc-400 hover:text-white transition-colors"
+                        >
+                            All {projects.length} projects
+                            <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                        </Link>
+                    </div>
 
-                        <div className="relative">
-                            <div className="absolute left-4 md:left-[8.5rem] top-0 bottom-0 w-px bg-zinc-800/80" />
-
-                            <motion.div
-                                className="space-y-12"
-                                variants={staggerContainer}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={revealViewport}
-                            >
-                                {timeline.map(item => (
-                                    <motion.div
-                                        key={item.year}
-                                        className="relative flex flex-col md:flex-row md:items-start gap-2 md:gap-0"
-                                        variants={fadeInUp}
-                                    >
-                                        {/* Year Marker */}
-                                        <div className="md:w-32 flex-shrink-0 md:text-right md:pr-8 pl-12 md:pl-0">
-                                            <span className="text-base sm:text-lg font-mono text-zinc-400 font-semibold block pt-1">
-                                                {item.year}
-                                            </span>
-                                        </div>
-
-                                        {/* Timeline Content */}
-                                        <div className="flex-1 pl-12 md:pl-8">
-                                            <p className="text-zinc-300 leading-relaxed text-sm sm:text-base lg:text-lg font-light">
-                                                {item.description}
-                                            </p>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </motion.div>
-                        </div>
-                    </motion.div>
+                    <ol className="border-b border-zinc-800/80">
+                        {featuredProjects.map((project, index) => (
+                            <ProjectRow
+                                key={project.slug}
+                                project={project}
+                                index={String(index + 1).padStart(2, '0')}
+                                size="featured"
+                            />
+                        ))}
+                    </ol>
                 </section>
 
 
                 {/* ========================================================
-                    4. PAPERS HUB (Open Typographic Editorial - 100% NO CARDS)
+                    EXPERIENCE
                    ======================================================== */}
-                <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-12 pb-28">
-                    <motion.div
-                        className="border-t border-zinc-800/80 pt-10"
-                        variants={fadeInUp}
+                <section aria-labelledby="experience-title" className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="space-y-3 pb-8">
+                        <Eyebrow>Experience</Eyebrow>
+                        <h2 id="experience-title" className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+                            Where I have worked
+                        </h2>
+                    </div>
+
+                    <ul className="border-b border-zinc-800/80">
+                        {experiences.map(exp => (
+                            <li
+                                key={`${exp.company}-${exp.role}`}
+                                className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-4 py-10 border-t border-zinc-800/80"
+                            >
+                                <div className="md:col-span-4 space-y-1.5">
+                                    <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
+                                        {exp.company}
+                                    </h3>
+                                    <p className="text-sm sm:text-base text-zinc-300 font-light">
+                                        {exp.role}
+                                    </p>
+                                    <p className="text-xs sm:text-sm font-mono text-zinc-500">
+                                        {exp.period}
+                                        {exp.location && (
+                                            <>
+                                                <br />
+                                                {exp.location}
+                                            </>
+                                        )}
+                                    </p>
+                                </div>
+                                <div className="md:col-span-8 space-y-4">
+                                    <p className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed max-w-2xl">
+                                        {exp.description}
+                                    </p>
+                                    {exp.highlights && (
+                                        <ul className="space-y-2 max-w-2xl">
+                                            {exp.highlights.map(highlight => (
+                                                <li key={highlight} className="flex items-start gap-3 text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
+                                                    <span aria-hidden="true" className="mt-2.5 w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" />
+                                                    <span>{highlight}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+
+                    <Link
+                        to="/about"
+                        className="mt-6 inline-flex items-center gap-1.5 text-sm font-mono text-zinc-400 hover:text-white transition-colors"
+                    >
+                        Education and full background
+                        <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                    </Link>
+                </section>
+
+
+                {/* ========================================================
+                    MILESTONES (TIMELINE)
+                   ======================================================== */}
+                <section aria-labelledby="milestones-title" className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="space-y-3 pb-10">
+                        <Eyebrow>Trajectory</Eyebrow>
+                        <h2 id="milestones-title" className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+                            Milestones
+                        </h2>
+                    </div>
+
+                    <motion.ol
+                        className="border-b border-zinc-800/80"
+                        variants={staggerContainer}
                         initial="hidden"
                         whileInView="visible"
                         viewport={revealViewport}
                     >
-                        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
-                            <div className="space-y-2 max-w-2xl">
-                                <span className="text-xs sm:text-sm font-mono text-zinc-500 uppercase tracking-widest font-semibold block">
-                                    TECHNICAL ESSAYS & PAPERS
-                                </span>
-                                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
-                                    Papers by Luis Abrantes
-                                </h2>
-                                <p className="text-sm sm:text-base lg:text-lg text-zinc-300 font-light leading-relaxed">
-                                    Technical essays, deep-dives into autonomous AI agents, developer tooling, and systems engineering. Published bilingually (PT/EN) on its own dedicated space.
-                                </p>
-                                <span className="text-xs sm:text-sm font-mono text-zinc-500 block pt-1">
-                                    papers.luisabrantes.dev
-                                </span>
-                            </div>
-
-                            <a
-                                href={PAPERS_EN_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm sm:text-base whitespace-nowrap shadow-md shadow-white/5"
+                        {timeline.map(item => (
+                            <motion.li
+                                key={item.year}
+                                className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-2 py-7 border-t border-zinc-800/80"
+                                variants={fadeInUp}
                             >
-                                <span>Visit Papers Hub</span>
-                                <ExternalLink size={16} />
-                            </a>
+                                <span className="md:col-span-2 text-base sm:text-lg font-mono text-zinc-400 font-semibold">
+                                    {item.year}
+                                </span>
+                                <p className="md:col-span-9 text-zinc-300 leading-relaxed text-base sm:text-lg font-light max-w-3xl">
+                                    {item.description}
+                                </p>
+                            </motion.li>
+                        ))}
+                    </motion.ol>
+                </section>
+
+
+                {/* ========================================================
+                    WRITING: teasers only. The articles live on the Papers hub.
+                   ======================================================== */}
+                <section aria-labelledby="writing-title" className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="flex flex-wrap items-end justify-between gap-4 pb-8">
+                        <div className="space-y-3">
+                            <Eyebrow>Writing</Eyebrow>
+                            <h2 id="writing-title" className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+                                Papers by Luis Abrantes
+                            </h2>
+                            <p className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed max-w-2xl">
+                                Technical notes on AI agent harnesses, tooling and infrastructure, published in English and Portuguese on their own site.
+                            </p>
                         </div>
-                    </motion.div>
+                        <a
+                            href={PAPERS_EN_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-sm font-mono text-zinc-400 hover:text-white transition-colors"
+                        >
+                            papers.luisabrantes.dev
+                            <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                        </a>
+                    </div>
+
+                    <ul className="border-b border-zinc-800/80">
+                        {papers.map(paper => (
+                            <li
+                                key={paper.url}
+                                className="group relative grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-2 py-8 border-t border-zinc-800/80 transition-colors hover:border-zinc-600"
+                            >
+                                <div className="md:col-span-8 space-y-2.5">
+                                    <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
+                                        <a
+                                            href={paper.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="outline-none after:absolute after:inset-0 focus-visible:after:rounded-lg focus-visible:after:ring-2 focus-visible:after:ring-white/70"
+                                        >
+                                            {paper.title}
+                                        </a>
+                                    </h3>
+                                    <p className="text-sm sm:text-base text-zinc-300 font-light leading-relaxed max-w-2xl">
+                                        {paper.summary}
+                                    </p>
+                                </div>
+                                <div className="md:col-span-4 flex md:flex-col md:items-end justify-between gap-4 md:text-right">
+                                    <p className="text-xs font-mono text-zinc-500">
+                                        {paper.topics}
+                                    </p>
+                                    <ArrowUpRight
+                                        size={18}
+                                        aria-hidden="true"
+                                        className="flex-shrink-0 text-zinc-600 transition-all group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                                    />
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+
+
+                {/* ========================================================
+                    CLOSING: one clear next step
+                   ======================================================== */}
+                <section aria-labelledby="closing-title" className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-20 pb-24">
+                    <div className="max-w-3xl space-y-6">
+                        <Eyebrow>Next step</Eyebrow>
+                        <h2 id="closing-title" className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.08]">
+                            Hiring for an internship or a junior role?
+                        </h2>
+                        <p className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed">
+                            I would like to hear about it. Write to{' '}
+                            <a
+                                href={`mailto:${CONTACT_EMAIL}`}
+                                className="text-white font-medium underline underline-offset-4 decoration-zinc-600 hover:decoration-white transition-colors"
+                            >
+                                {CONTACT_EMAIL}
+                            </a>{' '}
+                            or use the{' '}
+                            <Link
+                                to="/contact"
+                                className="text-white font-medium underline underline-offset-4 decoration-zinc-600 hover:decoration-white transition-colors"
+                            >
+                                contact page
+                            </Link>
+                            .
+                        </p>
+                    </div>
                 </section>
 
             </main>

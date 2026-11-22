@@ -20,7 +20,7 @@ const NavBar = () => {
         }`;
 
     return (
-        <nav aria-label="Primary" className="site-nav fixed top-0 left-0 w-full bg-[#07080b]/70 backdrop-blur-xl border-b border-white/5 z-50 transition-all duration-300">
+        <nav aria-label="Primary" className="site-nav fixed top-0 left-0 w-full bg-[#07080b]/90 backdrop-blur-xl border-b border-white/5 z-50 transition-all duration-300">
             <div className="max-w-6xl mx-auto px-4 sm:px-6">
                 <div className="flex items-center justify-between h-16">
                     <NavLink to="/" className="flex items-center gap-2.5 group">
@@ -35,7 +35,7 @@ const NavBar = () => {
                         type="button"
                         aria-label="Toggle navigation menu"
                         aria-expanded={isMobileMenuOpen}
-                        className="sm:hidden p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
+                        className="md:hidden p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
                         onClick={() => setIsMobileMenuOpen(open => !open)}
                     >
                         <svg
@@ -63,7 +63,7 @@ const NavBar = () => {
                     </button>
 
                     {/* Desktop Menu */}
-                    <ul className="hidden sm:flex sm:items-center sm:space-x-2">
+                    <ul className="hidden md:flex md:items-center md:space-x-1">
                         {navLinks.map(link => (
                             <li key={link.label}>
                                 <NavLink to={link.to} className={navLinkClasses}>
@@ -76,7 +76,7 @@ const NavBar = () => {
 
                 {/* Mobile Menu */}
                 {isMobileMenuOpen && (
-                    <div className="sm:hidden border-t border-white/5 bg-[#07080b]/95 backdrop-blur-2xl rounded-b-2xl pb-3 pt-1">
+                    <div className="md:hidden border-t border-white/5 bg-[#07080b]/95 backdrop-blur-2xl rounded-b-2xl pb-3 pt-1">
                         <ul className="flex flex-col space-y-1">
                             {navLinks.map(link => (
                                 <li key={link.label}>

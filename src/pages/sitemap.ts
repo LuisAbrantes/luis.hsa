@@ -5,7 +5,14 @@ import { SITE_URL } from '@/data/site';
  * /sitemap.xml, generated at build time from the route list and project data
  * so it can never drift from the pages that actually exist.
  */
-const staticPaths = ['/', '/about', '/projects', '/achievements', '/contact'];
+const staticPaths = [
+    '/',
+    '/about',
+    '/projects',
+    '/achievements',
+    '/resume',
+    '/contact'
+];
 
 export function loader() {
     const paths = [

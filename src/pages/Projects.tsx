@@ -1,10 +1,9 @@
-import { useState } from 'react';
 import type { MetaFunction } from 'react-router';
-import { motion } from 'framer-motion';
-import { Star } from 'lucide-react';
-import ProjectCard from '@/components/projects/ProjectCard';
+import Eyebrow from '@/components/ui/Eyebrow';
+import Page from '@/components/layout/Page';
+import PageHeader from '@/components/ui/PageHeader';
+import ProjectRow from '@/components/projects/ProjectRow';
 import { projects } from '@/data/projects';
-import { staggerContainer, revealViewport } from '@/lib/motion';
 import {
     breadcrumbNode,
     pageMeta,
@@ -18,7 +17,7 @@ export const meta: MetaFunction = () =>
     pageMeta({
         title: TITLE,
         description:
-            'Projects by Luis Henrique Abrantes: LangGraph multi-agent apps, hackathon builds from UC Berkeley and UPenn, agent harness tooling and full-stack products.',
+            'Projects by Luis Henrique Abrantes: an LLM college advisor on FastAPI, hackathon builds from UC Berkeley and UPenn, agent harness tooling and client work.',
         path: '/projects',
         jsonLd: [
             webPageNode('CollectionPage', '/projects', TITLE, {
@@ -29,101 +28,49 @@ export const meta: MetaFunction = () =>
         ]
     });
 
-const featuredProjects = projects.filter(p => p.featured);
-const categories = ['all', ...new Set(projects.map(p => p.category))];
+const featuredProjects = projects.filter(project => project.featured);
+const otherProjects = projects.filter(project => !project.featured);
 
-const Projects = () => {
-    const [filter, setFilter] = useState('all');
+const Projects = () => (
+    <Page>
+            <PageHeader
+                eyebrow="Projects"
+                title="Applied AI and full-stack projects"
+            >
+                <p>
+                    The three I would show first, then everything else.
+                    Each one opens a page with the stack, the code and what I
+                    built.
+                </p>
+            </PageHeader>
 
-    const isAll = filter === 'all';
-    // On "all", featured projects get their own section, so the main grid shows
-    // the rest. On a specific category, show every project in that category.
-    const gridProjects = isAll
-        ? projects.filter(p => !p.featured)
-        : projects.filter(p => p.category === filter);
-
-    return (
-        <section className="min-h-screen bg-black pt-40 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
-            <div className="max-w-7xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-center mb-16"
-                >
-                    <h1 className="text-4xl font-light text-white mb-4 tracking-tight">
-                        Selected Projects
-                    </h1>
-                    <p className="text-gray-400 font-light max-w-2xl mx-auto">
-                        A collection of my work in Applied AI, web development,
-                        and open source contributions.
-                    </p>
-                </motion.div>
-
-                {/* Featured section (only on "all") */}
-                {isAll && (
-                    <div className="mb-16">
-                        <h2 className="flex items-center gap-2 text-sm font-medium text-gray-400 uppercase tracking-wider mb-6">
-                            <Star size={14} className="fill-gray-400" /> Featured
-                        </h2>
-                        <motion.div
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                            variants={staggerContainer}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={revealViewport}
-                        >
-                            {featuredProjects.map(project => (
-                                <ProjectCard
-                                    key={project.id}
-                                    project={project}
-                                />
-                            ))}
-                        </motion.div>
-                    </div>
-                )}
-
-                <div className="flex justify-center gap-3 mb-12 flex-wrap">
-                    {categories.map(category => (
-                        <button
-                            key={category}
-                            type="button"
-                            onClick={() => setFilter(category)}
-                            className={`px-5 py-2 rounded-full text-sm font-light transition-all duration-300 border ${
-                                filter === category
-                                    ? 'bg-white text-black border-white'
-                                    : 'bg-transparent text-gray-400 border-gray-800 hover:border-gray-600 hover:text-white'
-                            }`}
-                        >
-                            {category.charAt(0).toUpperCase() +
-                                category.slice(1)}
-                        </button>
-                    ))}
-                </div>
-
-                {isAll && (
-                    <h2 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-6">
-                        More Projects
-                    </h2>
-                )}
-
-                <motion.div
-                    key={filter}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                    variants={staggerContainer}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={revealViewport}
-                >
-                    {gridProjects.map(project => (
-                        <ProjectCard
-                            key={project.id}
+            <section aria-labelledby="featured-title" className="mt-16">
+                <Eyebrow as="h2" className="mb-6">
+                    <span id="featured-title">Featured</span>
+                </Eyebrow>
+                <ol className="border-b border-zinc-800/80">
+                    {featuredProjects.map((project, index) => (
+                        <ProjectRow
+                            key={project.slug}
                             project={project}
+                            index={String(index + 1).padStart(2, '0')}
+                            size="featured"
                         />
                     ))}
-                </motion.div>
-            </div>
-        </section>
-    );
-};
+                </ol>
+            </section>
+
+            <section aria-labelledby="more-title" className="mt-20">
+                <Eyebrow as="h2" tone="muted" className="mb-6">
+                    <span id="more-title">More projects</span>
+                </Eyebrow>
+                <ul className="border-b border-zinc-800/80">
+                    {otherProjects.map(project => (
+                        <ProjectRow key={project.slug} project={project} />
+                    ))}
+                </ul>
+            </section>
+    </Page>
+);
 
 export default Projects;

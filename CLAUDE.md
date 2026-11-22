@@ -7,6 +7,7 @@
 - **Development:** `npm run dev`
 - **Typecheck:** `npm run typecheck` (`react-router typegen && tsc --noEmit`)
 - **Build:** `npm run build` (typecheck, pre-render every route to `build/client/`, then SEO checks)
+- **Résumé PDF:** `npm run resume` after a build, whenever the data behind `/resume` changes; commit the PDF
 - **Deploy:** Push to `main` (auto-deployed to Vercel at `https://luisabrantes.dev/`)
 
 ## Core Agent Mandates
@@ -16,4 +17,5 @@
 3. **SEO & GEO:** Every route is pre-rendered to static HTML (React Router framework mode, `ssr: false` + `prerender`). There is no `index.html` and no hand-written fallback. When modifying projects, experience, or milestones:
    - Edit `src/data/*` only. Metadata, JSON-LD, sitemap and HTML are generated from it (`src/lib/seo.ts`, `src/data/site.ts`).
    - Every route module in `src/pages/` must export `meta` via `pageMeta()`; the build fails otherwise.
+   - Content must be checkable: describe what the code does, state Luis's own part on team projects, no superlatives (see AGENTS.md 3.2.1).
 4. **Validation:** Always verify `npm run typecheck && npm run build` before committing.

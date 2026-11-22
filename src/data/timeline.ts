@@ -4,26 +4,26 @@ export const timeline: TimelineEntry[] = [
     {
         year: '2016',
         description:
-            'Started programming at the age of nine, creating small projects to solve problems and learn new skills.'
+            'Started programming at nine, building small projects to solve everyday problems.'
     },
     {
         year: '2022',
         description:
-            'Accepted into the most competitive and prestigious free high school program in Brazil, Federal Institute of Science and Technology, excelling in various subjects.'
+            'Entered the integrated technical high school in Informatics at Instituto Federal de São Paulo (IFSP), a tuition-free federal institute, after placing in the top 10 of 181 candidates for 40 seats.'
     },
     {
         year: '2024',
         description:
-            'Developed TutorTime, my first full-stack application and Capstone Project for my Informatics Technician course (completed ahead of schedule in my junior year). Achieved a dream by participating in my first hackathon at an Ivy League, PennApps at UPenn, marking my first academic trip abroad. I successfully organized a fundraiser campaign to raise the necessary funds for this independent journey.'
+            'Built TutorTime, my first full-stack application and my capstone project, ahead of schedule in my junior year. Traveled to Philadelphia for PennApps XXV at the University of Pennsylvania, my first academic trip abroad, paid for with a fundraiser I organized.'
     },
     {
         year: '2025',
         description:
-            'Deepened full-stack engineering and competed in the UC Berkeley AI Hackathon (Cal Hacks) in San Francisco, a pivotal experience that shifted my core focus toward Applied AI and autonomous agents.'
+            'Competed in the UC Berkeley AI Hackathon (Cal Hacks), in the San Francisco Bay Area, where my team built GirlTalk AI. That weekend moved my focus to applied AI and autonomous agents.'
     },
     {
         year: '2026',
         description:
-            'Admitted into the Computer Science B.S. program at Instituto Federal de São Paulo (IFSP) through public merit. Concurrently completed an internship at Kaffa Tech, building tools for their AI Agent Hub, implementing automated skill generation for agents, and resolving platform-level bugs.'
+            'Started the B.S. in Computer Science at IFSP and was selected as a Google Student Ambassador. Interned at Kaffa Tech, building tools and on-demand skill generation for its AI agent platform.'
     }
 ];

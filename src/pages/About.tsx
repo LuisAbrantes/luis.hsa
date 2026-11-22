@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
 import type { MetaFunction } from 'react-router';
-import { FaGraduationCap } from 'react-icons/fa';
-import { Briefcase, ExternalLink, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, ArrowUpRight } from 'lucide-react';
+import Page from '@/components/layout/Page';
+import Eyebrow from '@/components/ui/Eyebrow';
 import Modal from '@/components/ui/Modal';
 import { badgeAchievements, highlightAchievements } from '@/data/achievements';
+import { education } from '@/data/education';
 import { experiences } from '@/data/experience';
+import { AVAILABILITY, PAPERS_EN_URL, PERSON } from '@/data/site';
+import { skillGroups } from '@/data/skills';
+import { CONTACT_EMAIL } from '@/data/socials';
 import { breadcrumbNode, pageMeta, webPageNode } from '@/lib/seo';
 import type { GithubAchievement } from '@/types';
 
@@ -15,7 +20,7 @@ export const meta: MetaFunction = () =>
     pageMeta({
         title: TITLE,
         description:
-            'Background of Luis Henrique Abrantes: coding since age nine, AI and software engineering intern at Kaffa Tech, Computer Science at IFSP, focused on agent harnesses.',
+            'Luis Henrique Abrantes: coding since age nine, AI and software engineering intern at Kaffa Tech, Computer Science at IFSP, focused on agent harnesses.',
         path: '/about',
         ogType: 'profile',
         jsonLd: [
@@ -24,156 +29,144 @@ export const meta: MetaFunction = () =>
         ]
     });
 
+const inlineLink =
+    'text-white font-medium underline underline-offset-4 decoration-zinc-600 hover:decoration-white transition-colors';
+
 const About = () => {
     const [selectedAchievement, setSelectedAchievement] =
         useState<GithubAchievement | null>(null);
 
     return (
-        <div className="about-root bg-[#07080b] text-[#EDEDED] min-h-screen pt-28 sm:pt-36 pb-28 px-4 sm:px-6 lg:px-8 font-sans selection:bg-zinc-700 selection:text-white">
-            <div className="max-w-6xl mx-auto">
-                <div className="flex flex-col md:flex-row items-start gap-12 lg:gap-16">
-                    
+        <Page className="about-root">
+                {/* Phone: identity, then the text, then the GitHub badges.
+                    Desktop: identity and badges stack in the left column. */}
+                <div className="flex flex-col gap-12 md:grid md:grid-cols-[16rem_minmax(0,1fr)] lg:grid-cols-[18rem_minmax(0,1fr)] md:grid-rows-[auto_1fr] md:gap-x-12 lg:gap-x-16 md:gap-y-8 md:items-start">
+
                     {/* ========================================================
-                        LEFT COLUMN: GITHUB IDENTITY & ACHIEVEMENTS SIDEBAR
+                        LEFT COLUMN: identity, contact, GitHub achievements
                        ======================================================== */}
-                    <aside className="w-full md:w-64 lg:w-72 flex-shrink-0 flex flex-col items-center md:items-start space-y-6">
-                        
-                        {/* Circular Avatar at GitHub HQ */}
-                        <div className="relative group">
-                            <div className="w-44 h-44 sm:w-48 sm:h-48 rounded-full overflow-hidden border-2 border-zinc-800 shadow-2xl bg-zinc-950 group-hover:border-zinc-600 transition-all duration-300">
-                                <img
-                                    src="/images/luis-abrantes-github-avatar.jpg"
-                                    alt="Luis Henrique Abrantes at GitHub"
-                                    width={192}
-                                    height={192}
-                                    draggable={false}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none pointer-events-none"
-                                />
-                            </div>
+                    <aside className="order-1 md:col-start-1 md:row-start-1 w-full flex flex-col items-center md:items-start space-y-6">
+
+                        <div className="w-28 h-28 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-zinc-800 bg-zinc-950">
+                            <img
+                                src="/images/luis-abrantes-github-avatar.jpg"
+                                alt="Luis Henrique Abrantes at GitHub"
+                                width={192}
+                                height={192}
+                                draggable={false}
+                                className="w-full h-full object-cover select-none pointer-events-none"
+                            />
                         </div>
 
-                        {/* Name & Handle */}
-                        <div className="text-center md:text-left space-y-0.5">
+                        <div className="text-center md:text-left space-y-1">
                             <p className="text-xl font-bold text-white tracking-tight">
-                                Luis Henrique Abrantes
+                                {PERSON.name}
                             </p>
-                            <a
-                                href="https://github.com/LuisAbrantes"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-sm font-mono text-zinc-400 hover:text-white transition-colors inline-flex items-center gap-1"
-                            >
-                                <span>@LuisAbrantes</span>
-                                <ExternalLink size={12} />
-                            </a>
+                            <p className="text-sm text-zinc-400 font-light">
+                                {PERSON.jobTitle}
+                            </p>
+                            <p className="text-xs font-mono text-zinc-500 pt-1">
+                                {AVAILABILITY.location}
+                            </p>
                         </div>
 
-                        {/* GitHub Achievements Badges */}
-                        <div className="w-full space-y-3 pt-2">
-                            <h2 className="text-xs font-mono text-zinc-400 uppercase tracking-widest text-center md:text-left font-semibold">
-                                GITHUB ACHIEVEMENTS
-                            </h2>
-
-                            <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                                {badgeAchievements.map(achievement => (
-                                    <button
-                                        type="button"
-                                        key={achievement.id}
-                                        aria-label={`${achievement.name}: view details`}
-                                        className="group relative cursor-pointer"
-                                        onClick={() =>
-                                            setSelectedAchievement(achievement)
-                                        }
-                                    >
-                                        <div className="w-11 h-11 rounded-full bg-zinc-950 border border-zinc-800 flex items-center justify-center transition-all duration-300 group-hover:border-zinc-500 group-hover:bg-zinc-900 group-hover:scale-110 shadow-lg">
-                                            <img
-                                                src={achievement.image}
-                                                alt={achievement.name}
-                                                draggable={false}
-                                                className="w-7 h-7 object-contain opacity-85 group-hover:opacity-100 transition-opacity select-none pointer-events-none"
-                                            />
-                                        </div>
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Highlight Badges */}
-                        <div className="flex flex-col gap-2.5 w-full pt-1">
-                            {highlightAchievements.map(achievement => (
-                                <button
-                                    type="button"
-                                    key={achievement.id}
-                                    className="group cursor-pointer text-left"
-                                    onClick={() =>
-                                        setSelectedAchievement(achievement)
-                                    }
+                        <ul className="w-full text-sm border-t border-zinc-900">
+                            <li className="border-b border-zinc-900">
+                                <a
+                                    href={`mailto:${CONTACT_EMAIL}`}
+                                    className="flex items-center justify-between py-3 text-zinc-300 hover:text-white transition-colors"
                                 >
-                                    <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-zinc-950/80 border border-zinc-800/90 transition-all duration-300 hover:border-zinc-600 hover:bg-zinc-900">
-                                        <div className="text-zinc-400 group-hover:text-white transition-colors">
-                                            {achievement.icon}
-                                        </div>
-                                        <span className="font-medium text-xs sm:text-sm text-zinc-300 group-hover:text-white transition-colors">
-                                            {achievement.name}
-                                        </span>
-                                    </div>
-                                </button>
-                            ))}
-                        </div>
+                                    <span>{CONTACT_EMAIL}</span>
+                                </a>
+                            </li>
+                            <li className="border-b border-zinc-900">
+                                <a
+                                    href="https://github.com/LuisAbrantes"
+                                    target="_blank"
+                                    rel="me noopener noreferrer"
+                                    className="flex items-center justify-between py-3 text-zinc-300 hover:text-white transition-colors"
+                                >
+                                    <span>github.com/LuisAbrantes</span>
+                                    <ExternalLink size={13} aria-hidden="true" className="text-zinc-600" />
+                                </a>
+                            </li>
+                            <li className="border-b border-zinc-900">
+                                <a
+                                    href="https://www.linkedin.com/in/luishenriqueabrantes/"
+                                    target="_blank"
+                                    rel="me noopener noreferrer"
+                                    className="flex items-center justify-between py-3 text-zinc-300 hover:text-white transition-colors"
+                                >
+                                    <span>linkedin.com/in/luishenriqueabrantes</span>
+                                    <ExternalLink size={13} aria-hidden="true" className="text-zinc-600" />
+                                </a>
+                            </li>
+                        </ul>
 
                     </aside>
 
 
                     {/* ========================================================
-                        RIGHT COLUMN: ABOUT BIO, EXPERIENCE & ACADEMIC PROFILE
+                        RIGHT COLUMN: bio, experience, education, skills
                        ======================================================== */}
-                    <main className="flex-1 w-full space-y-16">
-                        
-                        {/* 1. Origin & Core Identity (Natural, Human Voice) */}
-                        <section className="space-y-4">
-                            <div className="inline-flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                <span className="text-xs sm:text-sm font-mono text-emerald-400 tracking-widest uppercase font-semibold">
-                                    ABOUT & PHILOSOPHY
-                                </span>
-                            </div>
+                    <main className="order-2 md:col-start-2 md:row-start-1 md:row-span-2 w-full min-w-0 space-y-16">
 
-                            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-                                Software Engineer focused on Agent Harnesses & Applied AI.
+                        <section className="space-y-5">
+                            <Eyebrow>About</Eyebrow>
+
+                            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.08]">
+                                Software engineer focused on agent harnesses and applied AI.
                             </h1>
 
-                            <div className="space-y-4 text-base sm:text-lg text-zinc-300 font-light leading-relaxed pt-2">
+                            <div className="space-y-4 text-base sm:text-lg text-zinc-300 font-light leading-relaxed pt-1 max-w-3xl">
                                 <p>
-                                    I started programming at age nine, guided by curiosity and mentored by my father, who is also a software engineer. Over the past decade, that early foundation grew through an <strong className="text-white font-semibold">8-year merit-funded technical education</strong> at Instituto Federal de São Paulo (IFSP) and practical production work into a focused dedication to <strong className="text-white font-semibold">Agent Harness Engineering</strong>, <strong className="text-white font-semibold">LLM Agents</strong>, and <strong className="text-white font-semibold">robust software architectures</strong>.
+                                    I started programming at nine, guided by curiosity and by my father, who is also a software engineer. Ten years on, I am studying Computer Science at Instituto Federal de São Paulo (IFSP), a tuition-free federal institute that admits by competitive public exam.
+                                </p>
+                                <p>
+                                    My work is applied AI: LLM agents and the structured context that makes them reliable. As an intern at Kaffa Tech I built tools and on-demand skill generation for an AI agent platform. On my own I built{' '}
+                                    <Link to="/projects/college-list-ai" className={inlineLink}>
+                                        College List AI
+                                    </Link>
+                                    , and I write about agent harnesses on{' '}
+                                    <a href={PAPERS_EN_URL} target="_blank" rel="noopener noreferrer" className={inlineLink}>
+                                        Papers
+                                    </a>
+                                    .
+                                </p>
+                                <p>
+                                    {AVAILABILITY.summary} I am based in {AVAILABILITY.location} and open to relocating to the San Francisco Bay Area.
                                 </p>
                             </div>
 
-                            <div className="pt-2 flex items-center gap-4 flex-wrap">
+                            <div className="pt-2 flex items-center gap-3 flex-wrap">
                                 <Link
                                     to="/projects"
-                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all text-sm sm:text-base shadow-md"
+                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-colors text-sm sm:text-base"
                                 >
-                                    <span>Explore Projects</span>
-                                    <ArrowUpRight className="w-4 h-4" />
+                                    <span>View projects</span>
+                                    <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                                </Link>
+                                <Link
+                                    to="/resume"
+                                    className="inline-flex items-center px-5 py-3 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-colors text-sm sm:text-base"
+                                >
+                                    Résumé
                                 </Link>
                                 <Link
                                     to="/achievements"
-                                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-all text-sm sm:text-base"
+                                    className="inline-flex items-center px-5 py-3 rounded-xl border border-zinc-800 text-zinc-300 font-medium hover:border-zinc-600 hover:text-white transition-colors text-sm sm:text-base"
                                 >
-                                    <span>View Honors & Certificates</span>
+                                    Honors and certificates
                                 </Link>
                             </div>
                         </section>
 
 
-                        {/* 2. Professional Experience (Card-Free Editorial Spread) */}
+                        {/* Experience */}
                         <section className="border-t border-zinc-800/80 pt-12 space-y-8">
-                            <div className="flex items-center gap-2">
-                                <Briefcase className="w-5 h-5 text-emerald-400" />
-                                <h2 className="text-xs sm:text-sm font-mono text-zinc-400 uppercase tracking-widest font-semibold">
-                                    WORK EXPERIENCE
-                                </h2>
-                            </div>
+                            <Eyebrow as="h2" tone="muted">
+                                Work experience
+                            </Eyebrow>
 
                             <div className="space-y-10">
                                 {experiences.map(exp => (
@@ -184,8 +177,21 @@ const About = () => {
                                                     {exp.role}
                                                 </h3>
                                                 <p className="text-base text-zinc-400 font-light">
-                                                    <strong className="text-white font-medium">{exp.company}</strong>
-                                                    {exp.location && ` • ${exp.location}`}
+                                                    {exp.url ? (
+                                                        <a
+                                                            href={exp.url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className={inlineLink}
+                                                        >
+                                                            {exp.company}
+                                                        </a>
+                                                    ) : (
+                                                        <strong className="text-white font-medium">
+                                                            {exp.company}
+                                                        </strong>
+                                                    )}
+                                                    {exp.location && ` · ${exp.location}`}
                                                 </p>
                                             </div>
                                             <span className="text-xs sm:text-sm font-mono text-zinc-500 whitespace-nowrap">
@@ -200,8 +206,8 @@ const About = () => {
                                         {exp.highlights && exp.highlights.length > 0 && (
                                             <ul className="space-y-2 pt-1 max-w-3xl">
                                                 {exp.highlights.map(highlight => (
-                                                    <li key={highlight} className="flex items-start gap-3 text-sm text-zinc-400 font-light">
-                                                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" />
+                                                    <li key={highlight} className="flex items-start gap-3 text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
+                                                        <span aria-hidden="true" className="mt-2.5 w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" />
                                                         <span>{highlight}</span>
                                                     </li>
                                                 ))}
@@ -213,82 +219,126 @@ const About = () => {
                         </section>
 
 
-                        {/* ========================================================
-                            3. ACADEMIC PROFILE & GPAs (Editorial Metric Lockup)
-                           ======================================================== */}
+                        {/* Education */}
                         <section className="border-t border-zinc-800/80 pt-12 space-y-8">
-                            <div className="flex items-center gap-2">
-                                <FaGraduationCap className="w-5 h-5 text-amber-400" />
-                                <h2 className="text-xs sm:text-sm font-mono text-zinc-400 uppercase tracking-widest font-semibold">
-                                    ACADEMIC PROFILE & 8-YEAR PUBLIC MERIT
-                                </h2>
+                            <Eyebrow as="h2" tone="muted">
+                                Education
+                            </Eyebrow>
+
+                            <div>
+                                {education.map((item, index) => (
+                                    <div
+                                        key={item.degree}
+                                        className={`grid grid-cols-1 sm:grid-cols-12 gap-x-8 gap-y-4 ${
+                                            index > 0 ? 'mt-8 pt-8 border-t border-zinc-900' : ''
+                                        }`}
+                                    >
+                                        <div className="sm:col-span-9 space-y-2">
+                                            <div className="flex items-baseline gap-3 flex-wrap">
+                                                <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                                                    {item.degree}
+                                                </h3>
+                                                <span className="text-xs sm:text-sm font-mono text-zinc-500">
+                                                    {item.period}
+                                                </span>
+                                            </div>
+                                            <p className="text-sm sm:text-base text-zinc-400 font-light">
+                                                {item.school}
+                                            </p>
+                                            {item.notes.map(note => (
+                                                <p key={note} className="text-sm sm:text-base text-zinc-300 font-light leading-relaxed max-w-2xl">
+                                                    {note}
+                                                </p>
+                                            ))}
+                                        </div>
+                                        <div className="sm:col-span-3 sm:text-right">
+                                            <span className="text-3xl sm:text-4xl font-mono font-bold text-white tracking-tight block">
+                                                {item.gpa}
+                                            </span>
+                                            <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">
+                                                {item.gpaLabel}
+                                            </span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+
+                        {/* Skills */}
+                        <section className="border-t border-zinc-800/80 pt-12 space-y-8">
+                            <div className="space-y-3">
+                                <Eyebrow as="h2" tone="muted">
+                                    Tools I have shipped with
+                                </Eyebrow>
+                                <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed max-w-2xl">
+                                    Every item is in code I wrote for a project on this site.
+                                </p>
                             </div>
 
-                            <div className="space-y-6">
-                                
-                                {/* Item 1: Computer Science */}
-                                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-8 pb-6 border-b border-zinc-900">
-                                    {/* Stat Callout */}
-                                    <div className="flex sm:flex-col items-baseline sm:items-center justify-center p-3 sm:p-4 rounded-2xl bg-zinc-950 border border-zinc-800/90 shadow-xl min-w-[120px] text-center shrink-0">
-                                        <span className="text-2xl sm:text-3xl font-mono font-bold text-emerald-400 tracking-tight">
-                                            8.92
-                                        </span>
-                                        <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider pl-2 sm:pl-0 sm:pt-0.5">
-                                            CURRENT GPA
-                                        </span>
+                            <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8">
+                                {skillGroups.map(group => (
+                                    <div key={group.title} className="space-y-2">
+                                        <dt className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
+                                            {group.title}
+                                        </dt>
+                                        <dd className="text-sm sm:text-base text-zinc-300 font-light leading-relaxed">
+                                            {group.items.join(', ')}
+                                        </dd>
                                     </div>
-                                    {/* Context */}
-                                    <div className="space-y-1.5">
-                                        <div className="flex items-center gap-3 flex-wrap">
-                                            <h3 className="text-lg sm:text-xl font-bold text-white">
-                                                B.S. in Computer Science (4-Year Degree)
-                                            </h3>
-                                            <span className="text-xs font-mono text-zinc-500">2026 – Present</span>
-                                        </div>
-                                        <p className="text-sm sm:text-base text-zinc-400 font-light">
-                                            Instituto Federal de São Paulo (IFSP) • Public Federal Network
-                                        </p>
-                                        <p className="text-xs sm:text-sm text-zinc-400/90 font-light leading-relaxed">
-                                            • Comprehensive program combining core computer science foundations with specialized coursework in Machine Learning, Deep Learning, and Computer Vision.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Item 2: Informatics Technician */}
-                                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-8 pt-2">
-                                    {/* Stat Callout */}
-                                    <div className="flex sm:flex-col items-baseline sm:items-center justify-center p-3 sm:p-4 rounded-2xl bg-zinc-950 border border-zinc-800/90 shadow-xl min-w-[120px] text-center shrink-0">
-                                        <span className="text-2xl sm:text-3xl font-mono font-bold text-zinc-200 tracking-tight">
-                                            8.34
-                                        </span>
-                                        <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider pl-2 sm:pl-0 sm:pt-0.5">
-                                            GRADUATION GPA
-                                        </span>
-                                    </div>
-                                    {/* Context */}
-                                    <div className="space-y-1.5">
-                                        <div className="flex items-center gap-3 flex-wrap">
-                                            <h3 className="text-lg sm:text-xl font-bold text-white">
-                                                Integrated Technical High School in Informatics (4-Year Program)
-                                            </h3>
-                                            <span className="text-xs font-mono text-zinc-500">2022 – 2024</span>
-                                        </div>
-                                        <p className="text-sm sm:text-base text-zinc-400 font-light">
-                                            Instituto Federal de São Paulo (IFSP) • Jacareí Campus
-                                        </p>
-                                        <p className="text-xs sm:text-sm text-zinc-400/90 font-light leading-relaxed">
-                                            • Integrated technical program in software development and computing fundamentals. Completed the TutorTime capstone platform ahead of schedule during junior year.
-                                        </p>
-                                    </div>
-                                </div>
-
-                            </div>
+                                ))}
+                            </dl>
                         </section>
 
                     </main>
 
+                    {/* GitHub achievements */}
+                    <section className="order-3 md:col-start-1 md:row-start-2 w-full space-y-3">
+                        <h2 className="text-xs font-mono text-zinc-400 uppercase tracking-widest text-center md:text-left font-semibold">
+                            GitHub achievements
+                        </h2>
+
+                        <div className="flex flex-wrap justify-center md:justify-start gap-3">
+                            {badgeAchievements.map(achievement => (
+                                <button
+                                    type="button"
+                                    key={achievement.id}
+                                    aria-label={`${achievement.name}: view details`}
+                                    className="group relative cursor-pointer"
+                                    onClick={() =>
+                                        setSelectedAchievement(achievement)
+                                    }
+                                >
+                                    <div className="w-11 h-11 rounded-full bg-zinc-950 border border-zinc-800 flex items-center justify-center transition-all duration-300 group-hover:border-zinc-500 group-hover:bg-zinc-900 group-hover:scale-110">
+                                        <img
+                                            src={achievement.image}
+                                            alt={achievement.name}
+                                            draggable={false}
+                                            className="w-7 h-7 object-contain opacity-85 group-hover:opacity-100 transition-opacity select-none pointer-events-none"
+                                        />
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
+
+                        <ul className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-1 pt-1">
+                            {highlightAchievements.map(achievement => (
+                                <li key={achievement.id}>
+                                    <button
+                                        type="button"
+                                        className="text-xs font-mono text-zinc-500 hover:text-white transition-colors cursor-pointer"
+                                        onClick={() =>
+                                            setSelectedAchievement(achievement)
+                                        }
+                                    >
+                                        {achievement.name}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+
                 </div>
-            </div>
 
             {/* Achievement Modal */}
             <Modal
@@ -329,7 +379,7 @@ const About = () => {
                     </>
                 )}
             </Modal>
-        </div>
+        </Page>
     );
 };
 
