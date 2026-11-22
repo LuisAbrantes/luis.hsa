@@ -20,7 +20,7 @@ export const meta: MetaFunction = () =>
     pageMeta({
         title: TITLE,
         description:
-            'Résumé of Luis Henrique Abrantes: AI and software engineering intern at Kaffa Tech, Computer Science at IFSP, projects in LLM agents and full-stack development.',
+            'Résumé of Luis Henrique Abrantes: software engineer intern on the AI team at Kaffa Tech, Computer Science at IFSP, projects in LLM agents and full-stack work.',
         path: '/resume',
         ogType: 'profile',
         jsonLd: [
@@ -81,7 +81,7 @@ const Resume = () => (
                     ))}
                 </p>
                 <p className="resume-contacts">
-                    {AVAILABILITY.location}. {AVAILABILITY.relocation}.
+                    Based in {AVAILABILITY.location}
                 </p>
             </header>
 
@@ -98,7 +98,7 @@ const Resume = () => (
                     <div key={`${exp.company}-${exp.role}`} className="resume-entry">
                         <div className="resume-entry-head">
                             <h3>
-                                {exp.role}, {exp.company}
+                                {exp.role} · {exp.company}
                             </h3>
                             <span>{exp.period.split(' · ')[0]}</span>
                         </div>

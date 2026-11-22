@@ -15,7 +15,7 @@ export const PERSON = {
     ],
     jobTitle: 'Software Engineer & Applied AI Developer',
     description:
-        'Software engineer building LLM agents, agent harnesses and full-stack products. Former AI and software engineering intern at Kaffa Tech, Google Student Ambassador (2026) and Computer Science student at Instituto Federal de São Paulo (IFSP).',
+        'Software engineer building LLM agents, agent harnesses and full-stack products. Former software engineer intern on the AI team at Kaffa Tech, Google Student Ambassador (2026) and Computer Science student at Instituto Federal de São Paulo (IFSP).',
     /** First-person summary shown on the home page. */
     statement:
         'I build LLM agents and the full-stack products around them, and I write about agent harness engineering: the structured context that makes an agent reliable.',
@@ -57,7 +57,8 @@ export const PERSON = {
 
 /**
  * What Luis is looking for and where he is. Shown on Home, About and Contact.
- * Keep it to what he has stated himself.
+ * Only what he has asked to have on the site: his longer-term goals (such as
+ * where he would like to work) are context for shaping it, not copy.
  */
 export const AVAILABILITY = {
     /** One full sentence, for leads and meta copy. */
@@ -65,7 +66,6 @@ export const AVAILABILITY = {
         'Open to internships and junior roles in software engineering and applied AI.',
     roles: 'Internships and junior roles in software engineering and applied AI',
     location: 'Brazil (UTC-3)',
-    relocation: 'Open to relocating to the San Francisco Bay Area',
     languages: 'English and Portuguese'
 } as const;
 
@@ -74,7 +74,7 @@ export const CREDENTIALS = [
     { title: 'Google Student Ambassador', detail: '2026 global cohort' },
     {
         title: 'Kaffa Tech',
-        detail: 'AI & software engineering intern, 2026'
+        detail: 'Software Engineer Intern, AI team, 2026'
     },
     {
         title: 'UC Berkeley AI Hackathon',
@@ -83,7 +83,7 @@ export const CREDENTIALS = [
     { title: 'PennApps XXV', detail: 'University of Pennsylvania, 2024' },
     {
         title: 'Computer Science student',
-        detail: 'B.S. at IFSP since 2026, GPA 8.92 out of 10'
+        detail: 'B.S. at IFSP since 2026, GPA 8.72 out of 10'
     }
 ] as const;
 

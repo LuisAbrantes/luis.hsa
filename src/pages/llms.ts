@@ -21,7 +21,7 @@ export function loader() {
         '',
         `> ${PERSON.description}`,
         '',
-        `${AVAILABILITY.summary} Based in ${AVAILABILITY.location}. ${AVAILABILITY.relocation}.`,
+        `${AVAILABILITY.summary} Based in ${AVAILABILITY.location}.`,
         '',
         `Also written as: ${PERSON.alternateNames.join(', ')}.`,
         '',
@@ -38,7 +38,7 @@ export function loader() {
         '',
         ...experiences.map(
             exp =>
-                `- ${exp.role}, ${exp.company} (${exp.period.split(' · ')[0]}): ${exp.description}`
+                `- ${exp.role} at ${exp.company} (${exp.period.split(' · ')[0]}): ${exp.description}`
         ),
         '',
         '## Education',

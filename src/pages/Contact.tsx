@@ -26,10 +26,7 @@ const profiles = socialLinks.filter(link => !link.url.startsWith('mailto:'));
 
 const details = [
     { term: 'Looking for', value: AVAILABILITY.roles },
-    {
-        term: 'Location',
-        value: `${AVAILABILITY.location}. ${AVAILABILITY.relocation}.`
-    },
+    { term: 'Location', value: AVAILABILITY.location },
     { term: 'Languages', value: AVAILABILITY.languages }
 ];
 

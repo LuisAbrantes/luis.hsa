@@ -9,7 +9,7 @@ export const education: Education[] = [
         degree: 'B.S. in Computer Science',
         school: 'Instituto Federal de São Paulo (IFSP)',
         period: '2026 – Present',
-        gpa: '8.92',
+        gpa: '8.72',
         gpaLabel: 'Current GPA, out of 10',
         notes: [
             'Four-year degree at a tuition-free federal institute, with admission by competitive public exam.',

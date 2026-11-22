@@ -20,7 +20,7 @@ export const meta: MetaFunction = () =>
     pageMeta({
         title: TITLE,
         description:
-            'Luis Henrique Abrantes: coding since age nine, AI and software engineering intern at Kaffa Tech, Computer Science at IFSP, focused on agent harnesses.',
+            'Luis Henrique Abrantes: coding since age nine, software engineer intern on the AI team at Kaffa Tech, Computer Science at IFSP, focused on agent harnesses.',
         path: '/about',
         ogType: 'profile',
         jsonLd: [
@@ -134,7 +134,7 @@ const About = () => {
                                     .
                                 </p>
                                 <p>
-                                    {AVAILABILITY.summary} I am based in {AVAILABILITY.location} and open to relocating to the San Francisco Bay Area.
+                                    {AVAILABILITY.summary} I am based in {AVAILABILITY.location}.
                                 </p>
                             </div>
 
